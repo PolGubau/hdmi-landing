@@ -27,6 +27,11 @@ const services = [
     title: "Integraciones personalizadas",
     description: "APIs, herramientas de terceros, etc.",
   },
+  {
+    icon: "settings",
+    title: "Soporte y mantenimiento",
+    description: "Actualizaciones, mejoras y nuevas funcionalidades",
+  }
 ]
 ---
 
@@ -47,9 +52,9 @@ const services = [
            class="group rounded-xl bg-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
            >
           <header>
-            <div class="mb-3 inline-flex rounded-xl bg-gradient-to-br from-accent/10 to-accent/5 p-3 transition-transform group-hover:scale-110">
+            <div class="p-6">
             <p class="text-primary">
-              <Icon name={service.icon} class="h-6 w-6 text-foreground" />
+              <Icon name={service.icon} class="h-10 w-10 text-foreground" />
             </p>
             </div>
           </header>

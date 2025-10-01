@@ -1,0 +1,30 @@
+<section class="px-6 py-32 sm:py-40 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        Ellos ya trabajan menos y ganan más
+      </h2>
+    </div>
+
+    <ul class="mx-auto mt-20 max-w-3xl">
+      <li class="border-border bg-card shadow-2xl">
+        <div class="p-10 sm:p-14">
+          <div class="mb-6 flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <span class="h-5 w-5 rounded-full bg-primary" />
+            ))}
+          </div>
+          <!-- <Quote class="mb-6 h-12 w-12 text-accent/20" /> -->
+          <blockquote class="text-pretty text-xl font-medium leading-relaxed text-card-foreground sm:text-2xl">
+            "Desde que instalamos el asistente de reservas, pasamos de 10 a 35 citas semanales sin levantar el
+            teléfono."
+          </blockquote>
+          <div class="mt-10 border-t border-border pt-8">
+            <p class="text-lg font-bold text-foreground">Barbería Central</p>
+            <p class="mt-1 text-sm text-muted-foreground">Madrid</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
