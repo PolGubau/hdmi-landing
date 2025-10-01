@@ -3,8 +3,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
 
 import Bento from "~/components/Bento/Bento.astro";
 import Hero from "~/components/Layout/hero.astro";
-import { getProjects } from "~/lib/utils";
-const firstProjects = getProjects(6);
+import Services from "~/components/Services/Services.astro";
 ---
 
 <MainLayout>
@@ -13,9 +12,6 @@ const firstProjects = getProjects(6);
   >
     <Hero />
     <Bento/>
-    <!-- <StickyImages /> -->
-
-    <!-- <Ticket /> -->
-
+    <Services/>
    </main>
 </MainLayout>
