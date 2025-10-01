@@ -1,0 +1,17 @@
+---
+type Props = {
+  href: string;
+  label: string;
+};
+const { href, label } = Astro.props;
+---
+
+<a
+  target="_blank"
+  href-lang="en-us"
+  href={href}
+  aria-label={label}
+  class="mx-1 rounded-lg border border-neutral-300 bg-neutral-100 px-1 py-0.5 text-neutral-800 no-underline transition-all hover:bg-neutral-200 dark:border-neutral-500 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+>
+  @{label}
+</a>

@@ -1,0 +1,21 @@
+---
+import type { TicketItem } from "./ticketData";
+
+type Props = TicketItem;
+const { name, price } = Astro.props;
+const locale = Astro.preferredLocale;
+
+// price could be a number or string, in case its a number, format it to a string with currency
+const formattedPrice =
+  typeof price === "number"
+    ? new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: "EUR",
+      }).format(price)
+    : price;
+---
+
+<li class="flex justify-between">
+  <span class="text-[0.8em] md:text-md">{name}</span>
+  <span class="text-[0.8em] md:text-md">{formattedPrice}</span>
+</li>

@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components"
+
+const benefits = [
+  {
+    icon: "settings",
+    title: "Automatizaciones inteligentes",
+    description: "Asistentes 24/7 que responden, reservan y confirman sin que toques el móvil.",
+  },
+  {
+    icon: "globe",
+    title: "SEO que funciona",
+    description: "Webs rápidas, optimizadas y diseñadas para escalar posiciones en Google.",
+  },
+  {
+    icon: "compass",
+    title: "Más control, menos caos",
+    description: "Tus procesos organizados, tus clientes felices, y tú con tiempo para pensar.",
+  },
+  {
+    icon: "chart-line",
+    title: "Datos que importan",
+    description: "Analiza tus reservas, visitas y resultados con paneles claros y en tiempo real.",
+  },
+]
+
+
+---
+
+<section class="px-6 py-32 sm:py-40 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        Tu negocio, más visible. 
+        <span class="text-primary">
+          Tu tiempo, mejor usado.
+        </span>
+      </h2>
+      <p class="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
+        Mientras tú atiendes a tus clientes, nosotros nos encargamos de que lleguen más.
+      </p>
+    </div>
+
+    <ul class="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2">
+      {benefits.map((benefit) => (
+        <li
+           class="group rounded-xl bg-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        >
+          <div class="p-6">
+            <div class="mb-6 inline-flex rounded-xl bg-gradient-to-br from-primary/10 to-primary/50 p-4 transition-transform group-hover:scale-110">
+              <Icon name={benefit.icon} class="h-7 w-7 text-foreground" />
+            </div>
+            <h3 class="mb-3 text-xl md:text-3xl font-bold">{benefit.title}</h3>
+            <p class="leading-relaxed text-foreground/80">{benefit.description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

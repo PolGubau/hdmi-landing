@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  cons: string[];
+}
+const { title, cons } = Astro.props;
+---
+
+<div
+  class="my-6 w-full rounded-xl border border-red-200 bg-neutral-50 p-6 dark:border-red-900 dark:bg-neutral-900"
+>
+  <span>{title}</span>
+  <div class="mt-4">
+    {
+      cons.map((con) => (
+        <div class="mb-2 flex items-baseline font-medium">
+          <div class="mr-4 h-3 w-3 rounded-full bg-red-500 p-1" />
+          <span>{con}</span>
+        </div>
+      ))
+    }
+  </div>
+</div>

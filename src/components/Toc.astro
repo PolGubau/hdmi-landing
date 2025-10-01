@@ -1,0 +1,34 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+const { headings } = Astro.props;
+---
+
+<aside
+  class="sticky top-10 order-2 p-6 rounded-xl -mr-20 hidden basis-64 z-50 lg:block bg-background/80 backdrop-blur-sm"
+>
+  <h2 class="font-semibold" id="table-of-contents">Table of Contents</h2>
+  <ul class="mt-4 text-sm">
+    {
+      headings.map(({ depth, slug, text }) => (
+        <li class="hover:text-primary-800 dark:hover:text-primary-700 line-clamp-1">
+          <a
+            href={`#${slug}`}
+            aria-label={`Scroll to section: ${text}`}
+            class:list={[
+              "block",
+              { "mt-2 opacity-90": depth <= 2 },
+              { "mt-1 pl-3 text-xs opacity-80": depth > 2 },
+            ]}
+          >
+            {text}
+            <span class="sr-only">Scroll to section: {text}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</aside>

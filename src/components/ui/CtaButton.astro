@@ -1,0 +1,13 @@
+---
+import { Icon } from "astro-icon/components";
+type Props={
+  class?:string
+};
+
+const {class: className = ""}=Astro.props;
+---
+
+<a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class={`h-14 gap-2 px-8 text-base font-semibold shadow-lg w-fit transition-all hover:scale-105 rounded-full flex items-center text-current bg-primary/60 hover:brightness-90 ${className}`}>
+  <Icon name="sparkle" class="h-5 w-5 text-current" />
+  Escríbenos por WhatsApp
+</a>

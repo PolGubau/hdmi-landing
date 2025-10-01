@@ -1,0 +1,67 @@
+---
+import summary3 from "../../assets/media/summaries/summary-3.mp4";
+import codeSummary from "../../assets/media/summaries/summary-code.mp4";
+import designSummary from "../../assets/media/summaries/summary-design.mp4";
+import performanceSummary from "../../assets/media/summaries/summary-performance.mp4";
+import "./cards.css";
+import StickyCard from "./sticky-card.astro";
+---
+
+<section id="cards" class="delayed-appearing">
+  <div class="cards-container">
+    <ul class="sticked-cards">
+      <li class="card" id="card_1">
+        <StickyCard
+          title="Design that moves. Literally."
+          category="design"
+          src={designSummary}
+        />
+      </li>
+      <li class="card" id="card_2">
+        <StickyCard
+          title="Code that's crafted. Not copied."
+          category="code"
+          src={codeSummary}
+        />
+      </li>
+      <li class="card" id="card_3">
+        <StickyCard
+          title="Pixel-perfect by default"
+          category="publish"
+          src={summary3}
+        />
+      </li>
+      <li class="card" id="card_4">
+        <StickyCard
+          src={performanceSummary}
+          title="Just performance, no tricks"
+          category="quality"
+        />
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .cards-container {
+    /* Create View Timeline */
+    view-timeline-name: --revealing-images;
+    view-timeline-axis: block;
+
+    /* Attach animation, linked to the  View Timeline */
+    animation: linear fade-in both;
+    animation-timeline: --revealing-images;
+
+    /* Tweak range when effect should run*/
+    animation-range: normal 25%;
+  }
+</style>

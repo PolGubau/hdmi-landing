@@ -1,0 +1,30 @@
+---
+type Props = {
+  title: string;
+  category: "design" | "code" | "quality" | "publish";
+  src: string;
+  poster?: string;
+};
+const { title, src, poster } = Astro.props;
+---
+
+<div
+  class="content relative bg-primary rounded-3xl aspect-video h-full max-h-[600px] w-full p-4 border-4 border-background flex flex-col justify-center items-center"
+>
+  <p
+    class="absolute -top-6 -left-4 border-4 border-background bg-primary p-1 px-4 rounded-lg w-fit"
+  >
+    {title}
+  </p>
+  <video
+    class="w-full h-full object-cover bg-cover rounded-xl"
+    src={src}
+    autoplay
+    poster={poster}
+    loop
+    muted
+    playsinline
+  >
+    Tu navegador no soporta el tag de video.
+  </video>
+</div>

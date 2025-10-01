@@ -1,0 +1,32 @@
+---
+// Importamos los tipos necesarios si los estamos utilizando
+import type { HTMLAttributes } from "astro/types";
+
+// Definimos las props para el componente Astro
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  className?: string;
+}
+
+const { href, className, target, rel, ...rest } = Astro.props;
+
+// Lógica para determinar los atributos del enlace
+const attributes: Record<string, unknown> = {
+  ...rest,
+  class: className,
+  href,
+};
+
+if (String(href).startsWith("/")) {
+  attributes.hrefLang = "en-us";
+} else if (String(href).startsWith("#")) {
+  attributes.hrefLang = "en-us";
+} else {
+  attributes.target = "_blank";
+  attributes.rel = "noopener noreferrer";
+}
+---
+
+<a {...attributes}>
+  <slot />
+</a>

@@ -1,0 +1,43 @@
+---
+import Navbar from "~/components/Layout/navbar/Navbar.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Layout/footer/footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<html lang="en" dir="ltr" class={"w-screen overflow-x-hidden"}>
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+  <body>
+    <main class="flex min-h-screen w-full text-xl">
+      <div class="flex w-full items-center flex-col mx-auto">
+        <Navbar />
+        <slot />
+        <Footer />
+      </div>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  @keyframes opacity-fade {
+    from {
+      opacity: 1;
+    }
+    to {
+      transform: translateY(20px);
+      opacity: 0;
+      filter: blur(10px);
+    }
+  }
+
+ 
+</style>
