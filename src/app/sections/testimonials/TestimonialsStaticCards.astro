@@ -1,0 +1,17 @@
+---
+import { TestimonialCard } from '~/components/TestimonialCard';
+import type { Testimonial } from './Testimonials.astro';
+
+type Props = {
+  testimonials: Testimonial[];
+  className?: string;
+};
+
+const { testimonials, className } = Astro.props;
+---
+
+<ul class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full px-4 pb-18 ${className?? ""}`}>
+  {testimonials.map((testimonial) => (
+    <TestimonialCard testimonial={testimonial} />
+  ))}
+</ul>

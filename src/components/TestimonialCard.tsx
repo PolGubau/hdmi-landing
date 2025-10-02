@@ -1,12 +1,21 @@
 import type { Testimonial } from "~/app/sections/testimonials/Testimonials.astro";
 
+import { toCssLength } from "~/lib/utils";
+
 type Props = {
   testimonial: Testimonial;
+
+  height?: number | string;
 };
 
-export const TestimonialCard = ({ testimonial }: Props) => {
+export const TestimonialCard = ({ testimonial, height }: Props) => {
   return (
-    <li className="border-foreground/10 border rounded-2xl shadow-2xl max-w-xl h-[350px] p-8 sm:p-10 grid grid-rows-[1fr_auto] gap-2">
+    <li
+      style={{
+        height: toCssLength(height),
+      }}
+      className="border-foreground/10 border rounded-2xl shadow-2xl max-w-xl p-8 sm:p-10 grid grid-rows-[1fr_auto] gap-2"
+    >
       <header className="h-full flex flex-col gap-4">
         <div className="flex gap-1">
           {[...Array(5)].map((_) => (

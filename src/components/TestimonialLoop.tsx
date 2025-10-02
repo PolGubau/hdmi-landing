@@ -10,6 +10,8 @@ import type { Testimonial } from "~/app/sections/testimonials/Testimonials.astro
 
 import { TestimonialCard } from "./TestimonialCard";
 
+import { cn, toCssLength } from "~/lib/utils";
+
 export interface LogoLoopProps {
   testimonials: Testimonial[];
 
@@ -46,12 +48,6 @@ const ANIMATION_CONFIG = {
   COPY_HEADROOM: 2,
 } as const;
 
-const toCssLength = (value?: number | string): string | undefined =>
-  typeof value === "number" ? `${value}px` : (value ?? undefined);
-
-const cx = (...parts: Array<string | false | null | undefined>) =>
-  parts.filter(Boolean).join(" ");
-
 const useResizeObserver = (
   callback: () => void,
 
@@ -84,54 +80,6 @@ const useResizeObserver = (
 
     return () => {
       observers.forEach((observer) => observer?.disconnect());
-    };
-  }, dependencies);
-};
-
-const useImageLoader = (
-  seqRef: React.RefObject<HTMLUListElement | null>,
-
-  onLoad: () => void,
-
-  dependencies: React.DependencyList,
-) => {
-  useEffect(() => {
-    const images = seqRef.current?.querySelectorAll("img") ?? [];
-
-    if (images.length === 0) {
-      onLoad();
-
-      return;
-    }
-
-    let remainingImages = images.length;
-
-    const handleImageLoad = () => {
-      remainingImages -= 1;
-
-      if (remainingImages === 0) {
-        onLoad();
-      }
-    };
-
-    images.forEach((img) => {
-      const htmlImg = img as HTMLImageElement;
-
-      if (htmlImg.complete) {
-        handleImageLoad();
-      } else {
-        htmlImg.addEventListener("load", handleImageLoad, { once: true });
-
-        htmlImg.addEventListener("error", handleImageLoad, { once: true });
-      }
-    });
-
-    return () => {
-      images.forEach((img) => {
-        img.removeEventListener("load", handleImageLoad);
-
-        img.removeEventListener("error", handleImageLoad);
-      });
     };
   }, dependencies);
 };
@@ -230,23 +178,21 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
   ({
     testimonials,
 
-    speed = 120,
+    speed = 60,
 
     direction = "left",
 
     width = "100%",
 
-    logoHeight = 28,
+    logoHeight = 500,
 
     gap = 32,
 
     pauseOnHover = true,
 
-    fadeOut = false,
+    fadeOut = true,
 
-    fadeOutColor,
-
-    scaleOnHover = false,
+    scaleOnHover = true,
 
     ariaLabel = "Partner testimonials",
 
@@ -303,8 +249,6 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
       [testimonials, gap, logoHeight],
     );
 
-    useImageLoader(seqRef, updateDimensions, [testimonials, gap, logoHeight]);
-
     useAnimationLoop(
       trackRef,
 
@@ -323,27 +267,19 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
           "--logoloop-gap": `${gap}px`,
 
           "--logoloop-logoHeight": `${logoHeight}px`,
-
-          ...(fadeOutColor && { "--logoloop-fadeColor": fadeOutColor }),
         }) as React.CSSProperties,
 
-      [gap, logoHeight, fadeOutColor],
+      [gap, logoHeight],
     );
 
     const rootClasses = useMemo(
       () =>
-        cx(
+        cn(
           "relative overflow-x-hidden group",
 
           "[--logoloop-gap:32px]",
 
           "[--logoloop-logoHeight:28px]",
-
-          "[--logoloop-fadeColorAuto:#ffffff]",
-
-          "dark:[--logoloop-fadeColorAuto:#0b0b0b]",
-
-          scaleOnHover && "py-[calc(var(--logoloop-logoHeight)*0.1)]",
 
           className,
         ),
@@ -363,11 +299,13 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
       (item: Testimonial, key: React.Key) => {
         // oxlint-disable-next-line no-unused-vars
 
-        const content = <TestimonialCard testimonial={item} />;
+        const content = (
+          <TestimonialCard testimonial={item} height={logoHeight} />
+        );
 
         return (
           <li
-            className={cx(
+            className={cn(
               "flex-none mr-[var(--logoloop-gap)] text-[length:var(--logoloop-logoHeight)] leading-[1]",
 
               scaleOnHover && "overflow-visible group/item",
@@ -387,7 +325,7 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
       () =>
         Array.from({ length: copyCount }, (_, copyIndex) => (
           <ul
-            className="flex items-center"
+            className="flex items-center pb-14"
             key={`copy-${copyIndex}`}
             role="list"
             aria-hidden={copyIndex > 0}
@@ -428,29 +366,29 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
           <>
             <div
               aria-hidden
-              className={cx(
+              className={cn(
                 "pointer-events-none absolute inset-y-0 left-0 z-[1]",
 
                 "w-[clamp(24px,8%,120px)]",
 
-                "bg-[linear-gradient(to_right,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]",
+                "bg-gradient-to-r from-background",
               )}
             />
             <div
               aria-hidden
-              className={cx(
+              className={cn(
                 "pointer-events-none absolute inset-y-0 right-0 z-[1]",
 
                 "w-[clamp(24px,8%,120px)]",
 
-                "bg-[linear-gradient(to_left,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]",
+                "bg-gradient-to-l from-background",
               )}
             />
           </>
         )}
 
         <div
-          className={cx(
+          className={cn(
             "flex w-max will-change-transform select-none",
 
             "motion-reduce:transform-none",
@@ -463,7 +401,5 @@ export const TestimonialLoop = React.memo<LogoLoopProps>(
     );
   },
 );
-
-TestimonialLoop.displayName = "TestimonialLoop";
 
 export default TestimonialLoop;
