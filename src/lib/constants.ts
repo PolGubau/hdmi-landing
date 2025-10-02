@@ -24,27 +24,46 @@ export function getMetadata() {
     getInTouch: {
       label: "Contáctanos por WhatsApp",
 
+      short_label: "¡Hablemos!",
+
       href: "https://wa.me/34685282020",
     },
 
     tags: [
       "AutomatizaHoy",
+
       "Automatización de Procesos",
+
       "IA Empresarial",
+
       "Chatbots",
+
       "Páginas Web",
+
       "Automatización España",
+
       "Inteligencia Artificial",
+
       "Ahorro de Tiempo",
+
       "Productividad",
+
       "N8n",
+
       "SEO",
+
       "Transformación Digital",
+
       "Automatización Tareas",
+
       "Digitalización",
+
       "Webs Corporativas",
+
       "Landing Pages",
+
       "Barcelona",
+
       "España",
     ],
 

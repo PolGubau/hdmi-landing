@@ -1,3 +1,9 @@
+---
+import { Icon } from "astro-icon/components";
+import { getMetadata } from "~/lib/constants";
+const { getInTouch } = getMetadata();
+---
+
 <header
   class="z-40 fixed top-0 w-full items-center flex justify-between py-4 md:py-6 px-4 md:px-10 delayed-appearing"
 >
@@ -9,11 +15,18 @@
   </div>
   <div>
     <a
-      href="https://forms.gle/J5xpGDUCiVSRS8Pc7"
+      href={getInTouch.href}
       target="_blank"
       rel="noopener noreferrer"
-      class="bg-primary text-background py-2 px-4 rounded-full cursor-crosshair hover:brightness-90 hover:scale-105 transition-all border-background border-2 hover:border-primary backdrop-blur-sm"
-      >¡Hablemos!</a
-    >
+      class="bg-primary text-background py-2 px-4 rounded-full cursor-crosshair hover:brightness-90 hover:scale-105 transition-all border-background border-2 hover:border-primary backdrop-blur-sm flex gap-1 items-center"
+      >
+      
+      <Icon name="whatsapp" class="h-5 w-5" />
+      <span class="max-md:hidden">
+        {getInTouch.short_label}
+      </span>
+
+      </a>
+    
   </div>
 </header>
