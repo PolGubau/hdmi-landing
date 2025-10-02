@@ -1,8 +1,10 @@
 ---
 import CtaButton from "~/components/ui/CtaButton.astro";
+import { getMetadata } from "~/lib/constants";
 
- 
-const l = Astro.currentLocale;
+
+const {name} = getMetadata();
+
 ---
 
 <footer
@@ -14,7 +16,7 @@ const l = Astro.currentLocale;
   <div class="flex flex-col items-center justify-center text-center gap-4 mb-10 mt-10">
 
     <h2 class="text-4xl md:text-6xl">Haz que tu negocio trabaje solo.</h2> 
-    <p class="sm:text-2xl">Da el paso hacia un sistema que vende, agenda y crece sin ti.</p>
+    <p class="sm:text-2xl text-background/80">Da el paso hacia un sistema que vende, agenda y crece sin ti.</p>
     <div class="mt-8 text-background">
       <CtaButton/>
     </div>
@@ -24,16 +26,11 @@ const l = Astro.currentLocale;
 
     <div class="grid md:grid-cols-2 gap-4 items-end">
       <div class="flex flex-col gap-2">
-         <p>© manoslibres {new Date().getFullYear()}</p>
+         <p>© {name} {new Date().getFullYear()}</p>
       </div>
      
     </div>
   </div>
 </footer>
 
-<style>
-  footer::selection {
-    background-color: black;
-    color: var(--color-primary);
-  }
-</style>
+ 
