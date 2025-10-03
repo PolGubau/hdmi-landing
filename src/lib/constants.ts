@@ -26,7 +26,7 @@ export function getMetadata() {
 
       short_label: "¡Hablemos!",
 
-      href: "https://wa.me/34685282020",
+      href: "https://wa.me/34685282020?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20AutomatizaHoy",
     },
 
     tags: [
