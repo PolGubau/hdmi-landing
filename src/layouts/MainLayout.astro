@@ -2,6 +2,7 @@
 import Navbar from "~/components/Layout/navbar/Navbar.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer/footer.astro";
+import CtaButton from "~/components/ui/CtaButton.astro";
 
 interface Props {
   title?: string;
@@ -17,15 +18,24 @@ const { title, description, image } = Astro.props;
     <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
-    <main class="flex min-h-screen w-full text-xl">
-      <div class="flex w-full items-center flex-col mx-auto">
-        <Navbar />
-        <slot />
-        <Footer />
-      </div>
-    </main>
-  </body>
+      <main class="flex min-h-screen w-full text-xl">
+        <div class="flex w-full items-center flex-col mx-auto">
+          <Navbar />
+          <slot />
+          
+          
+          <div class="sticky bottom-4 w-screen max-w-3xl z-50 px-4 md:hidden">
+            <CtaButton class="w-full rounded-xl animate-in fade-in duration-1000 first_hidden delay-1000" />
+          </div>
+          
+          <Footer />
+        </div>
+      </main>
+   </body>
 </html>
+
+<script src="./observer-client.js"></script>
+
 
 <style is:global>
   @keyframes opacity-fade {

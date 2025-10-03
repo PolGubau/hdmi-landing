@@ -1,9 +1,12 @@
 @import "tailwindcss";
-@import "@polgubau/animated";
+/* @import "@polgubau/animated"; */
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-intersect";
+@plugin "tailwindcss-motion";
+
 
 @custom-variant dark (&:is(.dark *));
-@plugin "@tailwindcss/typography";
 
 @font-face {
   font-family: "bricolage";
@@ -443,10 +446,16 @@ strong {
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+ 
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.first_hidden{
+  @starting-style {
+    opacity: 0;
+    /* transform: translateY(10px); */
+  }
+
 }

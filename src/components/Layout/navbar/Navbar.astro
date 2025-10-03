@@ -8,25 +8,22 @@ const { getInTouch } = getMetadata();
   class="z-40 fixed top-0 w-full items-center flex justify-between py-4 md:py-6 px-4 md:px-10 delayed-appearing"
 >
   <div>
-    <h2 class="text-2xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2">
+    <h2
+      class="text-2xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2"
+    >
       <span>automatiza</span>
       <span class="font-black">hoy</span>
     </h2>
   </div>
-  <div>
+  <div class="max-md:hidden">
     <a
       href={getInTouch.href}
       target="_blank"
       rel="noopener noreferrer"
-      class="bg-primary text-background py-2 px-4 rounded-full cursor-crosshair hover:brightness-90 hover:scale-105 transition-all border-background border-2 hover:border-primary backdrop-blur-sm flex gap-1 items-center"
-      >
-      
+      class="bg-primary-700 text-background py-2 px-4 rounded-full cursor-crosshair hover:brightness-90 hover:scale-105 transition-all  backdrop-blur-sm flex gap-1 items-center"
+    >
       <Icon name="whatsapp" class="h-5 w-5" />
-      <span class="max-md:hidden">
-        {getInTouch.short_label}
-      </span>
-
-      </a>
-    
+      {getInTouch.short_label}
+    </a>
   </div>
 </header>
