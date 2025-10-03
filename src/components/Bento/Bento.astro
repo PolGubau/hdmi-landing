@@ -45,11 +45,11 @@ const benefits = [
       {benefits.map((benefit, index) => (
         <li class:list={[
           `intersect-once intersect:motion-preset-blur-down motion-delay-${index * 100} first_hidden`,
-          "group rounded-xl bg-primary/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+          "group rounded-xl bg-primary/5 transition-all duration-300"
         ]}
          >
           <div class="p-6">
-            <div class="mb-6 inline-flex rounded-xl bg-gradient-to-br from-primary/20 to-primary/50 p-4 transition-transform group-hover:scale-110">
+            <div class="mb-6 inline-flex rounded-xl bg-gradient-to-br from-primary/20 to-primary/50 p-4 transition-transform">
               <Icon name={benefit.icon} class="h-7 w-7 text-primary-900" />
             </div>
             <h3 class="mb-3 text-xl md:text-3xl font-bold">{benefit.title}</h3>
