@@ -1,29 +1,73 @@
 ---
-import { Icon } from "astro-icon/components";
+import LanguageSelector from "~/components/ui/LanguageSelector";
+import ThemeToggle from "~/components/ui/ThemeToggle";
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations,
+} from "~/i18n/utils";
 import { getMetadata } from "~/lib/constants";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 const { getInTouch } = getMetadata();
+
+const navItems = [
+  { href: translatePath(""), label: t("nav.home") },
+  { href: translatePath("#services"), label: t("nav.services") },
+  { href: translatePath("#portfolio"), label: t("nav.portfolio") },
+  { href: translatePath("#blog"), label: t("nav.blog") },
+  { href: translatePath("#contact"), label: t("nav.contact") },
+];
 ---
 
+<div
+  class="flex bg-foreground/5 justify-center w-full p-3 items-center gap-2 text-sm"
+>
+  <div class="size-2 rounded-full bg-green-400 animate-pulse"></div>
+  <p class="text-foreground/80">Oferta web por 399€</p>
+  <a
+    href={getInTouch.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hover:underline"
+  >
+    {t("letsTalk")}
+  </a>
+</div>
+
 <header
-  class="z-40 fixed top-0 w-full items-center flex justify-between py-4 md:py-6 px-4 md:px-10 delayed-appearing"
+  class="z-40 bg-background sticky top-0 w-full items-center flex justify-between py-4 px-4 md:px-14 delayed-appearing"
 >
   <div>
-    <h2
-      class="text-2xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2"
-    >
-      <span>automatiza</span>
-      <span class="font-black">hoy</span>
-    </h2>
+    <a href={translatePath("")} 
+        class="text-xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2 hover:bg-background/20 transition-all"
+      >
+        <span>automatiza</span>
+        <span class="font-black">hoy</span>
+     </a>
   </div>
-  <div class="max-md:hidden">
-    <a
-      href={getInTouch.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="bg-primary-700 text-background py-2 px-4 rounded-full cursor-crosshair hover:brightness-90 hover:scale-105 transition-all  backdrop-blur-sm flex gap-1 items-center"
-    >
-      <Icon name="whatsapp" class="h-5 w-5" />
-      {getInTouch.short_label}
-    </a>
+
+  <nav class="hidden lg:flex items-center gap-6">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-foreground/80 hover:text-foreground transition-colors text-base font-medium"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <ThemeToggle client:load />
+    <LanguageSelector
+      client:load
+      currentLang={lang}
+      currentPath={Astro.url.pathname}
+    />
   </div>
 </header>

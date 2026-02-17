@@ -1,0 +1,88 @@
+---
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Placeholder blog posts - you can replace with actual content collection later
+const blogPosts = [
+  {
+    title: "Cómo automatizar tu negocio en 2024",
+    excerpt: "Descubre las mejores herramientas y estrategias para automatizar procesos empresariales.",
+    date: "2024-02-15",
+    category: "Automatización",
+    readTime: "5 min",
+  },
+  {
+    title: "SEO: Guía completa para principiantes",
+    excerpt: "Todo lo que necesitas saber para posicionar tu web en Google desde cero.",
+    date: "2024-02-10",
+    category: "SEO",
+    readTime: "8 min",
+  },
+  {
+    title: "Tendencias en desarrollo web 2024",
+    excerpt: "Las tecnologías y frameworks que están revolucionando el desarrollo web este año.",
+    date: "2024-02-05",
+    category: "Desarrollo",
+    readTime: "6 min",
+  },
+];
+---
+
+<section id="blog" class="px-6 py-32 sm:py-40 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div
+      class="mx-auto max-w-2xl text-center intersect-once intersect:motion-preset-blur-down motion-delay-200 first_hidden"
+    >
+      <h2
+        class="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+      >
+        {t("blog.title")}
+      </h2>
+      <p class="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground">
+        {t("blog.subtitle")}
+      </p>
+    </div>
+
+    <div class="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        blogPosts.map((post, index) => (
+          <article
+            class={`intersect-once group rounded-2xl bg-card dark:bg-card/50 p-6 border border-border hover:border-primary/50 transition-all duration-300 intersect:motion-preset-blur-down motion-delay-${index * 100} first_hidden hover:shadow-lg`}
+          >
+            <div class="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+              <span class="px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary-800 dark:text-primary-300 text-xs font-medium">
+                {post.category}
+              </span>
+              <span>•</span>
+              <time datetime={post.date}>{post.readTime}</time>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+              {post.title}
+            </h3>
+            
+            <p class="text-muted-foreground mb-4 line-clamp-3">
+              {post.excerpt}
+            </p>
+            
+            <div class="flex items-center justify-between">
+              <time class="text-sm text-muted-foreground" datetime={post.date}>
+                {new Date(post.date).toLocaleDateString(lang, {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+              <span class="text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                Leer más →
+              </span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+

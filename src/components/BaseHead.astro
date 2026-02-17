@@ -3,6 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import { ClientRouter } from "astro:transitions";
 import { getMetadata } from "../lib/constants";
+import { getLangFromUrl } from "~/i18n/utils";
 import "../styles/global.css";
 
 interface Props {
@@ -12,14 +13,22 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const lang = getLangFromUrl(Astro.url);
 
-const metadata = getMetadata( );
+const metadata = getMetadata();
 
 const {
 	title = metadata.title,
 	description = metadata.description,
 	image = "/thumbnail.png",
 } = Astro.props;
+
+// Generate alternate language URLs
+const alternateUrls = {
+	es: new URL(Astro.url.pathname.replace(/^\/(ca|en)/, ""), Astro.site),
+	ca: new URL(`/ca${Astro.url.pathname.replace(/^\/(ca|en)/, "")}`, Astro.site),
+	en: new URL(`/en${Astro.url.pathname.replace(/^\/(ca|en)/, "")}`, Astro.site),
+};
 ---
 
 <!-- Global Metadata -->
@@ -38,10 +47,17 @@ const {
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Alternate Language URLs (hreflang) -->
+<link rel="alternate" hreflang="es" href={alternateUrls.es} />
+<link rel="alternate" hreflang="ca" href={alternateUrls.ca} />
+<link rel="alternate" hreflang="en" href={alternateUrls.en} />
+<link rel="alternate" hreflang="x-default" href={alternateUrls.es} />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="language" content={lang} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

@@ -1,36 +1,79 @@
 ---
 import CtaButton from "~/components/ui/CtaButton.astro";
 import { getMetadata } from "~/lib/constants";
-
-
-const {name} = getMetadata();
-
+import "./footer.css";
+const { name } = getMetadata();
 ---
 
-<footer
-  class="min-h-[90dvh] bg-foreground text-background w-dvw rounded-t-[10vw] mt-20 z-50 flex justify-center pb-20"
->
+<footer class="rounded-t-[10vw] mt-20 z-50 flex justify-center pb-20">
   <div
-    class="max-w-7xl px-6 xl:px-10 w-full mx-auto   flex-col grid grid-rows-[1fr_auto] gap-4"
+    class="max-w-7xl px-6 xl:px-10 w-full mx-auto flex-col grid grid-rows-[1fr_auto] gap-4"
   >
-  <div class="flex flex-col items-center justify-center text-center gap-4 mb-10 mt-10">
-
-    <h2 class="text-4xl md:text-6xl">Haz que tu negocio trabaje solo.</h2> 
-    <p class="sm:text-2xl text-background/80">Da el paso hacia un sistema que vende, agenda y crece sin ti.</p>
-    <div class="mt-8 text-background">
-      <CtaButton/>
+    <div
+      class="flex flex-col items-center justify-center text-center gap-4 mb-10 mt-10"
+    >
+      <h2 class="text-4xl md:text-6xl">Haz que tu negocio trabaje solo</h2>
+      <p class="text-lg text-muted-foreground max-w-xl">
+        Escríbenos por WhatsApp y te responderemos en minutos.
+      </p>
+      <div class="mt-8 text-background">
+        <CtaButton />
+      </div>
     </div>
 
-
-  </div>
+    <section class="grid gap-6 grid-cols-4 mb-10">
+      <div class="footer-section">
+        <h3 class="footer-section-title">Índice</h3><ul
+          class="footer-section-links"
+        >
+          <li><a href="/">Inicio</a></li><li>
+            <a href="/#services">Servicios</a>
+          </li><li><a href="/projects">Proyectos</a></li><li>
+            <a href="/blog">Blog</a>
+          </li><li><a href="/pricing">Precios</a></li><li>
+            <a href="/philosophy">Filosofía</a>
+          </li><li><a href="/contact">Contacto</a></li>
+        </ul>
+      </div><div class="footer-section">
+        <h3 class="footer-section-title">Servicios</h3><ul
+          class="footer-section-links"
+        >
+          <li>
+            <a href="/design-and-development">Diseño y desarrollo web</a>
+          </li><li><a href="/custom-development">Desarrollo a medida</a></li><li
+          >
+            <a href="/online-store">Tiendas online</a>
+          </li><li>
+            <span class="footer-link-disabled">Redes sociales</span>
+          </li><li>
+            <span class="footer-link-disabled">Mantenimiento</span>
+          </li><li>
+            <span class="footer-link-disabled">SEO Posicionamiento</span>
+          </li>
+        </ul>
+      </div><div class="footer-section">
+        <h3 class="footer-section-title">Proyectos</h3><ul
+          class="footer-section-links"
+        >
+          <li><a href="/projects">Landing Pages</a></li><li>
+            <a href="/projects">Páginas Corporativas</a>
+          </li><li><a href="/projects">Tiendas Online</a></li>
+        </ul>
+      </div><div class="footer-section">
+        <h3 class="footer-section-title">Legal</h3><ul
+          class="footer-section-links"
+        >
+          <li><a href="/privacy">Política de privacidad</a></li><li>
+            <a href="/cookies">Política de cookies</a>
+          </li><li><a href="/legal">Aviso legal</a></li>
+        </ul>
+      </div>
+    </section>
 
     <div class="grid md:grid-cols-2 gap-4 items-end">
       <div class="flex flex-col gap-2">
-         <p>© {name} {new Date().getFullYear()}</p>
+        <p>© {name} {new Date().getFullYear()}</p>
       </div>
-     
     </div>
   </div>
 </footer>
-
- 

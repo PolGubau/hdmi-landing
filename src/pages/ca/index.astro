@@ -1,0 +1,19 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+
+import Hero from "~/components/Layout/hero.astro";
+import Services from "~/components/Services/Services.astro";
+import PortfolioPreviewList from "~/components/Portfolio/portfolio-preview-list.astro";
+import BlogSection from "~/components/Blog/BlogSection.astro";
+import Contact from "~/components/Contact/Contact.astro";
+---
+
+<MainLayout>
+  <main class="flex flex-col items-center w-full">
+    <Hero />
+    <Services />
+    <PortfolioPreviewList />
+    <BlogSection />
+    <Contact />
+  </main>
+</MainLayout>

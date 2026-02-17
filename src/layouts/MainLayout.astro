@@ -3,6 +3,9 @@ import Navbar from "~/components/Layout/navbar/Navbar.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer/footer.astro";
 import CtaButton from "~/components/ui/CtaButton.astro";
+import ThemeScript from "~/components/ThemeScript.astro";
+import { getLangFromUrl } from "~/i18n/utils";
+import WhatsappIconButton from "~/components/ui/whatsapp-icon-button.astro";
 
 interface Props {
   title?: string;
@@ -11,31 +14,48 @@ interface Props {
 }
 
 const { title, description, image } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<html lang="en" dir="ltr" class={"w-screen overflow-x-hidden"}>
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+ 
+	if (typeof localStorage !== 'undefined') {
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>
+
+<html lang={lang} dir="ltr" class={"w-screen overflow-x-hidden"}>
   <head>
+    <ThemeScript />
     <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
-      <main class="flex min-h-screen w-full text-xl">
-        <div class="flex w-full items-center flex-col mx-auto">
-          <Navbar />
-          <slot />
-          
-          
-          <div class="sticky bottom-4 w-screen max-w-3xl z-50 px-4 md:hidden">
-            <CtaButton class="w-full rounded-xl animate-in fade-in duration-1000 first_hidden delay-1000" />
-          </div>
-          
-          <Footer />
-        </div>
-      </main>
-   </body>
+    <main class="flex min-h-screen w-full text-xl">
+      <div class="flex w-full items-center flex-col mx-auto">
+        <Navbar />
+        <slot />
+
+        <WhatsappIconButton />
+
+        <Footer />
+      </div>
+    </main>
+  </body>
 </html>
 
 <script src="./observer-client.js"></script>
-
 
 <style is:global>
   @keyframes opacity-fade {
@@ -48,6 +68,5 @@ const { title, description, image } = Astro.props;
       filter: blur(10px);
     }
   }
-
- 
+  
 </style>

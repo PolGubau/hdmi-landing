@@ -1,8 +1,38 @@
 ---
-import Header from "./header/header.astro";
+import CtaButton from "~/components/ui/CtaButton.astro";
+import { getLangFromUrl, useTranslations } from "~/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<article class="flex flex-col w-full">
-  <Header />
-</article>
- 
+<section id="home" class="relative overflow-hidden min-h-dvh px-6 pt-40">
+  <div class="mx-auto max-w-5xl text-center">
+    <h1
+      class="text-balance md:line-clamp-1 text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-6xl flex flex-col gap-1 motion-opacity-in-0 motion-translate-y-in-100 motion-blur-in-md"
+    >
+      <span>
+        {t("hero.title")}
+      </span>
+    </h1>
+    <h2
+      class="mt-4 text-balance md:line-clamp-1 text-3xl font-semibold leading-tight text-foreground/90 sm:text-4xl lg:text-6xl motion-opacity-in-0 motion-translate-y-in-50 motion-blur-in-md"
+    >
+      <span
+        class="bg-gradient-to-r from-primary to-primary/40 bg-clip-text text-transparent"
+        >{t("hero.subtitle.highlight")}</span
+      >
+      {t("hero.subtitle")}
+    </h2>
+    <p
+      class="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl motion-preset-blur-up"
+    >
+      {t("hero.description")}
+    </p>
+    <div
+      class="max-md:hidden mt-12 flex items-center justify-center gap-4 text-background motion-opacity-in-0 motion-translate-y-in-50 motion-blur-in-md delay-800"
+    >
+      <CtaButton />
+    </div>
+  </div>
+</section>
