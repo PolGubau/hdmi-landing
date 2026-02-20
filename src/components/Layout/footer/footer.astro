@@ -1,7 +1,10 @@
 ---
 import { getMetadata } from "~/lib/constants";
+import { getLangFromUrl, useTranslatedPath } from "~/i18n/utils";
 import "./footer.css";
 const { name, links } = getMetadata();
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <footer class="rounded-t-[10vw] mt-20 z-50 flex justify-center pb-20">
@@ -47,9 +50,9 @@ const { name, links } = getMetadata();
         <h3 class="footer-section-title">Legal</h3><ul
           class="footer-section-links"
         >
-          <li><a href="/privacy">Política de privacidad</a></li><li>
-            <a href="/cookies">Política de cookies</a>
-          </li><li><a href="/legal">Aviso legal</a></li>
+          <li><a href={translatePath("privacy")}>Política de privacidad</a></li><li>
+            <a href={translatePath("cookies")}>Política de cookies</a>
+          </li><li><a href={translatePath("legal")}>Aviso legal</a></li>
         </ul>
       </div>
     </section>

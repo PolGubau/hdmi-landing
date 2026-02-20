@@ -1,0 +1,109 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+import { getMetadata } from "~/lib/constants";
+
+const { name, links } = getMetadata();
+const lastUpdated = "20 de febrer de 2025";
+---
+
+<MainLayout
+  title={`Avís Legal | ${name}`}
+  description="Avís legal i informació sobre la titularitat i condicions d'ús d'aquest lloc web."
+>
+  <main class="w-full max-w-4xl mx-auto px-6 xl:px-10 py-20">
+    <div class="mb-10">
+      <a
+        href="/ca"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        ← Tornar a l'inici
+      </a>
+    </div>
+
+    <article class="prose prose-neutral dark:prose-invert max-w-none">
+      <h1>Avís Legal</h1>
+      <p class="text-muted-foreground text-sm">Darrera actualització: {lastUpdated}</p>
+
+      <p>
+        En compliment de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la
+        Informació i de Comerç Electrònic (LSSI-CE), t'informem de les dades
+        identificatives del titular d'aquest lloc web.
+      </p>
+
+      <h2>1. Dades identificatives del titular</h2>
+      <ul>
+        <li><strong>Titular:</strong> {name}</li>
+        <li>
+          <strong>Correu electrònic:</strong>{" "}
+          <a href={links.email}>gubaupol@gmail.com</a>
+        </li>
+        <li>
+          <strong>Lloc web:</strong>{" "}
+          <a href={links.website} target="_blank" rel="noopener noreferrer">{links.website}</a>
+        </li>
+        <li><strong>Ubicació:</strong> Barcelona, Espanya</li>
+      </ul>
+
+      <h2>2. Objecte</h2>
+      <p>
+        El present avís legal regula l'accés i l'ús del lloc web{" "}
+        <a href={links.website} target="_blank" rel="noopener noreferrer">{links.website}</a>,
+        que {name} posa a disposició dels usuaris d'Internet amb la finalitat d'oferir
+        informació sobre els seus serveis d'automatització, desenvolupament web i
+        intel·ligència artificial.
+      </p>
+
+      <h2>3. Condicions d'ús</h2>
+      <p>
+        L'accés i l'ús d'aquest lloc web implica l'acceptació de les presents condicions.
+        L'usuari es compromet a fer un ús adequat dels continguts i serveis disponibles,
+        i a no emprar-los per a activitats il·lícites, contràries a la bona fe o a l'ordre
+        públic.
+      </p>
+      <p>
+        {name} es reserva el dret a modificar, suspendre o eliminar el lloc web, així com
+        els continguts o serveis incorporats, sense previ avís.
+      </p>
+
+      <h2>4. Propietat intel·lectual i industrial</h2>
+      <p>
+        Tots els continguts d'aquest lloc web —incloent-hi, sense limitació, textos,
+        imatges, gràfics, logotips, icones, codi font i disseny— són propietat de {name}
+        o de tercers que n'han autoritzat l'ús, i estan protegits per la legislació
+        espanyola i internacional sobre propietat intel·lectual i industrial.
+      </p>
+      <p>
+        Queda expressament prohibida la reproducció, distribució, comunicació pública o
+        transformació de qualsevol element d'aquest lloc web sense l'autorització prèvia
+        i per escrit del seu titular, llevat que la llei ho permeti expressament.
+      </p>
+
+      <h2>5. Exempció de responsabilitat</h2>
+      <p>
+        {name} no es responsabilitza dels danys o perjudicis que puguin derivar-se de
+        l'ús d'aquest lloc web, ni de possibles inexactituds o desactualitzacions en els
+        continguts publicats. Així mateix, no garanteix la disponibilitat contínua del
+        lloc ni l'absència d'errors tècnics.
+      </p>
+      <p>
+        Els enllaços a llocs web de tercers que puguin aparèixer en aquest lloc es
+        proporcionen únicament a títol informatiu. {name} no controla aquests llocs i no
+        assumeix cap responsabilitat pels seus continguts o polítiques de privacitat.
+      </p>
+
+      <h2>6. Legislació aplicable i jurisdicció</h2>
+      <p>
+        Les presents condicions es regeixen per la legislació espanyola. Per a la resolució
+        de qualsevol controvèrsia derivada de l'ús d'aquest lloc web, les parts se
+        sotmeten als jutjats i tribunals de Barcelona, amb renúncia expressa a qualsevol
+        altre fur que pugui correspondre'ls.
+      </p>
+
+      <h2>7. Contacte</h2>
+      <p>
+        Per a qualsevol consulta relacionada amb aquest avís legal, pots contactar-nos a{" "}
+        <a href={links.email}>gubaupol@gmail.com</a>.
+      </p>
+    </article>
+  </main>
+</MainLayout>

@@ -1,0 +1,124 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+import { getMetadata } from "~/lib/constants";
+
+const { name, links } = getMetadata();
+const lastUpdated = "February 20, 2025";
+---
+
+<MainLayout
+  title={`Privacy Policy | ${name}`}
+  description="Information about how we collect, use and protect your personal data."
+>
+  <main class="w-full max-w-4xl mx-auto px-6 xl:px-10 py-20">
+    <div class="mb-10">
+      <a
+        href="/en"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        ← Back to home
+      </a>
+    </div>
+
+    <article class="prose prose-neutral dark:prose-invert max-w-none">
+      <h1>Privacy Policy</h1>
+      <p class="text-muted-foreground text-sm">Last updated: {lastUpdated}</p>
+
+      <p>
+        At <strong>{name}</strong> we take the privacy of our users very seriously. This
+        policy explains what personal data we collect, for what purpose, and how we protect
+        it, in accordance with the General Data Protection Regulation (GDPR) and Spanish
+        data protection law.
+      </p>
+
+      <h2>1. Data Controller</h2>
+      <ul>
+        <li><strong>Name:</strong> {name}</li>
+        <li><strong>Email:</strong> <a href={links.email}>gubaupol@gmail.com</a></li>
+        <li><strong>Website:</strong> <a href={links.website} target="_blank" rel="noopener noreferrer">{links.website}</a></li>
+        <li><strong>Location:</strong> Barcelona, Spain</li>
+      </ul>
+
+      <h2>2. Data We Collect</h2>
+      <p>We may collect the following types of data:</p>
+      <ul>
+        <li>
+          <strong>Contact data:</strong> name, email address, phone number and message, when
+          you voluntarily provide them through our contact form or WhatsApp.
+        </li>
+        <li>
+          <strong>Browsing data:</strong> IP address, browser type, pages visited and time
+          spent, collected anonymously via technical and analytical cookies.
+        </li>
+      </ul>
+
+      <h2>3. Purpose of Processing</h2>
+      <p>We use your data to:</p>
+      <ul>
+        <li>Respond to your enquiries and quote requests.</li>
+        <li>Manage the commercial relationship arising from the provision of our services.</li>
+        <li>Send you information about our services, if you have given us your explicit consent.</li>
+        <li>Improve the performance and user experience of the website.</li>
+        <li>Comply with applicable legal obligations.</li>
+      </ul>
+
+      <h2>4. Legal Basis for Processing</h2>
+      <ul>
+        <li><strong>Performance of a contract</strong> or pre-contractual measures.</li>
+        <li><strong>Consent</strong> of the data subject (contact form, subscriptions).</li>
+        <li><strong>Legitimate interest</strong> in improving our services and communications.</li>
+        <li><strong>Compliance with legal obligations.</strong></li>
+      </ul>
+
+      <h2>5. Data Retention</h2>
+      <p>
+        We will retain your data for as long as necessary for the purpose for which it was
+        collected, or while a contractual relationship exists, and in any case for the
+        periods established by applicable legislation.
+      </p>
+
+      <h2>6. Data Recipients</h2>
+      <p>
+        We do not share your data with third parties, except where legally required or where
+        necessary for the provision of the service (e.g., web hosting providers or
+        communication tools). All providers offer adequate data protection guarantees.
+      </p>
+
+      <h2>7. Your Rights</h2>
+      <p>
+        You may exercise the following rights at any time by contacting{" "}
+        <a href={links.email}>gubaupol@gmail.com</a>:
+      </p>
+      <ul>
+        <li><strong>Access:</strong> find out what data we process about you.</li>
+        <li><strong>Rectification:</strong> correct inaccurate or incomplete data.</li>
+        <li><strong>Erasure:</strong> request deletion of your data.</li>
+        <li><strong>Objection:</strong> object to the processing of your data.</li>
+        <li><strong>Restriction:</strong> request restriction of processing.</li>
+        <li><strong>Portability:</strong> receive your data in a structured format.</li>
+      </ul>
+      <p>
+        You also have the right to lodge a complaint with the Spanish Data Protection Agency
+        (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).
+      </p>
+
+      <h2>8. Security</h2>
+      <p>
+        We implement appropriate technical and organisational measures to protect your data
+        against unauthorised access, loss, alteration or disclosure.
+      </p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>
+        We reserve the right to update this policy at any time. The current version will
+        always be available on this page with the date of the last update.
+      </p>
+
+      <h2>10. Contact</h2>
+      <p>
+        For any questions related to this privacy policy, you can contact us at{" "}
+        <a href={links.email}>gubaupol@gmail.com</a>.
+      </p>
+    </article>
+  </main>
+</MainLayout>

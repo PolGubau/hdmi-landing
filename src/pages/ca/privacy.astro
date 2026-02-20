@@ -1,0 +1,129 @@
+---
+import MainLayout from "~/layouts/MainLayout.astro";
+import { getMetadata } from "~/lib/constants";
+
+const { name, links } = getMetadata();
+const lastUpdated = "20 de febrer de 2025";
+---
+
+<MainLayout
+  title={`Política de Privacitat | ${name}`}
+  description="Informació sobre com recopilem, usem i protegim les teves dades personals."
+>
+  <main class="w-full max-w-4xl mx-auto px-6 xl:px-10 py-20">
+    <div class="mb-10">
+      <a
+        href="/ca"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        ← Tornar a l'inici
+      </a>
+    </div>
+
+    <article class="prose prose-neutral dark:prose-invert max-w-none">
+      <h1>Política de Privacitat</h1>
+      <p class="text-muted-foreground text-sm">Darrera actualització: {lastUpdated}</p>
+
+      <p>
+        A <strong>{name}</strong> ens prenem molt seriosament la privacitat dels nostres
+        usuaris. Aquesta política explica quines dades personals recopilem, amb quina
+        finalitat i com les protegim, d'acord amb el Reglament General de Protecció de
+        Dades (RGPD) i la Llei Orgànica 3/2018 de Protecció de Dades Personals i garantia
+        dels drets digitals (LOPDGDD).
+      </p>
+
+      <h2>1. Responsable del tractament</h2>
+      <ul>
+        <li><strong>Nom:</strong> {name}</li>
+        <li><strong>Correu electrònic:</strong> <a href={links.email}>gubaupol@gmail.com</a></li>
+        <li><strong>Lloc web:</strong> <a href={links.website} target="_blank" rel="noopener noreferrer">{links.website}</a></li>
+        <li><strong>Ubicació:</strong> Barcelona, Espanya</li>
+      </ul>
+
+      <h2>2. Dades que recopilem</h2>
+      <p>Podem recopilar els tipus de dades següents:</p>
+      <ul>
+        <li>
+          <strong>Dades de contacte:</strong> nom, correu electrònic, número de telèfon i
+          missatge, quan ens els proporciones voluntàriament a través del formulari de
+          contacte o WhatsApp.
+        </li>
+        <li>
+          <strong>Dades de navegació:</strong> adreça IP, tipus de navegador, pàgines
+          visitades i temps de permanència, recopilades de forma anònima mitjançant cookies
+          tècniques i analítiques.
+        </li>
+      </ul>
+
+      <h2>3. Finalitat del tractament</h2>
+      <p>Utilitzem les teves dades per a:</p>
+      <ul>
+        <li>Respondre a les teves consultes i sol·licituds de pressupost.</li>
+        <li>Gestionar la relació comercial derivada de la prestació dels nostres serveis.</li>
+        <li>Enviar-te informació sobre els nostres serveis, si ens has donat el teu consentiment exprés.</li>
+        <li>Millorar el rendiment i l'experiència d'ús del lloc web.</li>
+        <li>Complir amb les obligacions legals aplicables.</li>
+      </ul>
+
+      <h2>4. Base jurídica del tractament</h2>
+      <ul>
+        <li><strong>Execució d'un contracte</strong> o aplicació de mesures precontractuals.</li>
+        <li><strong>Consentiment</strong> de l'interessat (formulari de contacte, subscripcions).</li>
+        <li><strong>Interès legítim</strong> en millorar els nostres serveis i comunicacions.</li>
+        <li><strong>Compliment d'obligacions legals.</strong></li>
+      </ul>
+
+      <h2>5. Conservació de les dades</h2>
+      <p>
+        Conservarem les teves dades durant el temps necessari per a la finalitat per a la
+        qual van ser recollides o mentre existeixi una relació contractual, i en tot cas
+        durant els terminis establerts per la legislació aplicable.
+      </p>
+
+      <h2>6. Destinataris de les dades</h2>
+      <p>
+        No cedim les teves dades a tercers, excepte per obligació legal o quan sigui
+        necessari per a la prestació del servei (p.ex., proveïdors d'allotjament web o
+        eines de comunicació). Tots els proveïdors compten amb garanties adequades de
+        protecció de dades.
+      </p>
+
+      <h2>7. Els teus drets</h2>
+      <p>
+        Pots exercir en qualsevol moment els drets següents dirigint-te a{" "}
+        <a href={links.email}>gubaupol@gmail.com</a>:
+      </p>
+      <ul>
+        <li><strong>Accés:</strong> conèixer quines dades tractem sobre tu.</li>
+        <li><strong>Rectificació:</strong> corregir dades inexactes o incompletes.</li>
+        <li><strong>Supressió:</strong> sol·licitar l'eliminació de les teves dades.</li>
+        <li><strong>Oposició:</strong> oposar-te al tractament de les teves dades.</li>
+        <li><strong>Limitació:</strong> sol·licitar la restricció del tractament.</li>
+        <li><strong>Portabilitat:</strong> rebre les teves dades en un format estructurat.</li>
+      </ul>
+      <p>
+        També tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció
+        de Dades (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).
+      </p>
+
+      <h2>8. Seguretat</h2>
+      <p>
+        Adoptem mesures tècniques i organitzatives adequades per protegir les teves dades
+        contra accessos no autoritzats, pèrdua, alteració o divulgació.
+      </p>
+
+      <h2>9. Canvis en aquesta política</h2>
+      <p>
+        Ens reservem el dret d'actualitzar aquesta política en qualsevol moment. La versió
+        vigent estarà sempre disponible en aquesta pàgina amb la data de darrera
+        actualització.
+      </p>
+
+      <h2>10. Contacte</h2>
+      <p>
+        Per a qualsevol consulta relacionada amb aquesta política de privacitat, pots
+        contactar-nos a <a href={links.email}>gubaupol@gmail.com</a>.
+      </p>
+    </article>
+  </main>
+</MainLayout>
