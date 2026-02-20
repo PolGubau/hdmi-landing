@@ -1,12 +1,14 @@
 import { Languages } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem } from './dropdown-menu';
+import { getLangFromUrl, useTranslations, type Language } from '~/i18n/utils';
 
 interface LanguageSelectorProps {
-  currentLang: string;
+  currentLang: Language;
   currentPath: string;
 }
 
-const languages = {
+const languages: Record<Language, string> = {
   es: 'ES',
   ca: 'CA',
   en: 'EN',
@@ -14,18 +16,7 @@ const languages = {
 
 export default function LanguageSelector({ currentLang, currentPath }: LanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  const t = useTranslations(currentLang);
 
   const getLocalizedPath = (lang: string) => {
     // Remove current language prefix if exists
@@ -46,32 +37,32 @@ export default function LanguageSelector({ currentLang, currentPath }: LanguageS
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-full bg-background/10 backdrop-blur-lg hover:bg-background/20 transition-all flex items-center gap-1"
-        aria-label="Select language"
-      >
-        <Languages className="h-5 w-5 text-foreground" />
-        <span className="text-sm font-medium text-foreground">{languages[currentLang as keyof typeof languages]}</span>
-      </button>
-
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-32 rounded-lg bg-background/95 backdrop-blur-lg border border-border shadow-lg overflow-hidden">
-          {Object.entries(languages).map(([code, label]) => (
-            <a
-              key={code}
-              href={getLocalizedPath(code)}
-              className={`block px-4 py-2 text-sm hover:bg-primary/10 transition-colors ${
-                currentLang === code ? 'bg-primary/20 font-semibold' : ''
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      )}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-full bg-foreground/10 backdrop-blur-lg hover:bg-foreground/20 transition-all flex items-center gap-1"
+          aria-label="Select language"
+        >
+          <Languages className="size-5 text-foreground" />
+          <span className="text-sm font-medium text-foreground">{languages[currentLang as keyof typeof languages]}</span>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-32">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>
+            {t("language")}
+          </DropdownMenuLabel>
+          <DropdownMenuRadioGroup value={currentLang} onValueChange={(value) => window.location.href = getLocalizedPath(value)}>
+            {Object.entries(languages).map(([lang, label]) => (
+              <DropdownMenuRadioItem key={lang} value={lang}>
+                {label}
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 

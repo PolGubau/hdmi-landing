@@ -1,11 +1,11 @@
 ---
 import Navbar from "~/components/Layout/navbar/Navbar.astro";
+import ThemeScript from "~/components/ThemeScript.astro";
+import CtaButton from "~/components/ui/CtaButton.astro";
+import WhatsappIconButton from "~/components/ui/whatsapp-icon-button.astro";
+import { getLangFromUrl } from "~/i18n/utils";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer/footer.astro";
-import CtaButton from "~/components/ui/CtaButton.astro";
-import ThemeScript from "~/components/ThemeScript.astro";
-import { getLangFromUrl } from "~/i18n/utils";
-import WhatsappIconButton from "~/components/ui/whatsapp-icon-button.astro";
 
 interface Props {
   title?: string;

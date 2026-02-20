@@ -11,7 +11,7 @@ import { getMetadata } from "~/lib/constants";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
-const { getInTouch } = getMetadata();
+const { getInTouch, name } = getMetadata();
 
 const navItems = [
   { href: translatePath(""), label: t("nav.home") },
@@ -26,7 +26,9 @@ const navItems = [
   class="flex bg-foreground/5 justify-center w-full p-3 items-center gap-2 text-sm"
 >
   <div class="size-2 rounded-full bg-green-400 animate-pulse"></div>
-  <p class="text-foreground/80">Oferta web por 399€</p>
+  <p class="text-foreground/80">
+    Consigue tu primera asesoría totalmente gratis
+  </p>
   <a
     href={getInTouch.href}
     target="_blank"
@@ -41,12 +43,12 @@ const navItems = [
   class="z-40 bg-background sticky top-0 w-full items-center flex justify-between py-4 px-4 md:px-14 delayed-appearing"
 >
   <div>
-    <a href={translatePath("")} 
-        class="text-xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2 hover:bg-background/20 transition-all"
-      >
-        <span>automatiza</span>
-        <span class="font-black">hoy</span>
-     </a>
+    <a
+      href={translatePath("")}
+      class="text-xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2 hover:bg-background/20 transition-all font-semibold"
+    >
+      {name}
+    </a>
   </div>
 
   <nav class="hidden lg:flex items-center gap-6">

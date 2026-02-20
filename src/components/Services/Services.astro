@@ -47,33 +47,30 @@ const services: {
 ];
 ---
 
-<section id="services" class="px-6 py-32 sm:py-40 lg:px-8">
-  <div class="mx-auto max-w-7xl">
-    <header class="max-w-2xl">
-      <h2 class="">
-        {t("services.title")}
-      </h2>
-    </header>
+<section
+  id="services"
+  class="px-6 py-32 sm:py-40 lg:px-8 w-full mx-auto max-w-7xl"
+>
+  <header
+    class="intersect-once intersect:motion-preset-blur-down motion-delay-200 first_hidden mb-12"
+  >
+    <h2>{t("services.title")}</h2>
+  </header>
 
-    <ul
-      class="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-    >
-      {
-        services.map((service) => (
-          <li>
-            <a
-              href="#contact"
-              class={`text-muted-foreground group rounded-lg bg-primary/5 transition-all p-7 flex flex-col gap-6 hover:border-foreground/20 border border-transparent`}
-            >
-              <Icon name={service.icon} class="size-7" />
-              <h3 class="project-title text-foreground">
-                {t(service.titleKey)}
-              </h3>
-              <p class="text-sm">{t(service.descriptionKey)}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      services.map((service) => (
+        <li>
+          <a
+            href="#contact"
+            class={`text-muted-foreground group rounded-lg bg-primary/5 transition-all p-7 flex flex-col gap-6 hover:border-foreground/20 border border-transparent`}
+          >
+            <Icon name={service.icon} class="size-7" />
+            <h3 class="project-title text-foreground">{t(service.titleKey)}</h3>
+            <p class="text-sm">{t(service.descriptionKey)}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </section>

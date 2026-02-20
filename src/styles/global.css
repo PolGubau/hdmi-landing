@@ -61,7 +61,6 @@
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
@@ -107,7 +106,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-border: var(--border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
@@ -147,9 +146,12 @@ h5,
 h6 {
   @apply font-heading;
 }
+button{
+  @apply cursor-pointer;
+}
 
 body {
-  @apply bg-background text-foreground antialiased font-heading;
+  @apply bg-background text-foreground antialiased font-heading ;
 }
 
 *::selection {

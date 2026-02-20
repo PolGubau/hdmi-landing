@@ -1,11 +1,11 @@
 ---
 import MainLayout from "~/layouts/MainLayout.astro";
 
-import Hero from "~/components/Layout/hero.astro";
-import Services from "~/components/Services/Services.astro";
- import BlogSection from "~/components/Blog/BlogSection.astro";
 import Contact from "~/components/Contact/Contact.astro";
+import FAQ from "~/components/FAQ/FAQ.astro";
+import Hero from "~/components/Layout/hero.astro";
 import PortfolioPreviewList from "~/components/Portfolio/portfolio-preview-list.astro";
+import Services from "~/components/Services/Services.astro";
 ---
 
 <MainLayout>
@@ -13,7 +13,8 @@ import PortfolioPreviewList from "~/components/Portfolio/portfolio-preview-list.
     <Hero />
     <Services />
     <PortfolioPreviewList />
-    <BlogSection />
+    <!-- <BlogSection /> -->
+    <FAQ />
     <Contact />
   </main>
 </MainLayout>

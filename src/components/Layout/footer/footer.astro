@@ -1,5 +1,4 @@
 ---
-import CtaButton from "~/components/ui/CtaButton.astro";
 import { getMetadata } from "~/lib/constants";
 import "./footer.css";
 const { name } = getMetadata();
@@ -9,19 +8,7 @@ const { name } = getMetadata();
   <div
     class="max-w-7xl px-6 xl:px-10 w-full mx-auto flex-col grid grid-rows-[1fr_auto] gap-4"
   >
-    <div
-      class="flex flex-col items-center justify-center text-center gap-4 mb-10 mt-10"
-    >
-      <h2 class="text-4xl md:text-6xl">Haz que tu negocio trabaje solo</h2>
-      <p class="text-lg text-muted-foreground max-w-xl">
-        Escríbenos por WhatsApp y te responderemos en minutos.
-      </p>
-      <div class="mt-8 text-background">
-        <CtaButton />
-      </div>
-    </div>
-
-    <section class="grid gap-6 grid-cols-4 mb-10">
+    <section class="grid gap-6 grid-cols-4 mb-10 text-sm">
       <div class="footer-section">
         <h3 class="footer-section-title">Índice</h3><ul
           class="footer-section-links"
