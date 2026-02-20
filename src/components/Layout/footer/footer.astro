@@ -1,7 +1,7 @@
 ---
 import { getMetadata } from "~/lib/constants";
 import "./footer.css";
-const { name } = getMetadata();
+const { name, links } = getMetadata();
 ---
 
 <footer class="rounded-t-[10vw] mt-20 z-50 flex justify-center pb-20">
@@ -13,38 +13,35 @@ const { name } = getMetadata();
         <h3 class="footer-section-title">Índice</h3><ul
           class="footer-section-links"
         >
-          <li><a href="/">Inicio</a></li><li>
+          <li><a href="/#home">Inicio</a></li><li>
             <a href="/#services">Servicios</a>
-          </li><li><a href="/projects">Proyectos</a></li><li>
-            <a href="/blog">Blog</a>
-          </li><li><a href="/pricing">Precios</a></li><li>
-            <a href="/philosophy">Filosofía</a>
-          </li><li><a href="/contact">Contacto</a></li>
-        </ul>
-      </div><div class="footer-section">
-        <h3 class="footer-section-title">Servicios</h3><ul
-          class="footer-section-links"
-        >
-          <li>
-            <a href="/design-and-development">Diseño y desarrollo web</a>
-          </li><li><a href="/custom-development">Desarrollo a medida</a></li><li
-          >
-            <a href="/online-store">Tiendas online</a>
-          </li><li>
-            <span class="footer-link-disabled">Redes sociales</span>
-          </li><li>
-            <span class="footer-link-disabled">Mantenimiento</span>
-          </li><li>
-            <span class="footer-link-disabled">SEO Posicionamiento</span>
-          </li>
+          </li><li><a href="/#portfolio">Proyectos</a></li><li>
+            <a href="/#faq">FAQ</a>
+          </li><li><a href="/#contact">Contacto</a></li>
         </ul>
       </div><div class="footer-section">
         <h3 class="footer-section-title">Proyectos</h3><ul
           class="footer-section-links"
         >
-          <li><a href="/projects">Landing Pages</a></li><li>
-            <a href="/projects">Páginas Corporativas</a>
-          </li><li><a href="/projects">Tiendas Online</a></li>
+          <li>
+            <a href="https://novahair.polgubau.com" target="_blank" rel="noopener noreferrer">NovaHair</a>
+          </li><li>
+            <a href="https://flatmatch.polgubau.com" target="_blank" rel="noopener noreferrer">Flatmatch</a>
+          </li><li>
+            <a href="https://trackup.polgubau.com" target="_blank" rel="noopener noreferrer">TrackUp</a>
+          </li>
+        </ul>
+      </div><div class="footer-section">
+        <h3 class="footer-section-title">Contacto</h3><ul
+          class="footer-section-links"
+        >
+          <li><a href={links.email}>Email</a></li><li>
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li><li>
+            <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+          </li><li>
+            <a href={links.twitter} target="_blank" rel="noopener noreferrer">Twitter / X</a>
+          </li>
         </ul>
       </div><div class="footer-section">
         <h3 class="footer-section-title">Legal</h3><ul
