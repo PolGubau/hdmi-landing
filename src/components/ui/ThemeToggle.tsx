@@ -34,6 +34,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type='button'
       onClick={toggleTheme}
       className="p-2 rounded-full bg-foreground/10 backdrop-blur-lg hover:bg-foreground/20 transition-all"
       aria-label="Toggle theme"
