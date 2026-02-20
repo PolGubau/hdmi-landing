@@ -4,25 +4,27 @@ import { getLangFromUrl, useTranslations } from "~/i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Placeholder projects - you can replace with actual content collection later
 const projects = [
   {
-    title: "Novahair",
-    description: "Gestión",
-    image: "/placeholder-project-1.jpg",
-    tags: ["React", "Automatización"],
+    title: "NovaHair",
+    description: "Software de gestión de citas para peluquerías",
+    url: "https://novahair.polgubau.com",
+    tags: ["React", "Automatización", "SaaS"],
+    emoji: "✂️",
   },
   {
-    title: "Dashboard Empresarial",
-    description: "Panel de control con analíticas en tiempo real",
-    image: "/placeholder-project-2.jpg",
-    tags: ["Dashboard", "Analytics", "API"],
+    title: "FlatMatch",
+    description: "Encuentra habitación en Barcelona al estilo Tinder",
+    url: "https://flatmatch.polgubau.com",
+    tags: ["React", "Matching", "Barcelona"],
+    emoji: "🏠",
   },
   {
-    title: "App de Reservas",
-    description: "Sistema de reservas automatizado con WhatsApp",
-    image: "/placeholder-project-3.jpg",
-    tags: ["Automation", "WhatsApp", "Calendar"],
+    title: "TrackUp",
+    description: "Asistente web para entrenar en el gimnasio",
+    url: "https://trackup.polgubau.com",
+    tags: ["React", "Fitness", "Tracking"],
+    emoji: "💪",
   },
 ];
 ---
@@ -40,10 +42,15 @@ const projects = [
   <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     {
       projects.map((project) => (
-        <article class="group flex flex-col gap-8 rounded-2xl transition-all duration-300">
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col gap-8 rounded-2xl transition-all duration-300 no-underline"
+        >
           <div class="aspect-video rounded-md bg-gradient-to-br from-primary/20 to-primary/5 dark:from-primary/30 dark:to-primary/10 flex items-center justify-center overflow-hidden transition-all">
             <div class="group-hover:scale-110 transition-[scale]">
-              <span class="text-4xl opacity-50 transition-all">🚀</span>
+              <span class="text-4xl opacity-50 transition-all">{project.emoji}</span>
             </div>
           </div>
           <div class="pr-4 text-balance">
@@ -51,8 +58,15 @@ const projects = [
             <p class="text-muted-foreground text-sm mb-4">
               {project.description}
             </p>
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </article>
+        </a>
       ))
     }
   </ul>
