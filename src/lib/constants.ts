@@ -14,6 +14,7 @@ const TWITTER_URL = import.meta.env.PUBLIC_TWITTER_URL || "https://twitter.com/p
 const GITHUB_URL = import.meta.env.PUBLIC_GITHUB_URL || "https://github.com/polgubau";
 const LINKEDIN_URL = import.meta.env.PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/polgubauamores/";
 
+const whatsappMessage = "Hola, quiero saber más sobre las soluciones de automatización, IA y desarrollo web que ofrecéis.";
 export const baseUrl = SITE_URL;
 
 export function getMetadata() {
@@ -36,7 +37,7 @@ export function getMetadata() {
 
       short_label: "¡Hablemos!",
 
-      href: `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20${encodeURIComponent(SITE_NAME)}`,
+      href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
     },
 
     tags: [
