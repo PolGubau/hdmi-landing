@@ -5,7 +5,7 @@
 @plugin "tailwindcss-intersect";
 @plugin "tailwindcss-motion";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 @font-face {
   font-family: "Onest";
