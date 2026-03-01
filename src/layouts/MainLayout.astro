@@ -1,8 +1,7 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer.astro";
 import Navbar from "../components/Layout/navbar.astro";
-import ThemeScript from "../components/ThemeScript.astro";
-import BaseHead from "../components/BaseHead.astro";
 
 interface Props {
   title?: string;
@@ -15,8 +14,7 @@ const { title, description, image } = Astro.props;
 
 <html lang="es" dir="ltr" class="w-screen overflow-x-hidden">
   <head>
-    <ThemeScript />
-    <BaseHead title={title} description={description} image={image} />
+     <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
     <div class="bg-background rounded-b-[5vw]">
