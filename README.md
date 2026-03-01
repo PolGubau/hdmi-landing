@@ -1,64 +1,68 @@
-# Landing Page Multi-tenant
+# doscientos - Landing Page
 
-Una landing page moderna y minimalista construida con Astro 5, diseñada para ser fácilmente personalizable mediante variables de entorno.
+Landing page premium de **doscientos** construida con Astro 5, especializada en modernización de sistemas críticos.
 
 ## 🚀 Características
 
-- ✅ **Multi-idioma** (Español, Catalán, Inglés)
+- ✅ **Diseño Premium** - Minimalista, moderno y profesional
 - ✅ **Dark/Light Mode** con persistencia
-- ✅ **Diseño Moderno** y minimalista
-- ✅ **SEO Optimizado** con hreflang
-- ✅ **Totalmente Personalizable** mediante variables de entorno
-- ✅ **Componentes React** con Radix UI
-- ✅ **Tailwind CSS 4**
+- ✅ **Configuración Centralizada** - Branding y contenido en archivos TypeScript
+- ✅ **Content Collections** - Blog y proyectos con MDX
+- ✅ **SEO Optimizado** - Meta tags, sitemap, y estructura semántica
+- ✅ **Componentes React** con Radix UI para interacciones
+- ✅ **Tailwind CSS 4** con tailwindcss-motion para animaciones
+- ✅ **View Transitions** - Navegación fluida entre páginas
+- ✅ **TypeScript** - Type-safe en toda la aplicación
 
 ## 📦 Instalación
 
 ```bash
 # Instalar dependencias
 pnpm install
-
-# Copiar archivo de variables de entorno
-cp .env.example .env
-
-# Editar .env con tus datos
 ```
 
 ## 🔧 Configuración
 
-### Variables de Entorno
+### Branding Centralizado
 
-Edita el archivo `.env` con la información de tu negocio:
+Toda la configuración de branding está centralizada en `src/config/branding.ts`:
 
-```env
-# Branding
-PUBLIC_SITE_NAME=TuNegocio
-PUBLIC_SITE_SLOGAN=Tu slogan aquí
-PUBLIC_SITE_URL=https://tudominio.com
+```typescript
+export const branding = {
+  name: "doscientos",
+  slogan: "Automatiza tu negocio, gana tiempo, crece sin esfuerzo",
+  domain: "doscientos.es",
+  url: "https://doscientos.es",
 
-# Contacto
-PUBLIC_WHATSAPP_NUMBER=34XXXXXXXXX
-PUBLIC_CONTACT_EMAIL=contacto@tudominio.com
+  contact: {
+    whatsapp: {
+      number: "34671171525",
+      displayNumber: "+34 671 17 15 25",
+      defaultMessage: "Hola, quiero saber más...",
+    },
+    email: "hola@doscientos.es",
+  },
 
-# Redes Sociales
-PUBLIC_TWITTER_URL=https://twitter.com/TuHandle
-PUBLIC_GITHUB_URL=https://github.com/tuusuario
-PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/tuperfil/
+  social: {
+    twitter: "https://twitter.com/doscientos",
+    github: "https://github.com/doscientos",
+    linkedin: "https://www.linkedin.com/company/doscientos",
+    instagram: "https://instagram.com/doscientos",
+  },
+
+  location: {
+    city: "Barcelona",
+    country: "España",
+  },
+
+  assets: {
+    logo: "/assets/branding/logo.png",
+    thumbnail: "/assets/thumbnail.png",
+  },
+};
 ```
 
-### Personalización por Deployment
-
-Puedes tener diferentes configuraciones para diferentes deployments:
-
-1. **Desarrollo**: Usa `.env` (no se sube a git)
-2. **Producción**: Configura las variables en tu plataforma de hosting (Vercel, Netlify, etc.)
-
-Ejemplo para Vercel:
-```bash
-vercel env add PUBLIC_SITE_NAME
-vercel env add PUBLIC_SITE_URL
-# ... etc
-```
+**Para personalizar el branding**, simplemente edita este archivo con tu información.
 
 ## 🛠️ Comandos
 
@@ -76,29 +80,104 @@ pnpm preview
 pnpm lint
 ```
 
-## 📁 Estructura
+## 📁 Estructura del Proyecto
 
 ```
 ├── src/
-│   ├── components/     # Componentes Astro y React
-│   ├── i18n/          # Traducciones
-│   ├── layouts/       # Layouts principales
-│   ├── lib/           # Utilidades y constantes
-│   ├── pages/         # Páginas (es, ca, en)
-│   └── styles/        # Estilos globales
-├── .env               # Variables de entorno (no en git)
-├── .env.example       # Ejemplo de variables
-└── astro.config.mjs   # Configuración de Astro
+│   ├── components/
+│   │   ├── sections/          # Secciones de la landing
+│   │   │   ├── Hero.astro
+│   │   │   ├── Problem.astro
+│   │   │   ├── Positioning.astro
+│   │   │   ├── WhatWeDo.astro
+│   │   │   ├── Method.astro
+│   │   │   ├── CaseStudies.astro
+│   │   │   ├── ForWho.astro
+│   │   │   ├── WhyUs.astro
+│   │   │   └── FinalCTA.astro
+│   │   ├── Layout/
+│   │   │   ├── navbar/
+│   │   │   │   └── SimpleNavbar.astro
+│   │   │   └── footer/
+│   │   │       └── SimpleFooter.astro
+│   │   └── ui/                # Componentes UI reutilizables
+│   ├── config/
+│   │   └── branding.ts        # Configuración de marca centralizada
+│   ├── content/
+│   │   ├── blog/              # Posts del blog (MDX)
+│   │   └── projects/          # Proyectos (MDX)
+│   ├── layouts/
+│   │   └── MainLayout.astro   # Layout principal
+│   ├── lib/
+│   │   ├── copy.ts            # Contenido centralizado (preparado para i18n)
+│   │   └── constants.ts       # Constantes y metadata
+│   ├── pages/
+│   │   ├── index.astro        # Página principal
+│   │   ├── nosotros.astro     # Página "Nosotros"
+│   │   ├── blog/
+│   │   │   ├── index.astro    # Lista de posts
+│   │   │   └── [...slug].astro # Detalle de post
+│   │   ├── legal.astro
+│   │   ├── privacy.astro
+│   │   └── cookies.astro
+│   └── styles/
+│       └── global.css         # Estilos globales con Tailwind
+├── astro.config.mjs           # Configuración de Astro
+└── src/content.config.ts      # Configuración de Content Collections
 ```
 
-## 🌍 Multi-idioma
+## 📝 Secciones de la Landing
 
-El sitio soporta 3 idiomas:
-- Español (es) - Por defecto
-- Catalán (ca) - `/ca/*`
-- Inglés (en) - `/en/*`
+La landing está estructurada en secciones estratégicas:
 
-Las traducciones están en `src/i18n/ui.ts`.
+1. **Hero** - Presentación principal con propuesta de valor
+2. **Problem** - Identificación del problema del cliente
+3. **Positioning** - Diferenciación y enfoque único
+4. **What We Do** - Servicios y soluciones
+5. **Method** - Método 200™ (proceso de 5 pasos)
+6. **Case Studies** - Casos de éxito reales
+7. **For Who** - Segmentación de clientes ideales
+8. **Why Us** - Razones para elegir doscientos
+9. **Final CTA** - Llamada a la acción principal
+
+## 🎨 Personalización
+
+### Branding
+
+Edita `src/config/branding.ts` para cambiar:
+- Nombre de la marca
+- Dominio y URL
+- Información de contacto (email, WhatsApp)
+- Redes sociales
+- Ubicación
+
+### Contenido
+
+Edita `src/lib/copy.ts` para modificar:
+- Textos de todas las secciones
+- Casos de estudio
+- Pasos del método
+- Navegación
+
+Este archivo está preparado para i18n futuro (actualmente solo español).
+
+## 📰 Blog
+
+El blog usa Content Collections de Astro:
+
+1. Crea archivos `.mdx` en `src/content/blog/`
+2. Incluye el frontmatter requerido:
+```yaml
+---
+title: "Título del post"
+description: "Descripción breve"
+publishDate: "2025-02-28"
+tags: ["tag1", "tag2"]
+author: "doscientos"
+draft: false
+---
+```
+3. El post aparecerá automáticamente en `/blog`
 
 ## 🎨 Personalización de Estilos
 

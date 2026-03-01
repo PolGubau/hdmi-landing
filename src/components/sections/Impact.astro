@@ -1,0 +1,61 @@
+---
+const stats = [
+  {
+    number: "+20",
+    label: "Proyectos lanzados",
+    description: "Desde webs y apps hasta plataformas SaaS. Siempre con foco en velocidad, calidad y escalabilidad.",
+    size: "large"
+  },
+  {
+    number: "+10",
+    label: "Industrias diferentes",
+    description: "Hemos trabajado con startups tecnológicas, scaleups en crecimiento y equipos corporativos en transformación digital.",
+    size: "medium"
+  },
+  {
+    number: "x2",
+    label: "Velocidad de entrega promedio",
+    description: "Nuestros procesos ágiles y equipos multidisciplinares permiten lanzar en semanas, no en meses.",
+    size: "medium"
+  },
+];
+---
+
+<section class="py-32 px-6 bg-[#f9fafb] dark:bg-neutral-900">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <!-- Header -->
+    <div class="max-w-2xl">
+      <h2 class="text-4xl md:text-5xl font-semibold text-[#0f1115] dark:text-neutral-50 mb-4" style="letter-spacing: -0.03em;">
+        Impacto
+      </h2>
+      <p class="text-lg text-[#50576b] dark:text-neutral-400" style="letter-spacing: -0.02em;">
+        Simplificamos el proceso, y entregamos resultados.
+      </p>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid md:grid-cols-2 gap-6">
+      {stats.map((stat) => (
+        <div class={`group p-8 md:p-12 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-[#0f1115] dark:hover:border-neutral-50 transition-all duration-300 ${stat.size === 'large' ? 'md:col-span-2' : ''}`}>
+          <div class="space-y-6">
+            {/* Number */}
+            <div class="text-5xl md:text-6xl font-semibold text-[#0f1115] dark:text-neutral-50" style="letter-spacing: -0.04em;">
+              {stat.number}
+            </div>
+            
+            {/* Label */}
+            <h3 class="text-2xl md:text-3xl font-semibold text-[#0f1115] dark:text-neutral-50" style="letter-spacing: -0.03em;">
+              {stat.label}
+            </h3>
+            
+            {/* Description */}
+            <p class="text-base md:text-lg text-[#50576b] dark:text-neutral-400 leading-relaxed max-w-2xl" style="letter-spacing: -0.02em;">
+              {stat.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

@@ -5,33 +5,24 @@
 @plugin "tailwindcss-intersect";
 @plugin "tailwindcss-motion";
 
-
+  
 @custom-variant dark (&:where(.dark, .dark *));
- 
-@font-face {
-  font-family: "bricolage";
-  src: url("../assets/fonts/bricolage.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-optical-sizing: auto;
-  font-display: swap;
-}
 
-/* Variable Google Sans */
 @font-face {
-  font-family: "GoogleSans";
-  src: url("../assets/fonts/GoogleSans.ttf") format("truetype");
+  font-family: "Onest";
+  src: url("../assets/fonts/onest.ttf") format("truetype");
   font-weight: 100 900;
-  font-optical-sizing: auto;
   font-style: normal;
+  font-optical-sizing: auto;
   font-display: swap;
 }
 
  
 
 :root {
+ 
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #f6f7f9;
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -43,7 +34,7 @@
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
+  --accent: oklch(1 0 0);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
@@ -99,8 +90,8 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 @theme inline {
-  --font-heading: "GoogleSans", sans-serif;
-  --font-body: "GoogleSans", sans-serif;
+  --font-heading: "Onest", sans-serif;
+  --font-body: "Onest", sans-serif;
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-background: var(--background);
@@ -136,6 +127,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
 }
 
 h1,
@@ -160,7 +162,7 @@ body {
 
 body {
   timeline-scope: --scroll;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 main {

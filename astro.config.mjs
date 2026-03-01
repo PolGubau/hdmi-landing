@@ -13,7 +13,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://polgubau.com",
+  site: "https://doscientos.es",
   prefetch: true,
   experimental: {
     headingIdCompat: true,

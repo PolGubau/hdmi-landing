@@ -1,47 +1,37 @@
 import path from "node:path";
+import { branding } from "~/config/branding";
 
 export const paths = {
   projects: path.join(process.cwd(), "src", "content", "projects"),
 };
 
-// Get environment variables with fallbacks
-const SITE_NAME = import.meta.env.PUBLIC_SITE_NAME || "Pol Gubau Amores";
-const SITE_SLOGAN = import.meta.env.PUBLIC_SITE_SLOGAN || "Automatiza tu negocio, gana tiempo, crece sin esfuerzo";
-const SITE_URL = import.meta.env.PUBLIC_SITE_URL || "https://hdmi.polgubau.com";
-const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "34671171525";
-const CONTACT_EMAIL = import.meta.env.PUBLIC_CONTACT_EMAIL || "gubaupol@gmail.com";
-const TWITTER_URL = import.meta.env.PUBLIC_TWITTER_URL || "https://twitter.com/polgubau";
-const GITHUB_URL = import.meta.env.PUBLIC_GITHUB_URL || "https://github.com/polgubau";
-const LINKEDIN_URL = import.meta.env.PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/polgubauamores/";
-
-const whatsappMessage = "Hola, quiero saber más sobre las soluciones de automatización, IA y desarrollo web que ofrecéis.";
-export const baseUrl = SITE_URL;
+export const baseUrl = branding.url;
 
 export function getMetadata() {
   return {
-    title: `${SITE_NAME} | Automatización, IA y Webs en España`,
+    title: `${branding.name} | Automatización, IA y Webs en España`,
 
     description:
-      `${SITE_NAME} ayuda a empresas y profesionales a ahorrar tiempo y dinero con automatización de procesos, inteligencia artificial y desarrollo web. Soluciones rápidas, escalables y sin complicaciones.`,
+      `${branding.name} ayuda a empresas y profesionales a ahorrar tiempo y dinero con automatización de procesos, inteligencia artificial y desarrollo web. Soluciones rápidas, escalables y sin complicaciones.`,
 
-    name: SITE_NAME,
+    name: branding.name,
 
-    longName: `${SITE_NAME} | Automatización Digital en España`,
+    longName: `${branding.name} | Automatización Digital en España`,
 
-    slogan: SITE_SLOGAN,
+    slogan: branding.slogan,
 
-    picture: "/assets/branding/logo.png",
+    picture: branding.assets.logo,
 
     getInTouch: {
       label: "Contáctanos por WhatsApp",
 
       short_label: "¡Hablemos!",
 
-      href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`,
+      href: `https://wa.me/${branding.contact.whatsapp.number}?text=${encodeURIComponent(branding.contact.whatsapp.defaultMessage)}`,
     },
 
     tags: [
-      SITE_NAME,
+      branding.name,
 
       "Automatización de Procesos",
 
@@ -73,24 +63,24 @@ export function getMetadata() {
 
       "Landing Pages",
 
-      "Barcelona",
+      branding.location.city,
 
-      "España",
+      branding.location.country,
     ],
 
     links: {
-      website: SITE_URL,
+      website: branding.url,
 
-      twitter: TWITTER_URL,
+      twitter: branding.social.twitter,
 
-      github: GITHUB_URL,
+      github: branding.social.github,
 
-      linkedin: LINKEDIN_URL,
+      linkedin: branding.social.linkedin,
 
-      email: `mailto:${CONTACT_EMAIL}`,
+      email: `mailto:${branding.contact.email}`,
     },
 
-    homeOgImage: "/assets/thumbnail.png",
+    homeOgImage: branding.assets.thumbnail,
   };
 }
 

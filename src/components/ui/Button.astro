@@ -1,0 +1,16 @@
+---
+
+type Props = {
+  class?: string;
+} 
+
+const {
+  class: className = ""
+} = Astro.props;
+---
+
+<button
+  class={`text-background gap-2 px-5 py-2 text-base shadow-lg text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground hover:brightness-90 select-none ${className}`}
+>
+  <slot />
+</button>

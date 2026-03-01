@@ -1,0 +1,37 @@
+---
+import { copy } from "~/lib/copy";
+
+const { positioning } = copy;
+---
+
+<section id="positioning" class="py-32 px-6">
+  <div class="max-w-5xl mx-auto text-center space-y-12">
+    <!-- Title -->
+    <div class="space-y-4">
+      <h2
+        class="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-neutral-50"
+      >
+        {positioning.title}
+      </h2>
+      <p
+        class="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-50"
+      >
+        {positioning.subtitle}
+      </p>
+    </div>
+
+    <!-- Description -->
+    <div class="max-w-3xl mx-auto space-y-6 text-xl md:text-2xl text-neutral-700 dark:text-neutral-300">
+      {
+        positioning.description.map((line) =>
+          line === "" ? (
+            <div class="h-4" />
+          ) : (
+            <p class="leading-relaxed">{line}</p>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+

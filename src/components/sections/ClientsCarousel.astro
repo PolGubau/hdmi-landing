@@ -1,0 +1,70 @@
+---
+const clients = [
+  { name: "Generalitat de Catalunya", logo: "🏛️" },
+  { name: "IFCO", logo: "📦" },
+  { name: "BitacoraERP", logo: "💼" },
+  { name: "CESNET (CESCE)", logo: "🏦" },
+  { name: "Generalitat de Catalunya", logo: "🏛️" },
+  { name: "IFCO", logo: "📦" },
+];
+---
+
+<section class="py-16 px-6 bg-white dark:bg-neutral-950 border-y border-neutral-200 dark:border-neutral-800">
+  <div class="max-w-7xl mx-auto">
+    <p class="text-center text-sm font-medium text-[#50576b] dark:text-neutral-400 mb-12 uppercase tracking-wider">
+      Confían en nosotros
+    </p>
+    
+    <!-- Carousel container -->
+    <div class="relative overflow-hidden">
+      <!-- Gradient overlays -->
+      <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white dark:from-neutral-950 to-transparent z-10"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white dark:from-neutral-950 to-transparent z-10"></div>
+      
+      <!-- Scrolling content -->
+      <div class="flex gap-16 animate-scroll">
+        {clients.map((client) => (
+          <div class="flex items-center justify-center min-w-[200px] grayscale hover:grayscale-0 transition-all duration-300">
+            <div class="flex items-center gap-3">
+              <span class="text-4xl">{client.logo}</span>
+              <span class="text-lg font-medium text-[#0f1115] dark:text-neutral-50 whitespace-nowrap">
+                {client.name}
+              </span>
+            </div>
+          </div>
+        ))}
+        <!-- Duplicate for seamless loop -->
+        {clients.map((client) => (
+          <div class="flex items-center justify-center min-w-[200px] grayscale hover:grayscale-0 transition-all duration-300">
+            <div class="flex items-center gap-3">
+              <span class="text-4xl">{client.logo}</span>
+              <span class="text-lg font-medium text-[#0f1115] dark:text-neutral-50 whitespace-nowrap">
+                {client.name}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+</style>
+

@@ -1,0 +1,101 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "~/layouts/MainLayout.astro";
+
+const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = blogPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+---
+
+<MainLayout
+  title="Blog | doscientos"
+  description="Artículos sobre modernización de sistemas, arquitectura de software y mejores prácticas técnicas."
+>
+  <div class="min-h-screen py-32 px-6">
+    <div class="max-w-6xl mx-auto space-y-16">
+      <!-- Header -->
+      <div class="space-y-6">
+        <h1
+          class="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-neutral-50"
+        >
+          Blog
+        </h1>
+        <p class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl">
+          Artículos sobre modernización de sistemas, arquitectura de software y mejores prácticas técnicas.
+        </p>
+      </div>
+
+      <!-- Posts grid -->
+      {
+        sortedPosts.length > 0 ? (
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sortedPosts.map((post) => (
+              <article class="group">
+                <a
+                  href={`/blog/${post.id}`}
+                  class="block p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-900 dark:hover:border-neutral-50 transition-all duration-300 hover:shadow-lg space-y-4"
+                >
+                  {/* Date */}
+                  <time class="text-sm text-neutral-500 dark:text-neutral-400">
+                    {post.data.publishDate.toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+
+                  {/* Title */}
+                  <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">
+                    {post.data.title}
+                  </h2>
+
+                  {/* Description */}
+                  <p class="text-neutral-600 dark:text-neutral-400 line-clamp-3">
+                    {post.data.description}
+                  </p>
+
+                  {/* Tags */}
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      {post.data.tags.map((tag) => (
+                        <span class="text-xs px-3 py-1 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Read more */}
+                  <div class="flex items-center gap-2 text-neutral-900 dark:text-neutral-50 font-medium pt-2">
+                    Leer más
+                    <svg
+                      class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-20">
+            <p class="text-xl text-neutral-500 dark:text-neutral-400">
+              Próximamente publicaremos artículos técnicos.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</MainLayout>
+

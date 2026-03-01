@@ -1,20 +1,31 @@
 ---
 import MainLayout from "~/layouts/MainLayout.astro";
 
-import Contact from "~/components/Contact/Contact.astro";
-import FAQ from "~/components/FAQ/FAQ.astro";
-import Hero from "~/components/Layout/hero.astro";
-import PortfolioPreviewList from "~/components/Portfolio/portfolio-preview-list.astro";
-import Services from "~/components/Services/Services.astro";
+import CaseStudies from "~/components/sections/CaseStudies.astro";
+import ClientsCarousel from "~/components/sections/ClientsCarousel.astro";
+import FinalCTA from "~/components/sections/FinalCTA.astro";
+import ForWho from "~/components/sections/ForWho.astro";
+import Hero from "~/components/sections/Hero.astro";
+import Impact from "~/components/sections/Impact.astro";
+import Method from "~/components/sections/Method.astro";
+import Positioning from "~/components/sections/Positioning.astro";
+import Problem from "~/components/sections/Problem.astro";
+import WhatWeDo from "~/components/sections/WhatWeDo.astro";
+import WhyUs from "~/components/sections/WhyUs.astro";
 ---
 
 <MainLayout>
-  <main class="flex flex-col items-center w-full">
+  <main class="flex flex-col w-full">
     <Hero />
-    <Services />
-    <PortfolioPreviewList />
-    <!-- <BlogSection /> -->
-    <FAQ />
-    <Contact />
+    <ClientsCarousel />
+    <Problem />
+    <Positioning />
+    <Impact />
+    <WhatWeDo />
+    <Method />
+    <CaseStudies />
+    <ForWho />
+    <WhyUs />
+    <FinalCTA />
   </main>
 </MainLayout>

@@ -1,62 +1,32 @@
 ---
-import LanguageSelector from "~/components/ui/LanguageSelector";
-import ThemeToggle from "~/components/ui/ThemeToggle";
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations,
-} from "~/i18n/utils";
-import { getMetadata } from "~/lib/constants";
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
-const { getInTouch, name } = getMetadata();
+import { branding } from "~/config/branding";
+import { copy } from "~/lib/copy";
 
 const navItems = [
-  { href: translatePath(""), label: t("nav.home") },
-  { href: translatePath("#services"), label: t("nav.services") },
-  { href: translatePath("#portfolio"), label: t("nav.portfolio") },
-  { href: translatePath("#blog"), label: t("nav.blog") },
-  { href: translatePath("#contact"), label: t("nav.contact") },
+  { href: "/proyectos", label: copy.nav.projects },
+  { href: "/blog", label: copy.nav.blog },
+  { href: "/nosotros", label: copy.nav.about },
 ];
 ---
 
-<div
-  class="flex bg-foreground/5 justify-center w-full p-3 items-center gap-2 text-sm"
->
-  <div class="size-2 rounded-full bg-green-400 animate-pulse"></div>
-  <p class="text-foreground/80">
-    Consigue tu primera asesoría totalmente gratis
-  </p>
-  <a
-    href={getInTouch.href}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="hover:underline"
-  >
-    {t("letsTalk")}
-  </a>
-</div>
-
 <header
-  class="z-40 bg-background sticky top-0 w-full items-center flex justify-between py-4 px-4 md:px-14 delayed-appearing"
+  class="fixed w-[90vw] lg:w-fit rounded-full top-6 left-1/2 -translate-x-1/2 z-50 bg-accent shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] flex items-center justify-between p-2 gap-10"
 >
-  <div>
-    <a
-      href={translatePath("")}
-      class="text-xl text-foreground bg-background/10 rounded-full backdrop-blur-lg px-2 hover:bg-background/20 transition-all font-semibold"
-    >
-      {name}
-    </a>
-  </div>
+  <!-- Logo -->
+  <a
+    href="/"
+    class="text-2xl font-bold hover:opacity-80 transition-opacity p-2 bg-green-100 rounded-full"
+  >
+    {branding.name}
+  </a>
 
-  <nav class="hidden lg:flex items-center gap-6">
+  <!-- Desktop Navigation -->
+  <nav class="hidden lg:flex items-center">
     {
       navItems.map((item) => (
         <a
           href={item.href}
-          class="text-foreground/80 hover:text-foreground transition-colors text-base font-medium"
+          class="text-muted-foreground py-2 px-4 text-sm hover:underline font-medium"
         >
           {item.label}
         </a>
@@ -64,12 +34,31 @@ const navItems = [
     }
   </nav>
 
-  <div class="flex items-center gap-3">
-    <ThemeToggle client:load />
-    <LanguageSelector
-      client:load
-      currentLang={lang}
-      currentPath={Astro.url.pathname}
-    />
+  <!-- Actions -->
+  <div class="flex items-center gap-4">
+    
+    <a
+      href={`/contact`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden lg:flex gap-2 items-center p-2 rounded-full bg-foreground text-background text-sm"
+    >
+      Contactar
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
   </div>
 </header>
+
+<!-- Spacer to prevent content from going under fixed header -->
+<div class="h-20"></div>

@@ -1,0 +1,86 @@
+---
+import { copy } from "~/lib/copy";
+
+const { forWho } = copy;
+---
+
+<section id="for-who" class="py-32 px-6">
+  <div class="max-w-5xl mx-auto space-y-16">
+    <!-- Header -->
+    <h2
+      class="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-50"
+    >
+      {forWho.title}
+    </h2>
+
+    <!-- Two columns -->
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Work with -->
+      <div class="space-y-8">
+        <h3
+          class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400"
+        >
+          {forWho.workWith.title}
+        </h3>
+        <ul class="space-y-4">
+          {
+            forWho.workWith.items.map((item) => (
+              <li class="flex items-start gap-4">
+                <svg
+                  class="flex-shrink-0 w-6 h-6 mt-1 text-green-600 dark:text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span class="text-lg md:text-xl text-neutral-700 dark:text-neutral-300">
+                  {item}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Not work with -->
+      <div class="space-y-8">
+        <h3
+          class="text-2xl md:text-3xl font-bold text-red-600 dark:text-red-400"
+        >
+          {forWho.notWorkWith.title}
+        </h3>
+        <ul class="space-y-4">
+          {
+            forWho.notWorkWith.items.map((item) => (
+              <li class="flex items-start gap-4">
+                <svg
+                  class="flex-shrink-0 w-6 h-6 mt-1 text-red-600 dark:text-red-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+                <span class="text-lg md:text-xl text-neutral-700 dark:text-neutral-300">
+                  {item}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+

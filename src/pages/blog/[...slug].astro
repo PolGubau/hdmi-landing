@@ -1,0 +1,127 @@
+---
+import { getCollection, render } from "astro:content";
+import MainLayout from "~/layouts/MainLayout.astro";
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+  return blogPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MainLayout
+  title={`${post.data.title} | Blog | doscientos`}
+  description={post.data.description}
+>
+  <article class="min-h-screen py-32 px-6">
+    <div class="max-w-4xl mx-auto space-y-12">
+      <!-- Header -->
+      <header class="space-y-6">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Volver al blog
+        </a>
+
+        <div class="space-y-4">
+          <h1
+            class="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-50"
+          >
+            {post.data.title}
+          </h1>
+
+          <div
+            class="flex items-center gap-4 text-neutral-600 dark:text-neutral-400"
+          >
+            <time>
+              {
+                post.data.publishDate.toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
+            </time>
+            <span>•</span>
+            <span>{post.data.author}</span>
+          </div>
+
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((tag) => (
+                  <span class="text-sm px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div
+        class="prose prose-lg prose-neutral dark:prose-invert max-w-none
+        prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-50
+        prose-p:text-neutral-700 dark:prose-p:text-neutral-300
+        prose-a:text-neutral-900 dark:prose-a:text-neutral-50 prose-a:underline hover:prose-a:no-underline
+        prose-strong:text-neutral-900 dark:prose-strong:text-neutral-50
+        prose-code:text-neutral-900 dark:prose-code:text-neutral-50
+        prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950
+        prose-ul:text-neutral-700 dark:prose-ul:text-neutral-300
+        prose-ol:text-neutral-700 dark:prose-ol:text-neutral-300"
+      >
+        <Content />
+      </div>
+
+      <!-- Footer CTA -->
+      <div
+        class="mt-16 p-8 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center space-y-4"
+      >
+        <h3 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+          ¿Tu sistema necesita modernización?
+        </h3>
+        <p class="text-neutral-600 dark:text-neutral-400">
+          Solicita un diagnóstico técnico inicial sin compromiso.
+        </p>
+        <a
+          href="/#final-cta"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-neutral-900 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-900 rounded-full font-semibold hover:scale-105 transition-transform duration-300"
+        >
+          Contactar
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </article>
+</MainLayout>

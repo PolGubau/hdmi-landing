@@ -1,0 +1,174 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "~/layouts/MainLayout.astro";
+
+const projects = await getCollection("projects", ({ data }) => data.available);
+const sortedProjects = projects.sort(
+  (a, b) => b.data.startedAt.getTime() - a.data.startedAt.getTime()
+);
+---
+
+<MainLayout
+  title="Proyectos | doscientos"
+  description="Casos de éxito en modernización de sistemas críticos. Proyectos reales con resultados medibles."
+>
+  <div class="min-h-screen py-32 px-6">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <!-- Header -->
+      <div class="space-y-6">
+        <h1
+          class="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-neutral-50"
+        >
+          Proyectos
+        </h1>
+        <p class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl">
+          Casos de éxito en modernización de sistemas críticos. Proyectos reales, resultados medibles, cero interrupciones.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid md:grid-cols-4 gap-6">
+        <div
+          class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+        >
+          <div class="text-4xl font-bold text-neutral-900 dark:text-neutral-50">
+            {projects.length}+
+          </div>
+          <div class="text-neutral-600 dark:text-neutral-400 mt-2">
+            Proyectos completados
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+        >
+          <div class="text-4xl font-bold text-neutral-900 dark:text-neutral-50">
+            100%
+          </div>
+          <div class="text-neutral-600 dark:text-neutral-400 mt-2">
+            Sin interrupciones
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+        >
+          <div class="text-4xl font-bold text-neutral-900 dark:text-neutral-50">
+            0
+          </div>
+          <div class="text-neutral-600 dark:text-neutral-400 mt-2">
+            Reescrituras completas
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+        >
+          <div class="text-4xl font-bold text-neutral-900 dark:text-neutral-50">
+            99.9%
+          </div>
+          <div class="text-neutral-600 dark:text-neutral-400 mt-2">
+            Uptime promedio
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="grid lg:grid-cols-2 gap-8">
+        {
+          sortedProjects.map((project) => (
+            <article class="group">
+              <a
+                href={`/proyectos/${project.id}`}
+                class="block h-full p-8 rounded-2xl bg-white dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-50 transition-all duration-300 hover:shadow-xl space-y-6"
+              >
+                {/* Header with color accent */}
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1 space-y-2">
+                    <h2 class="text-3xl font-bold text-neutral-900 dark:text-neutral-50 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">
+                      {project.data.title}
+                    </h2>
+                    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                      {project.data.category}
+                    </p>
+                  </div>
+                  <div
+                    class="w-4 h-4 rounded-full flex-shrink-0 mt-2"
+                    style={`background-color: ${project.data.color}`}
+                  />
+                </div>
+
+                {/* Summary */}
+                <p class="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  {project.data.summary}
+                </p>
+
+                {/* Tech stack */}
+                {project.data.tech && project.data.tech.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {project.data.tech.slice(0, 5).map((tech) => (
+                      <span class="text-xs px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                    {project.data.tech.length > 5 && (
+                      <span class="text-xs px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400">
+                        +{project.data.tech.length - 5} más
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Timeline */}
+                <div class="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span>
+                    {project.data.startedAt.toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "short",
+                    })}
+                    {" - "}
+                    {project.data.endedAt
+                      ? project.data.endedAt.toLocaleDateString("es-ES", {
+                          year: "numeric",
+                          month: "short",
+                        })
+                      : "Presente"}
+                  </span>
+                </div>
+
+                {/* Read more */}
+                <div class="flex items-center gap-2 text-neutral-900 dark:text-neutral-50 font-semibold">
+                  Ver caso completo
+                  <svg
+                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
