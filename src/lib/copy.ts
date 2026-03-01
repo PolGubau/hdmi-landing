@@ -8,47 +8,9 @@ export const copy = {
     cta: "Contactar",
   },
 
-  problem: {
-    title: "Tu sistema funciona.",
-    subtitle: "Pero cada año cuesta más mantenerlo.",
-    points: [
-      "Código legacy difícil de evolucionar",
-      "Rendimiento degradado",
-      "Integraciones frágiles",
-      "Miedo a tocar producción",
-      "Dependencia de tecnología obsoleta",
-    ],
-    conclusion: [
-      "El negocio crece.",
-      "La tecnología se convierte en freno.",
-    ],
-  },
+ 
 
-  positioning: {
-    title: "No reemplazamos sistemas.",
-    subtitle: "Los transformamos.",
-    description: [
-      "En Doscientos intervenimos en plataformas reales, en producción, con usuarios activos y procesos críticos.",
-      "",
-      "No trabajamos con prototipos.",
-      "Trabajamos donde no se puede fallar.",
-    ],
-  },
-
-  whatWeDo: {
-    title: "Qué hacemos",
-    subtitle: "Modernización estructural de sistemas legacy",
-    services: [
-      "Migración progresiva de módulos críticos",
-      "Refactorización de arquitectura",
-      "Optimización de rendimiento",
-      "Reducción de deuda técnica",
-      "Preparación para escalabilidad futura",
-      "Integraciones complejas con sistemas existentes",
-    ],
-    footer: "Intervenimos sin interrumpir la operación.",
-    badge: "200.",
-  },
+    
 
   method: {
      steps: [
@@ -75,54 +37,13 @@ export const copy = {
     ],
   },
 
-
-  forWho: {
-    title: "Para quién es",
-    workWith: {
-      title: "Trabajamos con:",
-      items: [
-        "Empresas que ya facturan y dependen de su sistema interno",
-        "Organizaciones con software crítico en producción",
-        "CTOs que necesitan evolucionar sin romper",
-        "Equipos que heredaron tecnología que nadie quiere tocar",
-      ],
-    },
-    notWorkWith: {
-      title: "No trabajamos con:",
-      items: [
-        "Proyectos experimentales",
-        "Ideas sin validar",
-        "MVPs improvisados",
-      ],
-    },
-  },
-
-  whyUs: {
-    title: "Por qué Doscientos",
-    headline: [
-      "Porque cuando un sistema debe responder,",
-      "la única respuesta válida es correcta.",
-    ],
-    badge: "200.",
-    points: [
-      "Experiencia real en entornos críticos",
-      "Modernización sin interrupción",
-      "Arquitectura orientada a largo plazo",
-      "Enfoque técnico estratégico",
-    ],
-    footer: [
-      "No vendemos horas.",
-      "Reducimos riesgo tecnológico.",
-    ],
-  },
+ 
+ 
 
   finalCta: {
     question: "¿Tu sistema está preparado para los próximos 5 años?",
-    description: [
-      "Solicita un diagnóstico técnico inicial.",
-      "Analizamos tu arquitectura y definimos un plan claro de evolución.",
-    ],
-    cta: "Agendar reunión estratégica",
+    description: "Agenda una llamada gratuita de 15 minutos para hablar sobre tu proyecto, tus objetivos y cómo podemos ayudarte.",
+    cta: "Reservar llamada 15min",
   },
 
   nav: {

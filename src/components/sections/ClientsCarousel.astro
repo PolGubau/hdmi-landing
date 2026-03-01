@@ -1,18 +1,5 @@
 ---
-import ClientsMarquee from "../ui/clients/ClientsMarquee.astro";
-
-export type Client = {
-  name: string;
-  logo: string;
-};
-const clients = [
-  { name: "Generalitat de Catalunya", logo: "🏛️" },
-  { name: "IFCO", logo: "📦" },
-  { name: "BitacoraERP", logo: "💼" },
-  { name: "CESNET (CESCE)", logo: "🏦" },
-  { name: "Generalitat de Catalunya", logo: "🏛️" },
-  { name: "IFCO", logo: "📦" },
-];
+import ClientsMarqueeRail from "../ui/clients/ClientsMarqueeRail.astro";
 ---
 
 <section class="max-w-5xl mx-auto overflow-hidden">
@@ -23,42 +10,6 @@ const clients = [
     Confían en nosotros
   </p>
 
-  <!-- Carousel container -->
-  <div class="relative">
-    <!-- Gradient overlays - más pronunciados -->
-    <div
-      class="absolute left-0 top-0 bottom-0 w-48 md:w-64 bg-gradient-to-r from-background via-background/80 dark:from-neutral-950 dark:via-neutral-950/80 to-transparent z-10 pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute right-0 top-0 bottom-0 w-48 md:w-64 bg-gradient-to-l from-background via-background/80 dark:from-neutral-950 dark:via-neutral-950/80 to-transparent z-10 pointer-events-none"
-    >
-    </div>
-
-    <!-- Scrolling content -->
-    <div class="flex gap-16 animate-scroll pb-10">
-      <ClientsMarquee clients={clients} />
-      <ClientsMarquee clients={clients} />
-     
-    </div>
-  </div>
+  <ClientsMarqueeRail />
 </section>
 
-<style>
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
-  }
-
-  .animate-scroll:hover {
-    animation-play-state: paused;
-  }
-</style>
