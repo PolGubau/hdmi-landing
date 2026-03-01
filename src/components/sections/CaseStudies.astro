@@ -1,17 +1,19 @@
 ---
+import SectionHeader from "~/components/ui/SectionHeader.astro";
 import { copy } from "~/lib/copy";
 
 const { cases } = copy;
 ---
 
-<section id="cases" class="py-32 px-6 bg-neutral-50 dark:bg-neutral-900">
-  <div class="max-w-6xl mx-auto space-y-16">
-    <!-- Header -->
-    <h2
-      class="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-neutral-50"
-    >
-      {cases.title}
-    </h2>
+<section id="cases" class="py-32 px-6 bg-white dark:bg-neutral-950">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <SectionHeader
+      label="Nuestro trabajo"
+      title="Cómo hemos ayudado a otras empresas"
+      description="Descubre cómo hemos ayudado a nuestros clientes a convertir ideas ambiciosas en productos digitales impactantes."
+      linkText="Ver todos"
+      linkHref="/proyectos"
+    />
 
     <!-- Cases grid -->
     <div class="grid lg:grid-cols-2 gap-8">
@@ -67,4 +69,3 @@ const { cases } = copy;
     </div>
   </div>
 </section>
-

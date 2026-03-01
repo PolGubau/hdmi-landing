@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "~/components/ui/ProjectCard.astro";
+
+const projects = await getCollection("projects", ({ data }) => data.available);
+const featuredProjects = projects.slice(0, 4);
+---
+
+<section class="overflow-hidden">
+  <div class="relative mx-auto overflow-hidden">
+    <!-- Gradient overlays -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-background z-10 pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-background z-10 pointer-events-none"
+    >
+    </div>
+
+    <!-- Scrolling content -->
+    <div class="flex gap-6 animate-marquee hover:pause-animation">
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            category={project.data.category}
+            color={project.data.color}
+            tech={project.data.tech}
+          />
+        ))
+      }
+      {/* Duplicate for seamless loop */}
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            category={project.data.category}
+            color={project.data.color}
+            tech={project.data.tech}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .pause-animation:hover {
+    animation-play-state: paused;
+  }
+</style>

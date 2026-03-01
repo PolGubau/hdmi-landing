@@ -10,20 +10,24 @@ import Impact from "~/components/sections/Impact.astro";
 import Method from "~/components/sections/Method.astro";
 import Positioning from "~/components/sections/Positioning.astro";
 import Problem from "~/components/sections/Problem.astro";
+import ProjectsCarousel from "~/components/sections/ProjectsCarousel.astro";
+import Services from "~/components/sections/Services.astro";
 import WhatWeDo from "~/components/sections/WhatWeDo.astro";
 import WhyUs from "~/components/sections/WhyUs.astro";
 ---
 
 <MainLayout>
-  <main class="flex flex-col w-full">
+  <main class="flex flex-col w-full gap-20">
     <Hero />
+    <ProjectsCarousel />
     <ClientsCarousel />
+    <Impact />
+    <Services />
+    <CaseStudies />
+    <Method />
     <Problem />
     <Positioning />
-    <Impact />
     <WhatWeDo />
-    <Method />
-    <CaseStudies />
     <ForWho />
     <WhyUs />
     <FinalCTA />

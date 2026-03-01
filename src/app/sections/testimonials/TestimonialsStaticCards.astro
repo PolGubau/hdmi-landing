@@ -17,11 +17,7 @@ const { testimonials, className } = Astro.props;
     testimonials.map((testimonial) => (
       <li class="border-foreground/10 border rounded-2xl shadow-2xl max-w-xl p-8 sm:p-10 grid grid-rows-[1fr_auto] gap-2">
         <header class="h-full flex flex-col gap-4">
-          <div class="flex gap-1">
-            {[...Array(5)].map((_) => (
-              <Icon name="star" class="h-5 w-5 fill-primary" />
-            ))}
-          </div>
+           
           <blockquote class="text-pretty text-xl font-medium leading-relaxed text-card-foreground sm:text-2xl">
             {testimonial.text}
           </blockquote>

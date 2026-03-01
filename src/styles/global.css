@@ -1,11 +1,11 @@
 @import "tailwindcss";
 /* @import "@polgubau/animated"; */
 @import "tw-animate-css";
+@import "./custom-styles.css";
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-intersect";
 @plugin "tailwindcss-motion";
 
-  
 @custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
@@ -20,15 +20,14 @@
  
 
 :root {
- 
   --radius: 0.625rem;
   --background: #f6f7f9;
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: #0C110B;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  --primary: #2A4227;
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
@@ -56,13 +55,13 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
+  --background: rgb(2, 6, 24);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
+  --primary: #2A4227;
   --primary-foreground: oklch(0.208 0.042 265.755);
   --secondary: oklch(0.279 0.041 260.031);
   --secondary-foreground: oklch(0.984 0.003 247.858);
@@ -127,6 +126,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -138,6 +140,10 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 4rem;
+
+  --shadow-pastel: 0px 2px 6px -4px rgba(15, 25, 61, 0.16), 0px 3.359209106361959px 1.6796045531809796px -0.625px rgba(39, 40, 42, 0.01), 0px 7.961918735236395px 3.9809593676181976px -1.25px rgba(39, 40, 42, 0.01), 0px 14.523362758627625px 7.261681379313813px -1.875px rgba(39, 40, 42, 0.01), 0px 24.14506143104518px 12.07253071552259px -2.5px rgba(39, 40, 42, 0.01), 0px 38.99230544391321px 19.496152721956605px -3.125px rgba(39, 40, 42, 0.01), 0px 63.82653521484462px 31.91326760742231px -3.75px rgba(39, 40, 42, 0.01), 0px 109.90498352673603px 54.952491763368016px -4.375px rgba(39, 40, 42, 0), 0px 200px 100px -5px rgba(39, 40, 42, 0), 0px -0.5px 0px 0.5px rgba(240, 244, 247, 0);
+
+  --shadow-pastel-sm: rgba(0, 0, 0, 0.11) 0px 0.5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 2px 12px 0px;
 }
 
 h1,
@@ -168,38 +174,12 @@ body {
 main {
   view-timeline: --scroll;
 }
-p{
-  font-weight: 400;
- }
+ 
 strong {
   font-weight: 900;
 }
+ 
 
-h2{
-  font-size: 2rem;
-  letter-spacing: 0.02em;
-  font-weight: 400;
-  line-height: 1.2;
-  word-spacing: 0.1em;
-  margin: 0px;
-}
-.project-title {
-  font-size: 20px;
-  letter-spacing: 0.02em;
-  word-spacing: 0.1em;
- }
-#project-bar {
-  transform: translateX(-50%) translateY(100%);
-  opacity: 0;
-
-  animation-name: slide-up;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-out;
-
-  animation-timeline: --scroll;
-  animation-range: contain 200px contain 550px;
-}
 
 @keyframes slide-up {
   to {

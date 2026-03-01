@@ -1,0 +1,25 @@
+---
+import type { Client } from "~/components/sections/ClientsCarousel.astro";
+
+type Props = {
+  clients: Client[];
+};
+
+const { clients } = Astro.props;
+---
+
+{
+  clients.map((client) => (
+    <div class="flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300">
+      <div class="flex items-center gap-3">
+        <span class="text-4xl">{client.logo}</span>
+        <span
+          class="text-lg font-medium text-[#0f1115] dark:text-neutral-50 whitespace-nowrap"
+          style="letter-spacing: -0.02em;"
+        >
+          {client.name}
+        </span>
+      </div>
+    </div>
+  ))
+}

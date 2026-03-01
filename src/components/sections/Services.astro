@@ -1,0 +1,66 @@
+---
+import SectionHeader from "~/components/ui/SectionHeader.astro";
+
+const services = [
+  {
+    title: "UX/UI para productos complejos",
+    description:
+      "Diseñamos interfaces claras y eficientes para productos SaaS, plataformas B2B o herramientas internas.",
+    size: "large" as const,
+  },
+  {
+    title: "Web & mobile apps",
+    description:
+      "Diseño y desarrollo de sitios web a medida, escalables y centrados en la experiencia del usuario.",
+    size: "medium" as const,
+  },
+  {
+    title: "Motion design & animation",
+    description:
+      "Da vida a tu marca con diseño en movimiento suave, elegante y funcional que mejora la interacción y capta la atención.",
+    size: "medium" as const,
+    process: [
+      "Storyboarding",
+      "Style Frames & Design",
+      "Animation & Motion",
+      "Sound Design & Polish",
+      "Review & Delivery",
+      "Final Audit",
+    ],
+  },
+  {
+    title: "Webs visuales y marketing sites",
+    description:
+      "Sitios rápidos de implementar pero con alto impacto visual. Ideal para marcas, lanzamientos y landings. Diseño personalizado, animaciones, copy estratégico y SEO on-page.",
+    size: "large" as const,
+  },
+];
+---
+
+<section class="landing-section">
+  <SectionHeader
+    title="Convertimos ideas "
+    subtitle="en productos de alto impacto"
+    tag="Servicios"
+  />
+
+  <!-- bento -->
+  <ul class="bento grid grid-cols-3 grid-rows-3 gap-4 w-full">
+    <li class="row-span-2">
+      <h3>{services[0].title}</h3>
+      <p>{services[0].description}</p>
+    </li>
+    <li class="col-span-2">
+      <h3>{services[1].title}</h3>
+      <p>{services[1].description}</p>
+    </li>
+    <li class="col-span-2 col-start-2 row-start-2">
+      <h3>{services[2].title}</h3>
+      <p>{services[2].description}</p>
+    </li>
+    <li class="col-span-2 row-start-3">
+      <h3>{services[3].title}</h3>
+      <p>{services[3].description}</p>
+    </li>
+  </ul>
+</section>

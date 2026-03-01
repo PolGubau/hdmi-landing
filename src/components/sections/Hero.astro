@@ -1,14 +1,13 @@
 ---
 import { copy } from "~/lib/copy";
 import Button from "../ui/Button.astro";
-import { Icon } from "astro-icon/components";
 
 const { hero } = copy;
 ---
 
 <section
   id="hero"
-  class="relative flex flex-col gap-10 justify-center px-6 pt-20 pb-14 items-center overflow-hidden bg-[#f9fafb] dark:bg-neutral-950"
+  class="relative flex flex-col gap-10 justify-center px-6 pt-20 items-center"
 >
   <!-- Content -->
   <div
@@ -28,7 +27,6 @@ const { hero } = copy;
   <!-- Subtitle points -->
   <div
     class="text-muted-foreground max-w-xl text-center lg:text-lg motion-preset-blur-up motion-delay-200"
-    style="letter-spacing: -0.02em;"
   >
     {hero.subtitle}
   </div>
@@ -36,11 +34,8 @@ const { hero } = copy;
   <!-- CTA -->
   <div class="motion-preset-blur-up motion-delay-400 pt-4">
     <a href={`/contact`}>
-      <Button>
+      <Button withArrow>
         {hero.cta}
-        <div class="size-5">
-          <Icon name="arrow-right" />
-        </div>
       </Button>
     </a>
   </div>

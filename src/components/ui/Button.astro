@@ -1,16 +1,28 @@
 ---
+import UpRightArrow from "./UpRightArrow.astro";
 
 type Props = {
+  size?: "sm" | "md" | "lg";
   class?: string;
-} 
+  withArrow?: boolean;
+};
 
-const {
-  class: className = ""
-} = Astro.props;
+const { class: className = "", size = "md", withArrow = false } = Astro.props;
 ---
 
 <button
-  class={`text-background gap-2 px-5 py-2 text-base shadow-lg text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground hover:brightness-90 select-none ${className}`}
+  data-size={size}
+  class:list={[
+    className,
+    "group text-background gap-2 p-2.5  text-base text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground select-none shadow-lg hover:shadow-xl active:shadow-none hover:bg-foreground/90",
+    withArrow && size === "sm" && "pr-1",
+    withArrow && size === "md" && "pr-3",
+    withArrow && size === "lg" && "pr-5",
+    size === "sm" && "py-1 px-3 text-sm",
+    size === "md" && "px-5 py-2.5 text-lg",
+    size === "lg" && "p-3 text-lg",
+  ]}
 >
   <slot />
+  {withArrow && <UpRightArrow />}
 </button>

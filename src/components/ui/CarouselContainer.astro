@@ -1,0 +1,54 @@
+---
+interface Props {
+  autoScroll?: boolean;
+  speed?: number; // in seconds
+}
+
+const { autoScroll = false, speed = 40 } = Astro.props;
+---
+
+<div class="relative -mx-6 md:mx-0">
+  <!-- Gradient overlays -->
+  <div
+    class="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white dark:from-neutral-950 to-transparent z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white dark:from-neutral-950 to-transparent z-10 pointer-events-none"
+  >
+  </div>
+
+  <!-- Scrolling content -->
+  <div
+    class={`flex gap-6 ${autoScroll ? "animate-marquee hover:pause-animation" : ""}`}
+    style={autoScroll ? `animation-duration: ${speed}s` : ""}
+  >
+    <slot />
+  </div>
+</div>
+
+{
+  autoScroll && (
+    <style>
+      {`
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-marquee {
+        animation: marquee linear infinite;
+      }
+
+      .pause-animation:hover {
+        animation-play-state: paused;
+      }
+    `}
+    </style>
+  )
+}
+
