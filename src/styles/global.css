@@ -1,5 +1,4 @@
 @import "tailwindcss";
-/* @import "@polgubau/animated"; */
 @import "tw-animate-css";
 @import "./custom-styles.css";
 @plugin "@tailwindcss/typography";
