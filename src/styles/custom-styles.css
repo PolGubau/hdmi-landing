@@ -5,13 +5,13 @@
 
 ul.bento {
 
-  li {
-    @apply flex flex-col gap-4 bg-accent rounded-2xl shadow-pastel p-7;
+  li.panel {
+    @apply flex flex-col gap-4 bg-accent rounded-3xl shadow-pastel p-7;
     h3 {
       @apply text-2xl font-semibold text-pretty;
     }
     p {
-      @apply text-sm text-muted-foreground max-w-sm;
+      @apply text-sm text-muted-foreground max-w-sm text-pretty;
     }
   }
 

@@ -1,11 +1,12 @@
 ---
 import UpRightArrow from "./UpRightArrow.astro";
-
-type Props = {
+export type ButtonProps = {
   size?: "sm" | "md" | "lg";
   class?: string;
   withArrow?: boolean;
 };
+
+type Props = ButtonProps;
 
 const { class: className = "", size = "md", withArrow = false } = Astro.props;
 ---
@@ -13,7 +14,6 @@ const { class: className = "", size = "md", withArrow = false } = Astro.props;
 <button
   data-size={size}
   class:list={[
-    className,
     "group text-background gap-2 p-2.5  text-base text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground select-none shadow-lg hover:shadow-xl active:shadow-none hover:bg-foreground/90",
     withArrow && size === "sm" && "pr-1",
     withArrow && size === "md" && "pr-3",
@@ -21,6 +21,7 @@ const { class: className = "", size = "md", withArrow = false } = Astro.props;
     size === "sm" && "py-1 px-3 text-sm",
     size === "md" && "px-5 py-2.5 text-lg",
     size === "lg" && "p-3 text-lg",
+    className,
   ]}
 >
   <slot />

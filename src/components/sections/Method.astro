@@ -1,85 +1,93 @@
 ---
+import { Image } from "astro:assets";
+import flatmatchThumbnail from "~/assets/media/landing/flatmatch-thumbnail.webp";
 import { copy } from "~/lib/copy";
+import Link from "../ui/Link.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
 
 const { method } = copy;
 ---
 
-<section id="method" class="py-32 px-6 bg-white dark:bg-neutral-950">
-  <div class="max-w-6xl mx-auto">
-    <!-- Header -->
-    <div class="max-w-2xl mb-20">
-      <h2
-        class="text-4xl md:text-5xl font-semibold text-[#0f1115] dark:text-neutral-50 mb-4"
-        style="letter-spacing: -0.03em;"
-      >
-        {method.title}
-      </h2>
-      <p
-        class="text-lg text-[#50576b] dark:text-neutral-400"
-        style="letter-spacing: -0.02em;"
-      >
-        {method.subtitle}
-      </p>
+<section id="method" class="lg:py-32 px-6 max-w-7xl mx-auto">
+  <div class="flex gap-24 w-full max-lg:flex-col">
+    <div
+      class="lg:sticky lg:top-32 self-start shrink-0 w-full lg:max-w-md flex flex-col justify-between gap-36"
+    >
+      <SectionHeader
+        title="Así trabajamos"
+        descriptionClass="max-w-sm"
+        subtitle="Fácil y cómodo"
+        tag="Nuestro proceso"
+        description="Tenemos experiencia en llegar a tu producto deseado: escuchamos, planeamos y trabajamos contigo paso a paso."
+      />
+
+      <div class="hidden lg:block">
+        <a href="/blog/proceso-en-flatmatch">
+          <article
+            class="group p-2 rounded-3xl shadow-pastel hover:shadow-pastel-sm bg-accent hover:bg-accent/80 transition-all duration-300"
+          >
+            <Image
+              src={flatmatchThumbnail}
+              alt="Overview of our method"
+              width={600}
+              height={400}
+              class="rounded-3xl object-cover -mt-14 group-hover:scale-102 transition-transform duration-300"
+            />
+            <footer
+              class="p-4 grid grid-cols-[1fr_auto] items-center gap-2 justify-between"
+            >
+              <p class="text-muted-foreground">
+                Descubre cómo implementamos nuestro método en la práctica
+              </p>
+
+              <Link href={"/blog/proceso-en-flatmatch"} />
+            </footer>
+          </article>
+        </a>
+      </div>
     </div>
 
-    <!-- Steps with progress bar -->
-    <div class="relative">
-      <!-- Progress bar (fixed on desktop) -->
-      <div class="hidden lg:block absolute left-0 top-0 bottom-0 w-px">
-        <div class="sticky top-32 h-screen">
-          <div class="relative h-64">
-            <!-- Background line -->
-            <div
-              class="absolute left-0 top-0 w-px h-full bg-neutral-200 dark:bg-neutral-800"
-            >
-            </div>
-            <!-- Progress line (will be animated with JS) -->
-            <div
-              id="progress-line"
-              class="absolute left-0 top-0 w-px bg-[#0f1115] dark:bg-neutral-50 transition-all duration-300"
-              style="height: 0%"
-            >
-            </div>
-          </div>
-        </div>
+    <div class="relative space-y-24">
+      <!-- Progress bar (background line) -->
+      <div
+        class="block absolute left-4 lg:left-5 top-0 bottom-0 w-0.5 bg-muted"
+      >
       </div>
-
-      <!-- Steps -->
-      <div class="lg:pl-16 space-y-24">
-        {
-          method.steps.map((step, index) => (
-            <div class="method-step group" data-step={index}>
-              <div class="space-y-6">
-                {/* Number badge */}
-                <div class="inline-flex items-center gap-3">
-                  <div class="w-10 h-10 flex items-center justify-center rounded-full bg-[#f9fafb] dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[#0f1115] dark:text-neutral-50 font-semibold text-sm">
-                    {step.number}
-                  </div>
-                  <span class="text-sm font-medium text-[#50576b] dark:text-neutral-400 uppercase tracking-wider">
-                    Paso {step.number}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div class="space-y-4">
-                  <h3
-                    class="text-3xl md:text-4xl font-semibold text-[#0f1115] dark:text-neutral-50"
-                    style="letter-spacing: -0.03em;"
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    class="text-lg text-[#50576b] dark:text-neutral-400 leading-relaxed max-w-2xl"
-                    style="letter-spacing: -0.02em;"
-                  >
-                    {step.description}
-                  </p>
+      <!-- Progress line (animated) -->
+      <div
+        id="progress-line"
+        class="block absolute left-4 lg:left-5 top-0 w-0.5 bg-primary transition-all duration-300"
+        style="height: 0%"
+      >
+      </div>
+      {
+        method.steps.map((step, index) => (
+          <div class="method-step group relative" data-step={index}>
+            <div class="flex gap-8 items-start">
+              <div class="relative z-10 shrink-0">
+                <div
+                  class="step-badge size-8 lg:size-10 flex items-center justify-center rounded-full bg-background border-2 border-muted font-semibold text-sm transition-all duration-500"
+                  data-step-index={index}
+                >
+                  {index + 1}
                 </div>
               </div>
+
+              {/* Content */}
+              <div class="flex-1 space-y-4 lg:pt-1">
+                <div class="space-y-2">
+                  <h3 class="text-xl lg:text-2xl font-semibold">
+                    {step.title}
+                  </h3>
+                </div>
+                <p class="text-muted-foreground leading-relaxed max-w-2xl">
+                  {step.description}
+                </p>
+              </div>
             </div>
-          ))
-        }
-      </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -88,22 +96,47 @@ const { method } = copy;
   // Animate progress bar on scroll
   function updateProgressBar() {
     const progressLine = document.getElementById("progress-line");
-    const methodSection = document.getElementById("method");
-    const steps = document.querySelectorAll(".method-step");
+    const stepsContainer =
+      document.querySelector(".method-step")?.parentElement;
+    const stepBadges = document.querySelectorAll(".step-badge");
 
-    if (!progressLine || !methodSection || steps.length === 0) return;
+    if (!progressLine || !stepsContainer || stepBadges.length === 0) return;
 
-    const sectionTop = methodSection.offsetTop;
-    const sectionHeight = methodSection.offsetHeight;
+    const containerRect = stepsContainer.getBoundingClientRect();
+    const containerTop = containerRect.top + window.scrollY;
     const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-    // Calculate progress (0 to 100)
-    const progress = Math.max(
-      0,
-      Math.min(100, ((scrollPosition - sectionTop) / sectionHeight) * 100),
-    );
+    // Get the last badge position
+    const lastBadge = stepBadges[stepBadges.length - 1];
+    const lastBadgeRect = lastBadge.getBoundingClientRect();
+    const lastBadgeTop = lastBadgeRect.top + window.scrollY;
+    const lastBadgeCenter = lastBadgeTop + lastBadgeRect.height / 2;
 
-    progressLine.style.height = `${progress}%`;
+    // Calculate the maximum height (from container top to last badge center)
+    const maxHeight = lastBadgeCenter - containerTop;
+
+    // Calculate current progress
+    const relativeScroll = scrollPosition - containerTop;
+    const currentHeight = Math.max(0, Math.min(maxHeight, relativeScroll));
+
+    // Set the height in pixels instead of percentage
+    progressLine.style.height = `${currentHeight}px`;
+
+    // Activate badges when progress line reaches them
+    stepBadges.forEach((badge) => {
+      const badgeRect = badge.getBoundingClientRect();
+      const badgeTop = badgeRect.top + window.scrollY;
+      const badgeCenter = badgeTop + badgeRect.height / 2;
+
+      // Check if progress line has reached this badge
+      const progressLineBottom = containerTop + currentHeight;
+
+      if (progressLineBottom >= badgeCenter) {
+        badge.classList.add("active");
+      } else {
+        badge.classList.remove("active");
+      }
+    });
   }
 
   // Update on scroll
@@ -111,5 +144,18 @@ const { method } = copy;
   window.addEventListener("resize", updateProgressBar);
 
   // Initial update
-  updateProgressBar();
+  setTimeout(updateProgressBar, 100);
 </script>
+
+<style>
+  .step-badge {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-badge.active {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    transform: scale(1.1);
+  }
+</style>

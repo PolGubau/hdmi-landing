@@ -9,25 +9,25 @@ export const baseUrl = branding.url;
 
 export function getMetadata() {
   return {
-    title: `${branding.name} | Automatización, IA y Webs en España`,
+    title: `${branding.name} | Productos digitales de calidad en España`,
 
     description:
       `${branding.name} ayuda a empresas y profesionales a ahorrar tiempo y dinero con automatización de procesos, inteligencia artificial y desarrollo web. Soluciones rápidas, escalables y sin complicaciones.`,
 
     name: branding.name,
 
-    longName: `${branding.name} | Automatización Digital en España`,
+    longName: `${branding.name} | Productos digitales y automatizaciones en España`,
 
     slogan: branding.slogan,
 
     picture: branding.assets.logo,
 
     getInTouch: {
-      label: "Contáctanos por WhatsApp",
+      label: "Contáctanos",
 
       short_label: "¡Hablemos!",
 
-      href: `https://wa.me/${branding.contact.whatsapp.number}?text=${encodeURIComponent(branding.contact.whatsapp.defaultMessage)}`,
+      href: "/contact",
     },
 
     tags: [

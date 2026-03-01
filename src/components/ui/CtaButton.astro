@@ -1,36 +1,23 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getMetadata } from "~/lib/constants";
 import {
+  type TranslationKey,
   getLangFromUrl,
   useTranslations,
-  type TranslationKey,
 } from "~/i18n/utils";
+import { getMetadata } from "~/lib/constants";
+import Button, { type ButtonProps } from "./Button.astro";
 
 type Props = {
-  class?: string;
-  iconClass?: string;
   labelKey?: TranslationKey;
-  labelClass?: string;
-};
+} & ButtonProps;
 
-const {
-  class: className = "",
-  iconClass = "",
-  labelKey = "letsTalk",
-  labelClass = "",
-} = Astro.props;
+const { labelKey = "contact", ...buttonProps } = Astro.props;
 const { getInTouch } = getMetadata();
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<a
-  href={getInTouch.href}
-  target="_blank"
-  rel="noopener noreferrer"
-  class={`text-background gap-2 px-5 py-2 text-base shadow-lg text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground hover:brightness-90 select-none ${className}`}
->
-  <Icon name="whatsapp" class={`size-5 text-current ${iconClass}`} />
-  <span class={labelClass}>{t(labelKey)}</span>
+<a href={getInTouch.href}>
+  <Button withArrow {...buttonProps}> {t(labelKey)} </Button>
 </a>

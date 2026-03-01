@@ -19,33 +19,37 @@ const featuredProjects = projects.slice(0, 4);
     </div>
 
     <!-- Scrolling content -->
-    <div class="flex gap-6 animate-marquee hover:pause-animation">
+    <ul class="flex gap-6 animate-marquee hover:pause-animation">
       {
         featuredProjects.map((project) => (
-          <ProjectCard
-            id={project.id}
-            title={project.data.title}
-            summary={project.data.summary}
-            category={project.data.category}
-            color={project.data.color}
-            tech={project.data.tech}
-          />
+          <li class="shrink-0 w-[320px] md:w-[550px]">
+            <ProjectCard
+              id={project.id}
+              title={project.data.title}
+              summary={project.data.summary}
+              category={project.data.category}
+              color={project.data.color}
+              tech={project.data.tech}
+            />
+          </li>
         ))
       }
       {/* Duplicate for seamless loop */}
       {
         featuredProjects.map((project) => (
-          <ProjectCard
-            id={project.id}
-            title={project.data.title}
-            summary={project.data.summary}
-            category={project.data.category}
-            color={project.data.color}
-            tech={project.data.tech}
-          />
+          <li class="shrink-0 w-[320px] md:w-[550px]">
+            <ProjectCard
+              id={project.id}
+              title={project.data.title}
+              summary={project.data.summary}
+              category={project.data.category}
+              color={project.data.color}
+              tech={project.data.tech}
+            />
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>
 

@@ -1,0 +1,18 @@
+---
+import UpRightArrow from "./UpRightArrow.astro";
+
+interface Props {
+  href: string;
+  label?: string;
+}
+
+const { href, label="Leer más" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group hidden md:flex items-center gap-2 text-sm font-medium text-primary transition-all hover:text-primary/80"
+>
+  {label}
+  <UpRightArrow class="bg-background" />
+</a>

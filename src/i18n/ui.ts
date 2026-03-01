@@ -8,12 +8,8 @@ export const defaultLang = 'es';
 
 export const ui = {
   es: {
-    'nav.home': 'Inicio',
-    'nav.services': 'Servicios',
-    'nav.portfolio': 'Portafolio',
-    'nav.blog': 'Blog',
-    'nav.faq': 'FAQ',
-    'nav.contact': 'Contacto',
+    "contact": "Contactar",
+   
     
     'hero.badge': 'Automatización inteligente para tu negocio',
     'hero.title': 'Automatiza tu negocio',
@@ -85,12 +81,8 @@ export const ui = {
     'footer.rights': 'Todos los derechos reservados.',
   },
   ca: {
-    'nav.home': 'Inici',
-    'nav.services': 'Serveis',
-    'nav.portfolio': 'Portafoli',
-    'nav.blog': 'Blog',
-    'nav.faq': 'FAQ',
-    'nav.contact': 'Contacte',
+    "contact": "Contacte",
+   
     
     'hero.badge': 'Automatització intel·ligent per al teu negoci',
     'hero.title': 'Automatitza el teu negoci',
@@ -161,12 +153,8 @@ export const ui = {
     'footer.rights': 'Tots els drets reservats.',
   },
   en: {
-    'nav.home': 'Home',
-    'nav.services': 'Services',
-    'nav.portfolio': 'Portfolio',
-    'nav.blog': 'Blog',
-    'nav.faq': 'FAQ',
-    'nav.contact': 'Contact',
+    "contact": "Contact",
+   
     
     'hero.badge': 'Smart automation for your business',
     'hero.title': 'Automate your business',

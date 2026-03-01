@@ -1,13 +1,9 @@
-/**
- * Contenido centralizado de la landing
- * Preparado para i18n futuro
- */
 
 export const copy = {
   hero: {
     title: "Modernizamos sistemas críticos sin detener tu negocio",
     subtitle: 
-      "Diseñamos y desarrollamos sitios, plataformas y productos digitales impulsados por IA, con foco en rendimiento y crecimiento.",
+      "Creamos webs, plataformas y productos digitales de calidad, con foco en rendimiento y crecimiento.",
     brand: "Doscientos.",
     cta: "Contactar",
   },
@@ -55,84 +51,29 @@ export const copy = {
   },
 
   method: {
-    title: "Método 200™",
-    subtitle: "Un proceso diseñado para reducir riesgo y maximizar impacto.",
-    steps: [
+     steps: [
       {
-        number: "1",
-        title: "Diagnóstico técnico profundo",
-        description: "Auditamos arquitectura, dependencias, rendimiento y riesgos ocultos.",
+        title: "Hablamos contigo",
+        description: "Queremos conocer tu proyecto, entender qué necesitas y cómo podemos ayudarte.",
       },
       {
-        number: "2",
-        title: "Plan de modernización progresiva",
-        description: 'Definimos fases seguras, sin "big bang".',
+        title: "Te enviamos una propuesta",
+        description: 'Analizamos lo que necesitas y te mandamos una propuesta clara con entregables y plazos.',
       },
       {
-        number: "3",
-        title: "Migración y refactorización controlada",
-        description: "Actualizamos módulos estratégicos sin detener el negocio.",
+        title: "Nos ponemos manos a la obra",
+        description: "Diseño, desarrollo o contenido. Hacemos lo que el proyecto requiere.",
       },
       {
-        number: "4",
         title: "Validación en entorno real",
-        description: "Pruebas, estabilidad, rendimiento.",
+        description: "Dividimos el trabajo en sprints. Vas viendo avances y ajustamos si hace falta.",
       },
       {
-        number: "5",
-        title: "Base preparada para crecer",
-        description: "Sistema moderno, mantenible y escalable.",
+        title: "Lanzamos y seguimos contigo",
+        description: "Publicamos, medimos y mejoramos lo necesario.",
       },
     ],
   },
-
-  cases: {
-    title: "Casos de intervención",
-    items: [
-      {
-        client: "Generalitat de Catalunya",
-        subtitle: "Dirección técnica en campaña institucional",
-        description: "Responsabilidad técnica integral en entorno público de alto tráfico e integraciones múltiples.",
-        results: [
-          "Plataforma estable en campaña activa",
-          "Integración con servicios institucionales complejos",
-          "Cero interrupciones críticas",
-        ],
-      },
-      {
-        client: "IFCO",
-        subtitle: "Modernización en entorno logístico internacional",
-        description: "Migración de módulos legacy y optimización de rendimiento en sistema empresarial global.",
-        results: [
-          "Mejora sustancial en tiempos de respuesta",
-          "Arquitectura preparada para crecimiento",
-          "Reducción de riesgo tecnológico",
-        ],
-      },
-      {
-        client: "BitacoraERP",
-        subtitle: "Evolución tecnológica de ERP empresarial",
-        description: "Transformación de base tecnológica obsoleta hacia stack moderno.",
-        results: [
-          "Mayor estabilidad",
-          "Mejor rendimiento",
-          "Sistema preparado para nuevas funcionalidades",
-        ],
-      },
-      {
-        client: "CESNET (CESCE)",
-        subtitle: "Plataforma de gestión de riesgo financiero",
-        description: "Modernización de módulos críticos en entorno financiero sensible.",
-        results: [
-          "Plataforma más estable y rápida",
-          "Mejor capacidad de escalabilidad",
-          "Estructura preparada para evolución futura",
-        ],
-      },
-    ],
-  },
-
-
 
 
   forWho: {
