@@ -140,6 +140,9 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 4rem;
+  --text-7xl: 5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
 
   --shadow-pastel: 0px 2px 6px -4px rgba(15, 25, 61, 0.16), 0px 3.359209106361959px 1.6796045531809796px -0.625px rgba(39, 40, 42, 0.01), 0px 7.961918735236395px 3.9809593676181976px -1.25px rgba(39, 40, 42, 0.01), 0px 14.523362758627625px 7.261681379313813px -1.875px rgba(39, 40, 42, 0.01), 0px 24.14506143104518px 12.07253071552259px -2.5px rgba(39, 40, 42, 0.01), 0px 38.99230544391321px 19.496152721956605px -3.125px rgba(39, 40, 42, 0.01), 0px 63.82653521484462px 31.91326760742231px -3.75px rgba(39, 40, 42, 0.01), 0px 109.90498352673603px 54.952491763368016px -4.375px rgba(39, 40, 42, 0), 0px 200px 100px -5px rgba(39, 40, 42, 0), 0px -0.5px 0px 0.5px rgba(240, 244, 247, 0);
 
@@ -159,7 +162,7 @@ button{
 }
 
 body {
-  @apply bg-background text-foreground antialiased font-heading ;
+  @apply bg-foreground text-foreground antialiased font-heading ;
 }
 
 *::selection {

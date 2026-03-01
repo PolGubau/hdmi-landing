@@ -17,7 +17,8 @@ export default defineConfig({
   prefetch: true,
   experimental: {
     headingIdCompat: true,
-    contentIntellisense: true,
+    contentIntellisense: true
+
   },
   i18n: {
     locales: ["es", "ca", "en"],
@@ -36,5 +37,25 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ["astro:content"],
+      include: ["react", "react-dom"],
+    },
+    server: {
+      fs: {
+        strict: false,
+      },
+      watch: {
+        usePolling: false,
+        ignored: ["**/node_modules/**", "**/.git/**"],
+      },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
+    },
   },
 });

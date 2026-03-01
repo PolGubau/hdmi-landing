@@ -5,7 +5,9 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "node_modules",
+    ".astro"
   ],
   "compilerOptions": {
     "strictNullChecks": true,
@@ -13,7 +15,9 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-    }
+      "~/*": ["./src/*"]
+    },
+    "skipLibCheck": true,
+    "incremental": true
   }
 }

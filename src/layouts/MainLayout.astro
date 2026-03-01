@@ -1,5 +1,5 @@
 ---
-import SimpleFooter from "~/components/Layout/footer/SimpleFooter.astro";
+import Footer from "~/components/Layout/footer/footer.astro";
 import Navbar from "~/components/Layout/navbar/navbar.astro";
 import ThemeScript from "~/components/ThemeScript.astro";
 import BaseHead from "../components/BaseHead.astro";
@@ -13,17 +13,19 @@ interface Props {
 const { title, description, image } = Astro.props;
 ---
 
- 
-
 <html lang="es" dir="ltr" class="w-screen overflow-x-hidden">
   <head>
     <ThemeScript />
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body class="bg-white dark:bg-neutral-900">
-    <Navbar />
-    <slot />
-    <SimpleFooter />
+  <body>
+    <div class="bg-background rounded-b-[5vw]">
+      <Navbar />
+      <main class="flex flex-col w-full gap-20 pb-36">
+      <slot />
+      </main>
+    </div>
+    <Footer />
   </body>
 </html>
 

@@ -3,11 +3,13 @@
 	"type": "module",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "astro dev",
+		"dev": "astro dev --host",
+		"dev:fast": "astro dev --host --no-sync",
 		"build": "astro build",
 		"lint": "oxlint",
 		"lint:fix": "oxlint --fix --fix-suggestions",
 		"preview": "astro preview",
+		"clean": "rm -rf .astro node_modules/.vite dist",
 		"astro": "astro"
 	},
 	"dependencies": {
