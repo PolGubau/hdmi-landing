@@ -27,9 +27,7 @@ export const server = {
 			email: z.string().email("Email inválido"),
 			phone: z.string().min(1, "El teléfono es obligatorio"),
 			company: z.string().optional(),
-			message: z
-				.string()
-				.min(10, "El mensaje debe tener al menos 10 caracteres"),
+			message: z.string().min(1, "El mensaje debe tener al menos 1 carácter"),
 			timezone: z.string().optional(),
 			utm_source: z.string().optional(),
 			utm_medium: z.string().optional(),
@@ -205,19 +203,28 @@ export const server = {
 				// 2. Guardar en Google Sheets
 				const GOOGLE_SHEETS_URL = import.meta.env.PUBLIC_GOOGLE_SHEETS_URL;
 
+				console.log("Google Sheets URL:", GOOGLE_SHEETS_URL);
+				console.log("Datos a enviar:", sheetData);
+
 				if (GOOGLE_SHEETS_URL) {
 					try {
-						await fetch(GOOGLE_SHEETS_URL, {
+						const sheetResponse = await fetch(GOOGLE_SHEETS_URL, {
 							method: "POST",
 							headers: {
 								"Content-Type": "application/json",
 							},
 							body: JSON.stringify(sheetData),
 						});
+
+						console.log("Google Sheets response status:", sheetResponse.status);
+						const sheetResult = await sheetResponse.text();
+						console.log("Google Sheets response:", sheetResult);
 					} catch (sheetError) {
 						console.error("Error guardando en Google Sheets:", sheetError);
 						// No lanzar error, continuar aunque falle Google Sheets
 					}
+				} else {
+					console.warn("GOOGLE_SHEETS_URL no está configurada");
 				}
 
 				return {

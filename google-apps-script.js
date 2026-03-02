@@ -14,10 +14,10 @@ function doPost(e) {
   try {
     // Parsear datos
     const data = JSON.parse(e.postData.contents);
-    
+
     // Obtener la hoja
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('landing-leads');
-    
+
     // Si no existe la hoja, crearla con headers
     if (!sheet) {
       const newSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('landing-leads');
@@ -25,6 +25,7 @@ function doPost(e) {
         'Fecha/Hora',
         'Nombre',
         'Email',
+        'Teléfono',
         'Empresa',
         'Mensaje',
         'IP',
@@ -42,12 +43,13 @@ function doPost(e) {
       return ContentService.createTextOutput(JSON.stringify({ success: true }))
         .setMimeType(ContentService.MimeType.JSON);
     }
-    
+
     // Agregar nueva fila con todos los datos
     sheet.appendRow([
       data.timestamp || new Date().toLocaleString('es-ES'),
       data.name || '',
       data.email || '',
+      data.phone || '',
       data.company || '',
       data.message || '',
       data.ip || '',
@@ -62,23 +64,23 @@ function doPost(e) {
       data.utmMedium || '',
       data.utmCampaign || ''
     ]);
-    
+
     // Formatear la primera fila (headers)
-    const headerRange = sheet.getRange(1, 1, 1, 16);
+    const headerRange = sheet.getRange(1, 1, 1, 17);
     headerRange.setFontWeight('bold');
     headerRange.setBackground('#4285f4');
     headerRange.setFontColor('#ffffff');
-    
+
     // Auto-resize columnas
-    sheet.autoResizeColumns(1, 16);
-    
-    return ContentService.createTextOutput(JSON.stringify({ 
+    sheet.autoResizeColumns(1, 17);
+
+    return ContentService.createTextOutput(JSON.stringify({
       success: true,
       message: 'Datos guardados correctamente'
     })).setMimeType(ContentService.MimeType.JSON);
-    
+
   } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({ 
+    return ContentService.createTextOutput(JSON.stringify({
       success: false,
       error: error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
@@ -93,6 +95,7 @@ function test() {
         timestamp: new Date().toLocaleString('es-ES'),
         name: 'Test User',
         email: 'test@example.com',
+        phone: '1234567890',
         company: 'Test Company',
         message: 'Test message',
         ip: '192.168.1.1',
@@ -109,7 +112,7 @@ function test() {
       })
     }
   };
-  
+
   doPost(testData);
 }
 

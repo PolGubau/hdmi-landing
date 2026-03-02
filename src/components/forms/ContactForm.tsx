@@ -27,7 +27,9 @@ export default function ContactForm() {
     setStatus("loading");
     setErrorMessage("");
 
-    const formData = new FormData(e.currentTarget);
+    // Guardar referencia al form antes del async
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     // Agregar datos adicionales
     formData.append("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -42,18 +44,19 @@ export default function ContactForm() {
       if (error) {
         setStatus("error");
         setErrorMessage(error.message || "Error al enviar el mensaje");
+        console.error("Action error:", error);
         return;
       }
 
       if (data?.success) {
         setStatus("success");
-        e.currentTarget.reset();
+        form.reset(); // Usar la referencia guardada
         setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       setStatus("error");
       setErrorMessage("Error de conexión. Inténtalo de nuevo.");
-      console.error("Error:", error);
+      console.error("Error completo:", error);
     }
   };
 
