@@ -1,5 +1,5 @@
 ---
-import { cn } from "~/lib/utils";
+import { cn } from "~/shared/lib/utils";
 import UpRightArrow from "./UpRightArrow.astro";
 export type ButtonProps = {
   size?: "sm" | "md" | "lg";
@@ -25,12 +25,15 @@ const {
   class={cn(
     "group text-background gap-2 p-2.5 text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground select-none hover:shadow-xl active:shadow-lg hover:bg-foreground/90 shadow-pastel-sm",
     "focus:outline-none ring-2 ring-transparent focus:ring-primary",
-    withArrow && size === "sm" && "pr-1",
-    withArrow && size === "md" && "pr-3",
-    withArrow && size === "lg" && "pr-5",
-    size === "sm" && "py-1 px-3 text-sm",
-    size === "md" && "px-5 py-2.5 text-base",
-    size === "lg" && "p-3 text-lg",
+    {
+      "py-1 px-3 text-sm": size === "sm",
+      "px-5 py-2.5 text-base": size === "md",
+      "p-3 text-lg": size === "lg",
+
+      "pr-1": withArrow && size === "sm",
+      "pr-3": withArrow && size === "md",
+      "pr-5": withArrow && size === "lg",
+    },
     className,
   )}
   {...rest}

@@ -10,14 +10,11 @@ const projects = defineCollection({
 			available: z.boolean(),
 			client: z.string(),
 			timeline: z.number().int().positive(),
-			endedAt: z
-				.string()
-				.transform((str) => new Date(str))
-				.optional(),
+			endedAt: z.string().transform((str) => new Date(str)),
 			color: z.string(),
 			link: z.string().optional(),
-			cover: z.image(),
-			services_provided: z.array(z.string()).optional(),
+			cover: image(),
+			services_provided: z.array(z.string()).optional().default([]),
 		}),
 });
 
@@ -40,6 +37,9 @@ const blog = defineCollection({
 });
 
 export type Project = InferEntrySchema<"projects">;
+export type ProjectMetadata = (typeof projects)[number];
+
 export type BlogPost = InferEntrySchema<"blog">;
+export type BlogPostMetadata = (typeof blog)[number];
 
 export const collections = { projects, blog };

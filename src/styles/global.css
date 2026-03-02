@@ -126,7 +126,9 @@
 	--radius-xl: calc(var(--radius) + 4px);
 	--radius-2xl: calc(var(--radius) + 8px);
 	--radius-3xl: calc(var(--radius) + 12px);
-	--radius-4xl: calc(var(--radius) + 16px);
+	--radius-4xl: calc(var(--radius) + 30px);
+	--radius-5xl: calc(var(--radius) + 48px);
+	--radius-6xl: calc(var(--radius) + 60px);
 
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;

@@ -1,9 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import SectionHeader from "~/components/ui/SectionHeader.astro";
 import ProjectCard from "../ui/ProjectCard.astro";
-const projects = await getCollection("projects", ({ data }) => data.available);
-const featuredProjects = projects.slice(0, 4);
+import { getProjects } from "~/shared/lib/collections";
+
+const projects = await getProjects()
 ---
 
 <section id="cases" class="px-6 max-w-7xl mx-auto space-y-16 w-full">
@@ -18,7 +18,7 @@ const featuredProjects = projects.slice(0, 4);
   <!-- Cases grid con stagger alternado -->
   <div class="grid lg:grid-cols-2 gap-6" data-stagger="150">
     {
-      featuredProjects.map((project, index: number) => (
+      projects.map((project, index: number) => (
         <div
           data-reveal={index % 2 === 0 ? "left" : "right"}
           data-speed="normal"
@@ -28,9 +28,9 @@ const featuredProjects = projects.slice(0, 4);
             id={project.id}
             title={project.data.title}
             summary={project.data.summary}
-            category={project.data.category}
+            services_provided={project.data.services_provided ?? []}
             color={project.data.color}
-            tech={project.data.tech}
+            cover={project.data.cover}
           />
         </div>
       ))

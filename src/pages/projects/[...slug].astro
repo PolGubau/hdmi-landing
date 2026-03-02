@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
+import CtaButton from "~/components/ui/CtaButton.astro";
+import Link from "~/components/ui/Link.astro";
 import { branding } from "~/config/branding";
 import MainLayout from "~/layouts/MainLayout.astro";
 
@@ -16,26 +19,18 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-
-// Calculate project duration
-const duration = project.data.endedAt
-  ? Math.ceil(
-      (project.data.endedAt.getTime() - project.data.startedAt.getTime()) /
-        (1000 * 60 * 60 * 24 * 30),
-    )
-  : null;
 ---
 
 <MainLayout
   title={`${project.data.title} | Proyectos | doscientos`}
   description={project.data.summary}
 >
-  <article class="min-h-screen py-32 px-6">
+  <article class="min-h-screen py-20 px-6">
     <div class="max-w-5xl mx-auto space-y-12">
       <!-- Back button -->
       <a
         href="/projects"
-        class="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
+        class="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground hover:underline"
       >
         <svg
           class="w-4 h-4"
@@ -53,147 +48,38 @@ const duration = project.data.endedAt
       </a>
 
       <!-- Header -->
-      <header class="space-y-6">
-        <div class="flex items-start gap-4">
-          <div
-            class="w-3 h-3 rounded-full flex-shrink-0 mt-3"
-            style={`background-color: ${project.data.color}`}
-          >
-          </div>
-          <div class="flex-1 space-y-4">
-            <div class="space-y-2">
-              <h1 class="text-4xl md:text-6xl font-bold text-foreground">
-                {project.data.title}
-              </h1>
-              <p
-                class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400"
-              >
-                {project.data.summary}
-              </p>
-            </div>
+      <header class="space-y-6 border border-muted p-8 rounded-5xl">
+        <div class="flex flex-col gap-4 pb-4 p-2">
+          <h1 class="text-4xl md:text-5xl font-bold text-foreground">
+            {project.data.title}
+          </h1>
 
-            <!-- Meta info -->
-            <div
-              class="flex flex-wrap gap-6 text-sm text-neutral-600 dark:text-neutral-400"
-            >
-              <div class="flex items-center gap-2">
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                  ></path>
-                </svg>
-                <span>{project.data.category}</span>
+          <p class="text-muted-foreground text-pretty max-w-lg">
+            {project.data.summary}
+          </p>
+
+          {
+            project.data.link && (
+              <div class="border border-muted p-2 pl-3 w-fit rounded-full">
+                <Link href={project.data.link} label="Visitar sitio web" />
               </div>
-
-              <div class="flex items-center gap-2">
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span>
-                  {
-                    project.data.startedAt.toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "long",
-                    })
-                  }
-                  {" - "}
-                  {
-                    project.data.endedAt
-                      ? project.data.endedAt.toLocaleDateString("es-ES", {
-                          year: "numeric",
-                          month: "long",
-                        })
-                      : "Presente"
-                  }
-                </span>
-              </div>
-
-              {
-                duration && (
-                  <div class="flex items-center gap-2">
-                    <svg
-                      class="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span>{duration} meses</span>
-                  </div>
-                )
-              }
-            </div>
-
-            <!-- Tech stack -->
-            {
-              project.data.tech && project.data.tech.length > 0 && (
-                <div class="flex flex-wrap gap-2 pt-2">
-                  {project.data.tech.map((tech) => (
-                    <span class="text-sm px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )
-            }
-
-            <!-- External link -->
-            {
-              project.data.link && (
-                <a
-                  href={project.data.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
-                >
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                  Visitar sitio web
-                </a>
-              )
-            }
-          </div>
+            )
+          }
         </div>
+        <Image
+          src={project.data.cover}
+          alt={project.data.title}
+          width={1200}
+          height={600}
+          class="w-full rounded-4xl object-cover aspect-video bg-muted"
+        />
       </header>
+    </div>
+  </article>
 
-      <!-- Content -->
-      <div
-        class="prose prose-lg prose-neutral dark:prose-invert max-w-none
+  <!-- Content -->
+  <div
+    class="prose prose-lg prose-neutral dark:prose-invert max-w-none
         prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-50
         prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
         prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
@@ -208,41 +94,7 @@ const duration = project.data.endedAt
         prose-blockquote:italic prose-blockquote:text-neutral-600 dark:prose-blockquote:text-neutral-400
         prose-code:text-neutral-900 dark:prose-code:text-neutral-50
         prose-pre:bg-neutral-900 dark:prose-pre:bg-neutral-950"
-      >
-        <Content />
-      </div>
-
-      <!-- CTA -->
-      <div
-        class="mt-16 p-12 rounded-2xl bg-neutral-900 dark:bg-neutral-950 text-center space-y-6"
-      >
-        <h3 class="text-3xl md:text-4xl font-bold text-neutral-50">
-          ¿Tu proyecto necesita modernización?
-        </h3>
-        <p class="text-xl text-neutral-300">
-          Solicita un diagnóstico técnico inicial sin compromiso.
-        </p>
-        <a
-          href={`https://wa.me/${branding.contact.whatsapp.number}?text=${encodeURIComponent(branding.contact.whatsapp.defaultMessage)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-neutral-50 text-neutral-900 rounded-full font-bold hover:scale-105 transition-transform duration-300"
-        >
-          Contactar
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </article>
+  >
+    <Content />
+  </div>
 </MainLayout>

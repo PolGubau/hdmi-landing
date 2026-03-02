@@ -1,14 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import ProjectCard from "~/components/ui/ProjectCard.astro";
-import SectionHeader from "~/components/ui/SectionHeader.astro";
 import SectionTag from "~/components/ui/SectionTag.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
+import { getProjects } from "~/shared/lib/collections";
 
-const projects = await getCollection("projects", ({ data }) => data.available);
-const sortedProjects = projects.sort(
-  (a, b) => b.data.startedAt.getTime() - a.data.startedAt.getTime(),
-);
+const projects = await getProjects();
 ---
 
 <MainLayout
@@ -59,16 +55,16 @@ const sortedProjects = projects.sort(
       <!-- Projects grid -->
       <div class="grid lg:grid-cols-2 gap-4">
         {
-          sortedProjects.map((project) => (
+          projects.map((project) => (
             <article class="group">
-              <a href={`/proyectos/${project.id}`}>
+              <a href={`/projects/${project.id}`}>
                 <ProjectCard
                   id={project.id}
                   title={project.data.title}
                   summary={project.data.summary}
-                  category={project.data.category}
+                  services_provided={project.data.services_provided}
                   color={project.data.color}
-                  tech={project.data.tech}
+                  cover={project.data.cover}
                 />
               </a>
             </article>

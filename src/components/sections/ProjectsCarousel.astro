@@ -32,9 +32,9 @@ const featuredProjects = projects.slice(0, 4);
               id={project.id}
               title={project.data.title}
               summary={project.data.summary}
-              category={project.data.category}
+              services_provided={project.data.services_provided}
               color={project.data.color}
-              tech={project.data.tech}
+              cover={project.data.cover}
             />
           </li>
         ))
@@ -44,13 +44,13 @@ const featuredProjects = projects.slice(0, 4);
         featuredProjects.map((project) => (
           <li class="shrink-0 w-[320px] md:w-[550px]">
             <ProjectCard
-              id={project.id}
-              title={project.data.title}
-              summary={project.data.summary}
-              category={project.data.category}
-              color={project.data.color}
-              tech={project.data.tech}
-            />
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            services_provided={project.data.services_provided}
+            color={project.data.color}
+            cover={project.data.cover}
+          />
           </li>
         ))
       }
