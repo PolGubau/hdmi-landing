@@ -4,7 +4,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
 
 const projects = await getCollection("projects", ({ data }) => data.available);
 const sortedProjects = projects.sort(
-  (a, b) => b.data.startedAt.getTime() - a.data.startedAt.getTime()
+  (a, b) => b.data.startedAt.getTime() - a.data.startedAt.getTime(),
 );
 ---
 
@@ -21,8 +21,11 @@ const sortedProjects = projects.sort(
         >
           Proyectos
         </h1>
-        <p class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl">
-          Casos de éxito en modernización de sistemas críticos. Proyectos reales, resultados medibles, cero interrupciones.
+        <p
+          class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl"
+        >
+          Casos de éxito en modernización de sistemas críticos. Proyectos
+          reales, resultados medibles, cero interrupciones.
         </p>
       </div>
 
@@ -171,4 +174,3 @@ const sortedProjects = projects.sort(
     </div>
   </div>
 </MainLayout>
-
