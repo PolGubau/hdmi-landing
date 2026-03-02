@@ -17,10 +17,10 @@ export const branding = {
   
   // Redes sociales
   social: {
-    twitter: "https://twitter.com/doscientos",
+    twitter: "https://twitter.com/doscientos.es",
     github: "https://github.com/doscientos",
     linkedin: "https://www.linkedin.com/company/doscientos",
-    instagram: "https://instagram.com/doscientos",
+    instagram: "https://instagram.com/doscientos.es",
   },
   
   // Ubicación
