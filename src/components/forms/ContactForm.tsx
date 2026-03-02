@@ -164,6 +164,7 @@ export default function ContactForm() {
         {status === "loading" ? (
           <>
             <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+              <title>Enviando...</title>
               <circle
                 className="opacity-25"
                 cx="12"
@@ -184,6 +185,7 @@ export default function ContactForm() {
           <>
             Enviar mensaje
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <title>Enviar mensaje</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
