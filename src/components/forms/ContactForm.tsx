@@ -128,6 +128,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
+          minLength={1}
           name="message"
           required
           rows={4}

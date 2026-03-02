@@ -11,15 +11,19 @@ import react from "@astrojs/react";
 
 import icon from "astro-icon";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://doscientos.es",
   prefetch: true,
+
   experimental: {
     headingIdCompat: true,
     contentIntellisense: true
 
   },
+
   i18n: {
     locales: ["es", "ca", "en"],
     defaultLocale: "es",
@@ -27,6 +31,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   integrations: [
     mdx(),
     sitemap(),
@@ -58,4 +63,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: vercel(),
 });
