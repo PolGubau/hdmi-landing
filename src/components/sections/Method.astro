@@ -47,7 +47,7 @@ const { method } = copy;
       </div>
     </div>
 
-    <div class="relative space-y-24">
+    <div class="relative space-y-24" data-stagger="150">
       <!-- Progress bar (background line) -->
       <div
         class="block absolute left-4 lg:left-5 top-0 bottom-0 w-0.5 bg-muted"
@@ -62,7 +62,12 @@ const { method } = copy;
       </div>
       {
         method.steps.map((step, index) => (
-          <div class="method-step group relative" data-step={index}>
+          <div
+            class="method-step group relative"
+            data-step={index}
+            data-reveal="left"
+            data-duration="600"
+          >
             <div class="flex gap-8 items-start">
               <div class="relative z-10 shrink-0">
                 <div

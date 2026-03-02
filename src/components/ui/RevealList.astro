@@ -1,0 +1,36 @@
+---
+/**
+ * Componente RevealList - Contenedor para listas con efecto stagger
+ * 
+ * @param stagger - Delay entre cada elemento hijo en ms (default: 100)
+ * @param as - Tag HTML a renderizar (default: 'div')
+ * @param class - Clases CSS adicionales
+ * 
+ * @example
+ * <RevealList stagger={150}>
+ *   <div data-reveal="left">Item 1</div>
+ *   <div data-reveal="left">Item 2</div>
+ *   <div data-reveal="left">Item 3</div>
+ * </RevealList>
+ */
+
+interface Props {
+  stagger?: number;
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const {
+  stagger = 100,
+  as: Tag = 'div',
+  class: className = '',
+} = Astro.props;
+---
+
+<Tag
+  data-stagger={stagger}
+  class={className}
+>
+  <slot />
+</Tag>
+

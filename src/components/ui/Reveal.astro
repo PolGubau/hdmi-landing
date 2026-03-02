@@ -1,0 +1,48 @@
+---
+/**
+ * Componente Reveal - Sistema de animaciones scroll-reveal moderno
+ * 
+ * @param direction - Dirección de la animación: 'top' | 'bottom' | 'left' | 'right' | 'scale'
+ * @param duration - Duración en ms (default: 700)
+ * @param delay - Delay en ms (default: 0)
+ * @param easing - Función de easing CSS (default: cubic-bezier(0.4, 0, 0.2, 1))
+ * @param as - Tag HTML a renderizar (default: 'div')
+ * @param class - Clases CSS adicionales
+ * 
+ * @example
+ * <Reveal direction="top" duration={500} delay={100}>
+ *   <h1>Título animado</h1>
+ * </Reveal>
+ */
+
+type Direction = 'top' | 'bottom' | 'left' | 'right' | 'scale';
+
+interface Props {
+  direction?: Direction;
+  duration?: number;
+  delay?: number;
+  easing?: string;
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const {
+  direction = 'bottom',
+  duration,
+  delay,
+  easing,
+  as: Tag = 'div',
+  class: className = '',
+} = Astro.props;
+---
+
+<Tag
+  data-reveal={direction}
+  data-duration={duration}
+  data-delay={delay}
+  data-easing={easing}
+  class:list={['reveal', className]}
+>
+  <slot />
+</Tag>
+

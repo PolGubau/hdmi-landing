@@ -10,23 +10,25 @@ const { hero } = copy;
   id="hero"
   class="relative flex flex-col gap-10 justify-center px-6 pt-20 items-center"
 >
-   <AvailableTag />
+  <AvailableTag />
   <!-- Main title -->
   <h1
-    class="text-2xl max-w-2xl text-center md:text-5xl font-semibold tracking-tight text-foreground motion-preset-blur-up"
+    data-reveal
+    class="text-2xl max-w-2xl text-center md:text-5xl font-semibold tracking-tight text-foreground data-reveal"
   >
     {hero.title}
   </h1>
 
   <!-- Subtitle points -->
   <div
-    class="text-muted-foreground max-w-xl text-center lg:text-lg motion-preset-blur-up motion-delay-200"
+    data-reveal
+    class="text-muted-foreground max-w-xl text-center lg:text-lg data-reveal motion-delay-200"
   >
     {hero.subtitle}
   </div>
 
   <!-- CTA -->
-  <div class="motion-preset-blur-up motion-delay-400 pt-4">
+  <div class="data-reveal motion-delay-400 pt-4" data-reveal data-delay="400">
     <a href={`/contact`}>
       <Button withArrow>
         {hero.cta}

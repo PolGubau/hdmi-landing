@@ -1,6 +1,21 @@
-@utility reveal {
-	@apply transition-all duration-700 ease-out will-change-transform;
-	transition-delay: var(--delay, 0ms);
+/* Clase base reveal con variables CSS personalizables */
+.reveal,
+[data-reveal] {
+	@apply transition-all will-change-transform;
+
+	/* Variables CSS con valores por defecto */
+	--reveal-duration: 700ms;
+	--reveal-delay: 0ms;
+	--reveal-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+	transition-duration: var(--reveal-duration);
+	transition-delay: var(--reveal-delay);
+	transition-timing-function: var(--reveal-easing);
+}
+
+/* Estado inicial: hidden por defecto */
+[data-reveal]:not([data-state]) {
+	@apply opacity-0 translate-y-8;
 }
 
 /* estados */
@@ -13,30 +28,30 @@
 }
 
 /* variantes direction (extensible) */
-[data-reveal="left"][data-state="hidden"] {
+[data-reveal="left"]:not([data-state="visible"]) {
 	@apply opacity-0 -translate-x-8;
 }
 
-[data-reveal="right"][data-state="hidden"] {
+[data-reveal="right"]:not([data-state="visible"]) {
 	@apply opacity-0 translate-x-8;
 }
 
-[data-reveal="scale"][data-state="hidden"] {
+[data-reveal="scale"]:not([data-state="visible"]) {
 	@apply opacity-0 scale-95;
 }
-/* top y bottom */
-[data-reveal="top"][data-state="hidden"] {
-  @apply opacity-0 -translate-y-8;
+
+[data-reveal="top"]:not([data-state="visible"]) {
+	@apply opacity-0 -translate-y-8;
 }
 
-[data-reveal="bottom"][data-state="hidden"] {
-  @apply opacity-0 translate-y-8;
+[data-reveal="bottom"]:not([data-state="visible"]) {
+	@apply opacity-0 translate-y-8;
 }
-
 
 /* accesibilidad */
 @media (prefers-reduced-motion: reduce) {
-	[data-reveal] {
+	[data-reveal],
+	.reveal {
 		transition: none !important;
 		transform: none !important;
 		opacity: 1 !important;
