@@ -1,19 +1,28 @@
 ---
+import { cn } from "~/lib/utils";
 import UpRightArrow from "./UpRightArrow.astro";
 export type ButtonProps = {
   size?: "sm" | "md" | "lg";
   class?: string;
   withArrow?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 type Props = ButtonProps;
 
-const { class: className = "", size = "md", withArrow = false } = Astro.props;
+const {
+  class: className = "",
+  size = "md",
+  withArrow = false,
+  type = "button",
+  ...rest
+} = Astro.props;
 ---
 
 <button
   data-size={size}
-  class:list={[
+  type={type}
+  class={cn(
     "group text-background gap-2 p-2.5  text-base text-center justify-center transition-all rounded-full w-fit flex items-center bg-foreground select-none shadow-lg hover:shadow-xl active:shadow-none hover:bg-foreground/90",
     withArrow && size === "sm" && "pr-1",
     withArrow && size === "md" && "pr-3",
@@ -22,7 +31,8 @@ const { class: className = "", size = "md", withArrow = false } = Astro.props;
     size === "md" && "px-5 py-2.5 text-lg",
     size === "lg" && "p-3 text-lg",
     className,
-  ]}
+  )}
+  {...rest}
 >
   <slot />
   {withArrow && <UpRightArrow />}

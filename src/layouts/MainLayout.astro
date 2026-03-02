@@ -14,15 +14,13 @@ const { title, description, image } = Astro.props;
 
 <html lang="es" dir="ltr" class="w-screen overflow-x-hidden">
   <head>
-     <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} image={image} />
   </head>
   <body>
-    <div class="bg-background rounded-b-[5vw]">
-      <Navbar />
-      <main class="flex flex-col w-full gap-20 pb-36">
-        <slot />
-      </main>
-    </div>
+    <Navbar />
+    <main class="flex flex-col w-full gap-20 pb-36">
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
