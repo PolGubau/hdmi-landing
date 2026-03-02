@@ -1,38 +1,63 @@
 ---
 /**
  * Componente Reveal - Sistema de animaciones scroll-reveal moderno
- * 
- * @param direction - Dirección de la animación: 'top' | 'bottom' | 'left' | 'right' | 'scale'
+ *
+ * @param direction - Dirección: 'top' | 'bottom' | 'left' | 'right' | 'scale' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
  * @param duration - Duración en ms (default: 700)
  * @param delay - Delay en ms (default: 0)
- * @param easing - Función de easing CSS (default: cubic-bezier(0.4, 0, 0.2, 1))
+ * @param speed - Preset de velocidad: 'instant' | 'fast' | 'normal' | 'slow'
+ * @param easing - Easing: 'smooth' | 'bounce' | 'elastic' | 'sharp' | 'soft' o función CSS
+ * @param distance - Distancia: 'small' | 'medium' | 'large' o número en px
+ * @param threshold - Threshold del IntersectionObserver (0-1, default: 0.15)
+ * @param rootMargin - rootMargin del IntersectionObserver (default: '0px 0px -10% 0px')
  * @param as - Tag HTML a renderizar (default: 'div')
  * @param class - Clases CSS adicionales
- * 
+ *
  * @example
- * <Reveal direction="top" duration={500} delay={100}>
+ * <Reveal direction="top" speed="fast" easing="bounce">
  *   <h1>Título animado</h1>
  * </Reveal>
  */
 
-type Direction = 'top' | 'bottom' | 'left' | 'right' | 'scale';
+type Direction =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "scale"
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right";
+
+type Speed = "instant" | "fast" | "normal" | "slow";
+type Easing = "smooth" | "bounce" | "elastic" | "sharp" | "soft";
+type Distance = "small" | "medium" | "large";
 
 interface Props {
   direction?: Direction;
   duration?: number;
   delay?: number;
-  easing?: string;
+  speed?: Speed;
+  easing?: Easing | string;
+  distance?: Distance | number;
+  threshold?: number;
+  rootMargin?: string;
   as?: keyof HTMLElementTagNameMap;
   class?: string;
 }
 
 const {
-  direction = 'bottom',
+  direction = "bottom",
   duration,
   delay,
+  speed,
   easing,
-  as: Tag = 'div',
-  class: className = '',
+  distance,
+  threshold,
+  rootMargin,
+  as: Tag = "div",
+  class: className = "",
 } = Astro.props;
 ---
 
@@ -40,9 +65,12 @@ const {
   data-reveal={direction}
   data-duration={duration}
   data-delay={delay}
+  data-speed={speed}
   data-easing={easing}
-  class:list={['reveal', className]}
+  data-distance={distance}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+  class:list={["reveal", className]}
 >
   <slot />
 </Tag>
-

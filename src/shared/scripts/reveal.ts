@@ -3,33 +3,53 @@
  * One observer for entire app.
  */
 
-const observer = new IntersectionObserver(
-	(entries, obs) => {
-		for (const entry of entries) {
-			if (!entry.isIntersecting) continue;
+// Map para observers con diferentes thresholds
+const observers = new Map<string, IntersectionObserver>();
 
-			const el = entry.target as HTMLElement;
+function getObserver(threshold: number, rootMargin: string) {
+	const key = `${threshold}-${rootMargin}`;
 
-			console.debug(
-				"[Reveal] Elemento visible:",
-				el,
-				`dirección: ${el.dataset.reveal}`,
-			);
+	if (!observers.has(key)) {
+		const observer = new IntersectionObserver(
+			(entries, obs) => {
+				for (const entry of entries) {
+					if (!entry.isIntersecting) continue;
 
-			// Pequeño delay para asegurar que el estado hidden se aplicó
-			requestAnimationFrame(() => {
-				el.dataset.state = "visible";
-				console.debug("[Reveal] Estado cambiado a visible para:", el);
-			});
+					const el = entry.target as HTMLElement;
 
-			obs.unobserve(el);
-		}
-	},
-	{
-		threshold: 0.15,
-		rootMargin: "0px 0px -10% 0px",
-	},
-);
+					console.debug(
+						"[Reveal] Elemento visible:",
+						el,
+						`dirección: ${el.dataset.reveal}`,
+					);
+
+					// Pequeño delay para asegurar que el estado hidden se aplicó
+					requestAnimationFrame(() => {
+						el.dataset.state = "visible";
+						console.debug("[Reveal] Estado cambiado a visible para:", el);
+
+						// Dispatch custom event para callbacks
+						el.dispatchEvent(
+							new CustomEvent("reveal", {
+								detail: { direction: el.dataset.reveal },
+							}),
+						);
+					});
+
+					obs.unobserve(el);
+				}
+			},
+			{
+				threshold,
+				rootMargin,
+			},
+		);
+
+		observers.set(key, observer);
+	}
+
+	return observers.get(key)!;
+}
 
 function init() {
 	const elements = document.querySelectorAll<HTMLElement>(
@@ -38,7 +58,7 @@ function init() {
 
 	console.debug(`[Reveal] Inicializando ${elements.length} elementos`);
 
-	elements.forEach((el) => {
+	for (const el of elements) {
 		el.dataset.init = "true";
 
 		// Forzar estado hidden primero
@@ -48,6 +68,7 @@ function init() {
 		const duration = el.dataset.duration;
 		const delay = el.dataset.delay;
 		const easing = el.dataset.easing;
+		const distance = el.dataset.distance;
 
 		if (duration) {
 			el.style.setProperty("--reveal-duration", `${duration}ms`);
@@ -59,6 +80,18 @@ function init() {
 
 		if (easing) {
 			el.style.setProperty("--reveal-easing", easing);
+		}
+
+		if (distance) {
+			const distanceMap: Record<string, string> = {
+				small: "16px",
+				medium: "32px",
+				large: "64px",
+			};
+			el.style.setProperty(
+				"--reveal-distance",
+				distanceMap[distance] || `${distance}px`,
+			);
 		}
 
 		// Stagger automático por parent
@@ -78,6 +111,11 @@ function init() {
 			el.style.setProperty("--reveal-delay", `${baseDelay + staggerDelay}ms`);
 		}
 
+		// Threshold y rootMargin personalizables
+		const threshold = Number(el.dataset.threshold || 0.15);
+		const rootMargin = el.dataset.rootMargin || "0px 0px -10% 0px";
+
+		const observer = getObserver(threshold, rootMargin);
 		observer.observe(el);
 
 		console.debug(
@@ -85,7 +123,7 @@ function init() {
 			el,
 			`con dirección: ${el.dataset.reveal}`,
 		);
-	});
+	}
 }
 
 // Ejecutar lo antes posible
