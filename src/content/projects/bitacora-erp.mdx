@@ -1,182 +1,57 @@
 ---
-title: "BitacoraERP"
-summary: "Evolución tecnológica de ERP empresarial desde stack obsoleto a arquitectura moderna"
+title: "BitácoraERP – Facturación e Impresión de Facturas"
+summary: "Diseño e implementación del módulo completo de facturación, cálculo fiscal automático y generación de facturas en múltiples formatos."
 available: true
-link: "https://www.bitacoraerp.com"
-client: "BitacoraERP"
-endedAt: "2023-11-30"
-timeline: 8
+link: ""
+client: "BitácoraERP"
+endedAt: "2022-11-30"
+timeline: 5
 color: "#388E3C"
-services_provided:
-  - Python
-  - Django
-cover: "../../assets/media/projects/bitacora/0.webp"
----
-import { Image } from "astro:assets";
-
-import ejemploLandingImagen from "../../assets/media/projects/bitacora/1.webp";
-
-# BitacoraERP
-
-## Evolución tecnológica de ERP empresarial
-
-### El Desafío
-
-BitacoraERP es un sistema de gestión empresarial utilizado por múltiples organizaciones para:
-- Gestión de inventario y almacenes
-- Facturación y contabilidad
-- Control de proyectos
-- Gestión de recursos humanos
-
-<figure>
-  <Image
-    src={ejemploLandingImagen}
-    alt="..."
-    width={700}
-    height={700}
-    className="rounded-xl h-full w-full max-h-[300px] md:max-h-[400px]"
-  />
-  <figcaption class="text-center">Example of the illustrations.</figcaption>
-</figure>
-
-**El problema:** Stack tecnológico obsoleto que limitaba el crecimiento:
-- Python 2.7 (sin soporte desde 2020)
-- Django 1.11 (versión legacy)
-- jQuery spaghetti code
-- Base de datos sin optimizar
-- Sin tests automatizados
-- Despliegues manuales propensos a errores
-
-### La Transformación
-
-#### 1. Análisis y Planificación
-Realizamos un **audit técnico completo**:
-- Mapeo de dependencias críticas
-- Identificación de deuda técnica
-- Análisis de riesgos por módulo
-- Plan de migración en 4 fases
-
-#### 2. Modernización del Backend
-
-**De Python 2.7 a Python 3.11:**
-- Migración progresiva de módulos
-- Actualización de sintaxis y librerías
-- Implementación de type hints
-- Refactorización de código legacy
-
-**De Django 1.11 a Django 4.2:**
-- Actualización incremental de versiones
-- Migración de APIs obsoletas
-- Implementación de Django REST Framework
-- Mejora de seguridad (CSRF, XSS, SQL injection)
-
-#### 3. Modernización del Frontend
-
-**De jQuery a Vue.js 3:**
-- Componentes reutilizables
-- Estado centralizado con Pinia
-- Interfaces reactivas y modernas
-- Mejor experiencia de usuario
-
-#### 4. Optimización de Base de Datos
-
-**PostgreSQL:**
-- Análisis de queries lentas
-- Creación de índices estratégicos
-- Normalización de tablas
-- Implementación de vistas materializadas
-- Particionamiento de tablas grandes
-
-#### 5. Infraestructura y DevOps
-
-**Modernización de despliegues:**
-- Dockerización de la aplicación
-- CI/CD con GitHub Actions
-- Entornos de staging automatizados
-- Monitorización con Sentry
-- Backups automatizados
-
-#### 6. Testing y Calidad
-
-**Implementación de suite de tests:**
-- Tests unitarios (pytest)
-- Tests de integración
-- Tests E2E con Playwright
-- Cobertura de código > 80%
-
-### Resultados
-
-✅ **Mayor estabilidad**
-- Reducción de bugs en producción en 75%
-- Sistema más predecible y confiable
-- Mejor manejo de errores
-
-✅ **Mejor rendimiento**
-- Tiempos de carga reducidos en 60%
-- Queries optimizadas (de segundos a milisegundos)
-- Interfaces más responsivas
-
-✅ **Sistema preparado para nuevas funcionalidades**
-- Stack moderno y mantenible
-- Arquitectura modular
-- Fácil onboarding de nuevos desarrolladores
-- Documentación técnica completa
-
-### Stack Tecnológico Final
-
-**Backend:**
-- Python 3.11
-- Django 4.2
-- Django REST Framework
-- Celery para tareas asíncronas
-- PostgreSQL 15
-
-**Frontend:**
-- Vue.js 3 (Composition API)
-- Pinia (state management)
-- Vite (build tool)
-- TailwindCSS
-
-**Infraestructura:**
-- Docker + Docker Compose
-- GitHub Actions (CI/CD)
-- Redis (caché + message broker)
-- Nginx (reverse proxy)
-
-### Proceso de Migración
-
-La migración se realizó en **9 meses** sin interrumpir el servicio:
-
-1. **Mes 1-2:** Análisis y preparación
-2. **Mes 3-5:** Migración de backend (Python + Django)
-3. **Mes 6-7:** Modernización de frontend (Vue.js)
-4. **Mes 8:** Optimización de base de datos
-5. **Mes 9:** Testing exhaustivo y estabilización
-
-**Estrategia clave:**
-- Feature flags para activar/desactivar nuevas funcionalidades
-- Despliegues incrementales por módulo
-- Rollback plan para cada despliegue
-- Monitorización continua de métricas
-
-### Impacto en el Negocio
-
-- **Reducción de costos de mantenimiento** - Menos tiempo en bugs, más en features
-- **Velocidad de desarrollo** - Nuevas funcionalidades 3x más rápido
-- **Satisfacción de usuarios** - Interfaces modernas y rápidas
-- **Seguridad mejorada** - Stack actualizado con últimos parches
-- **Preparado para escalar** - Arquitectura lista para crecimiento
-
+services_provided: ["Arquitectura de facturación", "Automatización fiscal", "Sistema de impresión de facturas"]
+images: ["src/assets/media/projects/bitacora/logo_sctrade_transparent.png","/src/assets/media/projects/bitacora/crm-4.png","src/assets/media/projects/bitacora/chatgpt.png","src/assets/media/projects/bitacora/Bitacora-Movil-1.png"]
 ---
 
-## Lecciones Clave
+# BitácoraERP
 
-1. **No todo a la vez** - Migración incremental reduce riesgo
-2. **Tests son esenciales** - Permiten refactorizar con confianza
-3. **Comunicación constante** - Usuarios informados = menos resistencia al cambio
-4. **Documentación viva** - Actualizada durante la migración, no después
+## Facturación e Impresión de Facturas
 
-> "La transformación de BitacoraERP fue un éxito rotundo. El equipo de doscientos no solo modernizó nuestra tecnología, sino que nos enseñó mejores prácticas que seguimos aplicando."
-> 
-> — CEO, BitacoraERP
+### Descripción
 
+Diseñamos e implementamos de forma integral el módulo de facturación y emisión de facturas dentro de la plataforma ERP especializada en logística, tránsito y gestión aduanera. Este módulo centraliza y automatiza todo el ciclo de facturación dentro de un único sistema ERP, facilitando la definición de conceptos, el cálculo fiscal, la generación de documentos y su posterior impresión o distribución.
+
+### Problema y Objetivos
+
+BitácoraERP necesitaba un sistema robusto y flexible que permitiera:
+
+- Automatizar la generación de facturas conforme a conceptos personalizados.
+- Integrar el cálculo de impuestos como IVA e IGIC directamente con las reglas fiscales vigentes.
+- Gestionar tarifas y costes por cliente, zona o tipo de servicio.
+- Emitir y producir facturas en formatos imprimibles y exportables (PDF, email, XML, etc.).
+- Integrarse completamente con los módulos contables del ERP para la conciliación financiera.
+
+Este desarrollo no solo automatizó un proceso tradicionalmente manual, sino que también añadió trazabilidad y cumplimiento fiscal automático dentro del flujo operativo.
+
+### Nuestro enfoque
+
+- Arquitectura robusta y modular: diseñamos servicios y repositorios escalables que permiten tanto facturación individual como agrupada.
+- Cálculo fiscal automático: incorporamos lógica que aplica IVA/IGIC según normativa y tarifas configurables, garantizando un cumplimiento fiscal preciso.
+- Generación de documentos: integramos la generación de facturas en múltiples formatos (PDF para impresión, XML y otros formatos electrónicos), aptos para envío por email o descarga directa.
+- Impresión y exportación: el sistema facilita la producción de documentos listos para impresión, con diseños claros, datos fiscales completos y numeración correlativa adaptada.
+- Integración contable: implementamos un flujo automático donde cada factura generada se refleja en los módulos de contabilidad para conciliación y reporting financiero sin intervención manual.
+
+### Resultados y beneficios
+
+- 🚀 Automatización completa del ciclo de facturación, reduciendo errores manuales y tiempos de procesamiento.
+- 💼 Flexibilidad de tarifas y conceptos, permitiendo personalizaciones por cliente, zona geográfica o tipo de servicio.
+- 📄 Emisión e impresión profesional de facturas en formatos versátiles (PDF, email, exportables) para cumplir tanto requisitos internos como fiscales.
+- 📊 Integración financiera completa, con impacto directo en la contabilidad del negocio.
+- 🔒 Cumplimiento normativo automático con cálculo de impuestos adecuado y trazabilidad de los documentos generados.
+
+### Funcionalidades destacadas desarrolladas
+
+- Configuración y asociación de conceptos de facturación con cuentas contables.
+- Cálculo automático de impuestos (IVA/IGIC) durante la creación de la factura.
+- Emisión tanto de facturas individuales como agrupadas por cliente o periodo.
+- Generación de documentos listos para impresión con layout fiscal completo (PDF).
+- Exportación y envío automático de facturas por diferentes canales (PDF/email/XML).
+- Integración con otros módulos de BitácoraERP para consolidación financiera automatizada.
