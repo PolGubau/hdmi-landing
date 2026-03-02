@@ -2,8 +2,8 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import { ClientRouter } from "astro:transitions";
-import { getMetadata } from "../lib/constants";
 import { getLangFromUrl } from "~/i18n/utils";
+import { getMetadata } from "../lib/constants";
 import "../styles/global.css";
 
 interface Props {
@@ -54,7 +54,7 @@ const alternateUrls = {
 <link rel="alternate" hreflang="x-default" href={alternateUrls.es} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
+<title>{`${title} - ${metadata.title}`}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="language" content={lang} />

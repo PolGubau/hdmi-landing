@@ -1,9 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./custom-styles.css";
+@import "./animations.css";
 @plugin "@tailwindcss/typography";
-@plugin "tailwindcss-intersect";
-@plugin "tailwindcss-motion";
+/* @plugin "tailwindcss-intersect";
+@plugin "tailwindcss-motion"; */
 
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
@@ -189,18 +190,14 @@ h3,
 h4,
 h5,
 h6 {
-	@apply font-heading;
+	@apply font-heading tracking-tighter;
 }
 button {
 	@apply cursor-pointer;
 }
 
 body {
-	@apply bg-background text-foreground antialiased font-heading;
-	overflow-x: hidden;
-}
-
-html {
+	@apply bg-background text-foreground antialiased font-heading overflow-x-hidden;
 	overflow-x: hidden;
 }
 

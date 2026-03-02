@@ -1,8 +1,15 @@
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
+import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.PUBLIC_RESEND_API);
+
+// Inicializar cliente de Supabase
+const supabase = createClient(
+	import.meta.env.PUBLIC_SUPABASE_URL,
+	import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+);
 
 // Función para parsear User Agent
 function parseUserAgent(ua: string) {
@@ -237,6 +244,136 @@ export const server = {
 				throw new ActionError({
 					code: "INTERNAL_SERVER_ERROR",
 					message: error instanceof Error ? error.message : "Error desconocido",
+				});
+			}
+		},
+	}),
+
+	subscribeNewsletter: defineAction({
+		accept: "json",
+		input: z.object({
+			email: z.string().email("Email inválido"),
+		}),
+		handler: async (input, context) => {
+			const { email } = input;
+
+			try {
+				// 1. Verificar si el usuario ya existe
+				const { data: existingUser, error: queryError } = await supabase
+					.from("users")
+					.select("id, status")
+					.eq("email", email)
+					.single();
+
+				if (queryError && queryError.code !== "PGRST116") {
+					// PGRST116 = no rows found (es normal)
+					throw new ActionError({
+						code: "INTERNAL_SERVER_ERROR",
+						message: "Error al verificar el email",
+					});
+				}
+
+				// 2. Si ya existe y está activo, retornar que ya estaba suscrito
+				if (existingUser && existingUser.status === "active") {
+					return {
+						success: false,
+						message: "Ya estás suscrito a nuestra newsletter",
+						alreadySubscribed: true,
+					};
+				}
+
+				// 3. Insertar o actualizar el usuario
+				if (existingUser) {
+					// Actualizar si existe pero está inactivo
+					const { error: updateError } = await supabase
+						.from("users")
+						.update({
+							status: "active",
+							updated_at: new Date().toISOString(),
+						})
+						.eq("id", existingUser.id);
+
+					if (updateError) {
+						throw new ActionError({
+							code: "INTERNAL_SERVER_ERROR",
+							message: "Error al actualizar la suscripción",
+						});
+					}
+				} else {
+					// Crear nuevo usuario
+					const { error: insertError } = await supabase.from("users").insert({
+						email,
+						status: "active",
+						source: "newsletter",
+						created_at: new Date().toISOString(),
+						updated_at: new Date().toISOString(),
+					});
+
+					if (insertError) {
+						console.error("Insert error:", insertError);
+						throw new ActionError({
+							code: "INTERNAL_SERVER_ERROR",
+							message: "Error al guardar tu email",
+						});
+					}
+				}
+
+				// 4. Enviar email de confirmación con Resend
+				const { error: emailError } = await resend.emails.send({
+					from: "Doscientos <hola@doscientos.es>",
+					to: email,
+					subject: "¡Bienvenido a la newsletter de Doscientos!",
+					html: `
+						<!DOCTYPE html>
+						<html>
+							<head>
+								<style>
+									body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+									.container { max-width: 600px; margin: 0 auto; padding: 20px; }
+									.header { background: #2A4227; color: white; padding: 40px 20px; border-radius: 8px 8px 0 0; text-align: center; }
+									.header h1 { margin: 0; font-size: 28px; }
+									.content { background: #f9fafb; padding: 40px 20px; border-radius: 0 0 8px 8px; text-align: center; }
+									.content p { margin: 15px 0; }
+									.cta-button { display: inline-block; background: #2A4227; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 20px; }
+									.footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #666; }
+								</style>
+							</head>
+							<body>
+								<div class="container">
+									<div class="header">
+										<h1>¡Bienvenido! 🎉</h1>
+									</div>
+									<div class="content">
+										<p>Gracias por suscribirte a nuestra newsletter.</p>
+										<p>Recibirás actualizaciones sobre nuestros últimos proyectos, artículos del blog y novedades del sector.</p>
+										<a href="https://doscientos.es" class="cta-button">Visita nuestro sitio</a>
+										<div class="footer">
+											<p>Si no deseas recibir más correos, puedes darte de baja en cualquier momento.</p>
+										</div>
+									</div>
+								</div>
+							</body>
+						</html>
+					`,
+				});
+
+				if (emailError) {
+					console.error("Error enviando email de confirmación:", emailError);
+					// No lanzar error, el usuario está registrado aunque falle el email
+				}
+
+				return {
+					success: true,
+					message: "¡Suscripción confirmada! Revisa tu email.",
+				};
+			} catch (error) {
+				console.error("Error en subscribeNewsletter:", error);
+				throw new ActionError({
+					code: "INTERNAL_SERVER_ERROR",
+					message:
+						error instanceof Error
+							? error.message
+							: "Error al suscribirse a la newsletter",
 				});
 			}
 		},

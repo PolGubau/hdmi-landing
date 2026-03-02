@@ -1,0 +1,44 @@
+@utility reveal {
+	@apply transition-all duration-700 ease-out will-change-transform;
+	transition-delay: var(--delay, 0ms);
+}
+
+/* estados */
+[data-state="hidden"] {
+	@apply opacity-0 translate-y-8;
+}
+
+[data-state="visible"] {
+	@apply opacity-100 translate-y-0;
+}
+
+/* variantes direction (extensible) */
+[data-reveal="left"][data-state="hidden"] {
+	@apply opacity-0 -translate-x-8;
+}
+
+[data-reveal="right"][data-state="hidden"] {
+	@apply opacity-0 translate-x-8;
+}
+
+[data-reveal="scale"][data-state="hidden"] {
+	@apply opacity-0 scale-95;
+}
+/* top y bottom */
+[data-reveal="top"][data-state="hidden"] {
+  @apply opacity-0 -translate-y-8;
+}
+
+[data-reveal="bottom"][data-state="hidden"] {
+  @apply opacity-0 translate-y-8;
+}
+
+
+/* accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+	[data-reveal] {
+		transition: none !important;
+		transform: none !important;
+		opacity: 1 !important;
+	}
+}

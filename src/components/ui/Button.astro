@@ -1,7 +1,6 @@
 ---
 import { cn } from "~/lib/utils";
 import UpRightArrow from "./UpRightArrow.astro";
-import { Ripple } from "./primitives/ripple/ripple";
 export type ButtonProps = {
   size?: "sm" | "md" | "lg";
   class?: string;
@@ -37,6 +36,5 @@ const {
   {...rest}
 >
   <slot />
-  <Ripple client:load />
   {withArrow && <UpRightArrow />}
 </button>

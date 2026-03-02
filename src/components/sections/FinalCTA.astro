@@ -1,6 +1,7 @@
 ---
 import { branding } from "~/config/branding";
 import { copy } from "~/lib/copy";
+import AvailableTag from "../ui/AvailableTag.astro";
 import CtaButton from "../ui/CtaButton.astro";
 import SectionTag from "../ui/SectionTag.astro";
 import ClientsMarqueeRail from "../ui/clients/ClientsMarqueeRail.astro";
@@ -26,5 +27,6 @@ const { finalCta } = copy;
     </div>
     <ClientsMarqueeRail />
     <CtaButton />
+    <AvailableTag />
   </div>
 </section>
