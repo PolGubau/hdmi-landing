@@ -8,7 +8,8 @@ const projects = defineCollection({
 			title: z.string(),
 			summary: z.string(),
 			available: z.boolean(),
-			startedAt: z.string().transform((str) => new Date(str)),
+			client: z.string(),
+			timeline: z.number().int().positive(),
 			endedAt: z
 				.string()
 				.transform((str) => new Date(str))
@@ -16,8 +17,7 @@ const projects = defineCollection({
 			color: z.string(),
 			link: z.string().optional(),
 			images: z.array(image()),
-			category: z.string(),
-			tech: z.array(z.string()).optional(),
+			services_provided: z.array(z.string()).optional(),
 		}),
 });
 

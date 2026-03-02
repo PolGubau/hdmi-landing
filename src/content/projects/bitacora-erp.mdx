@@ -7,9 +7,14 @@ client: "BitacoraERP"
 endedAt: "2023-11-30"
 timeline: 8
 color: "#388E3C"
-services_provided: ["Python", "Django"]
-images: ["../../assets/media/projects/bitacora/0.webp"]
+services_provided:
+  - Python
+  - Django
+cover: "../../assets/media/projects/bitacora/0.webp"
 ---
+import { Image } from "astro:assets";
+
+import ejemploLandingImagen from "../../assets/media/projects/bitacora/1.webp";
 
 # BitacoraERP
 
@@ -22,6 +27,17 @@ BitacoraERP es un sistema de gestión empresarial utilizado por múltiples organ
 - Facturación y contabilidad
 - Control de proyectos
 - Gestión de recursos humanos
+
+<figure>
+  <Image
+    src={ejemploLandingImagen}
+    alt="..."
+    width={700}
+    height={700}
+    className="rounded-xl h-full w-full max-h-[300px] md:max-h-[400px]"
+  />
+  <figcaption class="text-center">Example of the illustrations.</figcaption>
+</figure>
 
 **El problema:** Stack tecnológico obsoleto que limitaba el crecimiento:
 - Python 2.7 (sin soporte desde 2020)
