@@ -15,18 +15,24 @@ const featuredProjects = projects.slice(0, 4);
     linkHref="/projects"
   />
 
-  <!-- Cases grid -->
-  <div class="grid lg:grid-cols-2 gap-6">
+  <!-- Cases grid con stagger alternado -->
+  <div class="grid lg:grid-cols-2 gap-6" data-stagger="150">
     {
-      featuredProjects.map((project) => (
-        <ProjectCard
-          id={project.id}
-          title={project.data.title}
-          summary={project.data.summary}
-          category={project.data.category}
-          color={project.data.color}
-          tech={project.data.tech}
-        />
+      featuredProjects.map((project, index: number) => (
+        <div
+          data-reveal={index % 2 === 0 ? "left" : "right"}
+          data-speed="normal"
+          data-easing="smooth"
+        >
+          <ProjectCard
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            category={project.data.category}
+            color={project.data.color}
+            tech={project.data.tech}
+          />
+        </div>
       ))
     }
   </div>

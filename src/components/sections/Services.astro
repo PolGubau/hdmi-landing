@@ -78,9 +78,17 @@ const technologies = [
     tag="Servicios"
   />
 
-  <!-- bento -->
-  <ul class="bento flex flex-col lg:grid grid-cols-3 auto-rows-auto gap-4 w-full">
-    <li class="row-span-2 panel gap-4 grid grid-rows-[auto_1fr]">
+  <!-- bento con stagger -->
+  <ul
+    class="bento flex flex-col lg:grid grid-cols-3 auto-rows-auto gap-4 w-full"
+    data-stagger="120"
+  >
+    <li
+      class="row-span-2 panel gap-4 grid grid-rows-[auto_1fr]"
+      data-reveal="top-left"
+      data-speed="normal"
+      data-easing="smooth"
+    >
       <header class="flex flex-col gap-4">
         <h3>{services[0].title}</h3>
         <p>{services[0].description}</p>
@@ -99,7 +107,12 @@ const technologies = [
         >
         </div>
       </div>
-      <li class="col-span-2 panel flex flex-col justify-between gap-4">
+      <li
+        class="col-span-2 panel flex flex-col justify-between gap-4"
+        data-reveal="top-right"
+        data-speed="normal"
+        data-easing="smooth"
+      >
         <header class="flex flex-col gap-4">
           <h3>{services[1].title}</h3>
           <p>{services[1].description}</p>
@@ -117,7 +130,12 @@ const technologies = [
           )
         }
       </li>
-      <li class="col-span-2 col-start-2 row-start-2 panel">
+      <li
+        class="col-span-2 col-start-2 row-start-2 panel"
+        data-reveal="right"
+        data-speed="normal"
+        data-easing="smooth"
+      >
         <div class="grid lg:grid-cols-[2fr_1fr] gap-4 h-full">
           <div class="flex flex-col justify-between gap-6">
             <header class="flex flex-col gap-4">
@@ -142,7 +160,12 @@ const technologies = [
           </div>
         </div>
       </li>
-      <li class="col-span-2 row-start-3 panel">
+      <li
+        class="col-span-2 row-start-3 panel"
+        data-reveal="bottom-left"
+        data-speed="normal"
+        data-easing="smooth"
+      >
         <h3>{services[3].title}</h3>
         <p>{services[3].description}</p>
         <div class="relative w-full h-full">
@@ -162,6 +185,9 @@ const technologies = [
       </li>
       <li
         class="flex flex-col gap-4 bg-linear-60 from-primary/20 to-primary/30 rounded-2xl shadow-pastel p-7 justify-end"
+        data-reveal="bottom-right"
+        data-speed="normal"
+        data-easing="bounce"
       >
         <header class="h-full flex flex-col justify-end">
           <h3 class="text-2xl font-semibold text-pretty">

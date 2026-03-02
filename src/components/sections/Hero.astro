@@ -11,24 +11,38 @@ const { hero } = copy;
   class="relative flex flex-col gap-10 justify-center px-6 pt-20 items-center"
 >
   <AvailableTag />
-  <!-- Main title -->
+
+  <!-- Main title con bounce impactante -->
   <h1
-    data-reveal
-    class="text-2xl max-w-2xl text-center md:text-5xl font-semibold tracking-tight text-foreground data-reveal"
+    data-reveal="scale"
+    data-speed="fast"
+    data-easing="bounce"
+    data-delay="100"
+    class="text-2xl max-w-2xl text-center md:text-5xl font-semibold tracking-tight text-foreground"
   >
     {hero.title}
   </h1>
 
-  <!-- Subtitle points -->
+  <!-- Subtitle suave desde abajo -->
   <div
-    data-reveal
-    class="text-muted-foreground max-w-xl text-center lg:text-lg data-reveal motion-delay-200"
+    data-reveal="bottom"
+    data-speed="normal"
+    data-easing="soft"
+    data-delay="300"
+    data-distance="small"
+    class="text-muted-foreground max-w-xl text-center lg:text-lg"
   >
     {hero.subtitle}
   </div>
 
-  <!-- CTA -->
-  <div class="data-reveal motion-delay-400 pt-4" data-reveal data-delay="400">
+  <!-- CTA con escala elástica -->
+  <div
+    data-reveal="scale"
+    data-speed="fast"
+    data-easing="elastic"
+    data-delay="500"
+    class="pt-4"
+  >
     <a href={`/contact`}>
       <Button withArrow>
         {hero.cta}

@@ -12,21 +12,42 @@ const { finalCta } = copy;
 <section id="final-cta" class="px-6">
   <div
     class="max-w-3xl mx-auto text-center flex flex-col justify-center items-center overflow-hidden gap-10"
+    data-stagger="100"
   >
-    <SectionTag>Agenda una llamada</SectionTag>
+    <div data-reveal="top" data-speed="fast" data-easing="smooth">
+      <SectionTag>Agenda una llamada</SectionTag>
+    </div>
 
     <h2
       class="text-2xl lg:text-4xl font-bold text-balance tracking-tight text-foreground"
+      data-reveal="scale"
+      data-speed="normal"
+      data-easing="bounce"
     >
       {finalCta.question}
     </h2>
 
     <!-- Description -->
-    <div class="text-muted-foreground max-w-sm text-pretty">
+    <div
+      class="text-muted-foreground max-w-sm text-pretty"
+      data-reveal="bottom"
+      data-speed="normal"
+      data-easing="soft"
+      data-distance="small"
+    >
       {finalCta.description}
     </div>
-    <ClientsMarqueeRail />
-    <CtaButton />
-    <AvailableTag />
+
+    <div data-reveal="scale" data-speed="fast" data-easing="smooth">
+      <ClientsMarqueeRail />
+    </div>
+
+    <div data-reveal="scale" data-speed="fast" data-easing="elastic">
+      <CtaButton />
+    </div>
+
+    <div data-reveal="bottom" data-speed="normal" data-easing="soft">
+      <AvailableTag />
+    </div>
   </div>
 </section>

@@ -1,6 +1,5 @@
 import { actions } from "astro:actions";
 import { useEffect, useState } from "react";
-import { Ripple } from "../ui/primitives/ripple/ripple";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -162,7 +161,6 @@ export default function ContactForm() {
         disabled={status === "loading"}
         className="w-full px-6 py-3 bg-primary text-background rounded-full font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden relative"
       >
-        <Ripple />
         {status === "loading" ? (
           <>
             <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">

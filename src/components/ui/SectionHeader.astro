@@ -34,14 +34,28 @@ const alignClass = aligns[align] || "";
 ---
 
 <header class:list={["flex justify-between gap-6 w-full"]}>
-  <div class={`flex flex-col gap-4 max-w-2xl ${alignClass}`}>
-    {tag && <SectionTag>{tag}</SectionTag>}
+  <div class={`flex flex-col gap-4 max-w-2xl ${alignClass}`} data-stagger="80">
+    {
+      tag && (
+        <div
+          data-reveal="top"
+          data-speed="fast"
+          data-easing="smooth"
+          data-distance="small"
+        >
+          <SectionTag>{tag}</SectionTag>
+        </div>
+      )
+    }
 
     <div
       class:list={[
         "max-w-2xl flex-col text-3xl md:text-4xl font-semibold",
         alignClass,
       ]}
+      data-reveal="left"
+      data-speed="normal"
+      data-easing="smooth"
     >
       <h2>{title}</h2>
       {subtitle && <p class="text-primary/80">{subtitle}</p>}
@@ -53,11 +67,21 @@ const alignClass = aligns[align] || "";
             "text-base text-muted-foreground max-w-md text-pretty leading-relaxed",
             descriptionClass,
           )}
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="soft"
+          data-distance="small"
         >
           {description}
         </p>
       )
     }
   </div>
-  {linkText && linkHref && <Link href={linkHref} label={linkText} />}
+  {
+    linkText && linkHref && (
+      <div data-reveal="right" data-speed="fast" data-easing="smooth">
+        <Link href={linkHref} label={linkText} />
+      </div>
+    )
+  }
 </header>
