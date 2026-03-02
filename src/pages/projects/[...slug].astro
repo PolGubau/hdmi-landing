@@ -1,11 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
-import { Icon } from "astro-icon/components";
-import CtaButton from "~/components/ui/CtaButton.astro";
+import { Layout, Timer, User } from "@lucide/astro";
 import Highlight from "~/components/ui/Highlight.astro";
 import Link from "~/components/ui/Link.astro";
-import { branding } from "~/config/branding";
 import OtherProjects from "~/features/projects/ui/OtherProjects.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 
@@ -81,16 +79,16 @@ const { Content } = await render(project);
         class="grid grid-cols-[repeat(auto-fit, minmax(200px, 1fr))] gap-4 items-center"
       >
         <Highlight label="Cliente" value={project.data.client}>
-          <Icon name="user" class="size-5 text-muted-foreground" />
+          <User class="size-5 text-muted-foreground" />
         </Highlight>
         <Highlight
           label="Servicios ofrecidos"
           value={project.data.services_provided?.join(", ")}
         >
-          <Icon name="layout" class="size-5 text-muted-foreground" />
+          <Layout class="size-5 text-muted-foreground" />
         </Highlight>
         <Highlight label="Timeline" value={`${project.data.timeline} semanas`}>
-          <Icon name="timer" class="size-5 text-muted-foreground" />
+          <Timer class="size-5 text-muted-foreground" />
         </Highlight>
       </ul>
     </header>
