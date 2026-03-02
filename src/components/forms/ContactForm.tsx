@@ -1,5 +1,6 @@
 import { actions } from "astro:actions";
 import { useEffect, useState } from "react";
+import { Ripple } from "../ui/primitives/ripple/ripple";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -72,7 +73,7 @@ export default function ContactForm() {
           name="name"
           required
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-neutral-200 dark:border-neutral-800 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           placeholder="Tu nombre"
         />
       </div>
@@ -87,7 +88,7 @@ export default function ContactForm() {
           name="email"
           required
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-neutral-200 dark:border-neutral-800 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           placeholder="tu@email.com"
         />
       </div>
@@ -102,7 +103,7 @@ export default function ContactForm() {
             id="company"
             name="company"
             disabled={status === "loading"}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-neutral-200 dark:border-neutral-800 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             placeholder="Tu empresa"
           />
         </div>
@@ -116,7 +117,7 @@ export default function ContactForm() {
             name="phone"
             required
             disabled={status === "loading"}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-neutral-200 dark:border-neutral-800 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             placeholder="666 123 456"
           />
         </div>
@@ -133,7 +134,7 @@ export default function ContactForm() {
           required
           rows={4}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-neutral-200 dark:border-neutral-800 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:opacity-50"
           placeholder="¿Cómo podemos ayudarte?"
         />
       </div>
@@ -159,8 +160,9 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full px-6 py-3 bg-primary text-background rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full px-6 py-3 bg-primary text-background rounded-full font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 overflow-hidden relative"
       >
+        <Ripple />
         {status === "loading" ? (
           <>
             <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
