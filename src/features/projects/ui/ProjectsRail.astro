@@ -1,0 +1,30 @@
+---
+import ProjectCard from "~/components/ui/ProjectCard.astro";
+import type { ProjectMetadata } from "~/content.config";
+type Props = {
+  projects: ProjectMetadata[];
+};
+
+const { projects } = Astro.props;
+---
+
+<div class="grid lg:grid-cols-2 gap-6" data-stagger="150">
+  {
+    projects.map((project, index: number) => (
+      <div
+        data-reveal={index % 2 === 0 ? "left" : "right"}
+        data-speed="normal"
+        data-easing="smooth"
+      >
+        <ProjectCard
+          id={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          services_provided={project.data.services_provided ?? []}
+          color={project.data.color}
+          cover={project.data.cover}
+        />
+      </div>
+    ))
+  }
+</div>

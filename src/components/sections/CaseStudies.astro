@@ -1,9 +1,9 @@
 ---
 import SectionHeader from "~/components/ui/SectionHeader.astro";
-import ProjectCard from "../ui/ProjectCard.astro";
+import ProjectsRail from "~/features/projects/ui/ProjectsRail.astro";
 import { getProjects } from "~/shared/lib/collections";
 
-const projects = await getProjects()
+const projects = await getProjects(4)
 ---
 
 <section id="cases" class="px-6 max-w-7xl mx-auto space-y-16 w-full">
@@ -15,25 +15,5 @@ const projects = await getProjects()
     linkHref="/projects"
   />
 
-  <!-- Cases grid con stagger alternado -->
-  <div class="grid lg:grid-cols-2 gap-6" data-stagger="150">
-    {
-      projects.map((project, index: number) => (
-        <div
-          data-reveal={index % 2 === 0 ? "left" : "right"}
-          data-speed="normal"
-          data-easing="smooth"
-        >
-          <ProjectCard
-            id={project.id}
-            title={project.data.title}
-            summary={project.data.summary}
-            services_provided={project.data.services_provided ?? []}
-            color={project.data.color}
-            cover={project.data.cover}
-          />
-        </div>
-      ))
-    }
-  </div>
+<ProjectsRail projects={projects} />
 </section>

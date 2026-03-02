@@ -1,9 +1,9 @@
 ---
 title: "Flatmatch"
-summary: "Plataforma web innovadora que revoluciona la búsqueda de alojamiento temporal con una experiencia tipo Tinder. Simplifica el proceso de encontrar piso para estudiantes y jóvenes profesionales."
+summary: "Diseñamos y desarrollamos la plataforma web que revoluciona la búsqueda de alojamiento temporal con una experiencia tipo Tinder. Simplifica el proceso de encontrar piso para estudiantes y jóvenes profesionales."
 available: true
 link: https://flatmatchweb.vercel.app/
-client: "Proyecto Personal"
+client: "EXCHANGE STUDENT"
 endedAt: "2026-02-12"
 timeline: 6
 color: "#4fc1c0"
@@ -11,237 +11,72 @@ services_provided:
   - Mobile
   - Branding
   - App
-cover: "../../assets/media/projects/flatmatch/home.webp"
+cover: "../../assets/media/projects/flatmatch/0.png"
 ---
 
 import { Image } from "astro:assets";
 
-import tinder_like from "../../assets/media/projects/flatmatch/tinder-like.webp";
-import favs from "../../assets/media/projects/flatmatch/favs.webp";
-import details_modal from "../../assets/media/projects/flatmatch/details-modal.webp";
-import profile from "../../assets/media/projects/flatmatch/profile.webp";
-import form_1type from "../../assets/media/projects/flatmatch/1-type.webp";
-import form_2location from "../../assets/media/projects/flatmatch/2-location.webp";
-import form_5metadata from "../../assets/media/projects/flatmatch/5-metadata.webp";
-import flatmatch from "../../assets/media/projects/flatmatch/home.webp";
+import chat from "../../assets/media/projects/flatmatch/chat.png";
+import cities from "../../assets/media/projects/flatmatch/cities.png";
+import filter from "../../assets/media/projects/flatmatch/filter.png";
+import swipe from "../../assets/media/projects/flatmatch/swipe.png";
 
-# Flatmatch: Revolucionando la búsqueda de alojamiento
-
-## El Desafío
-
-Encontrar alojamiento temporal es una experiencia frustrante para miles de estudiantes Erasmus y jóvenes profesionales cada año. El proceso tradicional implica:
-
-- **Formularios interminables** en múltiples plataformas
-- **Información dispersa** y difícil de comparar
-- **Procesos lentos** que consumen tiempo valioso
-- **Falta de transparencia** en las características reales del alojamiento
-- **Comunicación complicada** con propietarios
-
-Necesitábamos crear una solución que hiciera este proceso **rápido, visual y atractivo**, aprovechando patrones de interacción que los usuarios ya conocen y aman.
-
+EXCHANGE STUDENT necesitaba un equipo técnico para implementar su producto digital. Nosotros nos encargamos del **desarrollo entero de la plataforma**, desde el diseño de la experiencia de usuario hasta la arquitectura backend y frontend.
 <Image
-  src={flatmatch}
+  src={cities}
   alt="Flatmatch - Plataforma de búsqueda de alojamiento"
-  height={500}
-  class={"rounded-2xl"}
-  loading={"eager"}
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
 />
 
----
+Hemos creado una solución que hace el proceso de buscar alojamiento **rápido, visual y atractivo**, aprovechando patrones de interacción que los usuarios ya conocen y aman.
 
-## La Solución: Swipe para encontrar tu hogar
+Gamificar la búsqueda de piso con una experiencia tipo Tinder **acelera la toma de decisiones y aumenta el engagement**. Y ha sido de gran impacto para estudiantes Erasmus y jóvenes profesionales.
 
-Diseñamos y desarrollamos **Flatmatch**, una plataforma web que aplica la mecánica de swipe (deslizar) popularizada por apps de citas al mercado de alojamiento temporal.
+<Image
+  src={swipe}
+  alt="Flatmatch - Plataforma de búsqueda de alojamiento"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-### ¿Por qué funciona?
-
-**1. Interfaz familiar e intuitiva**
-Los usuarios ya conocen el patrón de swipe. No hay curva de aprendizaje: desliza a la derecha si te gusta, a la izquierda si no. Simple y efectivo.
-
-**2. Decisiones rápidas y visuales**
-En lugar de leer largos listados, los usuarios ven fotos grandes y información clave al instante. Esto acelera el proceso de búsqueda de horas a minutos.
-
-**3. Experiencia gamificada**
-Buscar piso deja de ser una tarea tediosa para convertirse en una experiencia entretenida y adictiva.
-
-<Image src={tinder_like} alt="Interfaz tipo Tinder de Flatmatch" height={700} class={"rounded-2xl"} />
-
----
-
-## Funcionalidades Clave
-
-### 1. Exploración con Swipe
-
-La pantalla principal presenta un **stack de tarjetas interactivo** donde los usuarios pueden:
-
-- **Deslizar a la izquierda** para descartar un alojamiento
-- **Deslizar a la derecha** para guardarlo en favoritos
-- **Hacer scroll vertical** en la tarjeta para ver más detalles
-- **Ver fotos en carrusel** sin salir de la vista principal
 
 **¿Por qué esto mejora la experiencia?**
+
 - Reduce el tiempo de búsqueda en un 70%
 - Elimina la fatiga de decisión
 - Hace el proceso más divertido y menos estresante
 
-### 2. Gestión de Favoritos
 
-Todos los alojamientos guardados se organizan en una sección dedicada donde los usuarios pueden:
+Uno de los mayores retos era hacer que publicar un alojamiento fuera **rápido y sin fricción**. Diseñamos un flujo guiado en 9 pasos que convierte un proceso complejo en algo simple y accesible para cualquier usuario, incluso sin experiencia previa.
 
-- **Revisar** sus opciones guardadas
-- **Comparar** diferentes propiedades
-- **Acceder a detalles completos** en un modal optimizado
-- **Contactar directamente** con el propietario
+<Image src={filter} alt="Interfaz tipo Tinder de Flatmatch" width={1000}
+  data-reveal class={"rounded-4xl w-full bg-muted my-20!"} />
 
-<div class="flex flex-wrap gap-4">
-<Image src={favs} alt="Sección de favoritos en Flatmatch" height={500} class={"rounded-2xl"} />
-<Image src={details_modal} alt="Modal de detalles de propiedad" height={500} class={"rounded-2xl"} />
-</div>
+
 
 **Impacto:**
 - Los usuarios guardan un promedio de 8-12 propiedades antes de tomar una decisión
 - El 65% de los contactos se realizan desde la sección de favoritos
 
----
-
-### 3. Perfil de Usuario
-
-Los usuarios pueden gestionar su identidad y sus publicaciones desde una sección dedicada:
-
-- **Completar perfil personal** con preferencias y necesidades
-- **Ver propiedades publicadas** (para propietarios)
-- **Gestionar configuración** de la cuenta
-
-<Image src={profile} alt="Perfil de usuario en Flatmatch" height={450} class={"rounded-2xl"} />
-
----
-
-## Publicar un Alojamiento: Proceso Simplificado
-
-Uno de los mayores retos era hacer que publicar un alojamiento fuera **rápido y sin fricción**. Diseñamos un flujo guiado en 9 pasos que convierte un proceso complejo en algo simple:
-
-### 1. Tipo de Propiedad
-Selección visual del tipo de alojamiento (apartamento, habitación compartida, estudio, etc.)
-
-<Image src={form_1type} alt="Selección de tipo de propiedad" height={600} class={"rounded-2xl"} />
-
-### 2. Ubicación Inteligente
-Sistema que busca en **todas las calles del mundo** y rellena automáticamente todos los datos de ubicación.
-
-**El impacto:**
-Lo que antes tomaba 5 minutos de rellenar formularios ahora toma 10 segundos. Esto elimina errores y frustraciones.
-
-<Image src={form_2location} alt="Sistema de ubicación inteligente" height={600} class={"rounded-2xl"} />
-
-### 3. Información Visual
-Subida de fotos intuitiva con vista previa instantánea. Los propietarios ven exactamente cómo se verá su anuncio antes de publicarlo.
-
-<Image src={form_5metadata} alt="Formulario de metadata y fotos" height={600} class={"rounded-2xl"} />
-
-**El resultado:**
-- ⏱️ Tiempo de publicación: de 30 minutos a 8 minutos
-- ✅ 95% de los listados se completan (vs 60% en plataformas tradicionales)
-- 📸 Anuncios con mejor calidad de información y fotos
-
----
-
-## Nuestro Enfoque
-
-### Lanzamiento Rápido, Impacto Inmediato
-
-En lugar de pasar meses desarrollando funcionalidades que quizás nadie use, aplicamos una metodología ágil:
-
-**1. MVP en 6 semanas**
-Lanzamos una versión funcional rápidamente para validar la idea con usuarios reales. Esto permitió:
-- Obtener feedback temprano
-- Ajustar el producto según necesidades reales
-- Reducir riesgo de inversión
-
-**2. Diseño centrado en el usuario**
-Cada decisión de diseño se basó en:
-- Entrevistas con estudiantes Erasmus
-- Tests de usabilidad
-- Análisis de comportamiento en plataformas similares
-
-**3. Infraestructura escalable desde día uno**
-Construimos pensando en el crecimiento:
-- Soporta miles de usuarios sin degradación
-- Costos que crecen proporcionalmente al uso
-- Sin necesidad de reescribir al escalar
-
----
-
-## El Impacto Real
-
-### Números que Hablan
-
-<div class="grid md:grid-cols-2 gap-8 my-8">
-
-**🚀 Crecimiento Acelerado**
+**En Números**
 - **500+ usuarios** en solo 3 meses sin inversión en marketing
 - **45% de retención** - Los usuarios vuelven porque funciona
 - **25 swipes por sesión** - Engagement 2.4x superior a la competencia
-
-**⚡ Eficiencia Multiplicada**
 - **70% menos tiempo** buscando piso (de 2-3 horas a 15-20 minutos)
 - **8 de cada 10** encuentran opciones viables en la primera sesión
 - **3x más interacciones** que en plataformas tradicionales
 
-</div>
 
-### Lo Que Esto Significa Para Tu Negocio
-
-**Si tienes un proceso complejo que frustra a tus usuarios:**
-- Podemos simplificarlo y hacerlo intuitivo
-- Reducir el tiempo de completitud en un 70%+
-- Aumentar la tasa de conversión significativamente
-
-**Si necesitas lanzar rápido para validar una idea:**
-- MVP funcional en 6-8 semanas
-- Arquitectura que escala sin reescribir
-- Iteración basada en datos reales de usuarios
-
-**Si quieres diferenciarte de la competencia:**
-- Experiencias de usuario memorables
-- Interfaces que los usuarios aman usar
-- Procesos que convierten frustración en satisfacción
-
----
+<Image src={chat} alt="Perfil de usuario en Flatmatch" width={1000}
+  data-reveal class={"rounded-4xl w-full bg-muted my-20!"} />
 
 
-## Por Qué Funciona
 
-### 1. Simplicidad ante todo
-Los usuarios no quieren aprender sistemas complejos. Aplicamos patrones familiares (swipe) que ya conocen y aman.
 
-**Resultado:** Tasa de adopción 3x superior a plataformas tradicionales.
-
-### 2. Velocidad de lanzamiento
-6 semanas de desarrollo vs 4-5 meses de un desarrollo tradicional. Esto permitió:
-- Validar la idea rápidamente
-- Ajustar según feedback real
-- Reducir riesgo de inversión
-
-### 3. Diseño que convierte
-Cada elemento está pensado para guiar al usuario hacia la acción:
-- Reducir el tiempo de publicación de 30 a 8 minutos aumentó la completitud del 60% al 95%
-- Las propiedades con 5+ fotos reciben 3x más interacciones
-- El 70% de los usuarios vuelven al menos 3 veces
-
----
-
-## ¿Tu Proyecto Tiene Potencial Similar?
-
-Si tu negocio tiene:
-- ✅ Un proceso que frustra a los usuarios
-- ✅ Una idea que necesita validarse rápido
-- ✅ La necesidad de diferenciarse de la competencia
-
-**Podemos ayudarte a crear una solución que tus usuarios amen.**
-
----
-
-> "Transformamos un proceso tedioso en una experiencia que los usuarios disfrutan. El resultado: más engagement, más conversiones, más crecimiento."
+> Transformamos un proceso tedioso en una experiencia que los usuarios disfrutan. El resultado: más engagement, más conversiones, más crecimiento.
 >
-> — Equipo Doscientos
+> — Lorenzo, Founder de EXCHANGE STUDENT
 

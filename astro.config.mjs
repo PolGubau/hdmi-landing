@@ -12,6 +12,9 @@ import react from "@astrojs/react";
 import icon from "astro-icon";
 
 import vercel from "@astrojs/vercel";
+import rehypeExternalLinks from 'rehype-external-links';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +28,7 @@ export default defineConfig({
   },
 
   i18n: {
-    locales: ["es", "ca", "en"],
+    locales: ["es"],
     defaultLocale: "es",
     routing: {
       prefixDefaultLocale: false,
@@ -39,7 +42,17 @@ export default defineConfig({
     react({ experimentalReactChildren: true }),
     icon(),
   ],
-
+  markdown: {
+    rehypePlugins: [
+      rehypeHeadingIds,
+      [
+        rehypeExternalLinks,
+        {
+          content: { type: 'text', value: ' 🔗' }
+        }
+      ],
+    ]
+  },
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {

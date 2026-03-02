@@ -7,10 +7,13 @@ const { label, value } = Astro.props;
 ---
 
 <li class="p-2 rounded-full bg-muted flex gap-3 items-center">
-  <slot />
-
-  <div>
-    <span class="text-sm uppercase text-muted-foreground">
+  <i
+    class="size-12 grid place-items-center aspect-square rounded-full bg-background"
+  >
+    <slot />
+  </i>
+  <div class="flex flex-col gap-1 pr-4">
+    <span class="text-xs tracking-tight uppercase text-muted-foreground">
       {label}
     </span>
     <span class="text-foreground">

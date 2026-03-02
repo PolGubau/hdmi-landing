@@ -1,11 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
 import CtaButton from "~/components/ui/CtaButton.astro";
 import Highlight from "~/components/ui/Highlight.astro";
 import Link from "~/components/ui/Link.astro";
 import { branding } from "~/config/branding";
+import OtherProjects from "~/features/projects/ui/OtherProjects.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
@@ -27,93 +28,103 @@ const { Content } = await render(project);
   title={`${project.data.title} | Proyectos | doscientos`}
   description={project.data.summary}
 >
-  <article class="min-h-screen py-20 px-6">
-    <div class="max-w-5xl mx-auto space-y-12">
-      <!-- Back button -->
-      <a
-        href="/projects"
-        class="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground hover:underline"
+  <article
+    class="min-h-screen py-4 lg:py-20 px-4 lg:px-6 max-w-5xl mx-auto space-y-6 lg:space-y-12"
+  >
+    <a
+      href="/projects"
+      class="inline-flex px-2 items-center gap-2 text-muted-foreground transition-colors hover:text-foreground hover:underline"
+    >
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
       >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
-        </svg>
-        Volver a proyectos
-      </a>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+      Volver a proyectos
+    </a>
 
-      <!-- Header -->
-      <header class="space-y-6 border border-muted p-8 rounded-5xl">
-        <div class="flex flex-col gap-4 pb-4 p-2">
-          <h1 class="text-4xl md:text-5xl font-bold text-foreground">
-            {project.data.title}
-          </h1>
+    <header class="space-y-6 border mb-20 border-muted p-6 lg:p-8 rounded-5xl">
+      <div class="flex flex-col gap-4 pb-4 p-2">
+        <h1 class="text-4xl md:text-5xl font-bold text-foreground">
+          {project.data.title}
+        </h1>
 
-          <p class="text-muted-foreground text-pretty max-w-lg">
-            {project.data.summary}
-          </p>
+        <p class="text-muted-foreground text-pretty max-w-lg">
+          {project.data.summary}
+        </p>
 
-          {
-            project.data.link && (
-              <div class="border border-muted p-2 pl-3 w-fit rounded-full">
-                <Link href={project.data.link} label="Visitar sitio web" />
-              </div>
-            )
-          }
-        </div>
+        {
+          project.data.link && (
+            <div class="border border-muted p-2 pl-3 w-fit rounded-full">
+              <Link href={project.data.link} label="Visitar sitio web" />
+            </div>
+          )
+        }
+      </div>
+      <div class="w-full rounded-4xl object-cover aspect-video bg-muted">
         <Image
           src={project.data.cover}
           alt={project.data.title}
           width={1200}
           height={600}
-          class="w-full rounded-4xl object-cover aspect-video bg-muted"
+          class="object-cover w-full h-full"
         />
-        <ul class="grid grid-cols-3 gap-4">
-          <Highlight label="Cliente" value={project.data.client}>
-            <Icon name="user" class="size-12 rounded-full bg-background" />
-          </Highlight>
-          <Highlight
-            label="Servicios ofrecidos"
-            value={project.data.services_provided?.join(", ")}
-          >
-            <Icon name="layout" class="size-12 rounded-full bg-background" />
-          </Highlight>
-          <Highlight
-            label="Timeline"
-            value={`${project.data.timeline} semanas`}
-          >
-            <Icon name="timer" class="size-12 rounded-full bg-background" />
-          </Highlight>
-        </ul>
-      </header>
-    </div>
-  </article>
+      </div>
+      <ul
+        class="grid grid-cols-[repeat(auto-fit, minmax(200px, 1fr))] gap-4 items-center"
+      >
+        <Highlight label="Cliente" value={project.data.client}>
+          <Icon name="user" class="size-5 text-muted-foreground" />
+        </Highlight>
+        <Highlight
+          label="Servicios ofrecidos"
+          value={project.data.services_provided?.join(", ")}
+        >
+          <Icon name="layout" class="size-5 text-muted-foreground" />
+        </Highlight>
+        <Highlight label="Timeline" value={`${project.data.timeline} semanas`}>
+          <Icon name="timer" class="size-5 text-muted-foreground" />
+        </Highlight>
+      </ul>
+    </header>
 
-  <!-- Content -->
-  <div
-    class="prose prose-lg prose-neutral dark:prose-invert max-w-none
-        prose-headings:font-bold prose-headings:text-neutral-900
+    <div
+      class="px-2
+      prose prose-neutral prose-sm dark:prose-invert mx-auto w-full max-w-none
+      
+      prose-p:max-w-xl prose-p:mx-auto
+      prose-ul:max-w-xl prose-ul:mx-auto
+      prose-blockquote:max-w-xl prose-blockquote:mx-auto
+      
+        prose-headings:font-bold prose-headings:text-foreground
         prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
         prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
         prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-3
-        prose-p:text-neutral-700 prose-p:leading-relaxed
-        prose-a:text-neutral-900 prose-a:underline hover:prose-a:no-underline
-        prose-strong:text-neutral-900
-        prose-ul:text-neutral-700
-        prose-ol:text-neutral-700
+        prose-p:text-muted-foreground
+        prose-p:leading-relaxed
+        prose-a:text-foreground
+        prose-a:underline
+        hover:prose-a:no-underline
+        prose-strong:text-foreground
+        prose-ul:text-muted-foreground
+        prose-ol:text-muted-foreground
         prose-li:marker:text-neutral-500
-        prose-blockquote:border-l-4 prose-blockquote:border-neutral-300
-        prose-blockquote:italic prose-blockquote:text-neutral-600
-        prose-code:text-neutral-900
-        prose-pre:bg-neutral-900"
-  >
-    <Content />
-  </div>
+        prose-blockquote:border-l-4
+        prose-blockquote:border-neutral-300
+        prose-blockquote:italic
+        prose-blockquote:text-neutral-600
+        prose-code:text-foreground
+        prose-pre:bg-foreground"
+    >
+      <Content />
+    </div>
+  </article>
+  <OtherProjects currentProjectId={project.id} />
 </MainLayout>
