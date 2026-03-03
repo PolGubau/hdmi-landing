@@ -9,9 +9,9 @@ import metaTags from "astro-meta-tags";
 
 import react from "@astrojs/react";
 
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import vercel from "@astrojs/vercel";
 import rehypeExternalLinks from 'rehype-external-links';
-import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 
 
 // https://astro.build/config
