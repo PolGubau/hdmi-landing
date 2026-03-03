@@ -7,6 +7,7 @@ export const branding = {
 
 	// Contacto
 	contact: {
+		calendlyUrl: "https://calendly.com/hola-doscientos-0jch/30min",
 		whatsapp: {
 			number: "34671171525",
 			displayNumber: "+34 671 17 15 25",
@@ -18,7 +19,7 @@ export const branding = {
 
 	// Redes sociales
 	social: {
-		twitter: "https://twitter.com/doscientos.es",
+		twitter: "https://twitter.com/doscientos_es",
 		github: "https://github.com/doscientos",
 		linkedin: "https://www.linkedin.com/company/doscientos",
 		instagram: "https://instagram.com/doscientos.es",
@@ -39,4 +40,3 @@ export const branding = {
 
 // Tipo derivado para TypeScript
 export type Branding = typeof branding;
-
