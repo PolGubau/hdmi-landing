@@ -6,9 +6,8 @@ const projects = await getCollection("projects", ({ data }) => data.available);
 const featuredProjects = projects.slice(0, 4);
 ---
 
-<section class="overflow-hidden">
-  <div
-    class="relative mx-auto overflow-hidden"
+   <section
+    class="relative mx-auto overflow-x-hidden py-6"
     data-reveal="scale"
     data-speed="normal"
     data-easing="smooth"
@@ -55,9 +54,8 @@ const featuredProjects = projects.slice(0, 4);
         ))
       }
     </ul>
-  </div>
-</section>
-
+  </section>
+ 
 <style>
   @keyframes marquee {
     0% {
@@ -77,7 +75,6 @@ const featuredProjects = projects.slice(0, 4);
     }
   }
 
-   
   .animate-marquee:hover {
     animation-play-state: paused;
   }
