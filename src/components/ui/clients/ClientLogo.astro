@@ -35,7 +35,7 @@ const isSVG = logo.src.endsWith(".svg");
     "flex items-center justify-center",
     className,
   ]}
-  style={isSVG ? `color: ${color};` : undefined}
+  style={`color: ${color}; height: ${height}px; width: ${width}px;`}
 >
   <Image
     src={logo}
@@ -43,7 +43,6 @@ const isSVG = logo.src.endsWith(".svg");
     width={width}
     height={height}
     class:list={["client-logo", isSVG && "svg-logo"]}
-    style={`height: ${height}px; width: auto;`}
   />
 </div>
 
@@ -51,6 +50,7 @@ const isSVG = logo.src.endsWith(".svg");
   .client-logo-wrapper {
     opacity: 0.6;
     transition: opacity 300ms ease;
+    flex-shrink: 0;
   }
 
   .client-logo-wrapper:hover {
@@ -60,10 +60,12 @@ const isSVG = logo.src.endsWith(".svg");
   /* Para SVGs, aplicar el color usando filter */
   .client-logo-wrapper :global(img),
   .client-logo-wrapper :global(svg) {
-    width: auto !important;
-    height: 100%;
-    max-width: none !important;
-    /* Convertir a escala de grises y luego aplicar el color */
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    /* Convertir a escala de grises */
     filter: grayscale(100%) brightness(0.8) opacity(0.7);
   }
 
@@ -75,13 +77,8 @@ const isSVG = logo.src.endsWith(".svg");
   /* Asegurar que el logo sea visible */
   .client-logo {
     display: block;
-    width: auto !important;
-    height: auto !important;
-  }
-
-  /* Sobrescribir estilos inline de Astro */
-  .client-logo :global(img) {
-    width: auto !important;
+    width: 100% !important;
     height: 100% !important;
+    object-fit: contain !important;
   }
 </style>
