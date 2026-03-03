@@ -1,0 +1,74 @@
+---
+/**
+ * SEO Head - Meta tags adicionales para mejorar SEO
+ * Incluye keywords, author, robots, etc.
+ */
+
+interface Props {
+  keywords?: string[];
+  author?: string;
+  robots?: string;
+  canonicalURL?: string;
+}
+
+const {
+  keywords = [
+    "desarrollo web",
+    "diseño web",
+    "agencia digital",
+    "SEO",
+    "branding",
+    "Barcelona",
+    "España",
+    "desarrollo no-code",
+    "motion design",
+    "copywriting",
+    "publicidad online",
+  ],
+  author = "doscientos",
+  robots = "index, follow",
+  canonicalURL,
+} = Astro.props;
+
+const currentURL = canonicalURL || Astro.url.pathname;
+---
+
+<!-- Keywords (aunque Google no las usa mucho, otros buscadores sí) -->
+<meta name="keywords" content={keywords.join(", ")} />
+
+<!-- Author -->
+<meta name="author" content={author} />
+
+<!-- Robots -->
+<meta name="robots" content={robots} />
+
+<!-- Canonical URL (evita contenido duplicado) -->
+{canonicalURL && <link rel="canonical" href={canonicalURL} />}
+
+<!-- Geo tags para búsquedas locales -->
+<meta name="geo.region" content="ES-CT" />
+<meta name="geo.placename" content="Barcelona" />
+<meta name="geo.position" content="41.3851;2.1734" />
+<meta name="ICBM" content="41.3851, 2.1734" />
+
+<!-- Language -->
+<meta name="language" content="Spanish" />
+
+<!-- Revisit (para que Google vuelva a crawlear) -->
+<meta name="revisit-after" content="7 days" />
+
+<!-- Copyright -->
+<meta name="copyright" content="doscientos" />
+
+<!-- Rating (contenido apto para todos) -->
+<meta name="rating" content="general" />
+
+<!-- Mobile -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Theme color -->
+<meta name="theme-color" content="#000000" />
+<meta name="msapplication-TileColor" content="#000000" />
+

@@ -5,6 +5,9 @@ Allow: /
 Disallow: /api/
 Disallow: /_astro/
 
+# Crawl-delay (opcional, para no sobrecargar el servidor)
+Crawl-delay: 1
+
 # Sitemap
-Sitemap: https://doscientos.com/sitemap-index.xml
+Sitemap: https://doscientos.com/sitemap.xml
 

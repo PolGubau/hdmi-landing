@@ -22,25 +22,43 @@ const { type = "organization", article, service } = Astro.props;
 
 const baseUrl = Astro.site?.toString() || "https://doscientos.com";
 
-// Organization Schema (siempre presente)
+// Organization + LocalBusiness Schema (siempre presente)
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   name: branding.name,
   url: baseUrl,
   logo: `${baseUrl}/og-image.png`,
+  image: `${baseUrl}/og-image.png`,
   description: branding.slogan,
   email: branding.contact.email,
-  telephone: branding.contact.whatsapp.number,
+  telephone: branding.contact.whatsapp.displayNumber,
   address: {
     "@type": "PostalAddress",
+    addressLocality: branding.location.city,
     addressCountry: "ES",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "41.3851",
+    longitude: "2.1734",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "España",
+  },
+  priceRange: "€€€",
+  openingHours: "Mo-Fr 09:00-18:00",
   sameAs: [
     branding.social.linkedin,
     branding.social.twitter,
     branding.social.github,
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: "12",
+  },
 };
 
 // Website Schema

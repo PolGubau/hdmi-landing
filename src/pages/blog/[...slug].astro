@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import Breadcrumbs from "~/components/seo/Breadcrumbs.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
@@ -31,27 +32,16 @@ const publishedTime =
 >
   <article class="min-h-screen py-20 px-6">
     <div class="max-w-4xl mx-auto space-y-12">
+      <!-- Breadcrumbs para SEO -->
+      <Breadcrumbs
+        items={[
+          { name: "Blog", url: "/blog" },
+          { name: post.data.title, url: `/blog/${post.id}` },
+        ]}
+      />
+
       <!-- Header -->
       <header class="space-y-6">
-        <a
-          href="/blog"
-          class="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"></path>
-          </svg>
-          Volver al blog
-        </a>
-
         <div class="space-y-4">
           <h1
             class="text-2xl max-w-xl text-balance md:text-4xl font-bold text-foreground"

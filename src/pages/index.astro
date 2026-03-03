@@ -7,9 +7,13 @@ import Hero from "~/components/sections/Hero.astro";
 import Impact from "~/components/sections/Impact.astro";
 import Method from "~/components/sections/Method.astro";
 import Services from "~/components/sections/Services.astro";
+
+const title = "doscientos - Desarrollo Web y Producto Digital en Barcelona";
+const description =
+    "Agencia de desarrollo web especializada en diseño, SEO, branding y motion design. Transformamos ideas en productos digitales de alto rendimiento. Barcelona, España.";
 ---
 
-<MainLayout>
+<MainLayout title={title} description={description}>
     <Hero />
     <Impact />
     <Services />
