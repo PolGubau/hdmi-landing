@@ -2,6 +2,8 @@
 import { copy } from "~/shared/lib/copy";
 import AvailableTag from "../ui/AvailableTag.astro";
 import Button from "../ui/Button.astro";
+import ClientsCarousel from "./ClientsCarousel.astro";
+import ProjectsCarousel from "./ProjectsCarousel.astro";
 
 const { hero } = copy;
 ---
@@ -49,4 +51,7 @@ const { hero } = copy;
       </Button>
     </a>
   </div>
+
+  <ProjectsCarousel />
+  <ClientsCarousel />
 </section>

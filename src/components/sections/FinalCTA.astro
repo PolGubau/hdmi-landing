@@ -11,7 +11,7 @@ const { finalCta } = copy;
 
 <section id="final-cta" class="px-6">
   <div
-    class="max-w-3xl mx-auto text-center flex flex-col justify-center items-center overflow-hidden gap-10"
+    class="max-w-3xl w-full mx-auto text-center flex flex-col justify-center items-center gap-10"
     data-stagger="100"
   >
     <div data-reveal="top" data-speed="fast" data-easing="smooth">
@@ -37,11 +37,22 @@ const { finalCta } = copy;
     >
       {finalCta.description}
     </div>
+  </div>
 
-    <div data-reveal="scale" data-speed="fast" data-easing="smooth">
-      <ClientsMarqueeRail />
-    </div>
+  <!-- Marquee fuera del contenedor max-w para que ocupe todo el ancho -->
+  <div
+    class="w-full"
+    data-reveal="scale"
+    data-speed="fast"
+    data-easing="smooth"
+  >
+    <ClientsMarqueeRail />
+  </div>
 
+  <!-- Volver al contenedor centrado -->
+  <div
+    class="max-w-3xl w-full mx-auto text-center flex flex-col justify-center items-center gap-10"
+  >
     <div data-reveal="scale" data-speed="fast" data-easing="elastic">
       <CtaButton />
     </div>

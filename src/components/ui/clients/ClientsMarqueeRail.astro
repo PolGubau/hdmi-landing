@@ -9,24 +9,78 @@ type Props = {
 const { clients = defaultClients } = Astro.props;
 ---
 
-<div class="relative overflow-hidden">
-  <div
-    class="absolute left-0 top-0 bottom-0 w-48 md:w-64 bg-gradient-to-r from-background via-background/80 z-10 pointer-events-none"
-  >
-  </div>
-  <div
-    class="absolute right-0 top-0 bottom-0 w-48 md:w-64 bg-gradient-to-l from-background via-background/80 z-10 pointer-events-none"
-  >
-  </div>
+<!-- Wrapper que se adapta al contenedor padre -->
+<div class="marquee-wrapper">
+  <!-- Contenedor con overflow y posición relativa -->
+  <div class="marquee-container">
+    <!-- Degradados que se adaptan al contenedor -->
+    <div class="marquee-fade marquee-fade-left"></div>
+    <div class="marquee-fade marquee-fade-right"></div>
 
-  <!-- Scrolling content -->
-  <div class="flex gap-16 animate-scroll pb-10">
-    <ClientsMarquee clients={clients} />
-    <ClientsMarquee clients={clients} />
+    <!-- Scrolling content -->
+    <div class="marquee-content">
+      <ClientsMarquee clients={clients} />
+      <ClientsMarquee clients={clients} />
+    </div>
   </div>
 </div>
 
 <style>
+  /* Wrapper que toma el ancho del contenedor padre */
+  .marquee-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Contenedor con overflow hidden */
+  .marquee-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Degradados que se adaptan al contenedor */
+  .marquee-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(80px, 15vw, 200px); /* Responsive width */
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .marquee-fade-left {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      hsl(var(--background)) 0%,
+      hsl(var(--background) / 0.9) 40%,
+      hsl(var(--background) / 0.5) 70%,
+      transparent 100%
+    );
+  }
+
+  .marquee-fade-right {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      hsl(var(--background)) 0%,
+      hsl(var(--background) / 0.9) 40%,
+      hsl(var(--background) / 0.5) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Contenido que se desplaza */
+  .marquee-content {
+    display: flex;
+    gap: 4rem;
+    padding-bottom: 2.5rem;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  /* Animación de scroll */
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -36,16 +90,16 @@ const { clients = defaultClients } = Astro.props;
     }
   }
 
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
-  }
-  @media (screen and (max-width: 768px)) {
-    .animate-scroll {
+  /* Velocidad en móvil */
+  @media (max-width: 768px) {
+    .marquee-content {
       animation-duration: 20s;
+      gap: 2rem;
     }
   }
 
-  .animate-scroll:hover {
+  /* Pausa al hover */
+  .marquee-content:hover {
     animation-play-state: paused;
   }
 </style>

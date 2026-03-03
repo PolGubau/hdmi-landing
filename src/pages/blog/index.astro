@@ -35,15 +35,15 @@ const sortedPosts = blogPosts.sort(
       <!-- Posts grid -->
       {
         sortedPosts.length > 0 ? (
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="grid md:grid-cols-2 gap-6">
             {sortedPosts.map((post) => (
               <article class="group">
                 <a
                   href={`/blog/${post.id}`}
-                  class="block p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-900 dark:hover:border-neutral-50 transition-all duration-300 hover:shadow-lg space-y-4"
+                  class="flex flex-col h-full p-6 rounded-2xl gap-2 shadow-pastel border border-muted bg-accent hover:border-primary transition-colors"
                 >
                   {/* Date */}
-                  <time class="text-sm text-neutral-500 dark:text-neutral-400">
+                  <time class="text-sm text-muted-foreground mb-2">
                     {post.data.publishDate.toLocaleDateString("es-ES", {
                       year: "numeric",
                       month: "long",
@@ -52,12 +52,12 @@ const sortedPosts = blogPosts.sort(
                   </time>
 
                   {/* Title */}
-                  <h2 class="text-2xl font-bold text-foreground group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">
+                  <h2 class="text-2xl font-bold text-foreground transition-colors">
                     {post.data.title}
                   </h2>
 
                   {/* Description */}
-                  <p class="text-neutral-600 dark:text-neutral-400 line-clamp-3">
+                  <p class="text-muted-foreground line-clamp-3">
                     {post.data.description}
                   </p>
 
@@ -65,7 +65,7 @@ const sortedPosts = blogPosts.sort(
                   {post.data.tags && post.data.tags.length > 0 && (
                     <div class="flex flex-wrap gap-2 pt-2">
                       {post.data.tags.map((tag) => (
-                        <span class="text-xs px-3 py-1 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+                        <span class="text-xs px-3 py-1 rounded-full bg-muted text-foreground">
                           {tag}
                         </span>
                       ))}
