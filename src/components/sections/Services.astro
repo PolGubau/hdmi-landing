@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Code, Database, Palette, Smartphone } from "@lucide/astro";
 import Image from "astro/components/Image.astro";
 import SectionHeader from "~/components/ui/SectionHeader.astro";
 import CtaButton from "../ui/CtaButton.astro";
@@ -38,27 +38,27 @@ const services = [
 const technologies = [
   {
     label: "Figma",
-    icon: "figma",
+    icon: Palette,
   },
   {
     label: "Design Systems",
-    icon: "paint-roller",
+    icon: Palette,
   },
   {
     label: "React",
-    icon: "react",
+    icon: Code,
   },
   {
     label: "Typescript",
-    icon: "typescript",
+    icon: Code,
   },
   {
     label: "Responsive",
-    icon: "mobile",
+    icon: Smartphone,
   },
   {
     label: "Databases",
-    icon: "database",
+    icon: Database,
   },
 ];
 ---
@@ -112,12 +112,15 @@ const technologies = [
         {
           technologies && (
             <ul class="flex gap-2 flex-wrap max-w-md">
-              {technologies.map((step) => (
-                <li class="py-1.5 px-3 bg-muted text-sm rounded-full flex gap-2 items-center text-foreground">
-                  <Icon name={step.icon} class="size-3.5" />
-                  {step.label}
-                </li>
-              ))}
+              {technologies.map((step) => {
+                const IconComponent = step.icon;
+                return (
+                  <li class="py-1.5 px-3 bg-muted text-sm rounded-full flex gap-2 items-center text-foreground">
+                    <IconComponent class="size-3.5" />
+                    {step.label}
+                  </li>
+                );
+              })}
             </ul>
           )
         }

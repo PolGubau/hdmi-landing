@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Mail, Check } from "@lucide/astro";
 import ContactForm from "~/components/forms/ContactForm";
 import Button from "~/components/ui/Button.astro";
 import SectionHeader from "~/components/ui/SectionHeader.astro";
@@ -9,7 +9,6 @@ const calendlyUrl = "https://calendly.com/hola-doscientos-0jch/30min";
 ---
 
 <MainLayout
-
   description="Agenda una llamada o envíanos un mensaje. Estamos aquí para ayudarte a modernizar tu sistema."
 >
   <section class="px-6 max-w-7xl mx-auto lg:pt-36">
@@ -37,15 +36,15 @@ const calendlyUrl = "https://calendly.com/hola-doscientos-0jch/30min";
 
           <ul class="space-y-2 py-6 text-sm text-muted-foreground">
             <li class="flex items-center gap-2">
-              <Icon name="sparkle" class="size-5 text-primary" />
+              <Check class="size-5 text-primary" />
               En 15 minutos analizamos tu proyecto
             </li>
             <li class="flex items-center gap-2">
-              <Icon name="sparkle" class="size-5 text-primary" />
+              <Check class="size-5 text-primary" />
               Sin compromiso
             </li>
             <li class="flex items-center gap-2">
-              <Icon name="sparkle" class="size-5 text-primary" />
+              <Check class="size-5 text-primary" />
               Respuesta inmediata
             </li>
           </ul>
@@ -61,19 +60,7 @@ const calendlyUrl = "https://calendly.com/hola-doscientos-0jch/30min";
           <div
             class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"
           >
-            <svg
-              class="w-6 h-6 text-primary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
-            </svg>
+            <Mail class="w-6 h-6 text-primary" />
           </div>
           <h3 class="text-2xl font-semibold text-foreground">
             Envíanos un mensaje

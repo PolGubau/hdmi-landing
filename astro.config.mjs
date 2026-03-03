@@ -9,8 +9,6 @@ import metaTags from "astro-meta-tags";
 
 import react from "@astrojs/react";
 
-import icon from "astro-icon";
-
 import vercel from "@astrojs/vercel";
 import rehypeExternalLinks from 'rehype-external-links';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
@@ -40,7 +38,6 @@ export default defineConfig({
     sitemap(),
     metaTags(),
     react({ experimentalReactChildren: true }),
-    icon(),
   ],
   markdown: {
     rehypePlugins: [
