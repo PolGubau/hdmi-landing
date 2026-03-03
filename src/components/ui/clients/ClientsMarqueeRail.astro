@@ -2,6 +2,18 @@
 import { getProjects } from "~/shared/lib/collections";
 import ClientsMarquee from "./ClientsMarquee.astro";
 
+interface Props {
+  color?: string;
+  height?: number;
+  width?: number;
+}
+
+const {
+  color = "hsl(var(--muted-foreground))",
+  height = 50,
+  width = 120,
+} = Astro.props;
+
 // Obtener todos los proyectos con logo
 const allProjects = await getProjects();
 const projectsWithLogo = allProjects.filter((project) => project.data.logo);
@@ -12,13 +24,35 @@ const projectsWithLogo = allProjects.filter((project) => project.data.logo);
   <!-- Contenedor con overflow y posición relativa -->
   <div class="marquee-container">
     <!-- Degradados que se adaptan al contenedor -->
-    <div class="marquee-fade marquee-fade-left"></div>
-    <div class="marquee-fade marquee-fade-right"></div>
+    <div class="marquee-fade bg-linear-to-r from-background left-0"></div>
+    <div class="marquee-fade bg-linear-to-l from-background right-0"></div>
 
-    <!-- Scrolling content -->
+    <!-- Scrolling content - Duplicado 4 veces para efecto infinito suave -->
     <div class="marquee-content">
-      <ClientsMarquee projects={projectsWithLogo} />
-      <ClientsMarquee projects={projectsWithLogo} />
+      <ClientsMarquee
+        projects={projectsWithLogo}
+        color={color}
+        height={height}
+        width={width}
+      />
+      <ClientsMarquee
+        projects={projectsWithLogo}
+        color={color}
+        height={height}
+        width={width}
+      />
+      <ClientsMarquee
+        projects={projectsWithLogo}
+        color={color}
+        height={height}
+        width={width}
+      />
+      <ClientsMarquee
+        projects={projectsWithLogo}
+        color={color}
+        height={height}
+        width={width}
+      />
     </div>
   </div>
 </div>
@@ -47,44 +81,22 @@ const projectsWithLogo = allProjects.filter((project) => project.data.logo);
     pointer-events: none;
   }
 
-  .marquee-fade-left {
-    left: 0;
-    background: linear-gradient(
-      to right,
-      hsl(var(--background)) 0%,
-      hsl(var(--background) / 0.9) 40%,
-      hsl(var(--background) / 0.5) 70%,
-      transparent 100%
-    );
-  }
-
-  .marquee-fade-right {
-    right: 0;
-    background: linear-gradient(
-      to left,
-      hsl(var(--background)) 0%,
-      hsl(var(--background) / 0.9) 40%,
-      hsl(var(--background) / 0.5) 70%,
-      transparent 100%
-    );
-  }
-
   /* Contenido que se desplaza */
   .marquee-content {
     display: flex;
     gap: 4rem;
     padding-bottom: 2.5rem;
-    animation: scroll 30s linear infinite;
+    animation: scroll 20s linear infinite;
     will-change: transform;
   }
 
-  /* Animación de scroll */
+  /* Animación de scroll - Ajustada para 4 copias (100% / 4 = 25%) */
   @keyframes scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-25%);
     }
   }
 

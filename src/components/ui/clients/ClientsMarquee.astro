@@ -1,27 +1,33 @@
 ---
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import ClientLogo from "./ClientLogo.astro";
 
-type Props = {
+interface Props {
   projects: CollectionEntry<"projects">[];
-};
+  color?: string;
+  height?: number;
+  width?: number;
+}
 
-const { projects } = Astro.props;
+const {
+  projects,
+  color = "hsl(var(--muted-foreground))",
+  height = 60,
+  width = 120,
+} = Astro.props;
 ---
 
 {
   projects.map(
     (project) =>
       project.data.logo && (
-        <div class="flex items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src={project.data.logo}
-            alt={`Logo de ${project.data.client}`}
-            width={120}
-            height={40}
-            class="h-10 w-auto object-contain"
-          />
-        </div>
+        <ClientLogo
+          logo={project.data.logo}
+          alt={`Logo de ${project.data.client}`}
+          color={color}
+          height={height}
+          width={width}
+        />
       ),
   )
 }
