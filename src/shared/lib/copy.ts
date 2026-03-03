@@ -45,7 +45,6 @@ export const copy = {
 
 	nav: {
 		home: "Inicio",
-		about: "Nosotros",
 		projects: "Proyectos",
 		blog: "Blog",
 		contact: "Contacto",
