@@ -8,7 +8,7 @@ type Props = {
 const { projects } = Astro.props;
 ---
 
-<div class="overflow-x-hidden w-full" data-stagger="150">
+<div class="overflow-x-hidden w-full max-w-5xl mx-auto" data-stagger="150">
   {
     projects.map((project, index: number) => (
       <div
