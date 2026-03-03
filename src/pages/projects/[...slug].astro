@@ -75,9 +75,7 @@ const { Content } = await render(project);
           class="object-cover w-full h-full"
         />
       </div>
-      <ul
-        class="grid grid-cols-[repeat(auto-fit, minmax(150px, 1fr))] gap-4 items-center"
-      >
+      <ul class="grid lg:grid-cols-3 gap-4 items-center">
         <Highlight label="Cliente" value={project.data.client}>
           <User class="size-5 text-muted-foreground" />
         </Highlight>
