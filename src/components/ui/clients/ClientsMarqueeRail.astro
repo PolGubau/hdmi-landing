@@ -39,6 +39,11 @@ const { clients = defaultClients } = Astro.props;
   .animate-scroll {
     animation: scroll 30s linear infinite;
   }
+  @media (screen and (max-width: 768px)) {
+    .animate-scroll {
+      animation-duration: 20s;
+    }
+  }
 
   .animate-scroll:hover {
     animation-play-state: paused;
