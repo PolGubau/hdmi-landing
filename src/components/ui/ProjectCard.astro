@@ -12,12 +12,12 @@ type Props = {
   id: string;
 } & ProjectProps;
 
-const { id, title, services_provided, color, cover } = Astro.props;
+const { id, title, services_provided, cover } = Astro.props;
 ---
 
 <a href={`/projects/${id}`} class="w-full">
   <article
-    class="group h-full flex flex-col gap-4 rounded-4xl bg-accent shadow-pastel overflow-hidden transition-all duration-300 p-3"
+    class="group h-full flex flex-col gap-4 rounded-4xl bg-accent shadow-pastel overflow-x-hidden transition-all duration-300 p-3"
   >
     <header class="w-full aspect-[1.5] rounded-3xl overflow-hidden">
       <!-- Image -->

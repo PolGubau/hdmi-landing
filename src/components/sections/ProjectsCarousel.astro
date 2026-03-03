@@ -6,56 +6,56 @@ const projects = await getCollection("projects", ({ data }) => data.available);
 const featuredProjects = projects.slice(0, 4);
 ---
 
-   <section
-    class="relative mx-auto overflow-x-hidden pb-10"
-    data-reveal="scale"
-    data-speed="normal"
-    data-easing="smooth"
+<section
+  class="relative mx-auto overflow-x-hidden pb-6"
+  data-reveal="scale"
+  data-speed="normal"
+  data-easing="smooth"
+>
+  <!-- Gradient overlays -->
+  <div
+    class="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-background z-10 pointer-events-none"
   >
-    <!-- Gradient overlays -->
-    <div
-      class="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-background z-10 pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-background z-10 pointer-events-none"
-    >
-    </div>
+  </div>
+  <div
+    class="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-background z-10 pointer-events-none"
+  >
+  </div>
 
-    <!-- Scrolling content -->
-    <ul class="flex gap-6 animate-marquee">
-      {
-        featuredProjects.map((project) => (
-          <li class="shrink-0 w-[320px] md:w-[550px]">
-            <ProjectCard
-              id={project.id}
-              title={project.data.title}
-              summary={project.data.summary}
-              services_provided={project.data.services_provided}
-              color={project.data.color}
-              cover={project.data.cover}
-            />
-          </li>
-        ))
-      }
-      {/* Duplicate for seamless loop */}
-      {
-        featuredProjects.map((project) => (
-          <li class="shrink-0 w-[320px] md:w-[550px]">
-            <ProjectCard
-              id={project.id}
-              title={project.data.title}
-              summary={project.data.summary}
-              services_provided={project.data.services_provided}
-              color={project.data.color}
-              cover={project.data.cover}
-            />
-          </li>
-        ))
-      }
-    </ul>
-  </section>
- 
+  <!-- Scrolling content -->
+  <ul class="flex gap-6 animate-marquee">
+    {
+      featuredProjects.map((project) => (
+        <li class="shrink-0 w-[320px] md:w-[550px]">
+          <ProjectCard
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            services_provided={project.data.services_provided}
+            color={project.data.color}
+            cover={project.data.cover}
+          />
+        </li>
+      ))
+    }
+    {/* Duplicate for seamless loop */}
+    {
+      featuredProjects.map((project) => (
+        <li class="shrink-0 w-[320px] md:w-[550px]">
+          <ProjectCard
+            id={project.id}
+            title={project.data.title}
+            summary={project.data.summary}
+            services_provided={project.data.services_provided}
+            color={project.data.color}
+            cover={project.data.cover}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
 <style>
   @keyframes marquee {
     0% {
