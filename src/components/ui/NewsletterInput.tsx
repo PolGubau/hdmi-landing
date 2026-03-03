@@ -1,5 +1,6 @@
 import { actions } from "astro:actions";
 import { useActionState, useEffect, useRef } from "react";
+import { cn } from "~/shared/lib/utils";
 
 type ActionState = {
   success?: boolean;
@@ -7,7 +8,10 @@ type ActionState = {
   message?: string;
 } | null;
 
-export default function NewsletterInput() {
+type Props = {
+  className?: string;
+}
+export default function NewsletterInput({ className }: Props) {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, submitAction, isPending] = useActionState<ActionState, FormData>(
     async (_prevState, formData) => {
@@ -37,7 +41,7 @@ export default function NewsletterInput() {
           placeholder="tu@email.com"
           required
           disabled={isPending || isSuccess}
-          className="w-full px-5 py-3.5 pr-32 rounded-xl bg-accent/40 border border-primary text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors disabled:opacity-50"
+          className={cn("w-full px-5 py-3.5 pr-32 rounded-xl bg-accent/40 border border-primary text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors disabled:opacity-50", className)}
         />
         <button
           type="submit"
