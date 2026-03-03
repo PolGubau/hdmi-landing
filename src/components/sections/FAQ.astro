@@ -1,0 +1,192 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+
+const faqs = [
+  {
+    question: "¿Cuánto tiempo tarda un proyecto típico?",
+    answer:
+      "Depende del alcance, pero un MVP funcional suele estar listo en 6-8 semanas. Proyectos más complejos pueden tomar 3-6 meses. Siempre trabajamos en sprints para que veas progreso constante.",
+  },
+  {
+    question: "¿Trabajan con startups o solo con empresas establecidas?",
+    answer:
+      "Trabajamos con ambos. Desde startups que necesitan validar su MVP rápidamente hasta empresas establecidas que quieren modernizar sus sistemas. Lo importante es que tengas claridad sobre el problema que quieres resolver.",
+  },
+  {
+    question: "¿Qué pasa después del lanzamiento?",
+    answer:
+      "Ofrecemos soporte post-lanzamiento y mantenimiento continuo. Podemos encargarnos de actualizaciones, nuevas features, optimizaciones y resolver cualquier issue que surja. También ofrecemos formación para tu equipo.",
+  },
+  {
+    question: "¿Cómo es el proceso de trabajo?",
+    answer:
+      "Seguimos nuestro Método 200™: Discovery (entendemos tu negocio), Diseño (creamos prototipos), Desarrollo (construimos en sprints), Testing (aseguramos calidad) y Lanzamiento (desplegamos y monitorizamos). Comunicación constante en cada fase.",
+  },
+  {
+    question: "¿Necesito tener especificaciones técnicas detalladas?",
+    answer:
+      "No necesariamente. Muchos clientes llegan con una idea clara del problema pero sin especificaciones técnicas. Nosotros te ayudamos a definir los requisitos, priorizar features y crear un roadmap realista.",
+  },
+  {
+    question: "¿Qué tecnologías utilizan?",
+    answer:
+      "Usamos tecnologías modernas y probadas según las necesidades del proyecto: React, TypeScript, Astro, Next.js para frontend; Node.js, Python para backend; PostgreSQL, Supabase para bases de datos. Siempre priorizamos velocidad de desarrollo y escalabilidad.",
+  },
+  {
+    question: "¿Ofrecen garantías?",
+    answer:
+      "Sí. Garantizamos que el producto cumplirá con los requisitos acordados. Si algo no funciona como debería, lo arreglamos sin coste adicional. También ofrecemos 30 días de soporte post-lanzamiento incluido en todos los proyectos.",
+  },
+  {
+    question: "¿Cuál es la inversión mínima para trabajar con vosotros?",
+    answer:
+      "Proyectos desde 8.000€ para MVPs simples. La inversión final depende del alcance, complejidad y timeline. Ofrecemos presupuestos transparentes sin sorpresas. Podemos trabajar por proyecto cerrado o en modelo retainer mensual.",
+  },
+];
+---
+
+<section id="faq" class="landing-section">
+  <SectionHeader
+    tag="Preguntas frecuentes"
+    title="¿Tienes dudas?"
+    subtitle="Las resolvemos."
+    description="Todo lo que necesitas saber sobre cómo trabajamos y entregamos resultados."
+    align="center"
+  />
+
+  <div class="max-w-3xl mx-auto" data-stagger="80">
+    {
+      faqs.map((faq) => (
+        <details
+          class="group border-b border-border py-6"
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="smooth"
+          data-distance="small"
+        >
+          <summary class="flex justify-between items-center cursor-pointer list-none">
+            <h3 class="text-lg font-semibold text-foreground pr-8">
+              {faq.question}
+            </h3>
+            <svg
+              class="size-5 text-muted-foreground transition-transform group-open:rotate-180 shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </summary>
+          <p class="mt-4 text-muted-foreground leading-relaxed">{faq.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+
+  <!-- CTA adicional -->
+  <div
+    class="mt-12 text-center"
+    data-reveal="scale"
+    data-speed="fast"
+    data-easing="bounce"
+  >
+    <p class="text-muted-foreground mb-4">¿No encuentras tu respuesta?</p>
+    <a
+      href="/contact"
+      class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-background rounded-lg font-medium hover:opacity-90 transition-opacity"
+    >
+      Contáctanos
+      <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Schema.org FAQ structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "¿Cuánto tiempo tarda un proyecto típico?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Depende del alcance, pero un MVP funcional suele estar listo en 6-8 semanas. Proyectos más complejos pueden tomar 3-6 meses. Siempre trabajamos en sprints para que veas progreso constante.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Trabajan con startups o solo con empresas establecidas?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Trabajamos con ambos. Desde startups que necesitan validar su MVP rápidamente hasta empresas establecidas que quieren modernizar sus sistemas.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Qué pasa después del lanzamiento?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ofrecemos soporte post-lanzamiento y mantenimiento continuo. Podemos encargarnos de actualizaciones, nuevas features, optimizaciones y resolver cualquier issue que surja.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Cómo es el proceso de trabajo?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Seguimos nuestro Método 200™: Discovery, Diseño, Desarrollo, Testing y Lanzamiento. Comunicación constante en cada fase.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Necesito tener especificaciones técnicas detalladas?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No necesariamente. Muchos clientes llegan con una idea clara del problema pero sin especificaciones técnicas. Nosotros te ayudamos a definir los requisitos.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Qué tecnologías utilizan?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Usamos tecnologías modernas y probadas según las necesidades del proyecto: React, TypeScript, Astro, Next.js, Node.js, Python, PostgreSQL, Supabase.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Ofrecen garantías?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Sí. Garantizamos que el producto cumplirá con los requisitos acordados. También ofrecemos 30 días de soporte post-lanzamiento incluido.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Cuál es la inversión mínima para trabajar con vosotros?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Proyectos desde 8.000€ para MVPs simples. La inversión final depende del alcance, complejidad y timeline.",
+        },
+      },
+    ],
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.text = JSON.stringify(faqSchema);
+  document.head.appendChild(script);
+</script>

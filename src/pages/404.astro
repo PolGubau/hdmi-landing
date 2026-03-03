@@ -1,0 +1,126 @@
+---
+import Button from "~/components/ui/Button.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+
+const popularLinks = [
+  { label: "Inicio", href: "/" },
+  { label: "Proyectos", href: "/projects" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contacto", href: "/contact" },
+];
+---
+
+<MainLayout
+  title="404 - Página no encontrada"
+  description="La página que buscas no existe o ha sido movida."
+>
+  <div class="min-h-screen flex items-center justify-center px-6 py-32">
+    <div class="max-w-2xl mx-auto text-center space-y-8">
+      <!-- Número 404 grande -->
+      <div
+        class="relative"
+        data-reveal="scale"
+        data-speed="fast"
+        data-easing="bounce"
+      >
+        <h1
+          class="text-[12rem] md:text-[16rem] font-bold text-primary/10 leading-none select-none"
+        >
+          404
+        </h1>
+        <div
+          class="absolute inset-0 flex items-center justify-center"
+          data-reveal="scale"
+          data-speed="normal"
+          data-easing="elastic"
+          data-delay="200"
+        >
+          <svg
+            class="size-32 md:size-40 text-primary"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Mensaje -->
+      <div class="space-y-4" data-stagger="100">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-foreground"
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="smooth"
+        >
+          Página no encontrada
+        </h2>
+        <p
+          class="text-lg text-muted-foreground max-w-md mx-auto"
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="soft"
+        >
+          Parece que esta página no existe o ha sido movida. No te preocupes,
+          aquí tienes algunos enlaces útiles.
+        </p>
+      </div>
+
+      <!-- Links populares -->
+      <div
+        class="flex flex-wrap gap-3 justify-center"
+        data-stagger="80"
+        data-reveal="bottom"
+        data-speed="normal"
+        data-easing="smooth"
+      >
+        {
+          popularLinks.map((link) => (
+            <a
+              href={link.href}
+              class="px-6 py-3 rounded-lg bg-accent hover:bg-accent/80 text-foreground font-medium transition-colors"
+              data-reveal="scale"
+              data-speed="fast"
+              data-easing="bounce"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- CTA principal -->
+      <div
+        class="pt-8"
+        data-reveal="scale"
+        data-speed="fast"
+        data-easing="elastic"
+        data-delay="400"
+      >
+        <a href="/">
+          <Button withArrow>Volver al inicio</Button>
+        </a>
+      </div>
+
+      <!-- Mensaje adicional -->
+      <p
+        class="text-sm text-muted-foreground pt-8"
+        data-reveal="bottom"
+        data-speed="normal"
+        data-easing="soft"
+        data-delay="500"
+      >
+        ¿Crees que esto es un error?{" "}
+        <a href="/contact" class="text-primary hover:underline">
+          Contáctanos
+        </a>
+      </p>
+    </div>
+  </div>
+</MainLayout>

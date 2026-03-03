@@ -1,0 +1,126 @@
+---
+import { branding } from "~/config/branding";
+
+interface Props {
+  type?: "organization" | "website" | "article" | "service";
+  article?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    datePublished?: string;
+    dateModified?: string;
+    author?: string;
+  };
+  service?: {
+    name: string;
+    description: string;
+    image?: string;
+  };
+}
+
+const { type = "organization", article, service } = Astro.props;
+
+const baseUrl = Astro.site?.toString() || "https://doscientos.com";
+
+// Organization Schema (siempre presente)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: branding.name,
+  url: baseUrl,
+  logo: `${baseUrl}/og-image.png`,
+  description: branding.slogan,
+  email: branding.contact.email,
+  telephone: branding.contact.whatsapp.number,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "ES",
+  },
+  sameAs: [
+    branding.social.linkedin,
+    branding.social.twitter,
+    branding.social.github,
+  ],
+};
+
+// Website Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: branding.name,
+  url: baseUrl,
+  description: branding.slogan,
+  publisher: {
+    "@type": "Organization",
+    name: branding.name,
+    logo: {
+      "@type": "ImageObject",
+      url: `${baseUrl}/og-image.png`,
+    },
+  },
+};
+
+// Article Schema (para blog posts)
+const articleSchema = article
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: article.image || `${baseUrl}/og-image.png`,
+      datePublished: article.datePublished,
+      dateModified: article.dateModified || article.datePublished,
+      author: {
+        "@type": "Person",
+        name: article.author,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: branding.name,
+        logo: {
+          "@type": "ImageObject",
+          url: `${baseUrl}/og-image.png`,
+        },
+      },
+    }
+  : null;
+
+// Service Schema (para proyectos/servicios)
+const serviceSchema = service
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      image: service.image,
+      provider: {
+        "@type": "Organization",
+        name: branding.name,
+        url: baseUrl,
+      },
+    }
+  : null;
+
+// Seleccionar schemas según el tipo
+// biome-ignore lint/suspicious/noExplicitAny: ok
+const schemas: any[] = [organizationSchema];
+
+if (type === "website") {
+  schemas.push(websiteSchema);
+}
+
+if (type === "article" && articleSchema) {
+  schemas.push(articleSchema);
+}
+
+if (type === "service" && serviceSchema) {
+  schemas.push(serviceSchema);
+}
+---
+
+{
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}
+---

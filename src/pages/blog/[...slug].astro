@@ -12,11 +12,22 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const publishedTime =
+  post.data.publishDate instanceof Date
+    ? post.data.publishDate.toISOString()
+    : post.data.publishDate;
 ---
 
 <MainLayout
-  title={`${post.data.title} | Blog | doscientos`}
+  title={`${post.data.title} | Blog`}
   description={post.data.description}
+  type="article"
+  article={{
+    publishedTime,
+    author: post.data.author,
+    tags: post.data.tags,
+  }}
 >
   <article class="min-h-screen py-20 px-6">
     <div class="max-w-4xl mx-auto space-y-12">
