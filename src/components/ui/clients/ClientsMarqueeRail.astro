@@ -1,12 +1,10 @@
 ---
+import { getProjects } from "~/shared/lib/collections";
 import ClientsMarquee from "./ClientsMarquee.astro";
-import { type Client, clients as defaultClients } from "./clients.ts";
 
-type Props = {
-  clients?: Client[];
-};
-
-const { clients = defaultClients } = Astro.props;
+// Obtener todos los proyectos con logo
+const allProjects = await getProjects();
+const projectsWithLogo = allProjects.filter((project) => project.data.logo);
 ---
 
 <!-- Wrapper que se adapta al contenedor padre -->
@@ -19,8 +17,8 @@ const { clients = defaultClients } = Astro.props;
 
     <!-- Scrolling content -->
     <div class="marquee-content">
-      <ClientsMarquee clients={clients} />
-      <ClientsMarquee clients={clients} />
+      <ClientsMarquee projects={projectsWithLogo} />
+      <ClientsMarquee projects={projectsWithLogo} />
     </div>
   </div>
 </div>

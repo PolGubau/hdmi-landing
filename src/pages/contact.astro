@@ -1,8 +1,9 @@
 ---
-import { Check, Mail } from "@lucide/astro";
+import { Mail, Sparkles } from "@lucide/astro";
 import ContactForm from "~/components/forms/ContactForm";
 import Button from "~/components/ui/Button.astro";
 import SectionHeader from "~/components/ui/SectionHeader.astro";
+import { branding } from "~/config/branding";
 import MainLayout from "~/layouts/MainLayout.astro";
 
 const calendlyUrl = branding.contact.calendlyUrl;
@@ -36,15 +37,15 @@ const calendlyUrl = branding.contact.calendlyUrl;
 
           <ul class="space-y-2 py-6 text-sm text-muted-foreground">
             <li class="flex items-center gap-2">
-              <Check class="size-5 text-primary" />
+              <Sparkles class="size-5 text-primary" />
               En 15 minutos analizamos tu proyecto
             </li>
             <li class="flex items-center gap-2">
-              <Check class="size-5 text-primary" />
+              <Sparkles class="size-5 text-primary" />
               Sin compromiso
             </li>
             <li class="flex items-center gap-2">
-              <Check class="size-5 text-primary" />
+              <Sparkles class="size-5 text-primary" />
               Respuesta inmediata
             </li>
           </ul>
