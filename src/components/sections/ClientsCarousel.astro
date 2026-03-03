@@ -3,7 +3,6 @@ import ClientsMarqueeRail from "../ui/clients/ClientsMarqueeRail.astro";
 ---
 
 <section class="w-full">
-  <!-- Título centrado con max-width -->
   <div class="max-w-5xl mx-auto px-6">
     <p
       class="text-center text-xs text-muted-foreground mb-6 uppercase"
@@ -14,10 +13,10 @@ import ClientsMarqueeRail from "../ui/clients/ClientsMarqueeRail.astro";
     >
       Confían en nosotros
     </p>
-  </div>
 
-  <!-- Marquee a ancho completo -->
-  <div data-reveal="scale" data-speed="normal" data-easing="smooth">
-    <ClientsMarqueeRail />
+    <!-- Marquee respeta el max-w-5xl del padre -->
+    <div data-reveal="scale" data-speed="normal" data-easing="smooth">
+      <ClientsMarqueeRail />
+    </div>
   </div>
 </section>

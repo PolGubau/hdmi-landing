@@ -1,68 +1,286 @@
 ---
-title: "Modernización de sistemas legacy: Por qué no debes reescribir desde cero"
-description: "La tentación de reescribir un sistema legacy desde cero es grande, pero casi siempre es un error. Te explicamos por qué y cuál es la alternativa correcta."
-publishDate: "2025-02-28"
-tags: ["modernización", "legacy", "arquitectura", "refactoring"]
-author: "doscientos"
+title: "Construyendo Flatmatch: 6 semanas de caos productivo"
+description: "La historia real detrás de Flatmatch. Cómo pasamos de una idea a una app funcional con 500 usuarios, los errores que cometimos y lo que aprendimos en el camino."
+publishDate: "2026-03-03"
+tags: ["mvp", "producto", "ux", "desarrollo-web", "caso-de-estudio"]
+author: "Pol Gubau"
 draft: false
 ---
 
-# Como afrontamos un proyecto complejo, nuestra metodología 
+import { Image } from "astro:assets";
+import swipe from "../../assets/media/projects/flatmatch/swipe.png";
+import cities from "../../assets/media/projects/flatmatch/cities.png";
+import filter from "../../assets/media/projects/flatmatch/filter.png";
 
-La tentación es real. Tu sistema legacy es lento, difícil de mantener, y cada cambio parece una batalla. La solución obvia parece ser: **reescribir todo desde cero**.
+# Construyendo Flatmatch en 6 semanas
 
-Pero espera.
+**"¿Podemos tener algo funcionando en dos meses?"**
 
-## El mito de la reescritura
+Esa fue la pregunta que Lorenzo, fundador de EXCHANGE STUDENT, nos hizo en nuestra primera videollamada. Acababa de validar manualmente su idea con 50 estudiantes Erasmus y los resultados eran prometedores: **el 80% dijo que usaría una app así**.
 
-Reescribir un sistema desde cero suena atractivo:
-- Código limpio y moderno
-- Sin deuda técnica
-- Tecnologías actuales
-- "Esta vez lo haremos bien"
+El problema era claro: encontrar alojamiento temporal es un infierno. Formularios interminables, información dispersa, procesos lentos. Lorenzo tenía la visión de aplicar el patrón de swipe (como Tinder) al mercado de alojamiento.
 
-La realidad es muy diferente.
-
-## Por qué las reescrituras fallan
-
-### 1. Subestimas la complejidad del sistema actual
-
-Ese código "horrible" que quieres eliminar contiene años de lógica de negocio, casos edge, y soluciones a problemas que ya olvidaste que existían.
-
-### 2. El negocio no se detiene
-
-Mientras reescribes, el sistema actual sigue evolucionando. Nuevos requisitos, nuevas funcionalidades. Tu reescritura ya está obsoleta antes de terminar.
-
-### 3. El riesgo es enorme
-
-Cambiar todo de golpe significa que si algo falla, todo falla. No hay vuelta atrás.
-
-## La alternativa: Modernización progresiva
-
-En Doscientos aplicamos el **Método 200™**, un enfoque de modernización progresiva que:
-
-1. **Identifica módulos críticos** - No todo necesita modernizarse al mismo tiempo
-2. **Migra de forma incremental** - Cambios pequeños, validados, sin interrumpir la operación
-3. **Mantiene el sistema funcionando** - Cero downtime, cero riesgo para el negocio
-4. **Valida en producción** - Cada cambio se prueba con usuarios reales
-
-## Casos reales
-
-Hemos modernizado sistemas en producción para:
-- **Generalitat de Catalunya** - Plataforma institucional de alto tráfico
-- **IFCO** - Sistema logístico internacional
-- **BitacoraERP** - ERP empresarial
-- **CESNET (CESCE)** - Plataforma financiera
-
-En todos los casos: **cero interrupciones, cero reescrituras**.
-
-## Conclusión
-
-No reescribas. Moderniza.
-
-Tu sistema legacy funciona. Tiene usuarios. Genera valor. No lo tires. Transfórmalo.
+Nosotros teníamos 6 semanas para convertir esa visión en realidad.
 
 ---
 
-¿Tu sistema necesita modernización? [Solicita un diagnóstico técnico](/contact).
+## Semana 1: Problemas de enfoque al inicio
 
+**Día 1 - Cuando te enamoras de las features equivocadas**
+
+En nuestra primera sesión de trabajo, pasamos 3 horas diseñando el sistema de chat en tiempo real. Discutimos WebSockets, notificaciones push, estados de lectura...
+
+Hasta que Lorenzo preguntó: *"¿Cuántos usuarios necesitamos para que el chat sea útil?"*
+
+Silencio incómodo.
+
+Teníamos cero usuarios y estábamos diseñando funcionalidades para miles. **Error clásico de producto**.
+
+**Vuelta a la realidad**
+
+Paramos en seco y redefinimos qué era realmente necesario:
+- ✅ Swipe para explorar alojamientos
+- ✅ Guardar favoritos
+- ✅ Ver detalles de propiedades
+- ✅ Publicar alojamientos
+- ❌ Chat (para la fase 2)
+- ❌ Pagos (para la fase 2)
+- ❌ Verificación de identidad (para la fase 2)
+
+**Lo que aprendimos:** No construyas para usuarios que aún no tienes. Valida primero, escala después.
+
+---
+
+## Semana 2: Cuando el diseño "bonito" no funciona
+
+**Primer prototipo: técnicamente correcto, emocionalmente muerto**
+
+Nuestro primer diseño era... técnicamente correcto pero emocionalmente plano. Mostramos el prototipo a 5 estudiantes Erasmus y las reacciones fueron tibias:
+
+- "Parece otra web de alquiler más"
+- "¿Dónde está la parte divertida?"
+- "Esto sigue siendo aburrido"
+
+**El comentario que cambió todo**
+
+Uno de los testers, mientras cerraba el prototipo, soltó:
+
+> "Cuando uso Tinder, no pienso. Solo swipe. ¿Por qué buscar piso tiene que ser tan complicado?"
+
+Esa noche rediseñamos toda la interfaz. En lugar de mostrar listados con filtros complejos, creamos **tarjetas grandes con fotos prominentes** y solo la información esencial visible.
+
+<Image
+  src={swipe}
+  alt="Interfaz de swipe de Flatmatch mostrando tarjetas grandes con fotos"
+  width={1000}
+  class="rounded-2xl my-8"
+/>
+
+**Lo que cambiamos:**
+- Foto de portada ocupa el 70% de la pantalla
+- Precio y ubicación siempre visibles
+- Scroll vertical en la tarjeta para ver más detalles
+- Swipe izquierda/derecha como única acción
+
+**Resultado:** En el siguiente test, 4 de 5 usuarios dijeron "esto sí que mola".
+
+---
+
+## Semana 3-4: El formulario del infierno
+
+**Houston, tenemos un problema**
+
+Teníamos una app bonita para buscar pisos, pero ¿quién iba a publicar los alojamientos?
+
+Nuestro primer formulario de publicación tenía **23 campos en una sola página**. Lo probamos con 3 propietarios y los tres abandonaron antes de terminar.
+
+**Cómo lo arreglamos**
+
+Dividimos el proceso en 9 pasos con una barra de progreso (porque a la gente le gusta ver que avanza):
+
+1. **Tipo de propiedad** - Selección visual con iconos grandes
+2. **Ubicación** - Autocompletado inteligente (esto fue clave)
+3. **Características** - Checkboxes visuales, no listas
+4. **Fotos** - Drag & drop con preview instantáneo
+5. **Precio y descripción**
+6. **Preferencias de inquilino**
+7. **Normas de la casa**
+8. **Disponibilidad**
+9. **Preview y publicar**
+
+<Image
+  src={filter}
+  alt="Flujo de publicación de Flatmatch dividido en pasos simples"
+  width={1000}
+  class="rounded-2xl my-8"
+/>
+
+**El detalle que marcó la diferencia**
+
+En lugar de pedir calle, número, código postal, ciudad, país por separado... pusimos un buscador que autocompleta con todas las calles del mundo.
+
+Escribes "Carrer de Balmes, Barcelona" y automáticamente se rellenan:
+- Coordenadas GPS
+- Código postal
+- Ciudad
+- País
+
+**Impacto:** Tiempo de publicación bajó de 30 minutos a 8 minutos. Tasa de completitud subió del 60% al 95%.
+
+---
+
+## Semana 5: Crisis de rendimiento
+
+**Día 29 - Momento de pánico**
+
+Subimos 200 propiedades de prueba para testear. La app se volvió **dolorosamente lenta**:
+- Swipe con lag de 2 segundos
+- Imágenes que tardaban en cargar
+- Scroll entrecortado
+
+Teníamos una semana para el lanzamiento y la app era inutilizable.
+
+**48 horas para arreglarlo**
+
+Encontramos 3 problemas gordos:
+
+**1. Imágenes sin optimizar**
+- Problema: Subíamos fotos de 5MB directamente
+- Solución: Compresión automática + formatos modernos (WebP)
+- Resultado: Carga 10x más rápida
+
+**2. Carga de datos ineficiente**
+- Problema: Cargábamos todas las propiedades de golpe
+- Solución: Paginación + lazy loading
+- Resultado: Primera carga en 0.8s vs 8s
+
+**3. Animaciones pesadas**
+- Problema: Animaciones con JavaScript
+- Solución: Transiciones CSS + GPU acceleration
+- Resultado: Swipe fluido a 60fps
+
+**Lo que aprendimos:** El rendimiento no es opcional. Testea con datos reales desde el día 1, no con 3 propiedades de prueba.
+
+---
+
+## Semana 6: Lanzamiento (con nervios)
+
+**Día 42**
+
+Decidimos hacer un lanzamiento "suave" con 50 estudiantes Erasmus de Barcelona. Lorenzo compartió el link en grupos de WhatsApp.
+
+**Primeras 24 horas:**
+- 73 usuarios registrados (más de lo esperado)
+- 12 propiedades publicadas
+- 847 swipes realizados
+- 0 crashes (milagro)
+
+**Plot twist**
+
+Los usuarios amaban la app, pero empezaron a pedir algo que no habíamos ni considerado:
+
+> "¿Puedo buscar compañeros de piso también? No solo habitaciones"
+
+Esto abrió una línea de producto completamente nueva. A veces los usuarios saben mejor que tú qué necesitan.
+
+<Image
+  src={cities}
+  alt="Dashboard de Flatmatch mostrando ciudades disponibles"
+  width={1000}
+  class="rounded-2xl my-8"
+/>
+
+---
+
+## 3 meses después
+
+**Los números (sin maquillaje):**
+- 500+ usuarios registrados (sin marketing pagado)
+- 45% de retención (muy alta para el sector)
+- 25 swipes promedio por sesión
+- 120+ propiedades publicadas
+
+**Métricas de producto:**
+- Tiempo de búsqueda: de 2-3 horas a 15-20 minutos (-70%)
+- 8 de cada 10 usuarios encuentran opciones viables en la primera sesión
+- Engagement 2.4x superior a plataformas tradicionales
+
+**Lo que funcionó:**
+- ✅ Lanzar rápido y iterar
+- ✅ Diseño centrado en emociones, no solo funcionalidad
+- ✅ Simplificar procesos complejos
+- ✅ Escuchar feedback real de usuarios
+
+**Lo que no funcionó:**
+- ❌ Intentar construir todo desde el inicio
+- ❌ Asumir que sabíamos lo que los usuarios querían
+- ❌ Subestimar la importancia del rendimiento
+
+---
+
+## Lo que aprendimos (de verdad)
+
+### 1. El MVP perfecto no existe
+
+Lanzamos con bugs conocidos. Algunos usuarios reportaron problemas. Los arreglamos en 48 horas. **Nadie se fue**.
+
+La perfección es enemiga del progreso. Mejor lanzar al 80% y mejorar con feedback real.
+
+### 2. El diseño es conversación, no decoración
+
+No diseñamos interfaces bonitas. Diseñamos conversaciones fluidas entre el usuario y el producto.
+
+Cada pantalla debe responder "¿qué hago ahora?" sin que el usuario tenga que pensar.
+
+### 3. Los datos mienten, las emociones no
+
+Las métricas decían que los usuarios pasaban 12 minutos en la app. ¿Eso es bueno o malo?
+
+Hablamos con ellos. Respuesta: "Me engancha, es adictivo". Eso sí es bueno.
+
+### 4. La velocidad es una feature
+
+Una app lenta es una app rota. No importa cuán bonita sea.
+
+Invierte en rendimiento desde el día 1. Tus usuarios lo notarán (aunque no lo digan).
+
+### 5. Construye para hoy, arquitectura para mañana
+
+Usamos tecnologías que nos permitieron lanzar en 6 semanas pero que también escalan a miles de usuarios sin reescribir todo.
+
+No sobre-ingenierices, pero tampoco te pintes en una esquina.
+
+---
+
+## ¿Qué sigue para Flatmatch?
+
+**Fase 2 (en desarrollo):**
+- Chat en tiempo real (ahora sí tiene sentido)
+- Sistema de pagos integrado
+- Verificación de identidad
+
+**Fase 3 (planificado):**
+- Matching de compañeros de piso (el feature más pedido)
+- App móvil nativa
+- Expansión a más ciudades europeas
+
+---
+
+## Para terminar
+
+Flatmatch no es solo una app de alojamiento. Es la prueba de que puedes lanzar un producto complejo en semanas, no meses, si:
+
+1. Defines bien el MVP
+2. Diseñas para emociones
+3. Iteras con usuarios reales
+4. No te enamoras de tu código
+
+¿Tienes una idea que lleva meses en tu cabeza? Deja de planear y empieza a construir.
+
+6 semanas pueden cambiar todo.
+
+---
+
+*¿Quieres ver Flatmatch en acción? [Prueba la demo](https://flatmatchweb.vercel.app/)*
+
+*¿Tienes un proyecto similar? [Hablemos](/contact)*

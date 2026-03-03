@@ -28,7 +28,7 @@ const { finalCta } = copy;
     </h2>
 
     <!-- Description -->
-    <div
+    <p
       class="text-muted-foreground max-w-sm text-pretty"
       data-reveal="bottom"
       data-speed="normal"
@@ -36,23 +36,18 @@ const { finalCta } = copy;
       data-distance="small"
     >
       {finalCta.description}
+    </p>
+
+    <!-- Marquee respeta el max-w-3xl del padre -->
+    <div
+      class="w-full"
+      data-reveal="scale"
+      data-speed="fast"
+      data-easing="smooth"
+    >
+      <ClientsMarqueeRail />
     </div>
-  </div>
 
-  <!-- Marquee fuera del contenedor max-w para que ocupe todo el ancho -->
-  <div
-    class="w-full"
-    data-reveal="scale"
-    data-speed="fast"
-    data-easing="smooth"
-  >
-    <ClientsMarqueeRail />
-  </div>
-
-  <!-- Volver al contenedor centrado -->
-  <div
-    class="max-w-3xl w-full mx-auto text-center flex flex-col justify-center items-center gap-10"
-  >
     <div data-reveal="scale" data-speed="fast" data-easing="elastic">
       <CtaButton />
     </div>
