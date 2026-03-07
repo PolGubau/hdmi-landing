@@ -7,7 +7,7 @@ const featuredProjects = projects.slice(0, 4);
 ---
 
 <section
-  class="relative mx-auto overflow-x-hidden pb-6"
+  class="relative mx-auto overflow-hidden pb-6 w-full"
   data-reveal="scale"
   data-speed="normal"
   data-easing="smooth"
@@ -23,7 +23,7 @@ const featuredProjects = projects.slice(0, 4);
   </div>
 
   <!-- Scrolling content -->
-  <ul class="flex gap-6 animate-marquee">
+  <ul class="flex gap-6 animate-marquee will-change-transform">
     {
       featuredProjects.map((project) => (
         <li class="shrink-0 w-[320px] md:w-[550px]">
@@ -56,27 +56,33 @@ const featuredProjects = projects.slice(0, 4);
   </ul>
 </section>
 
-<style>
+<style is:global>
   @keyframes marquee {
-    0% {
+    from {
       transform: translateX(0);
     }
-    100% {
+    to {
       transform: translateX(-50%);
     }
   }
 
   .animate-marquee {
     animation: marquee 40s linear infinite;
+    will-change: transform;
   }
-  @media (screen and (max-width: 768px)) {
+
+  @media (max-width: 768px) {
     .animate-marquee {
       animation-duration: 20s;
     }
   }
 
   .animate-marquee:hover {
-    /* slower */
     animation-duration: 60s;
+  }
+
+  /* Asegurar que el carousel sea visible */
+  section:has(.animate-marquee) {
+    min-height: 400px;
   }
 </style>
