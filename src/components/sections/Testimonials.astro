@@ -1,0 +1,114 @@
+---
+import { Check, StarIcon } from "@lucide/astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+
+const testimonials = [
+  {
+    quote:
+      "En 6 semanas teníamos un producto funcional que 500+ usuarios están usando. La velocidad y calidad de doscientos es impresionante.",
+    author: "Sofia Martínez",
+    role: "CEO",
+    company: "EXCHANGE STUDENT",
+    project: "Flatmatch",
+    rating: 5,
+  },
+  {
+    quote:
+      "Migraron nuestro sistema crítico sin interrupciones. Cero downtime, mejor rendimiento y un equipo que entiende de negocio, no solo de código.",
+    author: "Michael Schmidt",
+    role: "CTO",
+    company: "IFCO Systems",
+    project: "IFCO Recollections",
+    rating: 5,
+  },
+  {
+    quote:
+      "Automatizaron procesos que nos tomaban horas. Ahora gestionamos 3x más pedidos con el mismo equipo. ROI en menos de 2 meses.",
+    author: "Carlos Ruiz",
+    role: "Director técnico",
+    company: "Bitacora",
+    project: "Bitacora ERP",
+    rating: 5,
+  },
+];
+---
+
+<section class="landing-section bg-accent/5">
+  <SectionHeader
+    title="Lo que dicen nuestros clientes"
+    description="Resultados reales de empresas que confiaron en nosotros"
+    tag="Testimonios"
+    align="center"
+  />
+
+  <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto" data-stagger="100">
+    {
+      testimonials.map((testimonial) => (
+        <div
+          class="testimonial-card bg-background border border-muted shadow-pastel rounded-2xl p-8 flex flex-col gap-6"
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="soft"
+        >
+          {/* Rating */}
+          <div class="flex gap-0">
+            {Array.from({ length: testimonial.rating }).map(() => (
+              <StarIcon
+                class="size-5 text-yellow-400"
+                fill="currentColor"
+                stroke="currentColor"
+              />
+            ))}
+          </div>
+
+          {/* Quote */}
+          <blockquote class="text-foreground leading-relaxed flex-1">
+            "{testimonial.quote}"
+          </blockquote>
+
+          {/* Author */}
+          <div class="flex items-start gap-3 pt-2">
+            <div class="size-10 aspect-square rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+              {testimonial.author.charAt(0)}
+            </div>
+            <div>
+              <p class="font-semibold text-foreground">{testimonial.author}</p>
+              <p class="text-xs text-muted-foreground">
+                {testimonial.role}, {testimonial.company}
+              </p>
+            </div>
+          </div>
+
+          {/* Project badge */}
+          <div class="inline-flex items-center gap-2 text-xs text-muted-foreground">
+            <Check class="size-4 text-green-500" />
+            Proyecto: {testimonial.project}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Trust indicators */}
+  <div
+    class="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground"
+    data-reveal="bottom"
+    data-speed="normal"
+    data-easing="soft"
+  >
+    <div class="flex items-center gap-2">
+      <Check class="size-5 text-green-500" />
+      <span>100% de clientes satisfechos</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <Check class="size-5 text-green-500" />
+
+      <span>Proyectos entregados a tiempo</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <Check class="size-5 text-green-500" />
+
+      <span>Soporte post-lanzamiento incluido</span>
+    </div>
+  </div>
+</section>
