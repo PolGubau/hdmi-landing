@@ -5,15 +5,38 @@ export const GET: APIRoute = async ({ site }) => {
 	const baseUrl = site?.toString() || "https://doscientos.com";
 
 	// Obtener proyectos y posts
-	const projects = await getCollection("projects", ({ data }) => data.available);
+	const projects = await getCollection(
+		"projects",
+		({ data }) => data.available,
+	);
 	const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
 
-	// Páginas estáticas con prioridad
+	// Páginas estáticas con prioridad y metadata SEO
 	const staticPages = [
-		{ url: "", priority: "1.0", changefreq: "weekly" }, // Homepage
-		{ url: "projects", priority: "0.9", changefreq: "weekly" },
-		{ url: "blog", priority: "0.9", changefreq: "daily" },
-		{ url: "contact", priority: "0.8", changefreq: "monthly" },
+		{
+			url: "",
+			priority: "1.0",
+			changefreq: "weekly",
+			lastmod: new Date().toISOString().split("T")[0],
+		}, // Homepage
+		{
+			url: "projects",
+			priority: "0.9",
+			changefreq: "weekly",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
+		{
+			url: "blog",
+			priority: "0.9",
+			changefreq: "daily",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
+		{
+			url: "contact",
+			priority: "0.8",
+			changefreq: "monthly",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
 		{ url: "legal", priority: "0.3", changefreq: "yearly" },
 		{ url: "privacy", priority: "0.3", changefreq: "yearly" },
 		{ url: "cookies", priority: "0.3", changefreq: "yearly" },
@@ -24,9 +47,10 @@ export const GET: APIRoute = async ({ site }) => {
 		url: `projects/${project.id}`,
 		priority: "0.8",
 		changefreq: "monthly",
-		lastmod: project.data.endedAt instanceof Date 
-			? project.data.endedAt.toISOString().split("T")[0]
-			: project.data.endedAt,
+		lastmod:
+			project.data.endedAt instanceof Date
+				? project.data.endedAt.toISOString().split("T")[0]
+				: project.data.endedAt,
 	}));
 
 	// Generar URLs de blog posts
@@ -34,9 +58,10 @@ export const GET: APIRoute = async ({ site }) => {
 		url: `blog/${post.id}`,
 		priority: "0.7",
 		changefreq: "monthly",
-		lastmod: post.data.publishDate instanceof Date
-			? post.data.publishDate.toISOString().split("T")[0]
-			: post.data.publishDate,
+		lastmod:
+			post.data.publishDate instanceof Date
+				? post.data.publishDate.toISOString().split("T")[0]
+				: post.data.publishDate,
 	}));
 
 	// Combinar todas las URLs
@@ -63,4 +88,3 @@ ${allUrls
 		},
 	});
 };
-

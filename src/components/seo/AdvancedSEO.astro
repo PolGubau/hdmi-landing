@@ -1,0 +1,72 @@
+---
+/**
+ * AdvancedSEO - SEO Avanzado para máxima visibilidad
+ * Incluye: Article tags, Video tags, Product tags, etc.
+ */
+
+interface Props {
+  type?: "website" | "article" | "product" | "video";
+  article?: {
+    section?: string;
+    tags?: string[];
+  };
+  product?: {
+    price?: string;
+    currency?: string;
+    availability?: string;
+  };
+}
+
+const { type = "website", article, product } = Astro.props;
+const currentUrl = Astro.url.href;
+---
+
+<!-- Article-specific meta tags -->{
+  type === "article" && article && (
+    <>
+      {article.section && (
+        <meta property="article:section" content={article.section} />
+      )}
+      {article.tags?.map((tag) => (
+        <meta property="article:tag" content={tag} />
+      ))}
+    </>
+  )
+}
+
+<!-- Product-specific meta tags -->
+{
+  type === "product" && product && (
+    <>
+      {product.price && (
+        <>
+          <meta property="product:price:amount" content={product.price} />
+          <meta
+            property="product:price:currency"
+            content={product.currency || "EUR"}
+          />
+        </>
+      )}
+      {product.availability && (
+        <meta property="product:availability" content={product.availability} />
+      )}
+    </>
+  )
+}
+
+<!-- Additional SEO meta tags -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="width" />
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- DNS Prefetch for faster loading -->
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+<!-- Alternate languages (if you have multilingual) -->
+<link rel="alternate" hreflang="es" href={currentUrl} />
+<link rel="alternate" hreflang="en" href={currentUrl.replace("/es/", "/en/")} />
+<link rel="alternate" hreflang="x-default" href={currentUrl} />
