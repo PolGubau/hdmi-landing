@@ -4,21 +4,21 @@
  */
 
 interface ContactEmailProps {
-	name: string;
-	email: string;
-	message: string;
-	phone?: string;
-	company?: string;
+  name: string;
+  email: string;
+  message: string;
+  phone?: string;
+  company?: string;
 }
 
 export const ContactEmail = ({
-	name,
-	email,
-	message,
-	phone,
-	company,
+  name,
+  email,
+  message,
+  phone,
+  company,
 }: ContactEmailProps) => {
-	return `
+  return `
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,9 +77,8 @@ export const ContactEmail = ({
                           </p>
                         </td>
                       </tr>
-                      ${
-												phone
-													? `
+                      ${phone
+      ? `
                       <tr>
                         <td style="padding: 8px 0;">
                           <strong style="color: #666666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">Teléfono</strong>
@@ -89,11 +88,10 @@ export const ContactEmail = ({
                         </td>
                       </tr>
                       `
-													: ""
-											}
-                      ${
-												company
-													? `
+      : ""
+    }
+                      ${company
+      ? `
                       <tr>
                         <td style="padding: 8px 0;">
                           <strong style="color: #666666; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">Empresa</strong>
@@ -101,8 +99,8 @@ export const ContactEmail = ({
                         </td>
                       </tr>
                       `
-													: ""
-											}
+      : ""
+    }
                     </table>
                   </td>
                 </tr>
@@ -135,16 +133,16 @@ export const ContactEmail = ({
                 Este email fue enviado desde el formulario de contacto de
               </p>
               <p style="margin: 0; color: #000000; font-size: 14px; font-weight: 600;">
-                doscientos.com
+                doscientos.es
               </p>
               <p style="margin: 16px 0 0; color: #999999; font-size: 12px;">
                 ${new Date().toLocaleDateString("es-ES", {
-									year: "numeric",
-									month: "long",
-									day: "numeric",
-									hour: "2-digit",
-									minute: "2-digit",
-								})}
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })}
               </p>
             </td>
           </tr>

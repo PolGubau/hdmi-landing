@@ -66,7 +66,6 @@ const currentUrl = Astro.url.href;
 <!-- DNS Prefetch for faster loading -->
 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-<!-- Alternate languages (if you have multilingual) -->
+<!-- Alternate languages (single-locale site) -->
 <link rel="alternate" hreflang="es" href={currentUrl} />
-<link rel="alternate" hreflang="en" href={currentUrl.replace("/es/", "/en/")} />
 <link rel="alternate" hreflang="x-default" href={currentUrl} />

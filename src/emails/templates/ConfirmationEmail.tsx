@@ -4,11 +4,11 @@
  */
 
 interface ConfirmationEmailProps {
-	name: string;
+  name: string;
 }
 
 export const ConfirmationEmail = ({ name }: ConfirmationEmailProps) => {
-	return `
+  return `
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -70,8 +70,8 @@ export const ConfirmationEmail = ({ name }: ConfirmationEmailProps) => {
                       Mientras tanto:
                     </p>
                     <ul style="margin: 0; padding-left: 20px; color: #666666; font-size: 15px; line-height: 1.8;">
-                      <li style="margin-bottom: 8px;">Revisa nuestros <a href="https://doscientos.com/projects" style="color: #000000; text-decoration: none; font-weight: 600;">proyectos destacados</a></li>
-                      <li style="margin-bottom: 8px;">Lee nuestro <a href="https://doscientos.com/blog" style="color: #000000; text-decoration: none; font-weight: 600;">blog</a> con insights sobre desarrollo</li>
+                      <li style="margin-bottom: 8px;">Revisa nuestros <a href="https://doscientos.es/projects" style="color: #000000; text-decoration: none; font-weight: 600;">proyectos destacados</a></li>
+                      <li style="margin-bottom: 8px;">Lee nuestro <a href="https://doscientos.es/blog" style="color: #000000; text-decoration: none; font-weight: 600;">blog</a> con insights sobre desarrollo</li>
                       <li>Síguenos en <a href="https://linkedin.com/company/doscientos" style="color: #000000; text-decoration: none; font-weight: 600;">LinkedIn</a></li>
                     </ul>
                   </td>
@@ -102,7 +102,7 @@ export const ConfirmationEmail = ({ name }: ConfirmationEmailProps) => {
                   El equipo de doscientos
                 </p>
                 <p style="margin: 0; color: #666666; font-size: 14px;">
-                  <a href="mailto:hola@doscientos.com" style="color: #000000; text-decoration: none;">hola@doscientos.com</a>
+                  <a href="mailto:hola@doscientos.es" style="color: #000000; text-decoration: none;">hola@doscientos.es</a>
                 </p>
               </div>
 

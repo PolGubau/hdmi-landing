@@ -14,13 +14,10 @@ interface Props {
 }
 
 const { items } = Astro.props;
-const baseUrl = Astro.site?.toString() || "https://doscientos.com";
+const baseUrl = Astro.site?.toString() || "https://doscientos.es";
 
 // Siempre incluir Home como primer item
-const breadcrumbItems = [
-  { name: "Inicio", url: baseUrl },
-  ...items,
-];
+const breadcrumbItems = [{ name: "Inicio", url: baseUrl }, ...items];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -35,27 +32,41 @@ const breadcrumbSchema = {
 ---
 
 <!-- Breadcrumb Schema -->
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(breadcrumbSchema)}
+/>
 
 <!-- Visual Breadcrumbs (opcional) -->
 <nav aria-label="Breadcrumb" class="text-sm text-muted-foreground mb-8">
   <ol class="flex items-center gap-2">
-    {breadcrumbItems.map((item, index) => (
-      <li class="flex items-center gap-2">
-        {index > 0 && (
-          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        )}
-        {index === breadcrumbItems.length - 1 ? (
-          <span class="text-foreground font-medium">{item.name}</span>
-        ) : (
-          <a href={item.url} class="hover:text-primary transition-colors">
-            {item.name}
-          </a>
-        )}
-      </li>
-    ))}
+    {
+      breadcrumbItems.map((item, index) => (
+        <li class="flex items-center gap-2">
+          {index > 0 && (
+            <svg
+              class="size-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          )}
+          {index === breadcrumbItems.length - 1 ? (
+            <span class="text-foreground font-medium">{item.name}</span>
+          ) : (
+            <a href={item.url} class="hover:text-primary transition-colors">
+              {item.name}
+            </a>
+          )}
+        </li>
+      ))
+    }
   </ol>
 </nav>
-

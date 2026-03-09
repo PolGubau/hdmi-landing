@@ -9,5 +9,5 @@ Disallow: /_astro/
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://doscientos.com/sitemap.xml
+Sitemap: https://doscientos.es/sitemap.xml
 

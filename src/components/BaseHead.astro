@@ -23,12 +23,11 @@ const {
 	image = "/thumbnail.png",
 } = Astro.props;
 
-// Generate alternate language URLs
-const alternateUrls = {
-	es: new URL(Astro.url.pathname.replace(/^\/(ca|en)/, ""), Astro.site),
-	ca: new URL(`/ca${Astro.url.pathname.replace(/^\/(ca|en)/, "")}`, Astro.site),
-	en: new URL(`/en${Astro.url.pathname.replace(/^\/(ca|en)/, "")}`, Astro.site),
-};
+// Generate alternate language URL (single-locale site)
+const alternateUrl = new URL(
+	Astro.url.pathname.replace(/^\/(ca|en)/, ""),
+	Astro.site,
+);
 ---
 
 <!-- Global Metadata -->
@@ -48,10 +47,8 @@ const alternateUrls = {
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Alternate Language URLs (hreflang) -->
-<link rel="alternate" hreflang="es" href={alternateUrls.es} />
-<link rel="alternate" hreflang="ca" href={alternateUrls.ca} />
-<link rel="alternate" hreflang="en" href={alternateUrls.en} />
-<link rel="alternate" hreflang="x-default" href={alternateUrls.es} />
+<link rel="alternate" hreflang="es" href={alternateUrl} />
+<link rel="alternate" hreflang="x-default" href={alternateUrl} />
 
 <!-- Primary Meta Tags -->
 <title>{`${title} - ${metadata.title}`}</title>

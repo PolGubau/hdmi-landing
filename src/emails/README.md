@@ -48,15 +48,15 @@ export async function sendContactEmail(data: {
 }) {
   // Email al equipo
   await resend.emails.send({
-    from: 'Contacto <contacto@doscientos.com>',
-    to: 'hola@doscientos.com',
+    from: 'Contacto <contacto@doscientos.es>',
+    to: 'hola@doscientos.es',
     subject: `Nuevo contacto de ${data.name}`,
     html: ContactEmail(data),
   });
 
   // Email de confirmación al cliente
   await resend.emails.send({
-    from: 'doscientos <hola@doscientos.com>',
+    from: 'doscientos <hola@doscientos.es>',
     to: data.email,
     subject: 'Gracias por contactarnos - doscientos',
     html: ConfirmationEmail({ name: data.name }),
