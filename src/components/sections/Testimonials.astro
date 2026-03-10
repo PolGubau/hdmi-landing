@@ -5,30 +5,36 @@ import SectionHeader from "../ui/SectionHeader.astro";
 const testimonials = [
   {
     quote:
-      "En 6 semanas teníamos un producto funcional que 500+ usuarios están usando. La velocidad y calidad de doscientos es impresionante.",
+      "Necesitábamos lanzar rápido para validar la idea con inversores. En 6 semanas teníamos un MVP funcional con 500+ usuarios registrados. Lo que más valoro es que no solo programan, entienden de producto. Nos ayudaron a priorizar features y a no perder tiempo en cosas innecesarias.",
     author: "Sofia Martínez",
     role: "CEO",
     company: "EXCHANGE STUDENT",
     project: "Flatmatch",
     rating: 5,
+    metrics: "500+ usuarios · 6 semanas · 4.8/5 rating",
+    highlight: "De 0 a producto en producción",
   },
   {
     quote:
-      "Migraron nuestro sistema crítico sin interrupciones. Cero downtime, mejor rendimiento y un equipo que entiende de negocio, no solo de código.",
+      "Teníamos un sistema legacy de 15 años que nadie se atrevía a tocar. doscientos migró todo a una arquitectura moderna sin parar el negocio ni un solo minuto. Cero downtime. El rendimiento mejoró un 40% y ahora podemos escalar sin miedo. Profesionales de verdad.",
     author: "Michael Schmidt",
     role: "CTO",
     company: "IFCO Systems",
     project: "IFCO Recollections",
     rating: 5,
+    metrics: "0 downtime · +40% rendimiento · 1M+ registros migrados",
+    highlight: "Migración crítica sin interrupciones",
   },
   {
     quote:
-      "Automatizaron procesos que nos tomaban horas. Ahora gestionamos 3x más pedidos con el mismo equipo. ROI en menos de 2 meses.",
+      "Antes tardábamos 3 horas en procesar pedidos manualmente. Ahora son 15 minutos automáticos. El sistema que nos hicieron se paga solo en 2 meses. Y lo mejor: cuando tenemos dudas, responden en el día. No como otras agencias que desaparecen después de cobrar.",
     author: "Carlos Ruiz",
     role: "Director técnico",
     company: "Bitacora",
     project: "Bitacora ERP",
     rating: 5,
+    metrics: "3x más pedidos · ROI en 2 meses · -90% tiempo manual",
+    highlight: "Automatización que genera ROI real",
   },
 ];
 ---
@@ -45,7 +51,7 @@ const testimonials = [
     {
       testimonials.map((testimonial) => (
         <div
-          class="testimonial-card bg-background border border-muted shadow-pastel rounded-2xl p-8 flex flex-col gap-6"
+          class="testimonial-card bg-background border border-muted shadow-pastel rounded-2xl p-8 flex flex-col gap-4"
           data-reveal="bottom"
           data-speed="normal"
           data-easing="soft"
@@ -61,28 +67,38 @@ const testimonials = [
             ))}
           </div>
 
+          {/* Highlight badge */}
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 w-fit text-primary text-xs font-semibold">
+            <Check class="size-3" />
+            {testimonial.highlight}
+          </div>
+
           {/* Quote */}
           <blockquote class="text-foreground leading-relaxed flex-1">
             "{testimonial.quote}"
           </blockquote>
 
+          {/* Metrics */}
+          <div class="px-4 py-3 rounded-lg border border-muted mb-3">
+            <p class="text-sm font-semibold text-muted-foreground">
+              {testimonial.metrics}
+            </p>
+          </div>
+
           {/* Author */}
-          <div class="flex items-start gap-3 pt-2">
-            <div class="size-10 aspect-square rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+          <div class="flex items-start gap-3 pt-2 border-t border-muted">
+            <div class="size-10 aspect-square rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg mt-2">
               {testimonial.author.charAt(0)}
             </div>
-            <div>
+            <div class="mt-2">
               <p class="font-semibold text-foreground">{testimonial.author}</p>
               <p class="text-xs text-muted-foreground">
                 {testimonial.role}, {testimonial.company}
               </p>
+              <p class="text-xs text-muted-foreground mt-1">
+                Proyecto: {testimonial.project}
+              </p>
             </div>
-          </div>
-
-          {/* Project badge */}
-          <div class="inline-flex items-center gap-2 text-xs text-muted-foreground">
-            <Check class="size-4 text-green-500" />
-            Proyecto: {testimonial.project}
           </div>
         </div>
       ))

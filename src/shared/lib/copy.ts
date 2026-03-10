@@ -1,10 +1,10 @@
 export const copy = {
 	hero: {
-		title: "Modernizamos sistemas críticos sin detener tu negocio",
+		title: "Software a medida para empresas que van en serio",
 		subtitle:
-			"Creamos webs, plataformas y productos digitales de calidad, con foco en rendimiento y crecimiento.",
-		brand: "Doscientos.",
-		cta: "Contactar",
+			"Modernizamos sistemas críticos sin downtime. Lanzamos MVPs en 6 semanas. Creamos software a medida que escala con tu negocio.",
+		brand: "doscientos.",
+		cta: "Agendar llamada gratuita",
 	},
 
 	method: {
