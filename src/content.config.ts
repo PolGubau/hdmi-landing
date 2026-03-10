@@ -38,9 +38,9 @@ const blog = defineCollection({
 });
 
 export type Project = InferEntrySchema<"projects">;
-export type ProjectMetadata = (typeof projects)[number];
+export type ProjectMetadata = typeof projects;
 
 export type BlogPost = InferEntrySchema<"blog">;
-export type BlogPostMetadata = (typeof blog)[number];
+export type BlogPostMetadata = typeof blog;
 
 export const collections = { projects, blog };
