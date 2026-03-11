@@ -10,36 +10,34 @@ const FOUNDING_SLOTS_TOTAL = 5;
 const FOUNDING_SLOTS_TAKEN = 2; // ⚠️ ACTUALIZA ESTO
 const FOUNDING_SLOTS_LEFT = FOUNDING_SLOTS_TOTAL - FOUNDING_SLOTS_TAKEN;
 ---
-
 <section
-  class="landing-section bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-background relative overflow-hidden"
+  class="landing-section bg-primary text-background overflow-hidden relative py-20 md:rounded-4xl max-w-[90vw] mx-auto mb-20"
 >
   <!-- Background pattern -->
   <div class="absolute inset-0 opacity-10">
     <div
       class="absolute inset-0"
-      style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 32px 32px;"
+      style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 24px 24px;"
     >
     </div>
   </div>
 
-  <div class="relative max-w-4xl mx-auto text-center" data-stagger="80">
+  <div class="relative max-w-4xl mx-auto text-center" data-stagger="100">
     <!-- Urgency badge -->
     <div
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/10 backdrop-blur-sm border border-background/20 mb-6"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/10 backdrop-blur-sm border border-background/20 mb-8"
       data-reveal="scale"
       data-speed="fast"
       data-easing="bounce"
     >
       <span class="relative flex size-3">
         <span
-          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-background opacity-75"
-        >
-        </span>
-        <span class="relative inline-flex rounded-full size-3 bg-background">
-        </span>
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+        ></span>
+        <span class="relative inline-flex rounded-full size-3 bg-green-400"
+        ></span>
       </span>
-      <span class="text-sm font-semibold">
+      <span class="text-sm font-medium"
         🎟️ Founding Members · Solo {FOUNDING_SLOTS_LEFT} de {
           FOUNDING_SLOTS_TOTAL
         } plazas
