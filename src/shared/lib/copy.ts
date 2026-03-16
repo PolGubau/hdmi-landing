@@ -1,8 +1,8 @@
 export const copy = {
 	hero: {
-		title: "Software a medida para empresas que van en serio",
+		title: "De idea a producto en 6 semanas. Sin quemar presupuesto.",
 		subtitle:
-			"Modernizamos sistemas críticos sin downtime. Lanzamos MVPs en 6 semanas. Creamos software a medida que escala con tu negocio.",
+			"Lanzamos MVPs validados con usuarios reales. Automatizamos procesos que generan ROI en meses. Modernizamos sistemas críticos sin detener tu negocio.",
 		brand: "doscientos.",
 		cta: "Agendar llamada gratuita",
 	},

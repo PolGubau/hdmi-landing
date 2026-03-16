@@ -1,0 +1,44 @@
+---
+/**
+ * Google Analytics 4 (GA4)
+ * Analytics gratuito de Google
+ */
+
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const isDev = import.meta.env.DEV;
+
+// No cargar analytics en desarrollo
+if (isDev) {
+  console.log("📊 Google Analytics disabled in development");
+}
+---
+
+{!isDev && GA_MEASUREMENT_ID && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID, {
+        page_path: window.location.pathname,
+      });
+    </script>
+  </>
+)}
+
+<!-- 
+  Google Analytics 4 configurado para:
+  - Tracking de pageviews automático
+  - Eventos personalizados disponibles vía: gtag('event', 'event_name')
+  - Gratuito
+  
+  Para trackear eventos personalizados:
+  gtag('event', 'nombre_evento', {
+    event_category: 'categoria',
+    event_label: 'etiqueta',
+    value: 'valor'
+  });
+-->
+
