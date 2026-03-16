@@ -1,5 +1,5 @@
 .landing-section {
-	@apply max-w-7xl px-6 mx-auto w-full flex flex-col gap-16 justify-center items-center;
+	@apply max-w-7xl px-6 mx-auto w-full flex flex-col gap-10 justify-center items-center;
 }
 
 ul.bento {

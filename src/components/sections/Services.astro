@@ -10,54 +10,54 @@ import imagePhones from "~/assets/media/landing/phones.webp";
 
 const services = [
   {
-    title: "UX/UI para productos complejos",
+    title: "Productos que tus usuarios aman usar",
     description:
-      "Diseñamos interfaces claras y eficientes para productos SaaS, plataformas B2B o herramientas internas.",
+      "Interfaces que reducen fricción, aceleran decisiones y aumentan conversiones. No solo bonitas, efectivas.",
   },
   {
-    title: "Web & mobile apps",
+    title: "De idea a producto en semanas, no meses",
     description:
-      "Diseño y desarrollo de sitios web a medida, escalables y centrados en la experiencia del usuario.",
+      "Lanzamos rápido para validar con usuarios reales. Priorizamos lo que genera valor y descartamos lo que no.",
   },
   {
-    title: "Automatización de procesos",
+    title: "Automatización que genera ROI real",
     description:
-      "Mejora la eficiencia de tu negocio con soluciones digitales personalizadas que automatizan tareas repetitivas y optimizan flujos de trabajo.",
+      "Convierte 3 horas de trabajo manual en 15 minutos automáticos. Soluciones que se pagan solas en meses, no años.",
   },
   {
-    title: "Webs visuales y marketing sites",
+    title: "Webs que convierten visitantes en clientes",
     description:
-      "Sitios rápidos de implementar pero con alto impacto visual. Ideal para marcas, lanzamientos y landings. Diseño personalizado, animaciones, copy estratégico y SEO on-page.",
+      "Diseño estratégico que comunica valor en segundos. Optimizadas para conversión, no solo para impresionar.",
   },
   {
-    title: "Productos de calidad",
-    description: "Para negocios que crecen",
+    title: "Crecimiento sostenible",
+    description: "Sin quemar presupuesto en marketing",
   },
 ];
 
-const technologies = [
+const benefits = [
   {
-    label: "Figma",
+    label: "Lanzamiento rápido",
     icon: Palette,
   },
   {
-    label: "Design Systems",
+    label: "Validación real",
     icon: Palette,
   },
   {
-    label: "React",
+    label: "ROI medible",
     icon: Code,
   },
   {
-    label: "Typescript",
+    label: "Escalabilidad",
     icon: Code,
   },
   {
-    label: "Responsive",
+    label: "Soporte continuo",
     icon: Smartphone,
   },
   {
-    label: "Databases",
+    label: "Datos, no suposiciones",
     icon: Database,
   },
 ];
@@ -65,8 +65,8 @@ const technologies = [
 
 <section class="landing-section">
   <SectionHeader
-    title="Convertimos ideas"
-    subtitle="en productos de alto impacto"
+    title="No vendemos tecnología,"
+    subtitle="vendemos crecimiento"
     tag="Servicios"
   />
 
@@ -87,8 +87,8 @@ const technologies = [
       </header>
       <div class="relative w-full h-full overflow-hidden max-h-[360px]">
         <Image
-          width={400}
-          height={350}
+          width={800}
+          height={650}
           src={imagePhones}
           alt="Captura de pantalla del panel de administración de NovaHair, mostrando un diseño limpio y moderno con gráficos de rendimiento y gestión de clientes."
           class="w-full h-full object-cover object-top"
@@ -110,9 +110,9 @@ const technologies = [
           <p>{services[1].description}</p>
         </header>
         {
-          technologies && (
+          benefits && (
             <ul class="flex gap-2 flex-wrap max-w-md">
-              {technologies.map((step) => {
+              {benefits.map((step) => {
                 const IconComponent = step.icon;
                 return (
                   <li class="py-1.5 px-3 bg-muted text-sm rounded-full flex gap-2 items-center text-foreground">
@@ -141,8 +141,8 @@ const technologies = [
           </div>
           <div class="relative w-full flex items-end justify-end">
             <Image
-              width={200}
-              height={800}
+              width={500}
+              height={900}
               src={imageMobile}
               alt="Captura de pantalla del panel de administración de NovaHair, mostrando un diseño limpio y moderno con gráficos de rendimiento y gestión de clientes."
               class="w-full max-h-[200px] border-4 border-b-0 border-primary bg-[#c7c7c7] p-1 rounded-t-[32px] object-cover object-top"
@@ -165,8 +165,8 @@ const technologies = [
         <p>{services[3].description}</p>
         <div class="relative w-full h-full">
           <Image
-            width={700}
-            height={110}
+            width={900}
+            height={300}
             src={imageFooter}
             alt="Captura de pantalla del panel de administración de NovaHair, mostrando un diseño limpio y moderno con gráficos de rendimiento y gestión de clientes."
             class="w-full max-w-[700px] h-[110px] mt-4 border border-muted p-2 rounded-2xl object-cover object-top"
