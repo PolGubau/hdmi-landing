@@ -68,7 +68,18 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          manualChunks: undefined,
+          manualChunks: (id) => {
+            // Vendor chunks para mejor caching
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('@astrojs')) {
+                return 'vendor-astro';
+              }
+              return 'vendor';
+            }
+          },
         },
       },
     },

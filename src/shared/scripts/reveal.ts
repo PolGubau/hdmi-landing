@@ -17,16 +17,9 @@ function getObserver(threshold: number, rootMargin: string) {
 
 					const el = entry.target as HTMLElement;
 
-					console.debug(
-						"[Reveal] Elemento visible:",
-						el,
-						`dirección: ${el.dataset.reveal}`,
-					);
-
 					// Pequeño delay para asegurar que el estado hidden se aplicó
 					requestAnimationFrame(() => {
 						el.dataset.state = "visible";
-						console.debug("[Reveal] Estado cambiado a visible para:", el);
 
 						// Dispatch custom event para callbacks
 						el.dispatchEvent(
@@ -55,8 +48,6 @@ function init() {
 	const elements = document.querySelectorAll<HTMLElement>(
 		"[data-reveal]:not([data-init])",
 	);
-
-	console.debug(`[Reveal] Inicializando ${elements.length} elementos`);
 
 	for (const el of elements) {
 		el.dataset.init = "true";
@@ -117,12 +108,6 @@ function init() {
 
 		const observer = getObserver(threshold, rootMargin);
 		observer.observe(el);
-
-		console.debug(
-			"[Reveal] Observando elemento:",
-			el,
-			`con dirección: ${el.dataset.reveal}`,
-		);
 	}
 }
 
