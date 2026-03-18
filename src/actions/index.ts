@@ -101,7 +101,7 @@ export const server = {
 				const { data: emailData, error: emailError } = await resend.emails.send(
 					{
 						from: "Landing <hola@doscientos.es>",
-						to: ["hola@doscientos.es"],
+						to: ["hola@doscientos.es", "gubaupol@gmail.com"],
 						replyTo: email,
 						subject: `Nuevo contacto: ${name}`,
 						html: `
