@@ -77,9 +77,11 @@ export const server = {
 				cfConnectingIP ||
 				"Unknown";
 
-			const timestamp = new Date().toLocaleString("es-ES", {
+			const now = new Date();
+			const timestamp = now.toLocaleString("es-ES", {
 				timeZone: "Europe/Madrid",
 			});
+			const isoTimestamp = now.toISOString();
 
 			// Preparar datos para Google Sheets
 			const sheetData = {
@@ -279,6 +281,83 @@ export const server = {
 										{
 											text: {
 												content: message,
+											},
+										},
+									],
+								},
+								date: {
+									date: {
+										start: isoTimestamp,
+									},
+								},
+								timezone: {
+									rich_text: [
+										{
+											text: {
+												content: timezone || "Unknown",
+											},
+										},
+									],
+								},
+								language: {
+									rich_text: [
+										{
+											text: {
+												content: language,
+											},
+										},
+									],
+								},
+								ip: {
+									rich_text: [
+										{
+											text: {
+												content: ip,
+											},
+										},
+									],
+								},
+								browser: {
+									rich_text: [
+										{
+											text: {
+												content: browser,
+											},
+										},
+									],
+								},
+								os: {
+									rich_text: [
+										{
+											text: {
+												content: os,
+											},
+										},
+									],
+								},
+								device: {
+									rich_text: [
+										{
+											text: {
+												content: device,
+											},
+										},
+									],
+								},
+								userAgent: {
+									rich_text: [
+										{
+											text: {
+												content: userAgent,
+											},
+										},
+									],
+								},
+								referrer: {
+									rich_text: [
+										{
+											text: {
+												content: referrer,
 											},
 										},
 									],
