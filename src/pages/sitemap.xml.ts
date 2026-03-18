@@ -37,6 +37,19 @@ export const GET: APIRoute = async ({ site }) => {
 			changefreq: "monthly",
 			lastmod: new Date().toISOString().split("T")[0],
 		},
+		// Páginas SEO locales
+		{
+			url: "desarrollo-web-barcelona",
+			priority: "0.85",
+			changefreq: "monthly",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
+		{
+			url: "desarrollo-web-castellon",
+			priority: "0.85",
+			changefreq: "monthly",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
 		{ url: "legal", priority: "0.3", changefreq: "yearly" },
 		{ url: "privacy", priority: "0.3", changefreq: "yearly" },
 		{ url: "cookies", priority: "0.3", changefreq: "yearly" },

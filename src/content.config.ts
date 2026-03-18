@@ -1,4 +1,9 @@
-import { type InferEntrySchema, defineCollection, z } from "astro:content";
+import {
+	type InferEntrySchema,
+	defineCollection,
+	type getCollection,
+	z,
+} from "astro:content";
 import { glob } from "astro/loaders";
 
 const projects = defineCollection({
@@ -38,7 +43,9 @@ const blog = defineCollection({
 });
 
 export type Project = InferEntrySchema<"projects">;
-export type ProjectMetadata = typeof projects;
+export type ProjectMetadata = Awaited<
+	ReturnType<typeof getCollection<"projects">>
+>[number];
 
 export type BlogPost = InferEntrySchema<"blog">;
 export type BlogPostMetadata = typeof blog;
