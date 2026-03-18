@@ -12,12 +12,14 @@ const stats = [
   {
     number: "500+",
     label: "Usuarios conseguidos sin ads",
-    description: "Empresas de Barcelona generando tracción orgánica desde el primer día.",
+    description:
+      "Empresas de Barcelona generando tracción orgánica desde el primer día.",
   },
   {
     number: "-90%",
     label: "Reducción en tiempo de procesos",
-    description: "Automatizaciones que generan ROI real en empresas barcelonesas.",
+    description:
+      "Automatizaciones que generan ROI real en empresas barcelonesas.",
   },
   {
     number: "6 sem",
@@ -29,7 +31,8 @@ const stats = [
 const benefits = [
   {
     title: "Reuniones presenciales en Barcelona",
-    description: "Nos reunimos contigo en persona para entender tu proyecto a fondo.",
+    description:
+      "Nos reunimos contigo en persona para entender tu proyecto a fondo.",
   },
   {
     title: "Conocimiento del mercado local",
@@ -52,7 +55,7 @@ const benefits = [
       <div data-reveal="top" data-speed="fast" data-easing="smooth">
         <SectionTag>Barcelona</SectionTag>
       </div>
-      
+
       <h1
         class="text-4xl md:text-6xl font-bold text-foreground"
         data-reveal="scale"
@@ -60,7 +63,9 @@ const benefits = [
         data-easing="bounce"
       >
         Desarrollo Web en Barcelona
-        <span class="block text-primary mt-2">De idea a producto en 6 semanas</span>
+        <span class="block text-primary mt-2"
+          >De idea a producto en 6 semanas</span
+        >
       </h1>
 
       <p
@@ -69,8 +74,9 @@ const benefits = [
         data-speed="normal"
         data-easing="soft"
       >
-        Somos una agencia de desarrollo web en Barcelona especializada en lanzar MVPs rápidos,
-        automatizar procesos y modernizar sistemas críticos. Sin quemar presupuesto.
+        Somos una agencia de desarrollo web en Barcelona especializada en lanzar
+        MVPs rápidos, automatizar procesos y modernizar sistemas críticos. Sin
+        quemar presupuesto.
       </p>
 
       <div
@@ -83,20 +89,22 @@ const benefits = [
           <Button size="lg" withArrow>Agendar reunión en Barcelona</Button>
         </a>
         <a href="/projects">
-          <Button size="lg" variant="outline">Ver proyectos</Button>
+          <Button size="lg">Ver proyectos</Button>
         </a>
       </div>
     </header>
 
     <!-- Stats -->
     <div class="grid md:grid-cols-3 gap-6" data-stagger="150">
-      {stats.map((stat) => (
-        <StatCard
-          number={stat.number}
-          label={stat.label}
-          description={stat.description}
-        />
-      ))}
+      {
+        stats.map((stat) => (
+          <StatCard
+            number={stat.number}
+            label={stat.label}
+            description={stat.description}
+          />
+        ))
+      }
     </div>
 
     <!-- Por qué Barcelona -->
@@ -110,17 +118,21 @@ const benefits = [
       />
 
       <div class="grid md:grid-cols-3 gap-8" data-stagger="100">
-        {benefits.map((benefit) => (
-          <div
-            class="p-8 rounded-2xl bg-accent space-y-4"
-            data-reveal="bottom"
-            data-speed="normal"
-            data-easing="soft"
-          >
-            <h3 class="text-xl font-semibold text-foreground">{benefit.title}</h3>
-            <p class="text-muted-foreground">{benefit.description}</p>
-          </div>
-        ))}
+        {
+          benefits.map((benefit) => (
+            <div
+              class="p-8 rounded-2xl bg-accent space-y-4"
+              data-reveal="bottom"
+              data-speed="normal"
+              data-easing="soft"
+            >
+              <h3 class="text-xl font-semibold text-foreground">
+                {benefit.title}
+              </h3>
+              <p class="text-muted-foreground">{benefit.description}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -135,34 +147,41 @@ const benefits = [
       />
 
       <div class="grid md:grid-cols-3 gap-6">
-        {barcelonaProjects.map((project) => (
-          <a
-            href={`/projects/${project.id}`}
-            class="group block p-6 rounded-2xl bg-accent hover:bg-muted transition-colors"
-          >
-            <h3 class="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-              {project.data.title}
-            </h3>
-            <p class="text-muted-foreground mt-2">{project.data.summary}</p>
-          </a>
-        ))}
+        {
+          barcelonaProjects.map((project) => (
+            <a
+              href={`/projects/${project.id}`}
+              class="group block p-6 rounded-2xl bg-accent hover:bg-muted transition-colors"
+            >
+              <h3 class="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                {project.data.title}
+              </h3>
+              <p class="text-muted-foreground mt-2">{project.data.summary}</p>
+            </a>
+          ))
+        }
       </div>
     </section>
 
     <!-- CTA Final -->
-    <section class="bg-primary text-background rounded-3xl p-12 text-center space-y-6">
+    <section
+      class="bg-primary text-background rounded-3xl p-12 text-center space-y-6"
+    >
       <h2 class="text-3xl md:text-4xl font-bold">
         ¿Listo para lanzar tu proyecto en Barcelona?
       </h2>
       <p class="text-xl opacity-90 max-w-2xl mx-auto">
-        Agenda una reunión presencial o videollamada. Sin compromiso, sin presión.
+        Agenda una reunión presencial o videollamada. Sin compromiso, sin
+        presión.
       </p>
       <a href="/contact">
-        <Button size="lg" class="bg-background text-primary hover:bg-background/90">
+        <Button
+          size="lg"
+          class="bg-background text-primary hover:bg-background/90"
+        >
           Agendar reunión →
         </Button>
       </a>
     </section>
   </section>
 </MainLayout>
-
