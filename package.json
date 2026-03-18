@@ -20,6 +20,7 @@
 		"@astrojs/sitemap": "^3.4.0",
 		"@astrojs/vercel": "^9.0.4",
 		"@lucide/astro": "^0.576.0",
+		"@notionhq/client": "^5.13.0",
 		"@supabase/supabase-js": "^2.39.8",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.1.3",

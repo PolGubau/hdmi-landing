@@ -1,9 +1,15 @@
 import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro:schema";
+import { Client } from "@notionhq/client";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
 const resend = new Resend(import.meta.env.PUBLIC_RESEND_API);
+
+// Inicializar cliente de Notion
+const notion = new Client({
+	auth: import.meta.env.NOTION_INTEGRATION_SECRET,
+});
 
 // Inicializar cliente de Supabase
 const supabase = createClient(
@@ -232,6 +238,88 @@ export const server = {
 					}
 				} else {
 					console.warn("GOOGLE_SHEETS_URL no está configurada");
+				}
+
+				// 3. Guardar en Notion
+				const NOTION_DATABASE_ID = import.meta.env.NOTION_DATABASE_ID;
+
+				if (NOTION_DATABASE_ID) {
+					try {
+						await notion.pages.create({
+							parent: {
+								database_id: NOTION_DATABASE_ID,
+							},
+							properties: {
+								Name: {
+									title: [
+										{
+											text: {
+												content: name,
+											},
+										},
+									],
+								},
+								Email: {
+									email: email,
+								},
+								Phone: {
+									phone_number: phone,
+								},
+								company: {
+									rich_text: [
+										{
+											text: {
+												content: company || "",
+											},
+										},
+									],
+								},
+								message: {
+									rich_text: [
+										{
+											text: {
+												content: message,
+											},
+										},
+									],
+								},
+								"utm-source": {
+									rich_text: [
+										{
+											text: {
+												content: utm_source || "",
+											},
+										},
+									],
+								},
+								"utm-medium": {
+									rich_text: [
+										{
+											text: {
+												content: utm_medium || "",
+											},
+										},
+									],
+								},
+								"utm-campaign": {
+									rich_text: [
+										{
+											text: {
+												content: utm_campaign || "",
+											},
+										},
+									],
+								},
+							},
+						});
+
+						console.log("✅ Lead guardado en Notion");
+					} catch (notionError) {
+						console.error("Error guardando en Notion:", notionError);
+						// No lanzar error, continuar aunque falle Notion
+					}
+				} else {
+					console.warn("NOTION_DATABASE_ID no está configurada");
 				}
 
 				return {
