@@ -4,7 +4,7 @@ import { Client } from "@notionhq/client";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.PUBLIC_RESEND_API);
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 // Inicializar cliente de Notion
 const notion = new Client({
