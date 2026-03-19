@@ -216,6 +216,11 @@ export const server = {
 									],
 								},
 								budget: {
+									select: {
+										name: budget ?? "No especificado",
+									},
+								},
+								budget_label: {
 									rich_text: [
 										{
 											text: {
