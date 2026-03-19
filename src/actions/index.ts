@@ -217,17 +217,8 @@ export const server = {
 								},
 								budget: {
 									select: {
-										name: budget ?? "No especificado",
+										name: budgetLabel,
 									},
-								},
-								budget_label: {
-									rich_text: [
-										{
-											text: {
-												content: budgetLabel,
-											},
-										},
-									],
 								},
 								message: {
 									rich_text: [
