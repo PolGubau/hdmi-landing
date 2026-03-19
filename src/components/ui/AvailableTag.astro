@@ -1,5 +1,15 @@
 ---
-const spotsLeft = 2;
+const today = new Date();
+const day = today.getDate();
+const daysInMonth = new Date(
+  today.getFullYear(),
+  today.getMonth() + 1,
+  0,
+).getDate();
+const spotsLeft = Math.max(
+  1,
+  Math.round(10 - ((day - 1) / (daysInMonth - 1)) * 9),
+);
 const nextMonth = new Date(
   Date.now() + 30 * 24 * 60 * 60 * 1000,
 ).toLocaleString("es-ES", { month: "long" });

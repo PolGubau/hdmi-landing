@@ -1,5 +1,6 @@
 ---
 import ContactForm from "../forms/ContactForm";
+import AvailableTag from "../ui/AvailableTag.astro";
 
 const spotsLeft = 2;
 const nextMonth = new Date(
@@ -21,23 +22,7 @@ const nextMonth = new Date(
 
   <div class="relative max-w-4xl mx-auto text-center" data-stagger="100">
     <!-- Urgency badge -->
-    <div
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/10 backdrop-blur-sm border border-background/20 mb-8"
-      data-reveal="scale"
-      data-speed="fast"
-      data-easing="bounce"
-    >
-      <span class="relative flex size-3">
-        <span
-          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-        ></span>
-        <span class="relative inline-flex rounded-full size-3 bg-green-400"
-        ></span>
-      </span>
-      <span class="text-sm font-medium capitalize">
-        Solo {spotsLeft} plazas disponibles en {nextMonth}
-      </span>
-    </div>
+    <AvailableTag />
 
     <!-- Main heading -->
     <h2
