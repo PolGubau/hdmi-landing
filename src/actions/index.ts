@@ -26,11 +26,16 @@ function parseUserAgent(ua: string) {
 		ua.match(/(Chrome|Firefox|Safari|Edge|Opera|MSIE|Trident)/i)?.[0] ||
 		"Unknown";
 	const os = ua.match(/(Windows|Mac|Linux|Android|iOS)/i)?.[0] || "Unknown";
-	const device = /Mobile|Android|iPhone|iPad/i.test(ua)
-		? "Mobile"
-		: /Tablet|iPad/i.test(ua)
-			? "Tablet"
-			: "Desktop";
+
+	// Tablet first: Android tablets omit "Mobile", iPads are explicitly "iPad"
+	const isTablet =
+		/iPad/i.test(ua) ||
+		/Tablet|PlayBook/i.test(ua) ||
+		(/Android/i.test(ua) && !/Mobile/i.test(ua));
+	const isMobile =
+		(!isTablet && /iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) ||
+		(/Mobile/i.test(ua) && /Android|webOS/i.test(ua));
+	const device = isTablet ? "Tablet" : isMobile ? "Mobile" : "Desktop";
 
 	return { browser, os, device };
 }
