@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import { Layout, Timer, User } from "@lucide/astro";
 import Breadcrumbs from "~/components/seo/Breadcrumbs.astro";
+import SchemaOrg from "~/components/seo/SchemaOrg.astro";
 import Highlight from "~/components/ui/Highlight.astro";
 import Link from "~/components/ui/Link.astro";
 import OtherProjects from "~/features/projects/ui/OtherProjects.astro";
@@ -41,6 +42,17 @@ const publishedTime =
     tags: project.data.services_provided,
   }}
 >
+  <SchemaOrg
+    type="project"
+    project={{
+      name: project.data.title,
+      description: project.data.summary,
+      image: coverImage?.src,
+      client: project.data.client,
+      datePublished: publishedTime,
+      url: `https://doscientos.es/projects/${project.id}`,
+    }}
+  />
   <article
     class="min-h-screen py-4 lg:py-20 px-4 lg:px-6 max-w-5xl mx-auto space-y-6 lg:space-y-12"
   >

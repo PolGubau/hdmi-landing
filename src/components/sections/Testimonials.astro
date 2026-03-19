@@ -2,6 +2,8 @@
 import { Check, StarIcon } from "@lucide/astro";
 import SectionHeader from "../ui/SectionHeader.astro";
 
+const siteUrl = "https://doscientos.es";
+
 const testimonials = [
   {
     quote:
@@ -128,3 +130,41 @@ const testimonials = [
     </div>
   </div>
 </section>
+
+<!-- Schema.org Review agregado -->
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "doscientos",
+    url: siteUrl,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      bestRating: "5",
+      worstRating: "1",
+      reviewCount: String(testimonials.length),
+    },
+    review: testimonials.map((t) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(t.rating),
+        bestRating: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: t.author,
+        jobTitle: t.role,
+        worksFor: {
+          "@type": "Organization",
+          name: t.company,
+        },
+      },
+      reviewBody: t.quote,
+      name: t.highlight,
+    })),
+  })}
+/>

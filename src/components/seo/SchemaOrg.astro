@@ -2,7 +2,7 @@
 import { branding } from "~/config/branding";
 
 interface Props {
-  type?: "organization" | "website" | "article" | "service";
+  type?: "organization" | "website" | "article" | "service" | "project";
   article?: {
     title?: string;
     description?: string;
@@ -16,9 +16,17 @@ interface Props {
     description: string;
     image?: string;
   };
+  project?: {
+    name: string;
+    description: string;
+    image?: string;
+    client?: string;
+    datePublished?: string;
+    url?: string;
+  };
 }
 
-const { type = "organization", article, service } = Astro.props;
+const { type = "organization", article, service, project } = Astro.props;
 
 const baseUrl = Astro.site?.toString() || "https://doscientos.es";
 
@@ -103,7 +111,7 @@ const articleSchema = article
     }
   : null;
 
-// Service Schema (para proyectos/servicios)
+// Service Schema
 const serviceSchema = service
   ? {
       "@context": "https://schema.org",
@@ -119,21 +127,38 @@ const serviceSchema = service
     }
   : null;
 
+// CreativeWork Schema (para proyectos)
+const projectSchema = project
+  ? {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: project.name,
+      description: project.description,
+      image: project.image || `${baseUrl}/og-image.png`,
+      datePublished: project.datePublished,
+      url: project.url || baseUrl,
+      creator: {
+        "@type": "Organization",
+        name: branding.name,
+        url: baseUrl,
+      },
+      ...(project.client && {
+        client: {
+          "@type": "Organization",
+          name: project.client,
+        },
+      }),
+    }
+  : null;
+
 // Seleccionar schemas según el tipo
 // biome-ignore lint/suspicious/noExplicitAny: ok
 const schemas: any[] = [organizationSchema];
 
-if (type === "website") {
-  schemas.push(websiteSchema);
-}
-
-if (type === "article" && articleSchema) {
-  schemas.push(articleSchema);
-}
-
-if (type === "service" && serviceSchema) {
-  schemas.push(serviceSchema);
-}
+if (type === "website") schemas.push(websiteSchema);
+if (type === "article" && articleSchema) schemas.push(articleSchema);
+if (type === "service" && serviceSchema) schemas.push(serviceSchema);
+if (type === "project" && projectSchema) schemas.push(projectSchema);
 ---
 
 {

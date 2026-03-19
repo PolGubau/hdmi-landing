@@ -47,15 +47,28 @@ const { hero } = copy;
     class="pt-4 flex flex-col items-center gap-4"
   >
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href={`/contact`}>
+      <a href={`/contact`} id="hero-cta-primary">
         <Button withArrow>
           {hero.cta}
         </Button>
       </a>
-      <a href="/projects">
+      <a href="/projects" id="hero-cta-secondary">
         <Button variant="outline">Ver proyectos</Button>
       </a>
     </div>
+
+    <script is:inline>
+      ["hero-cta-primary", "hero-cta-secondary"].forEach((id) => {
+        document.getElementById(id)?.addEventListener("click", () => {
+          if ("gtag" in window) {
+            window.gtag("event", "cta_click", {
+              event_category: "engagement",
+              event_label: id,
+            });
+          }
+        });
+      });
+    </script>
 
     <!-- Social proof -->
     <div

@@ -105,6 +105,16 @@ export default function ContactForm() {
     setFieldErrors({});
     setTouched({});
 
+    // Evento de conversión GA4
+    if (typeof window !== "undefined" && "gtag" in window) {
+      // @ts-ignore
+      window.gtag("event", "generate_lead", {
+        event_category: "contact",
+        event_label: "contact_form",
+        budget: formData.get("budget") ?? "unknown",
+      });
+    }
+
     confetti({
       particleCount: 100,
       spread: 70,

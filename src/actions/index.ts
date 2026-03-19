@@ -345,6 +345,61 @@ export const server = {
 					console.warn("NOTION_DATABASE_ID no está configurada");
 				}
 
+				// 4. Email de confirmación al lead
+				await resend.emails
+					.send({
+						from: "doscientos <hola@doscientos.es>",
+						to: email,
+						replyTo: "hola@doscientos.es",
+						subject: `${name}, hemos recibido tu mensaje`,
+						html: `<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:40px 0;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;max-width:600px;width:100%;">
+        <!-- Header -->
+        <tr><td style="background:#111;padding:32px 40px;">
+          <p style="color:#ffffff;font-size:24px;font-weight:700;margin:0;">doscientos</p>
+        </td></tr>
+        <!-- Body -->
+        <tr><td style="padding:40px;">
+          <p style="font-size:18px;font-weight:600;color:#111;margin:0 0 16px;">Hola ${name},</p>
+          <p style="font-size:15px;color:#444;line-height:1.6;margin:0 0 16px;">
+            Hemos recibido tu mensaje y te respondemos <strong>antes de 24 horas</strong> en días laborables.
+          </p>
+          <p style="font-size:15px;color:#444;line-height:1.6;margin:0 0 32px;">
+            Si necesitas algo urgente, puedes responder directamente a este email o llamarnos al <strong>+34 671 171 525</strong>.
+          </p>
+          <!-- Summary box -->
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#f9f9f9;border-radius:12px;padding:24px;margin-bottom:32px;">
+            <tr><td>
+              <p style="font-size:13px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 16px;">Tu mensaje</p>
+              ${budgetLabel !== "No especificado" ? `<p style="font-size:13px;color:#666;margin:0 0 8px;"><strong>Presupuesto:</strong> ${budgetLabel}</p>` : ""}
+              <p style="font-size:14px;color:#444;line-height:1.6;margin:0;border-left:3px solid #111;padding-left:12px;">${message}</p>
+            </td></tr>
+          </table>
+          <p style="font-size:15px;color:#444;line-height:1.6;margin:0 0 8px;">Un saludo,</p>
+          <p style="font-size:15px;font-weight:600;color:#111;margin:0;">El equipo de doscientos</p>
+        </td></tr>
+        <!-- Footer -->
+        <tr><td style="padding:24px 40px;border-top:1px solid #eee;">
+          <p style="font-size:12px;color:#999;margin:0;">
+            doscientos · Barcelona · <a href="https://doscientos.es" style="color:#999;">doscientos.es</a>
+          </p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`,
+					})
+					.catch((err) => {
+						// No bloquear el flujo si falla el email de confirmación
+						console.error("Error enviando email de confirmación al lead:", err);
+					});
+
 				return {
 					success: true,
 					message: "Mensaje enviado correctamente",
