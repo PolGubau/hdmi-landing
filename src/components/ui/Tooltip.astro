@@ -1,0 +1,25 @@
+---
+/**
+ * Tooltip simple para mostrar información adicional
+ */
+
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = "" } = Astro.props;
+---
+
+<span class={`relative group inline-block ${className}`}>
+  <slot />
+  <span
+    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-xs text-background bg-foreground rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50"
+  >
+    {text}
+    <span
+      class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-foreground"
+    ></span>
+  </span>
+</span>
+

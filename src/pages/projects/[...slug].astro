@@ -46,6 +46,7 @@ const publishedTime =
   >
     <!-- Breadcrumbs para SEO -->
     <Breadcrumbs
+      className="pl-4"
       items={[
         { name: "Proyectos", url: "/projects" },
         { name: project.data.title, url: `/projects/${project.id}` },
@@ -70,13 +71,15 @@ const publishedTime =
           )
         }
       </div>
-      <div class="w-full rounded-4xl object-cover aspect-video bg-muted">
+      <div
+        class="w-full rounded-4xl object-cover overflow-hidden aspect-video bg-muted"
+      >
         <Image
           src={project.data.cover}
           alt={project.data.title}
           width={1200}
           height={600}
-          class="object-cover w-full h-full"
+          class="object-cover w-full h-full rounded-4xl aspect-video bg-muted"
         />
       </div>
       <ul class="grid lg:grid-cols-3 gap-4 items-center">

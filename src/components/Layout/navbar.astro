@@ -16,9 +16,22 @@ const navItems = [
   <!-- Logo -->
   <a
     href="/"
-    class="text-xl font-bold hover:opacity-80 transition-opacity text-primary px-2"
+    class="flex items-center gap-2 hover:opacity-80 transition-opacity px-2"
   >
-    {branding.name}
+    <!-- ISO: se colapsa al hacer scroll -->
+    <div
+      id="nav-logo-iso"
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      style="width: 28px; opacity: 1;"
+    >
+      <img
+        src="/iso.svg"
+        alt={branding.name}
+        class="h-7 w-auto object-contain"
+      />
+    </div>
+    <!-- Nombre siempre visible -->
+    <span class="text-xl font-bold text-primary">{branding.name}</span>
   </a>
 
   <!-- Desktop Navigation -->
@@ -35,13 +48,115 @@ const navItems = [
     }
   </nav>
 
+  <!-- Mobile Menu Button -->
+  <button
+    id="mobile-menu-button"
+    class="lg:hidden p-2 text-foreground hover:bg-accent rounded-lg transition-colors"
+    aria-label="Toggle menu"
+  >
+    <svg
+      id="menu-icon"
+      class="size-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg
+      id="close-icon"
+      class="size-6 hidden"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
   <!-- Actions -->
-  <div class="flex items-center gap-4">
+  <div class="hidden lg:flex items-center gap-4">
     <a href={`/contact`}>
       <Button size="sm" withArrow> Contactar </Button>
     </a>
   </div>
 </header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 lg:hidden hidden bg-background/95 backdrop-blur-md"
+>
+  <nav class="flex flex-col items-center justify-center h-full gap-8">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-2xl font-medium text-foreground hover:text-primary transition-colors mobile-menu-link"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <a href="/contact" class="mobile-menu-link">
+      <Button size="lg" withArrow> Contactar </Button>
+    </a>
+  </nav>
+</div>
+
+<script>
+  // Logo ISO collapse on scroll
+  const logoIso = document.getElementById("nav-logo-iso");
+
+  const updateLogo = () => {
+    if (!logoIso) return;
+    if (window.scrollY > 40) {
+      logoIso.style.width = "0px";
+      logoIso.style.opacity = "0";
+      logoIso.style.marginRight = "0px";
+    } else {
+      logoIso.style.width = "28px";
+      logoIso.style.opacity = "1";
+      logoIso.style.marginRight = "";
+    }
+  };
+
+  window.addEventListener("scroll", updateLogo, { passive: true });
+  updateLogo();
+
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+  const menuLinks = document.querySelectorAll(".mobile-menu-link");
+
+  menuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+    menuIcon?.classList.toggle("hidden");
+    closeIcon?.classList.toggle("hidden");
+    document.body.style.overflow = mobileMenu?.classList.contains("hidden")
+      ? ""
+      : "hidden";
+  });
+
+  // Close menu when clicking a link
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+      document.body.style.overflow = "";
+    });
+  });
+</script>
 
 <!-- Spacer to prevent content from going under fixed header -->
 <div class="h-20"></div>

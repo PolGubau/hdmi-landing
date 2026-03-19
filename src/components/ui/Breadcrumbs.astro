@@ -1,0 +1,54 @@
+---
+/**
+ * Breadcrumbs para navegación
+ * Muestra la ruta actual en la jerarquía del sitio
+ */
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="mb-8">
+  <ol class="flex items-center gap-2 text-sm text-muted-foreground">
+    {
+      items.map((item, index) => (
+        <li class="flex items-center gap-2">
+          {index > 0 && (
+            <svg
+              class="size-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          )}
+          {item.href ? (
+            <a
+              href={item.href}
+              class="hover:text-primary transition-colors"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-foreground font-medium">{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+

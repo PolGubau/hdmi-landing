@@ -10,28 +10,29 @@ export const copy = {
 	method: {
 		steps: [
 			{
-				title: "Hablamos contigo",
+				title: "Semana 1 - Discovery",
 				description:
-					"Queremos conocer tu proyecto, entender qué necesitas y cómo podemos ayudarte.",
+					"Llamada de 60 min para entender tu negocio, usuarios y objetivos. Definimos el alcance exacto, las funcionalidades del MVP y los criterios de éxito. Salimos con un plan claro.",
 			},
 			{
-				title: "Te enviamos una propuesta",
+				title: "Semana 2 - Propuesta y arquitectura",
 				description:
-					"Analizamos lo que necesitas y te mandamos una propuesta clara con entregables y plazos.",
+					"Te enviamos propuesta detallada con entregables, plazos y precio fijo. Sin sorpresas. Definimos la arquitectura técnica y el stack más adecuado para tu caso.",
 			},
 			{
-				title: "Nos ponemos manos a la obra",
+				title: "Semanas 3-4 - Diseño y desarrollo",
 				description:
-					"Diseño, desarrollo o contenido. Hacemos lo que el proyecto requiere.",
+					"Diseñamos las pantallas clave y empezamos a desarrollar. Cada viernes recibes una demo funcional para dar feedback. Iteramos rápido, sin burocracia.",
 			},
 			{
-				title: "Validación en entorno real",
+				title: "Semana 5 - Testing y ajustes",
 				description:
-					"Dividimos el trabajo en sprints. Vas viendo avances y ajustamos si hace falta.",
+					"Pruebas con usuarios reales, corrección de bugs y ajustes de UX. Tu feedback se implementa en 24-48h. El producto se afina hasta que esté listo para lanzar.",
 			},
 			{
-				title: "Lanzamos y seguimos contigo",
-				description: "Publicamos, medimos y mejoramos lo necesario.",
+				title: "Semana 6 - Lanzamiento",
+				description:
+					"Deploy a producción, configuración de analytics y monitorización. Te entregamos el código, la documentación y 30 días de soporte post-lanzamiento incluidos.",
 			},
 		],
 	},

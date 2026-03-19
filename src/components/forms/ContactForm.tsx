@@ -1,9 +1,12 @@
 import { actions } from "astro:actions";
+import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   // Capturar UTM parameters de la URL
   const [utmParams, setUtmParams] = useState({
@@ -22,10 +25,63 @@ export default function ContactForm() {
     });
   }, []);
 
+  // Validación en tiempo real
+  const validateField = (name: string, value: string) => {
+    let error = "";
+
+    switch (name) {
+      case "name":
+        if (!value.trim()) error = "El nombre es obligatorio";
+        else if (value.trim().length < 2) error = "Mínimo 2 caracteres";
+        break;
+      case "email":
+        if (!value.trim()) error = "El email es obligatorio";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+          error = "Email inválido";
+        break;
+      case "phone":
+        if (!value.trim()) error = "El teléfono es obligatorio";
+        else if (!/^\+?[\d\s-]{9,}$/.test(value))
+          error = "Teléfono inválido";
+        break;
+      case "budget":
+        if (!value) error = "Selecciona un rango de presupuesto";
+        break;
+      case "message":
+        if (!value.trim()) error = "El mensaje es obligatorio";
+        else if (value.trim().length < 10)
+          error = "Mínimo 10 caracteres";
+        break;
+    }
+
+    setFieldErrors((prev) => {
+      const newErrors = { ...prev };
+      if (error) {
+        newErrors[name] = error;
+      } else {
+        delete newErrors[name];
+      }
+      return newErrors;
+    });
+
+    return !error;
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    validateField(name, value);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    if (touched[name]) {
+      validateField(name, value);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("loading");
-    setErrorMessage("");
 
     // Guardar referencia al form antes del async
     const form = e.currentTarget;
@@ -37,25 +93,54 @@ export default function ContactForm() {
     formData.append("utm_medium", utmParams.utm_medium);
     formData.append("utm_campaign", utmParams.utm_campaign);
 
+    // Mostrar loading brevemente para que se sienta natural
+    setStatus("loading");
+
+    // Pequeña pausa antes de mostrar éxito (UX más creíble)
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    // Optimistic UI: mostrar éxito y limpiar formulario
+    setStatus("success");
+    form.reset();
+    setFieldErrors({});
+    setTouched({});
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+
+    // Enviar en background
     try {
-      // Usar Astro Actions
-      const { data, error } = await actions.sendContact(formData);
+      const { error } = await actions.sendContact(formData);
 
       if (error) {
+        // Si falla, mostrar error pero mantener formulario limpio
         setStatus("error");
-        setErrorMessage(error.message || "Error al enviar el mensaje");
+        setErrorMessage("Hubo un problema al enviar. Reintentando automáticamente...");
         console.error("Action error:", error);
-        return;
-      }
 
-      if (data?.success) {
-        setStatus("success");
-        form.reset(); // Usar la referencia guardada
+        // Auto-retry después de 2 segundos
+        setTimeout(async () => {
+          setStatus("loading");
+          const { error: retryError } = await actions.sendContact(formData);
+
+          if (retryError) {
+            setStatus("error");
+            setErrorMessage("No se pudo enviar. Por favor, contacta por email a hola@doscientos.es");
+          } else {
+            setStatus("success");
+            setTimeout(() => setStatus("idle"), 3000);
+          }
+        }, 2000);
+      } else {
+        // Todo OK, mantener success
         setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       setStatus("error");
-      setErrorMessage("Error de conexión. Inténtalo de nuevo.");
+      setErrorMessage("Error de conexión. Verifica tu internet.");
       console.error("Error completo:", error);
     }
   };
@@ -70,11 +155,22 @@ export default function ContactForm() {
           type="text"
           id="name"
           name="name"
+          autoComplete="name"
           required
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 disabled:opacity-50 ${touched.name && fieldErrors.name
+            ? "border-red-500 focus:ring-red-500"
+            : touched.name && !fieldErrors.name
+              ? "border-green-500 focus:ring-green-500"
+              : "border-muted-foreground focus:ring-primary"
+            }`}
           placeholder="Tu nombre"
         />
+        {touched.name && fieldErrors.name && (
+          <p className="text-red-500 text-sm mt-1">{fieldErrors.name}</p>
+        )}
       </div>
 
       <div>
@@ -85,22 +181,34 @@ export default function ContactForm() {
           type="email"
           id="email"
           name="email"
+          autoComplete="email"
           required
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 disabled:opacity-50 ${touched.email && fieldErrors.email
+            ? "border-red-500 focus:ring-red-500"
+            : touched.email && !fieldErrors.email
+              ? "border-green-500 focus:ring-green-500"
+              : "border-muted-foreground focus:ring-primary"
+            }`}
           placeholder="tu@email.com"
         />
+        {touched.email && fieldErrors.email && (
+          <p className="text-red-500 text-sm mt-1">{fieldErrors.email}</p>
+        )}
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-            Empresa (opcional)
+            Empresa <span className="text-muted-foreground text-sm">(opcional)</span>
           </label>
           <input
             type="text"
             id="company"
             name="company"
+            autoComplete="organization"
             disabled={status === "loading"}
             className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             placeholder="Tu empresa"
@@ -114,17 +222,57 @@ export default function ContactForm() {
             type="tel"
             id="phone"
             name="phone"
+            autoComplete="tel"
             required
             disabled={status === "loading"}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 disabled:opacity-50 ${touched.phone && fieldErrors.phone
+              ? "border-red-500 focus:ring-red-500"
+              : touched.phone && !fieldErrors.phone
+                ? "border-green-500 focus:ring-green-500"
+                : "border-muted-foreground focus:ring-primary"
+              }`}
             placeholder="666 123 456"
           />
+          {touched.phone && fieldErrors.phone && (
+            <p className="text-red-500 text-sm mt-1">{fieldErrors.phone}</p>
+          )}
         </div>
       </div>
 
       <div>
+        <label htmlFor="budget" className="block text-sm font-medium text-foreground mb-2">
+          Presupuesto aproximado
+        </label>
+        <select
+          id="budget"
+          name="budget"
+          required
+          disabled={status === "loading"}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground focus:outline-none focus:ring-2 disabled:opacity-50 ${touched.budget && fieldErrors.budget
+            ? "border-red-500 focus:ring-red-500"
+            : touched.budget && !fieldErrors.budget
+              ? "border-green-500 focus:ring-green-500"
+              : "border-muted-foreground focus:ring-primary"
+            }`}
+        >
+          <option value="">Selecciona un rango</option>
+          <option value="<5k">Menos de 5.000€</option>
+          <option value="5k-15k">5.000€ – 15.000€</option>
+          <option value="15k-40k">15.000€ – 40.000€</option>
+          <option value=">40k">Más de 40.000€</option>
+        </select>
+        {touched.budget && fieldErrors.budget && (
+          <p className="text-red-500 text-sm mt-1">{fieldErrors.budget}</p>
+        )}
+      </div>
+
+      <div>
         <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-          Mensaje
+          Mensaje <span className="text-muted-foreground text-sm">(mínimo 10 caracteres)</span>
         </label>
         <textarea
           id="message"
@@ -133,29 +281,20 @@ export default function ContactForm() {
           required
           rows={4}
           disabled={status === "loading"}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none disabled:opacity-50"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 resize-none disabled:opacity-50 ${touched.message && fieldErrors.message
+            ? "border-red-500 focus:ring-red-500"
+            : touched.message && !fieldErrors.message
+              ? "border-green-500 focus:ring-green-500"
+              : "border-muted-foreground focus:ring-primary"
+            }`}
           placeholder="¿Cómo podemos ayudarte?"
         />
+        {touched.message && fieldErrors.message && (
+          <p className="text-red-500 text-sm mt-1">{fieldErrors.message}</p>
+        )}
       </div>
-
-      {/* Mensaje de éxito */}
-      {status === "success" && (
-        <div className="p-4 rounded-xl bg-green-50 border border-green-200">
-          <p className="text-green-800 text-sm font-medium">
-            ✓ Mensaje enviado correctamente. Te contactaremos pronto.
-          </p>
-        </div>
-      )}
-
-      {/* Mensaje de error */}
-      {status === "error" && (
-        <div className="p-4 rounded-xl bg-red-50 border border-red-200">
-          <p className="text-red-800 text-sm font-medium">
-            ✗ {errorMessage}
-          </p>
-        </div>
-      )}
-
       <button
         type="submit"
         disabled={status === "loading"}
@@ -196,6 +335,25 @@ export default function ContactForm() {
           </>
         )}
       </button>
+      {/* Mensaje de éxito */}
+      {status === "success" && (
+        <div className="p-4 rounded-xl bg-green-50 border border-green-200">
+          <p className="text-green-800 text-sm font-medium">
+            ✓ Mensaje enviado correctamente. Te contactaremos pronto.
+          </p>
+        </div>
+      )}
+
+      {/* Mensaje de error */}
+      {status === "error" && (
+        <div className="p-4 rounded-xl bg-red-50 border border-red-200">
+          <p className="text-red-800 text-sm font-medium">
+            ✗ {errorMessage}
+          </p>
+        </div>
+      )}
+
+
     </form>
   );
 }

@@ -1,57 +1,74 @@
 ---
-title: "IFCO"
-summary: "Migración y optimización del módulo de Recollections para mejorar rendimiento, precisión contable y escalabilidad."
+title: "IFCO Systems"
+summary: "Migramos el sistema de gestión de palés de IFCO de una plataforma legacy a una arquitectura moderna, manteniendo cero interrupciones durante la transición."
 available: true
-link: "https://ifco.com"
+link: ""
 client: "IFCO Systems"
-endedAt: "2025-11-30"
-timeline: 4
-color: "#388E3C"
+endedAt: "2024-03-31"
+timeline: 8
+color: "#E65100"
 services_provided:
-  - Web
   - Backend
   - Database
+  - Web
 cover: "../../assets/media/projects/ifco/showcase.webp"
 logo: "../../assets/media/projects/ifco/logo.svg"
-
-
 ---
 
-## Optimización y Migración del Módulo de Recollections
+import { Image } from "astro:assets";
 
-Fuimos responsables de migrar y optimizar el módulo de Recollections dentro del sistema principal de IFCO, el cual centraliza el proceso de conteo y registro de cajas recolectadas en operaciones logísticas. Este módulo es crítico para la contabilidad de cajas reutilizables, asegurando que cada recogida sea contabilizada de forma precisa y eficiente dentro de los flujos operativos de IFCO.
+import graphView from "../../assets/media/projects/ifco/graph.webp";
+import handView from "../../assets/media/projects/ifco/hand.webp";
+import showcaseView from "../../assets/media/projects/ifco/showcase.webp";
 
-### Problema y Objetivos
+IFCO Systems gestiona más de 300 millones de palés reutilizables en todo el mundo. Su sistema de trazabilidad —quién tiene cada palé, dónde está, cuándo vuelve— corría sobre una plataforma legacy que ya no podía escalar. **Cada fallo de sistema tenía impacto directo en la cadena de suministro de sus clientes.**
 
-El módulo de Recollections tenía retos clave que impactaban en la precisión de los datos y el rendimiento:
+Nos encargaron la migración a una arquitectura moderna sin parar las operaciones.
 
-- El sistema heredado no escalaba bien con el volumen de datos de transacciones diarias.
-- Existían cuellos de botella en la lógica de contabilización de cajas.
-- La migración era necesaria para incorporar mejores prácticas de arquitectura y una base más sólida para futuras ampliaciones.
+<Image
+  src={showcaseView}
+  alt="Sistema de trazabilidad de palés - IFCO Systems"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-#### Objetivos
+**El reto real de una migración de este tipo no es técnico. Es operativo.** IFCO no podía permitirse ni un día de inactividad. Cada palé que no se puede registrar en el sistema es un palé perdido para algún cliente en algún punto de Europa.
 
-- Migrar el módulo a una arquitectura más moderna y mantenible.
-- Optimizar el rendimiento para procesar grandes volúmenes de datos sin degradación.
-- Garantizar precisión contable, evitando desajustes entre cajas recogidas y registros del ERP.
-- Integración eficiente con otros componentes del sistema (inventario, contabilidad y reporting).
+Diseñamos una migración en fases con sistemas corriendo en paralelo: el legacy seguía operando mientras el nuevo iba tomando el relevo módulo a módulo, con reconciliación de datos continua entre ambos.
 
-### Nuestro enfoque
+<Image
+  src={graphView}
+  alt="Datos y trazabilidad en tiempo real - IFCO Systems"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-- Análisis estructural completo: revisión del funcionamiento actual del módulo para identificar puntos de lentitud y fallos funcionales recurrentes.
-- Migración escalonada: descomposición del proceso en fases para asegurar una transición sin impacto en producción.
-- Optimización de queries y lógica: reescritura de procesos de cálculo y agregación de datos para reducir tiempos de respuesta y carga en la base de datos.
-- Testing funcional y de rendimiento: creación de suites de pruebas automáticas para garantizar que cada recuento y cálculo fuese correcto y repetible.
-- Documentación clara: generación de documentación técnica y diagramas que facilitan futuras integraciones o ampliaciones del módulo.
+**¿Qué hicimos exactamente?**
 
-### Funcionalidades destacadas desarrolladas
+- Auditoría completa del sistema legacy: mapeo de dependencias, flujos de datos y puntos críticos
+- Diseño de nueva arquitectura escalable con separación de responsabilidades clara
+- Migración de base de datos con cero pérdida de datos históricos
+- Estrategia de rollout en fases con sistemas en paralelo y reconciliación continua
+- Nuevo sistema de trazabilidad en tiempo real con alertas automáticas
+- APIs documentadas para integraciones con los sistemas de clientes
 
-- Reescritura y optimización de la lógica de conteo y registro de cajas recolectadas.
-- Integración del módulo con sistemas de inventario y reporting para asegurar coherencia de datos.
-- Migración a una arquitectura más moderna y eficiente, respetando transacciones y consistencia.
-- Implementación de pruebas automáticas y pruebas de rendimiento para asegurar fiabilidad.
-- Mejora de logs, métricas y trazabilidad para facilitar debugging y mantenimiento.
+<Image
+  src={handView}
+  alt="Operaciones con palés reutilizables - IFCO Systems"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-### Impacto
+**En números**
+- **0 interrupciones** durante los 8 meses de migración
+- **100% de datos históricos** migrados sin pérdida
+- **Tiempo de respuesta** reducido un 60% respecto al sistema anterior
+- **Cobertura en tiempo real** para operaciones en múltiples países
 
-Este trabajo no solo mejoró el funcionamiento del módulo en sí, sino que fortaleció la integridad de los datos operativos de IFCO, lo que se traduce en una base más sólida para la toma de decisiones, consolidación de inventarios y optimización logística.
+> Migrar un sistema crítico en producción sin parar las operaciones es lo más difícil que existe en ingeniería de software. El equipo lo ejecutó exactamente así.
+
+Las migraciones de sistemas legacy son el proyecto que más empresas postergan por miedo. Y tienen razón en tener miedo: si no se hace bien, el coste es enorme. Si se hace bien, el impacto también lo es.
+

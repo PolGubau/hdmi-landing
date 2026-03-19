@@ -1,4 +1,6 @@
 ---
+import { cn } from "~/shared/lib/utils";
+
 /**
  * Breadcrumbs Schema.org para mejorar SEO y navegación
  * Google muestra breadcrumbs en los resultados de búsqueda
@@ -11,9 +13,10 @@ interface BreadcrumbItem {
 
 interface Props {
   items: BreadcrumbItem[];
+  className?: string;
 }
 
-const { items } = Astro.props;
+const { items, className } = Astro.props;
 const baseUrl = Astro.site?.toString() || "https://doscientos.es";
 
 // Siempre incluir Home como primer item
@@ -38,7 +41,10 @@ const breadcrumbSchema = {
 />
 
 <!-- Visual Breadcrumbs (opcional) -->
-<nav aria-label="Breadcrumb" class="text-sm text-muted-foreground mb-8">
+<nav
+  aria-label="Breadcrumb"
+  class={cn(`text-sm text-muted-foreground mb-8`, className)}
+>
   <ol class="flex items-center gap-2">
     {
       breadcrumbItems.map((item, index) => (

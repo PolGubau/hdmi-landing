@@ -1,0 +1,75 @@
+---
+import SectionTag from "../ui/SectionTag.astro";
+
+const guarantees = [
+  {
+    icon: "📅",
+    title: "Entrega en 6 semanas",
+    description:
+      "Si no entregamos en el plazo acordado, seguimos trabajando sin coste adicional hasta que esté listo.",
+  },
+  {
+    icon: "💸",
+    title: "Pagos por hitos",
+    description:
+      "30% al inicio, 40% a mitad, 30% al entregar. Nunca pagas por trabajo que no has visto.",
+  },
+  {
+    icon: "📦",
+    title: "El código es tuyo",
+    description:
+      "Código fuente completo, repositorios y documentación. Sin lock-in ni dependencias de nosotros.",
+  },
+  {
+    icon: "🛠️",
+    title: "30 días de soporte",
+    description:
+      "Post-lanzamiento incluido. Corregimos bugs y ajustamos lo que necesites sin coste extra.",
+  },
+];
+---
+
+<section class="px-6 max-w-7xl mx-auto space-y-12">
+  <header class="text-center space-y-4" data-stagger="100">
+    <div data-reveal="top" data-speed="fast">
+      <SectionTag>Garantías</SectionTag>
+    </div>
+    <h2
+      class="text-3xl md:text-5xl font-bold text-foreground"
+      data-reveal="scale"
+      data-speed="normal"
+      data-easing="bounce"
+    >
+      Trabajamos con
+      <span class="text-primary"> riesgo cero</span>
+    </h2>
+    <p
+      class="text-lg text-muted-foreground max-w-2xl mx-auto"
+      data-reveal="bottom"
+      data-speed="normal"
+    >
+      Sabemos que contratar un equipo técnico externo genera incertidumbre. Por
+      eso estructuramos todo para que nunca pierdas.
+    </p>
+  </header>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger="100">
+    {
+      guarantees.map((g) => (
+        <div
+          class="p-6 rounded-2xl bg-accent space-y-3 border border-transparent hover:border-primary/20 transition-colors"
+          data-reveal="bottom"
+          data-speed="normal"
+          data-easing="soft"
+        >
+          <span class="text-3xl">{g.icon}</span>
+          <h3 class="text-lg font-semibold text-foreground">{g.title}</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            {g.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+

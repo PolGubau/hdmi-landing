@@ -1,0 +1,84 @@
+---
+import SectionHeader from "../ui/SectionHeader.astro";
+import SectionTag from "../ui/SectionTag.astro";
+
+const rows = [
+  { label: "Tiempo de entrega", us: "6 semanas", them: "4-6 meses" },
+  { label: "Precio", us: "Precio fijo acordado", them: "Presupuesto variable" },
+  { label: "Pagos", us: "Por hitos (30/40/30)", them: "Por adelantado" },
+  {
+    label: "Comunicación",
+    us: "Demo semanal + Slack",
+    them: "Reuniones mensuales",
+  },
+  {
+    label: "Propiedad del código",
+    us: "100% tuyo",
+    them: "Depende del contrato",
+  },
+  {
+    label: "Soporte post-lanzamiento",
+    us: "30 días incluidos",
+    them: "Coste adicional",
+  },
+  {
+    label: "Flexibilidad",
+    us: "Cambios en 24-48h",
+    them: "Change requests formales",
+  },
+  { label: "Equipo", us: "Senior dedicado", them: "Junior + rotación" },
+];
+---
+
+<section id="faq" class="landing-section">
+  <SectionHeader
+    tag="Comparativa"
+    title="Agencia tradicional"
+    subtitle="vs doscientos"
+    description="No somos una agencia tradicional. Somos un equipo pequeño, rápido y especializado en lanzar productos que funcionan."
+    align="center"
+  />
+
+  <div
+    class="rounded-2xl overflow-hidden border border-muted"
+    data-reveal="bottom"
+    data-speed="normal"
+    data-easing="soft"
+  >
+    <!-- Header -->
+    <div class="grid grid-cols-3 bg-foreground text-background">
+      <div class="p-4 text-sm font-semibold"></div>
+      <div
+        class="p-4 text-sm font-semibold text-center border-l border-background/20"
+      >
+        doscientos
+      </div>
+      <div
+        class="p-4 text-sm font-semibold text-center border-l border-background/20 opacity-60"
+      >
+        Agencia tradicional
+      </div>
+    </div>
+
+    <!-- Rows -->
+    {
+      rows.map((row, i) => (
+        <div
+          class={`grid grid-cols-3 border-t border-muted ${i % 2 === 0 ? "bg-background" : "bg-accent/40"}`}
+        >
+          <div class="p-4 text-sm font-medium text-muted-foreground">
+            {row.label}
+          </div>
+          <div class="p-4 text-sm font-semibold text-primary text-center border-l border-muted flex items-center justify-center gap-2">
+            <span class="text-green-500">✓</span>
+            {row.us}
+          </div>
+          <div class="p-4 text-sm text-muted-foreground text-center border-l border-muted flex items-center justify-center gap-2">
+            <span class="text-red-400">✗</span>
+            {row.them}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

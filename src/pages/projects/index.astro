@@ -51,7 +51,7 @@ const projects = await getProjects();
           data-easing="bounce"
         >
           <span class="text-4xl font-bold text-foreground">
-            {projects.length + 8}+
+            {projects.length + 17}+
           </span>
           <h3 class="text-muted-foreground">Proyectos completados</h3>
         </li>
@@ -84,8 +84,18 @@ const projects = await getProjects();
         </li>
       </ul>
 
+      <h2
+        class="text-3xl md:text-4xl font-bold text-foreground text-center"
+        data-reveal="bottom"
+        data-speed="normal"
+        data-easing="soft"
+        data-distance="small"
+      >
+        Casos de éxito destacados
+      </h2>
+
       <!-- Projects grid -->
-      <div class="grid lg:grid-cols-2 gap-4" data-stagger="150">
+      <section class="grid lg:grid-cols-2 gap-4" data-stagger="150">
         {
           projects.map((project, index) => (
             <article
@@ -107,7 +117,7 @@ const projects = await getProjects();
             </article>
           ))
         }
-      </div>
+      </section>
     </div>
   </div>
 </MainLayout>

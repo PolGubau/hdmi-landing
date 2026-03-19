@@ -17,12 +17,12 @@ const { id, title, services_provided, cover } = Astro.props;
 
 <a href={`/projects/${id}`} class="w-full">
   <article
-    class="group h-full flex flex-col gap-4 rounded-4xl bg-accent shadow-pastel overflow-x-hidden transition-all duration-300 p-3"
+    class="group h-full flex flex-col gap-4 rounded-4xl bg-accent shadow-pastel overflow-x-hidden transition-all duration-300 p-3 hover:shadow-2xl hover:brightness-105"
   >
     <header class="w-full aspect-[1.5] rounded-3xl overflow-hidden">
       <!-- Image -->
       <div
-        class="group-hover:scale-102 duration-300 transition-all w-full h-full bg-gradient-to-br from-muted to-primary/20 flex items-center justify-center relative overflow-hidden"
+        class="duration-300 transition-all w-full h-full bg-gradient-to-br from-muted to-primary/20 flex items-center justify-center relative overflow-hidden group-hover:brightness-105"
       >
         <Image
           width={800}

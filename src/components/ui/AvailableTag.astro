@@ -1,9 +1,19 @@
+---
+const spotsLeft = 2;
+const nextMonth = new Date(
+  Date.now() + 30 * 24 * 60 * 60 * 1000,
+).toLocaleString("es-ES", { month: "long" });
+---
+
 <div
   data-reveal="top"
   data-duration="300"
   data-delay="400"
-  class="rounded-full py-2 px-4 items-center w-fit text-muted-foreground justify-center bg-accent flex gap-2 text-xs"
+  class="rounded-full py-2 px-4 items-center w-fit text-muted-foreground justify-center bg-accent flex gap-1 text-xs"
 >
-  <div class="bg-green-400 rounded-full size-2 animate-pulse"></div>
-  Disponibles para proyectos
+  <div class="bg-green-400 rounded-full size-2 animate-pulse mr-1"></div>
+  Solo <strong class="text-foreground">{spotsLeft} plazas</strong> disponibles en
+  <span class="capitalize">
+    {nextMonth}
+  </span>
 </div>

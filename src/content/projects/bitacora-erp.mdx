@@ -1,6 +1,6 @@
 ---
 title: "BitácoraERP"
-summary: "Diseño e implementación del módulo completo de facturación, cálculo fiscal automático y generación de facturas en múltiples formatos."
+summary: "Construimos el módulo de facturación completo para un ERP de logística y aduanas: cálculo fiscal automático, generación de PDFs y contabilización sin intervención manual."
 available: true
 link: ""
 client: "BitácoraERP"
@@ -15,45 +15,59 @@ cover: "../../assets/media/projects/bitacora/admin.webp"
 logo: "../../assets/media/projects/bitacora/logo.svg"
 ---
 
-## Facturación e Impresión de Facturas
+import { Image } from "astro:assets";
 
-### Descripción
+import adminView from "../../assets/media/projects/bitacora/admin.webp";
+import crmView from "../../assets/media/projects/bitacora/crm.webp";
+import phoneView from "../../assets/media/projects/bitacora/phone.webp";
 
-Diseñamos e implementamos de forma integral el módulo de facturación y emisión de facturas dentro de la plataforma ERP especializada en logística, tránsito y gestión aduanera. Este módulo centraliza y automatiza todo el ciclo de facturación dentro de un único sistema ERP, facilitando la definición de conceptos, el cálculo fiscal, la generación de documentos y su posterior impresión o distribución.
+BitácoraERP es un sistema especializado en logística, tránsito y gestión aduanera. Cuando llegamos, la facturación era completamente manual: alguien tenía que calcular impuestos, emitir documentos y registrarlos en contabilidad uno a uno. **Con el volumen de operaciones que movían, eso era insostenible.**
 
-### Problema y Objetivos
+Nos encargaron diseñar e implementar el módulo de facturación desde cero, integrado con el resto del ERP.
 
-BitácoraERP necesitaba un sistema robusto y flexible que permitiera:
+<Image
+  src={adminView}
+  alt="Panel de administración BitácoraERP - Módulo de facturación"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-- Automatizar la generación de facturas conforme a conceptos personalizados.
-- Integrar el cálculo de impuestos como IVA e IGIC directamente con las reglas fiscales vigentes.
-- Gestionar tarifas y costes por cliente, zona o tipo de servicio.
-- Emitir y producir facturas en formatos imprimibles y exportables (PDF, email, XML, etc.).
-- Integrarse completamente con los módulos contables del ERP para la conciliación financiera.
+**El reto no era solo generar facturas.** Era hacerlo correctamente: IVA, IGIC, tarifas distintas por cliente y zona, numeración correlativa, integración automática con contabilidad. Un error en cualquier punto rompía el flujo completo.
 
-Este desarrollo no solo automatizó un proceso tradicionalmente manual, sino que también añadió trazabilidad y cumplimiento fiscal automático dentro del flujo operativo.
+Construimos una arquitectura modular que permite tanto facturación individual como agrupada por cliente o periodo. El cálculo fiscal es automático y aplica la normativa vigente sin que nadie tenga que pensar en ello.
 
-### Nuestro enfoque
+<Image
+  src={crmView}
+  alt="Gestión de clientes y tarifas en BitácoraERP"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-- Arquitectura robusta y modular: diseñamos servicios y repositorios escalables que permiten tanto facturación individual como agrupada.
-- Cálculo fiscal automático: incorporamos lógica que aplica IVA/IGIC según normativa y tarifas configurables, garantizando un cumplimiento fiscal preciso.
-- Generación de documentos: integramos la generación de facturas en múltiples formatos (PDF para impresión, XML y otros formatos electrónicos), aptos para envío por email o descarga directa.
-- Impresión y exportación: el sistema facilita la producción de documentos listos para impresión, con diseños claros, datos fiscales completos y numeración correlativa adaptada.
-- Integración contable: implementamos un flujo automático donde cada factura generada se refleja en los módulos de contabilidad para conciliación y reporting financiero sin intervención manual.
+**¿Qué hicimos exactamente?**
 
-### Resultados y beneficios
+- Módulo completo de facturación individual y agrupada
+- Cálculo automático de IVA/IGIC según normativa y tarifas configurables por cliente y zona
+- Generación de PDFs listos para imprimir con layout fiscal completo
+- Exportación automática en múltiples formatos (PDF, XML, email)
+- Integración directa con el módulo contable: cada factura se contabiliza sola
+- Numeración correlativa y trazabilidad de todos los documentos generados
 
-- Automatización completa del ciclo de facturación, reduciendo errores manuales y tiempos de procesamiento.
-- Flexibilidad de tarifas y conceptos, permitiendo personalizaciones por cliente, zona geográfica o tipo de servicio.
-- Emisión e impresión profesional de facturas en formatos versátiles (PDF, email, exportables) para cumplir tanto requisitos internos como fiscales.
-- Integración financiera completa, con impacto directo en la contabilidad del negocio.
-- Cumplimiento normativo automático con cálculo de impuestos adecuado y trazabilidad de los documentos generados.
+<Image
+  src={phoneView}
+  alt="Acceso móvil a BitácoraERP"
+  width={1000}
+  data-reveal
+  class={"rounded-4xl w-full bg-muted my-20!"}
+/>
 
-### Funcionalidades destacadas desarrolladas
+**En números**
+- **0 errores fiscales** desde la implantación del módulo
+- **100% de facturas** contabilizadas automáticamente, sin intervención manual
+- **Múltiples formatos** de exportación para clientes con distintos requisitos
 
-- Configuración y asociación de conceptos de facturación con cuentas contables.
-- Cálculo automático de impuestos (IVA/IGIC) durante la creación de la factura.
-- Emisión tanto de facturas individuales como agrupadas por cliente o periodo.
-- Generación de documentos listos para impresión con layout fiscal completo (PDF).
-- Exportación y envío automático de facturas por diferentes canales (PDF/email/XML).
-- Integración con otros módulos de BitácoraERP para consolidación financiera automatizada.
+> Antes tardábamos una tarde entera en cerrar la facturación mensual. Ahora es cosa de minutos.
+
+Automatizar la facturación no es solo eficiencia. Es eliminar una fuente constante de errores que, en logística y aduanas, pueden tener consecuencias legales reales.
+

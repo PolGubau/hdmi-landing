@@ -3,6 +3,7 @@ import { z } from "astro:schema";
 import { Client } from "@notionhq/client";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
+import { generateContactEmailHTML } from "../shared/lib/email-template";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -40,6 +41,7 @@ export const server = {
 			email: z.string().email("Email inválido"),
 			phone: z.string().min(1, "El teléfono es obligatorio"),
 			company: z.string().optional(),
+			budget: z.enum(["menos-5k", "5k-15k", "15k-40k", "mas-40k"]).optional(),
 			message: z.string().min(1, "El mensaje debe tener al menos 1 carácter"),
 			timezone: z.string().optional(),
 			utm_source: z.string().optional(),
@@ -52,12 +54,21 @@ export const server = {
 				email,
 				phone,
 				company,
+				budget,
 				message,
 				timezone,
 				utm_source,
 				utm_medium,
 				utm_campaign,
 			} = input;
+
+			const budgetLabels: Record<string, string> = {
+				"menos-5k": "Menos de 5.000€",
+				"5k-15k": "5.000€ – 15.000€",
+				"15k-40k": "15.000€ – 40.000€",
+				"mas-40k": "Más de 40.000€",
+			};
+			const budgetLabel = budget ? budgetLabels[budget] : "No especificado";
 
 			// Obtener datos del request
 			const userAgent = context.request.headers.get("user-agent") || "Unknown";
@@ -106,103 +117,31 @@ export const server = {
 
 			try {
 				// 1. Enviar email con Resend
+				const emailHTML = generateContactEmailHTML({
+					name,
+					email,
+					phone,
+					company,
+					budget: budgetLabel,
+					message,
+					timestamp,
+					ip,
+					browser,
+					os,
+					device,
+					referrer,
+					utm_source,
+					utm_medium,
+					utm_campaign,
+				});
+
 				const { data: emailData, error: emailError } = await resend.emails.send(
 					{
-						from: "Landing <hola@doscientos.es>",
+						from: "doscientos <hola@doscientos.es>",
 						to: ["hola@doscientos.es", "gubaupol@gmail.com"],
 						replyTo: email,
-						subject: `Nuevo contacto: ${name}`,
-						html: `
-            <!DOCTYPE html>
-            <html>
-              <head>
-                <style>
-                  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
-                  .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                  .header { background: #2A4227; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
-                  .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
-                  .field { margin-bottom: 20px; }
-                  .label { font-weight: 600; color: #50576b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
-                  .value { margin-top: 5px; font-size: 16px; }
-                  .metadata { background: white; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 14px; }
-                  .metadata-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb; }
-                  .metadata-item:last-child { border-bottom: none; }
-                </style>
-              </head>
-              <body>
-                <div class="container">
-                  <div class="header">
-                    <h1 style="margin: 0; font-size: 24px;">Nuevo Contacto desde la Web</h1>
-                  </div>
-                  <div class="content">
-                    <div class="field">
-                      <div class="label">Nombre</div>
-                      <div class="value">${name}</div>
-                    </div>
-                    
-                    <div class="field">
-                      <div class="label">Email</div>
-                      <div class="value"><a href="mailto:${email}">${email}</a></div>
-                    </div>
-                    
-                    <div class="field">
-                      <div class="label">Teléfono</div>
-                      <div class="value"><a href="tel:${phone}">${phone}</a></div>
-                    </div>
-                    
-                    ${
-											company
-												? `
-                    <div class="field">
-                      <div class="label">Empresa</div>
-                      <div class="value">${company}</div>
-                    </div>
-                    `
-												: ""
-										}
-                    
-                    <div class="field">
-                      <div class="label">Mensaje</div>
-                      <div class="value">${message.replace(/\n/g, "<br>")}</div>
-                    </div>
-                    
-                    <div class="metadata">
-                      <div class="metadata-item">
-                        <span><strong>Fecha/Hora:</strong></span>
-                        <span>${timestamp}</span>
-                      </div>
-                      <div class="metadata-item">
-                        <span><strong>IP:</strong></span>
-                        <span>${ip}</span>
-                      </div>
-                      <div class="metadata-item">
-                        <span><strong>Navegador:</strong></span>
-                        <span>${browser}</span>
-                      </div>
-                      <div class="metadata-item">
-                        <span><strong>Sistema:</strong></span>
-                        <span>${os}</span>
-                      </div>
-                      <div class="metadata-item">
-                        <span><strong>Dispositivo:</strong></span>
-                        <span>${device}</span>
-                      </div>
-                      ${
-												referrer !== "Direct"
-													? `
-                      <div class="metadata-item">
-                        <span><strong>Referrer:</strong></span>
-                        <span>${referrer}</span>
-                      </div>
-                      `
-													: ""
-											}
-                    </div>
-                  </div>
-                </div>
-              </body>
-            </html>
-          `,
+						subject: `Nuevo contacto de ${name}${company ? ` (${company})` : ""}`,
+						html: emailHTML,
 					},
 				);
 
@@ -272,6 +211,15 @@ export const server = {
 										{
 											text: {
 												content: company || "",
+											},
+										},
+									],
+								},
+								budget: {
+									rich_text: [
+										{
+											text: {
+												content: budgetLabel,
 											},
 										},
 									],
@@ -495,14 +443,14 @@ export const server = {
 						<html>
 							<head>
 								<style>
-									body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
-									.container { max-width: 600px; margin: 0 auto; padding: 20px; }
-									.header { background: #2A4227; color: white; padding: 40px 20px; border-radius: 8px 8px 0 0; text-align: center; }
-									.header h1 { margin: 0; font-size: 28px; }
-									.content { background: #f9fafb; padding: 40px 20px; border-radius: 0 0 8px 8px; text-align: center; }
-									.content p { margin: 15px 0; }
-									.cta-button { display: inline-block; background: #2A4227; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 20px; }
-									.footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #666; }
+									body font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; 
+									.container max-width: 600px; margin: 0 auto; padding: 20px; 
+									.header background: #2A4227; color: white; padding: 40px 20px; border-radius: 8px 8px 0 0; text-align: center; 
+									.header h1 margin: 0; font-size: 28px; 
+									.content background: #f9fafb; padding: 40px 20px; border-radius: 0 0 8px 8px; text-align: center; 
+									.content p margin: 15px 0; 
+									.cta-button display: inline-block; background: #2A4227; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 20px; 
+									.footer margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #666; 
 								</style>
 							</head>
 							<body>

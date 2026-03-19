@@ -1,5 +1,10 @@
 ---
-import Button from "../ui/Button.astro";
+import ContactForm from "../forms/ContactForm";
+
+const spotsLeft = 2;
+const nextMonth = new Date(
+  Date.now() + 30 * 24 * 60 * 60 * 1000,
+).toLocaleString("es-ES", { month: "long" });
 ---
 
 <section
@@ -29,9 +34,9 @@ import Button from "../ui/Button.astro";
         <span class="relative inline-flex rounded-full size-3 bg-green-400"
         ></span>
       </span>
-      <span class="text-sm font-medium"
-        >Solo 2 slots disponibles para marzo 2026</span
-      >
+      <span class="text-sm font-medium capitalize">
+        Solo {spotsLeft} plazas disponibles en {nextMonth}
+      </span>
     </div>
 
     <!-- Main heading -->
@@ -41,7 +46,7 @@ import Button from "../ui/Button.astro";
       data-speed="normal"
       data-easing="bounce"
     >
-      ¿Listo para lanzar tu proyecto?
+      Cuéntanos tu proyecto
     </h2>
 
     <!-- Subheading -->
@@ -52,7 +57,7 @@ import Button from "../ui/Button.astro";
       data-easing="soft"
       data-distance="small"
     >
-      Agenda una llamada de 15 minutos sin compromiso
+      Te respondemos en menos de 24 horas
     </p>
 
     <p
@@ -60,28 +65,18 @@ import Button from "../ui/Button.astro";
       data-easing="soft"
       data-distance="small"
     >
-      Hablemos de tu idea, te daremos feedback honesto y un plan de acción
-      claro. Sin letra pequeña, sin presión.
+      Sin compromiso. Te damos feedback honesto y un plan de acción claro,
+      aunque al final no trabajemos juntos.
     </p>
 
-    <!-- CTAs -->
+    <!-- Formulario embebido -->
     <div
-      class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-      data-reveal="scale"
-      data-speed="fast"
-      data-easing="elastic"
+      class="bg-background rounded-2xl p-8 text-left mb-12 shadow-xl"
+      data-reveal="bottom"
+      data-speed="normal"
+      data-easing="soft"
     >
-      <a href="/contact">
-        <Button size="lg" withArrow> Agendar llamada gratuita </Button>
-      </a>
-      <a href="/projects">
-        <Button
-          size="lg"
-          class="border-background/20 text-background hover:bg-background/10 bg-transparent"
-        >
-          Ver proyectos
-        </Button>
-      </a>
+      <ContactForm client:load />
     </div>
 
     <!-- Guarantees -->
@@ -113,7 +108,7 @@ import Button from "../ui/Button.astro";
         </div>
         <p class="font-semibold">Respuesta en 24h</p>
         <p class="text-sm opacity-75">
-          Te respondemos en menos de un día hábil
+          Te respondemos siempre en menos de un día hábil
         </p>
       </div>
 
@@ -142,7 +137,7 @@ import Button from "../ui/Button.astro";
         </div>
         <p class="font-semibold">Sin compromiso</p>
         <p class="text-sm opacity-75">
-          La llamada es 100% gratuita y sin presión
+          Feedback honesto aunque no trabajemos juntos
         </p>
       </div>
 

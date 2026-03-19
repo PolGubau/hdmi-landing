@@ -46,11 +46,16 @@ const { hero } = copy;
     data-delay="500"
     class="pt-4 flex flex-col items-center gap-4"
   >
-    <a href={`/contact`}>
-      <Button withArrow>
-        {hero.cta}
-      </Button>
-    </a>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href={`/contact`}>
+        <Button withArrow>
+          {hero.cta}
+        </Button>
+      </a>
+      <a href="/projects">
+        <Button variant="outline">Ver proyectos</Button>
+      </a>
+    </div>
 
     <!-- Social proof -->
     <div
