@@ -41,7 +41,7 @@ export const server = {
 			email: z.string().email("Email inválido"),
 			phone: z.string().min(1, "El teléfono es obligatorio"),
 			company: z.string().optional(),
-			budget: z.enum(["menos-5k", "5k-15k", "15k-40k", "mas-40k"]).optional(),
+			budget: z.enum(["<5k", "5k-15k", "15k-40k", ">40k"]).optional(),
 			message: z.string().min(1, "El mensaje debe tener al menos 1 carácter"),
 			timezone: z.string().optional(),
 			utm_source: z.string().optional(),
@@ -63,10 +63,10 @@ export const server = {
 			} = input;
 
 			const budgetLabels: Record<string, string> = {
-				"menos-5k": "Menos de 5.000€",
+				"<5k": "Menos de 5.000€",
 				"5k-15k": "5.000€ – 15.000€",
 				"15k-40k": "15.000€ – 40.000€",
-				"mas-40k": "Más de 40.000€",
+				">40k": "Más de 40.000€",
 			};
 			const budgetLabel = budget ? budgetLabels[budget] : "No especificado";
 
