@@ -12,11 +12,13 @@ const notion = new Client({
 	auth: import.meta.env.NOTION_INTEGRATION_SECRET,
 });
 
-// Inicializar cliente de Supabase
-const supabase = createClient(
-	import.meta.env.PUBLIC_SUPABASE_URL,
-	import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
-);
+// Lazy Supabase client — only instantiated when actually used
+function getSupabaseClient() {
+	return createClient(
+		import.meta.env.PUBLIC_SUPABASE_URL,
+		import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+	);
+}
 
 // Función para parsear User Agent
 function parseUserAgent(ua: string) {
@@ -425,6 +427,7 @@ export const server = {
 
 			try {
 				// 1. Verificar si el usuario ya existe
+				const supabase = getSupabaseClient();
 				const { data: existingUser, error: queryError } = await supabase
 					.from("users")
 					.select("id, status")
