@@ -50,6 +50,10 @@ const { title, description, image, type = "website", article } = Astro.props;
     <GoogleAnalytics />
     <MicrosoftClarity />
     <script>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
+    <script>
       // Prefetch links on hover for instant navigation
       document.addEventListener("astro:page-load", () => {
         const links = document.querySelectorAll('a[href^="/"]');
