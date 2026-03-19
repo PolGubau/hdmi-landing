@@ -7,7 +7,7 @@ const featuredProjects = projects.slice(0, 4);
 ---
 
 <section
-  class="relative mx-auto overflow-hidden pb-6 w-full"
+  class="relative mx-auto overflow-x-hidden pb-10 w-full"
   data-reveal="scale"
   data-speed="normal"
   data-easing="smooth"
@@ -73,12 +73,12 @@ const featuredProjects = projects.slice(0, 4);
 
   @media (max-width: 768px) {
     .animate-marquee {
-      animation-duration: 12s;
+      animation-duration: 20s;
     }
   }
 
   .animate-marquee:hover {
-    animation-duration: 60s;
+    animation-play-state: paused;
   }
 
   /* Asegurar que el carousel sea visible */
