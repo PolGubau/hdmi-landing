@@ -74,27 +74,9 @@ const pathname = Astro.url.pathname;
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <line
-        id="bar-top"
-        x1="4"
-        y1="6"
-        x2="20"
-        y2="6"
-        class="transition-all duration-300 origin-center"></line>
-      <line
-        id="bar-mid"
-        x1="4"
-        y1="12"
-        x2="20"
-        y2="12"
-        class="transition-all duration-300 origin-center"></line>
-      <line
-        id="bar-bot"
-        x1="4"
-        y1="18"
-        x2="20"
-        y2="18"
-        class="transition-all duration-300 origin-center"></line>
+      <line id="bar-top" x1="4" y1="6" x2="20" y2="6"></line>
+      <line id="bar-mid" x1="4" y1="12" x2="20" y2="12"></line>
+      <line id="bar-bot" x1="4" y1="18" x2="20" y2="18"></line>
     </svg>
   </button>
 
@@ -174,16 +156,16 @@ const pathname = Astro.url.pathname;
       menuButton?.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
 
-      // bars → X via transform
+      // bars → X: translateY to center, then rotate around own center
       if (barTop) {
-        barTop.style.transform = "rotate(45deg) translate(4px, -4px)";
+        barTop.style.transform = "translateY(6px) rotate(45deg)";
       }
       if (barMid) {
         barMid.style.opacity = "0";
         barMid.style.transform = "scaleX(0)";
       }
       if (barBot) {
-        barBot.style.transform = "rotate(-45deg) translate(4px, 4px)";
+        barBot.style.transform = "translateY(-6px) rotate(-45deg)";
       }
 
       mobileMenu
@@ -235,3 +217,15 @@ const pathname = Astro.url.pathname;
 
 <!-- Spacer to prevent content from going under fixed header -->
 <div class="h-20"></div>
+
+<style>
+  #bar-top,
+  #bar-mid,
+  #bar-bot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+</style>
