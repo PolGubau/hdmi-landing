@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.doscientos.es" }],
+      "destination": "https://doscientos.es/$1",
+      "permanent": true
+    }
+  ]
+}
+
