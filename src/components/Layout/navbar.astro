@@ -3,10 +3,14 @@ import Button from "~/components/ui/Button.astro";
 import { branding } from "~/config/branding";
 import { copy } from "~/shared/lib/copy";
 
-const navItems = [
+const desktopNavItems = [
   { href: "/projects", label: copy.nav.projects },
   { href: "/blog", label: copy.nav.blog },
 ];
+
+const mobileNavItems = [{ href: "/", label: "Inicio" }, ...desktopNavItems];
+
+const pathname = Astro.url.pathname;
 ---
 
 <header
@@ -37,14 +41,19 @@ const navItems = [
   <!-- Desktop Navigation -->
   <nav class="hidden lg:flex items-center">
     {
-      navItems.map((item) => (
-        <a
-          href={item.href}
-          class="text-muted-foreground py-2 px-4 text-sm hover:underline font-medium"
-        >
-          {item.label}
-        </a>
-      ))
+      desktopNavItems.map((item) => {
+        const isActive =
+          pathname === item.href ||
+          (item.href !== "/" && pathname.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class={`py-2 px-4 text-sm font-medium transition-colors ${isActive ? "text-foreground underline" : "text-muted-foreground hover:underline"}`}
+          >
+            {item.label}
+          </a>
+        );
+      })
     }
   </nav>
 
@@ -53,32 +62,39 @@ const navItems = [
     id="mobile-menu-button"
     class="lg:hidden p-2 text-foreground hover:bg-accent rounded-lg transition-colors"
     aria-label="Toggle menu"
+    aria-expanded="false"
   >
     <svg
-      id="menu-icon"
+      id="hamburger-icon"
       class="size-6"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16"></path>
-    </svg>
-    <svg
-      id="close-icon"
-      class="size-6 hidden"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"></path>
+      <line
+        id="bar-top"
+        x1="4"
+        y1="6"
+        x2="20"
+        y2="6"
+        class="transition-all duration-300 origin-center"></line>
+      <line
+        id="bar-mid"
+        x1="4"
+        y1="12"
+        x2="20"
+        y2="12"
+        class="transition-all duration-300 origin-center"></line>
+      <line
+        id="bar-bot"
+        x1="4"
+        y1="18"
+        x2="20"
+        y2="18"
+        class="transition-all duration-300 origin-center"></line>
     </svg>
   </button>
 
@@ -93,69 +109,128 @@ const navItems = [
 <!-- Mobile Menu -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-40 lg:hidden hidden bg-background/95 backdrop-blur-md"
+  class="fixed inset-0 z-40 lg:hidden bg-background/95 backdrop-blur-md pointer-events-none opacity-0 transition-opacity duration-300"
+  aria-hidden="true"
 >
   <nav class="flex flex-col items-center justify-center h-full gap-8">
     {
-      navItems.map((item) => (
-        <a
-          href={item.href}
-          class="text-2xl font-medium text-foreground hover:text-primary transition-colors mobile-menu-link"
-        >
-          {item.label}
-        </a>
-      ))
+      mobileNavItems.map((item, i) => {
+        const isActive =
+          pathname === item.href ||
+          (item.href !== "/" && pathname.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class={`mobile-menu-link text-2xl font-medium transition-colors translate-y-4 opacity-0 ${isActive ? "text-primary underline" : "text-foreground hover:text-primary"}`}
+            style={`transition: opacity 300ms ${80 + i * 60}ms, transform 300ms ${80 + i * 60}ms;`}
+          >
+            {item.label}
+          </a>
+        );
+      })
     }
-    <a href="/contact" class="mobile-menu-link">
+    <a
+      href="/contact"
+      class="mobile-menu-link translate-y-4 opacity-0"
+      style={`transition: opacity 300ms ${80 + mobileNavItems.length * 60}ms, transform 300ms ${80 + mobileNavItems.length * 60}ms;`}
+    >
       <Button size="lg" withArrow> Contactar </Button>
     </a>
   </nav>
 </div>
 
 <script>
-  // Logo ISO collapse on scroll
-  const logoIso = document.getElementById("nav-logo-iso");
+  function initNavbar() {
+    // Logo ISO collapse on scroll
+    const logoIso = document.getElementById("nav-logo-iso");
+    const updateLogo = () => {
+      if (!logoIso) return;
+      if (window.scrollY > 40) {
+        logoIso.style.width = "0px";
+        logoIso.style.opacity = "0";
+        logoIso.style.marginRight = "0px";
+      } else {
+        logoIso.style.width = "28px";
+        logoIso.style.opacity = "1";
+        logoIso.style.marginRight = "";
+      }
+    };
+    window.addEventListener("scroll", updateLogo, { passive: true });
+    updateLogo();
 
-  const updateLogo = () => {
-    if (!logoIso) return;
-    if (window.scrollY > 40) {
-      logoIso.style.width = "0px";
-      logoIso.style.opacity = "0";
-      logoIso.style.marginRight = "0px";
-    } else {
-      logoIso.style.width = "28px";
-      logoIso.style.opacity = "1";
-      logoIso.style.marginRight = "";
+    // Mobile menu
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const barTop = document.getElementById("bar-top") as SVGLineElement | null;
+    const barMid = document.getElementById("bar-mid") as SVGLineElement | null;
+    const barBot = document.getElementById("bar-bot") as SVGLineElement | null;
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
+      mobileMenu?.classList.add("opacity-100");
+      menuButton?.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+
+      // bars → X via transform
+      if (barTop) {
+        barTop.style.transform = "rotate(45deg) translate(4px, -4px)";
+      }
+      if (barMid) {
+        barMid.style.opacity = "0";
+        barMid.style.transform = "scaleX(0)";
+      }
+      if (barBot) {
+        barBot.style.transform = "rotate(-45deg) translate(4px, 4px)";
+      }
+
+      mobileMenu
+        ?.querySelectorAll<HTMLElement>(".mobile-menu-link")
+        .forEach((el) => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        });
     }
-  };
 
-  window.addEventListener("scroll", updateLogo, { passive: true });
-  updateLogo();
-
-  const menuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuIcon = document.getElementById("menu-icon");
-  const closeIcon = document.getElementById("close-icon");
-  const menuLinks = document.querySelectorAll(".mobile-menu-link");
-
-  menuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-    menuIcon?.classList.toggle("hidden");
-    closeIcon?.classList.toggle("hidden");
-    document.body.style.overflow = mobileMenu?.classList.contains("hidden")
-      ? ""
-      : "hidden";
-  });
-
-  // Close menu when clicking a link
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
-      menuIcon?.classList.remove("hidden");
-      closeIcon?.classList.add("hidden");
+    function closeMenu() {
+      isOpen = false;
+      mobileMenu?.classList.add("opacity-0", "pointer-events-none");
+      mobileMenu?.classList.remove("opacity-100");
+      menuButton?.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+
+      // X → bars
+      if (barTop) {
+        barTop.style.transform = "";
+      }
+      if (barMid) {
+        barMid.style.opacity = "1";
+        barMid.style.transform = "";
+      }
+      if (barBot) {
+        barBot.style.transform = "";
+      }
+
+      mobileMenu
+        ?.querySelectorAll<HTMLElement>(".mobile-menu-link")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(1rem)";
+        });
+    }
+
+    menuButton?.addEventListener("click", () =>
+      isOpen ? closeMenu() : openMenu(),
+    );
+    document.querySelectorAll(".mobile-menu-link").forEach((link) => {
+      link.addEventListener("click", closeMenu);
     });
-  });
+  }
+
+  // Re-init on every page load (View Transitions compatible)
+  document.addEventListener("astro:page-load", initNavbar);
 </script>
 
 <!-- Spacer to prevent content from going under fixed header -->
