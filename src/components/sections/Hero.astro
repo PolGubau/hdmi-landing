@@ -72,54 +72,50 @@ const { hero } = copy;
 
     <!-- Social proof -->
     <div
-      class="flex items-center gap-5 text-sm text-muted-foreground"
+      class="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground"
       data-reveal="bottom"
       data-speed="normal"
       data-easing="soft"
       data-delay="700"
     >
       <div class="flex items-center gap-2">
-        <div class="flex -space-x-2">
-          <div
-            class="size-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs font-bold text-primary"
-          >
-            L
-          </div>
-          <div
-            class="size-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs font-bold text-primary"
-          >
-            M
-          </div>
-          <div
-            class="size-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs font-bold text-primary"
-          >
-            C
-          </div>
-        </div>
-        <span>+21 clientes satisfechos</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <div class="flex items-center gap-1 max-lg:hidden">
+        <div class="flex items-center gap-1">
           {
             new Array(5)
               .fill(0)
               .map(() => (
                 <StarIcon
-                  class="size-5 text-yellow-400"
+                  class="size-4 text-yellow-400"
                   fill="currentColor"
                   stroke="currentColor"
                 />
               ))
           }
         </div>
-        <span class="text-foreground">5/5</span>
-        <StarIcon
-          class="size-5 text-yellow-400 lg:hidden"
-          fill="currentColor"
-          stroke="currentColor"
-        />
+        <span
+          ><strong class="text-foreground">5/5</strong> en satisfacción de cliente</span
+        >
       </div>
+      <span class="text-muted/50 hidden sm:block">·</span>
+      <span
+        ><strong class="text-foreground">21 proyectos</strong> en producción</span
+      >
+      <span class="text-muted/50 hidden sm:block">·</span>
+      <span
+        ><strong class="text-foreground">0 downtime</strong> en migraciones</span
+      >
     </div>
+
+    <!-- Budget filter -->
+    <p
+      class="text-xs text-muted-foreground/70 text-center max-w-sm"
+      data-reveal="bottom"
+      data-speed="normal"
+      data-easing="soft"
+      data-delay="800"
+    >
+      {hero.filter}
+    </p>
   </div>
 
   <ProjectsCarousel />

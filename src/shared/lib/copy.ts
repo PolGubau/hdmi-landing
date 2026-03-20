@@ -1,10 +1,13 @@
 export const copy = {
 	hero: {
-		title: "De idea a producto en 6 semanas. Sin quemar presupuesto.",
+		title:
+			"El equipo técnico que contratan cuando el software es crítico.",
 		subtitle:
-			"Lanzamos MVPs validados con usuarios reales. Automatizamos procesos que generan ROI en meses. Modernizamos sistemas críticos sin detener tu negocio.",
+			"Construimos sistemas internos, plataformas y MVPs para empresas que necesitan velocidad de startup con calidad de ingeniería senior.",
 		brand: "doscientos.",
-		cta: "Agendar llamada gratuita",
+		cta: "Solicitar propuesta",
+		filter:
+			"Trabajamos con empresas con proyectos desde 8.000€. Si tienes un problema real que el software puede resolver, podemos hablar.",
 	},
 
 	method: {
@@ -38,10 +41,11 @@ export const copy = {
 	},
 
 	finalCta: {
-		question: "¿Tu sistema está preparado para los próximos 5 años?",
+		question:
+			"¿Tienes un proceso que el software debería estar haciendo por ti?",
 		description:
-			"Agenda una llamada gratuita de 15 minutos para hablar sobre tu proyecto, tus objetivos y cómo podemos ayudarte.",
-		cta: "Reservar llamada 15min",
+			"Cuéntanos el problema. En 24 horas te decimos si podemos ayudarte y cómo lo haríamos.",
+		cta: "Hablar con el equipo",
 	},
 
 	nav: {
@@ -52,7 +56,7 @@ export const copy = {
 	},
 
 	footer: {
-		tagline: "Modernización de sistemas críticos",
+		tagline: "Software de negocio que funciona en producción.",
 		copyright: "© 2026 Doscientos",
 	},
 } as const;

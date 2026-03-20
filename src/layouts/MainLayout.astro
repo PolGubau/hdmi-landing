@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer.astro";
 import Navbar from "../components/Layout/navbar.astro";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics.astro";
+import MetaPixel from "../components/analytics/MetaPixel.astro";
 import MicrosoftClarity from "../components/analytics/MicrosoftClarity.astro";
 import OpenGraph from "../components/seo/OpenGraph.astro";
 import SEOHead from "../components/seo/SEOHead.astro";
@@ -49,6 +50,7 @@ const { title, description, image, type = "website", article } = Astro.props;
     />
     <GoogleAnalytics />
     <MicrosoftClarity />
+    <MetaPixel />
     <script>
       // Prefetch links on hover for instant navigation
       document.addEventListener("astro:page-load", () => {
