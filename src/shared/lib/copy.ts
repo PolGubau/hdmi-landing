@@ -1,13 +1,12 @@
 export const copy = {
 	hero: {
-		title:
-			"El equipo técnico que contratan cuando el software es crítico.",
+		title: "El equipo técnico que contratan cuando el software es crítico.",
 		subtitle:
 			"Construimos sistemas internos, plataformas y MVPs para empresas que necesitan velocidad de startup con calidad de ingeniería senior.",
 		brand: "doscientos.",
 		cta: "Solicitar propuesta",
 		filter:
-			"Trabajamos con empresas con proyectos desde 8.000€. Si tienes un problema real que el software puede resolver, podemos hablar.",
+			"Trabajamos con empresas con proyectos desde 5.000€. Si tienes un problema real que el software puede resolver, podemos hablar.",
 	},
 
 	method: {
