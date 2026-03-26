@@ -46,7 +46,16 @@ const { title, description, image, type = "website", article } = Astro.props;
     />
     <SchemaOrg
       type={type === "article" ? "article" : "website"}
-      article={article}
+      article={article
+        ? {
+            title,
+            description,
+            image,
+            datePublished: article.publishedTime,
+            dateModified: article.modifiedTime,
+            author: article.author,
+          }
+        : undefined}
     />
     <GoogleAnalytics />
     <MicrosoftClarity />
