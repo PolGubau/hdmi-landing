@@ -27,12 +27,7 @@ interface Props {
 const { title, description, image, type = "website", article } = Astro.props;
 ---
 
-<html
-  lang="es"
-  dir="ltr"
-  class="w-screen overflow-x-hidden"
-  transition:animate="fade"
->
+<html lang="es" dir="ltr" class="w-screen overflow-x-hidden">
   <head>
     <BaseHead title={title} description={description} image={image} />
     <SEOHead />
@@ -90,6 +85,10 @@ const { title, description, image, type = "website", article } = Astro.props;
     </main>
     <Footer />
     <FloatingCTA />
+    <script
+      is:inline
+      src="https://link.msgsndr.com/js/external-tracking.js"
+      data-tracking-id="tk_bd6c82a0afde449a8ffd7dd348ef5130"></script>
   </body>
 </html>
 
