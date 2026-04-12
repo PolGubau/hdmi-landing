@@ -89,7 +89,7 @@ export const GET: APIRoute = async ({ site }) => {
 ${allUrls
 	.map(
 		(page) => `  <url>
-    <loc>${baseUrl}/${page.url}${page.url ? "/" : ""}</loc>
+    <loc>${baseUrl}/${page.url}</loc>
     ${page.lastmod ? `<lastmod>${page.lastmod}</lastmod>` : ""}
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
