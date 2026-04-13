@@ -2,11 +2,16 @@
 	@apply max-w-7xl px-6 mx-auto w-full flex flex-col gap-10 justify-center items-center;
 }
 
+/* Panels standalone (ForWho, etc.) */
+.panel {
+	@apply flex flex-col gap-4 bg-accent rounded-3xl border border-muted/60 p-7;
+}
+
 ul.bento {
 	li.panel {
-		@apply flex flex-col gap-4 bg-accent rounded-3xl shadow-pastel p-7;
+		@apply flex flex-col gap-4 bg-accent rounded-3xl border border-muted/60 shadow-pastel p-7;
 		h3 {
-			@apply text-2xl font-semibold text-pretty;
+			@apply text-2xl font-bold text-pretty;
 		}
 		p {
 			@apply text-sm text-muted-foreground max-w-sm text-pretty;

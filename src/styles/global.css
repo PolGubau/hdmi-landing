@@ -136,7 +136,7 @@ body {
 	@apply bg-background text-foreground antialiased font-heading overflow-x-hidden;
 	timeline-scope: --scroll;
 	scroll-behavior: smooth;
-	font-size: 14px;
+	font-size: 16px;
 }
 
 *::selection {

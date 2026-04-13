@@ -50,7 +50,7 @@ const alignClass = aligns[align] || "";
 
     <div
       class:list={[
-        "max-w-2xl flex-col text-3xl md:text-4xl font-semibold",
+        "max-w-2xl flex-col text-3xl md:text-5xl font-bold tracking-tight",
         alignClass,
       ]}
       data-reveal="left"
@@ -58,7 +58,7 @@ const alignClass = aligns[align] || "";
       data-easing="smooth"
     >
       <h2 class="text-balance">{title}</h2>
-      {subtitle && <p class="text-primary/80 text-pretty">{subtitle}</p>}
+      {subtitle && <p class="text-primary/70 text-pretty">{subtitle}</p>}
     </div>
     {
       description && (

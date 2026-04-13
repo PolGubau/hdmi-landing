@@ -4,6 +4,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import CaseStudies from "~/components/sections/CaseStudies.astro";
 import Comparison from "~/components/sections/Comparison.astro";
 import FAQ from "~/components/sections/FAQ.astro";
+import ForWho from "~/components/sections/ForWho.astro";
 import Hero from "~/components/sections/Hero.astro";
 import Hype from "~/components/sections/Hype.astro";
 import Impact from "~/components/sections/Impact.astro";
@@ -19,10 +20,11 @@ const description =
 
 <MainLayout title={title} description={description}>
     <Hero />
-    <Impact />
     <Services />
-    <Method />
+    <Impact />
     <CaseStudies />
+    <Method />
+    <ForWho />
     <Testimonials />
     <Comparison />
     <FAQ />

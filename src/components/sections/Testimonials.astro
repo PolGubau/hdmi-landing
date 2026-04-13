@@ -7,10 +7,10 @@ const siteUrl = "https://doscientos.es";
 const testimonials = [
   {
     quote:
-      "Necesitábamos lanzar rápido para validar con inversores. En 6 semanas teníamos 500+ usuarios y €50K en funding asegurado. El ROI fue del 300% en 4 meses. Lo que más valoro es que no solo programan, entienden de producto. Nos ayudaron a priorizar features y conseguimos tracción orgánica sin gastar en ads.",
+      "No solo programan — entienden de producto. Nos ayudaron a priorizar lo que importaba y en 6 semanas teníamos 500+ usuarios y €50K en funding.",
     author: "Sofia Martínez",
     role: "CEO",
-    company: "EXCHANGE STUDENT",
+    company: "Exchange Student",
     project: "Flatmatch",
     rating: 5,
     metrics: "500+ usuarios · €50K funding · ROI 300%",
@@ -18,7 +18,7 @@ const testimonials = [
   },
   {
     quote:
-      "Teníamos un sistema legacy de 15 años que nadie se atrevía a tocar. doscientos migró 1M+ registros a una arquitectura moderna sin parar el negocio ni un minuto. Cero downtime. El rendimiento mejoró un 40% y ahorramos €30K/año en infraestructura. Ahora podemos escalar sin miedo.",
+      "Nadie se atrevía a tocar nuestro sistema de 15 años. doscientos lo migró sin parar el negocio ni un minuto. Cero downtime, +40% de rendimiento.",
     author: "Michael Schmidt",
     role: "CTO",
     company: "IFCO Systems",
@@ -29,11 +29,11 @@ const testimonials = [
   },
   {
     quote:
-      "Antes tardábamos 3 horas en procesar pedidos manualmente. Ahora son 15 minutos automáticos. Procesamos 3x más pedidos con el mismo equipo y ahorramos €15K/mes en costes operativos. El sistema se pagó solo en 2 meses. Y lo mejor: cuando tenemos dudas, responden en el día.",
+      "De 3 horas a 15 minutos. El sistema se pagó solo en 2 meses. Y cuando tenemos dudas, responden en el día.",
     author: "Carlos Ruiz",
     role: "Director técnico",
-    company: "Bitacora",
-    project: "Bitacora ERP",
+    company: "Bitácora",
+    project: "Bitácora ERP",
     rating: 5,
     metrics: "€15K/mes ahorrados · ROI en 2 meses · -90% tiempo",
     highlight: "Automatización con ROI del 600%",
@@ -49,61 +49,103 @@ const testimonials = [
     align="center"
   />
 
-  <div class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto" data-stagger="100">
+  <div
+    class="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto w-full"
+    data-stagger="100"
+  >
     {
-      testimonials.map((testimonial) => (
-        <div
-          class="testimonial-card bg-background border border-muted shadow-pastel rounded-2xl p-8 flex flex-col gap-4"
-          data-reveal="bottom"
-          data-speed="normal"
-          data-easing="soft"
-        >
-          {/* Rating */}
-          <div class="flex gap-0">
-            {Array.from({ length: testimonial.rating }).map(() => (
-              <StarIcon
-                class="size-5 text-yellow-400"
-                fill="currentColor"
-                stroke="currentColor"
-              />
-            ))}
-          </div>
-
-          {/* Highlight badge */}
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-primary/10 w-fit text-primary text-xs font-semibold">
-            <Check class="size-3" />
-            {testimonial.highlight}
-          </div>
-
-          {/* Quote */}
-          <blockquote class="text-foreground leading-relaxed flex-1">
-            "{testimonial.quote}"
-          </blockquote>
-
-          {/* Metrics */}
-          <div class="px-4 py-3 rounded-lg border border-muted mb-3">
-            <p class="text-sm font-semibold text-muted-foreground">
-              {testimonial.metrics}
-            </p>
-          </div>
-
-          {/* Author */}
-          <div class="flex items-start gap-3 pt-2 border-t border-muted">
-            <div class="size-10 aspect-square rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg mt-2">
-              {testimonial.author.charAt(0)}
+      testimonials.map((testimonial, i) => {
+        const isFeatured = i === 1;
+        return (
+          <div
+            class={`testimonial-card rounded-2xl p-8 flex flex-col gap-4 ${
+              isFeatured
+                ? "bg-foreground text-background shadow-xl md:-translate-y-4 md:scale-[1.02] z-10"
+                : "bg-background border border-muted shadow-pastel"
+            }`}
+            data-reveal="bottom"
+            data-speed="normal"
+            data-easing="soft"
+          >
+            {/* Rating */}
+            <div class="flex gap-0">
+              {Array.from({ length: testimonial.rating }).map(() => (
+                <StarIcon
+                  class="size-5 text-yellow-400"
+                  fill="currentColor"
+                  stroke="currentColor"
+                />
+              ))}
             </div>
-            <div class="mt-2">
-              <p class="font-semibold text-foreground">{testimonial.author}</p>
-              <p class="text-xs text-muted-foreground">
-                {testimonial.role}, {testimonial.company}
-              </p>
-              <p class="text-xs text-muted-foreground mt-1">
-                Proyecto: {testimonial.project}
+
+            {/* Highlight badge */}
+            <div
+              class={`inline-flex items-center gap-2 px-3 py-1 rounded-md w-fit text-xs font-semibold ${
+                isFeatured
+                  ? "bg-background/15 text-background"
+                  : "bg-primary/10 text-primary"
+              }`}
+            >
+              <Check class="size-3" />
+              {testimonial.highlight}
+            </div>
+
+            {/* Quote */}
+            <blockquote
+              class={`leading-relaxed flex-1 ${isFeatured ? "text-background/90" : "text-foreground"}`}
+            >
+              "{testimonial.quote}"
+            </blockquote>
+
+            {/* Metrics */}
+            <div
+              class={`px-4 py-3 rounded-lg border mb-3 ${
+                isFeatured
+                  ? "border-background/20 bg-background/10"
+                  : "border-muted"
+              }`}
+            >
+              <p
+                class={`text-sm font-semibold ${isFeatured ? "text-background/70" : "text-muted-foreground"}`}
+              >
+                {testimonial.metrics}
               </p>
             </div>
+
+            {/* Author */}
+            <div
+              class={`flex items-start gap-3 pt-2 border-t ${isFeatured ? "border-background/20" : "border-muted"}`}
+            >
+              <div
+                class={`size-10 aspect-square rounded-full flex items-center justify-center font-bold text-lg mt-2 ${
+                  isFeatured
+                    ? "bg-background/20 text-background"
+                    : "bg-primary/10 text-primary"
+                }`}
+              >
+                {testimonial.author.charAt(0)}
+              </div>
+              <div class="mt-2">
+                <p
+                  class={`font-semibold ${isFeatured ? "text-background" : "text-foreground"}`}
+                >
+                  {testimonial.author}
+                </p>
+                <p
+                  class={`text-xs ${isFeatured ? "text-background/60" : "text-muted-foreground"}`}
+                >
+                  {testimonial.role}, {testimonial.company}
+                </p>
+                <p
+                  class={`text-xs mt-1 ${isFeatured ? "text-background/60" : "text-muted-foreground"}`}
+                >
+                  Proyecto: {testimonial.project}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      ))
+        );
+      })
     }
   </div>
 
