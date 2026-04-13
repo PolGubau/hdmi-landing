@@ -10,6 +10,7 @@ const { class: className } = Astro.props;
 ---
 
 <div
+  aria-hidden="true"
   class={cn(
     "rounded-full p-1 bg-stone-500/20 border border-stone-500/40 flex items-center justify-center group-hover:rotate-45 transition-all duration-300",
     className,

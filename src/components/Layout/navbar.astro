@@ -155,19 +155,15 @@ const pathname = Astro.url.pathname;
       mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
       mobileMenu?.classList.add("opacity-100");
       menuButton?.setAttribute("aria-expanded", "true");
+      mobileMenu?.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
 
-      // bars → X: translateY to center, then rotate around own center
-      if (barTop) {
-        barTop.style.transform = "translateY(6px) rotate(45deg)";
-      }
+      if (barTop) barTop.style.transform = "translateY(6px) rotate(45deg)";
       if (barMid) {
         barMid.style.opacity = "0";
         barMid.style.transform = "scaleX(0)";
       }
-      if (barBot) {
-        barBot.style.transform = "translateY(-6px) rotate(-45deg)";
-      }
+      if (barBot) barBot.style.transform = "translateY(-6px) rotate(-45deg)";
 
       mobileMenu
         ?.querySelectorAll<HTMLElement>(".mobile-menu-link")
@@ -175,6 +171,12 @@ const pathname = Astro.url.pathname;
           el.style.opacity = "1";
           el.style.transform = "translateY(0)";
         });
+
+      // Move focus to first focusable item after animation
+      setTimeout(() => {
+        const first = mobileMenu?.querySelector<HTMLElement>("a, button");
+        first?.focus();
+      }, 80);
     }
 
     function closeMenu() {
@@ -182,19 +184,15 @@ const pathname = Astro.url.pathname;
       mobileMenu?.classList.add("opacity-0", "pointer-events-none");
       mobileMenu?.classList.remove("opacity-100");
       menuButton?.setAttribute("aria-expanded", "false");
+      mobileMenu?.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
 
-      // X → bars
-      if (barTop) {
-        barTop.style.transform = "";
-      }
+      if (barTop) barTop.style.transform = "";
       if (barMid) {
         barMid.style.opacity = "1";
         barMid.style.transform = "";
       }
-      if (barBot) {
-        barBot.style.transform = "";
-      }
+      if (barBot) barBot.style.transform = "";
 
       mobileMenu
         ?.querySelectorAll<HTMLElement>(".mobile-menu-link")
@@ -202,7 +200,40 @@ const pathname = Astro.url.pathname;
           el.style.opacity = "0";
           el.style.transform = "translateY(1rem)";
         });
+
+      // Return focus to the trigger
+      menuButton?.focus();
     }
+
+    // Focus trap inside open menu
+    mobileMenu?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      const focusable = Array.from(
+        mobileMenu.querySelectorAll<HTMLElement>(
+          "a, button, [tabindex]:not([tabindex='-1'])",
+        ),
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.key === "Escape") {
+        closeMenu();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          last.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === last) {
+          first.focus();
+          e.preventDefault();
+        }
+      }
+    });
 
     menuButton?.addEventListener("click", () =>
       isOpen ? closeMenu() : openMenu(),

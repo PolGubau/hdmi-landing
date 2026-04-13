@@ -17,10 +17,8 @@ const attributes: Record<string, unknown> = {
   href,
 };
 
-if (String(href).startsWith("/")) {
-  attributes.hrefLang = "en-us";
-} else if (String(href).startsWith("#")) {
-  attributes.hrefLang = "en-us";
+if (String(href).startsWith("/") || String(href).startsWith("#")) {
+  // Internal links inherit the page language — no hrefLang needed
 } else {
   attributes.target = "_blank";
   attributes.rel = "noopener noreferrer";

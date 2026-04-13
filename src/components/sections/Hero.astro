@@ -79,7 +79,7 @@ const { hero } = copy;
       data-delay="700"
     >
       <div class="flex items-center gap-2">
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1" aria-hidden="true">
           {
             new Array(5)
               .fill(0)
@@ -92,9 +92,12 @@ const { hero } = copy;
               ))
           }
         </div>
-        <span
-          ><strong class="text-foreground">5/5</strong> en satisfacción de cliente</span
-        >
+        <span>
+          <strong class="text-foreground">
+            <span class="sr-only">5 de 5 estrellas —</span>5/5
+          </strong>{" "}
+          en satisfacción de cliente
+        </span>
       </div>
       <span class="text-muted/50 hidden sm:block">·</span>
       <span
