@@ -40,12 +40,33 @@ const team = branding.team.map((member, i) => ({
   ...member,
   image: teamImages[i],
 }));
+
+const baseUrl = "https://doscientos.es";
+const personSchemas = branding.team.map((member) => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: member.name,
+  jobTitle: member.role,
+  description: member.bio,
+  url: member.link,
+  worksFor: {
+    "@type": "Organization",
+    name: branding.name,
+    url: baseUrl,
+  },
+  sameAs: [member.link],
+}));
 ---
 
 <MainLayout
   title="Sobre nosotros | doscientos, agencia de desarrollo web en Barcelona"
   description="doscientos es una agencia de desarrollo web y automatización en Barcelona formada por ingenieros con más de 5 años de experiencia en producto. Precio cerrado y entrega en 6 semanas."
 >
+  {
+    personSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))
+  }
   <!-- Hero -->
   <section class="px-6 max-w-7xl mx-auto pt-28 lg:pt-36">
     <div class="max-w-3xl" data-reveal="bottom">
