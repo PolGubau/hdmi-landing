@@ -79,6 +79,14 @@ const websiteSchema = {
       url: `${baseUrl}/og-image.png`,
     },
   },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${baseUrl}/blog?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 // Article Schema (para blog posts)

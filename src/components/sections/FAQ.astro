@@ -105,24 +105,16 @@ const faqs = [
     }
   </div>
 
-  <script define:vars={{ faqs }}>
-    // Schema.org FAQ structured data - Generado automáticamente desde el array de FAQs
-    const faqSchema = {
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: faqs.map((faq) => ({
         "@type": "Question",
         name: faq.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.answer,
-        },
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
       })),
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify(faqSchema);
-    document.head.appendChild(script);
-  </script>
+    })}
+  />
 </section>

@@ -1,12 +1,6 @@
 User-agent: *
 Allow: /
-
-# Disallow admin or private paths if any
 Disallow: /api/
-Disallow: /_astro/
-
-# Crawl-delay (opcional, para no sobrecargar el servidor)
-Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://doscientos.es/sitemap.xml
