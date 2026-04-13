@@ -5,6 +5,22 @@ export const branding = {
 	domain: "doscientos.es",
 	url: "https://doscientos.es",
 
+	team: [
+		{
+			name: "Pol",
+			role: "Co-fundador · Frontend & Design",
+			bio: "Ingeniero de software especializado en interfaces de usuario y arquitectura frontend. Antes en equipos de producto de empresas tecnológicas europeas. Obsesionado con la velocidad y la experiencia de usuario.",
+			image: "/assets/team/pol.jpg",
+			linkedin: "https://www.linkedin.com/in/polgubauamores/",
+		},
+		{
+			name: "Gerard",
+			role: "Co-fundador · Backend & DevOps",
+			bio: "Ingeniero de software con experiencia en backend, infraestructura y DevOps. Ha trabajado en startups tecnológicas europeas, liderando proyectos de migración a la nube y optimización de sistemas críticos.",
+			image: "/assets/team/gerard.jpg",
+			linkedin: "https://www.linkedin.com/in/gerard-martinez-alcocer/",
+		},
+	],
 	// Contacto
 	contact: {
 		calendlyUrl: "https://calendly.com/hola-doscientos-0jch/30min",

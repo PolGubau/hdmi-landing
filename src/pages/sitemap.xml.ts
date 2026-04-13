@@ -40,6 +40,12 @@ export const GET: APIRoute = async ({ site }) => {
 			changefreq: "monthly",
 			lastmod: new Date().toISOString().split("T")[0],
 		},
+		{
+			url: "sobre-nosotros",
+			priority: "0.8",
+			changefreq: "monthly",
+			lastmod: new Date().toISOString().split("T")[0],
+		},
 		// Páginas SEO locales
 		{
 			url: "desarrollo-web-barcelona",
