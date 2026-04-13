@@ -1,48 +1,54 @@
 export const copy = {
 	hero: {
-		title: "El equipo técnico que contratan cuando el software es crítico.",
+		// Específico + urgencia implícita. "Crítico" activa el miedo a equivocarse de proveedor.
+		title:
+			"El equipo técnico que contratan cuando el software no puede fallar.",
+		// Antes: demasiados conceptos. Ahora: una promesa clara + dos diferenciadores concretos.
 		subtitle:
-			"Construimos sistemas internos, plataformas y MVPs para empresas que necesitan velocidad de startup con calidad de ingeniería senior.",
+			"Desarrollamos MVPs y sistemas a medida para empresas que necesitan resultados reales. Precio fijo, entrega en 6 semanas, código 100% tuyo.",
 		brand: "doscientos.",
-		cta: "Solicitar propuesta",
+		// "Cuéntanos" es conversacional y de bajo compromiso — convierte mejor que "Solicitar".
+		cta: "Cuéntanos tu proyecto",
 	},
 
 	method: {
 		steps: [
 			{
-				title: "Semana 1 - Discovery",
+				title: "Semana 1 — Discovery",
 				description:
-					"Llamada de 60 min para entender tu negocio, usuarios y objetivos. Definimos el alcance exacto, las funcionalidades del MVP y los criterios de éxito. Salimos con un plan claro.",
+					"Una llamada de 60 minutos para entender tu negocio, tus usuarios y lo que el producto tiene que conseguir. Salimos con un alcance cerrado, no con una lista de dudas.",
 			},
 			{
-				title: "Semana 2 - Propuesta y arquitectura",
+				title: "Semana 2 — Propuesta y arquitectura",
 				description:
-					"Te enviamos propuesta detallada con entregables, plazos y precio fijo. Sin sorpresas. Definimos la arquitectura técnica y el stack más adecuado para tu caso.",
+					"Recibes una propuesta con entregables, plazos y precio fijo. Definimos el stack y la arquitectura antes de escribir una sola línea de código. Sin sorpresas.",
 			},
 			{
-				title: "Semanas 3-4 - Diseño y desarrollo",
+				title: "Semanas 3-4 — Diseño y desarrollo",
 				description:
-					"Diseñamos las pantallas clave y empezamos a desarrollar. Cada viernes recibes una demo funcional para dar feedback. Iteramos rápido, sin burocracia.",
+					"Cada viernes recibes una demo funcional para dar feedback. Iteramos rápido y sin burocracia — tus decisiones moldean el producto en tiempo real.",
 			},
 			{
-				title: "Semana 5 - Testing y ajustes",
+				title: "Semana 5 — Testing y ajustes",
 				description:
-					"Pruebas con usuarios reales, corrección de bugs y ajustes de UX. Tu feedback se implementa en 24-48h. El producto se afina hasta que esté listo para lanzar.",
+					"Pruebas con usuarios reales, corrección de bugs y ajustes de UX. Tu feedback entra en producción en 24-48h. El producto se afina hasta que esté listo.",
 			},
 			{
-				title: "Semana 6 - Lanzamiento",
+				title: "Semana 6 — Lanzamiento",
 				description:
-					"Deploy a producción, configuración de analytics y monitorización. Te entregamos el código, la documentación y 30 días de soporte post-lanzamiento incluidos.",
+					"Deploy a producción, analytics configurado y monitorización activa. Te entregamos el código completo, la documentación técnica y 30 días de soporte incluidos.",
 			},
 		],
 	},
 
 	finalCta: {
+		// Pregunta retórica: el lector se visualiza como cliente potencial.
 		question:
-			"¿Tienes un proceso que el software debería estar haciendo por ti?",
+			"¿Tu equipo sigue haciendo en 3 horas lo que un sistema haría en 5 minutos?",
+		// Elimina la fricción del primer paso: no prometemos vender, prometemos ayudar.
 		description:
-			"Cuéntanos el problema. En 24 horas te decimos si podemos ayudarte y cómo lo haríamos.",
-		cta: "Hablar con el equipo",
+			"Cuéntanos el problema. En menos de 24 horas te damos feedback honesto y un plan de acción — aunque al final no trabajemos juntos.",
+		cta: "Pedir propuesta gratis",
 	},
 
 	nav: {

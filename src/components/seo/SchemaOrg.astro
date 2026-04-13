@@ -28,7 +28,11 @@ interface Props {
 
 const { type = "organization", article, service, project } = Astro.props;
 
-const baseUrl = Astro.site?.toString() || "https://doscientos.es";
+// Strip trailing slash — Astro.site returns "https://doscientos.es/" which causes double slashes in paths
+const baseUrl = (Astro.site?.toString() ?? "https://doscientos.es").replace(
+  /\/$/,
+  "",
+);
 
 // Organization + LocalBusiness Schema (siempre presente)
 const organizationSchema = {
