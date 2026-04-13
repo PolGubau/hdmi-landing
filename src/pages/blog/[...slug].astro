@@ -53,7 +53,7 @@ const publishedTime =
           <div
             class="flex items-center gap-4 text-neutral-600 dark:text-neutral-400"
           >
-            <time>
+            <time datetime={post.data.publishDate.toISOString()}>
               {
                 post.data.publishDate.toLocaleDateString("es-ES", {
                   year: "numeric",

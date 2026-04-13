@@ -1,0 +1,45 @@
+# doscientos
+
+> Agencia de desarrollo web y automatización en Barcelona, España.
+
+doscientos es un equipo de ingenieros de software con más de 5 años de experiencia en producto.
+Lanzamos MVPs en 6 semanas a precio cerrado. Sin sorpresas, sin tiempos muertos.
+
+## Servicios
+
+- **Desarrollo web a medida**: aplicaciones web, plataformas SaaS, dashboards y portales corporativos.
+- **Desarrollo de MVPs**: de idea validada a producto funcional con usuarios reales en 6 semanas.
+- **Automatización de procesos**: integraciones con n8n, Make, APIs y herramientas de IA para eliminar tareas repetitivas.
+- **Modernización de sistemas**: migración de software legacy a arquitecturas modernas sin downtime.
+
+## Modelo de trabajo
+
+- Precio cerrado acordado antes de empezar
+- Equipo de ingenieros senior desde el primer día
+- Sprints semanales con demos en vivo
+- Entrega del código fuente completo al cliente
+- 30 días de soporte post-lanzamiento incluidos
+- Pagos por hitos: 30% inicio / 40% mitad / 30% entrega
+
+## Números clave
+
+- +30 proyectos entregados
+- 6 semanas de plazo medio de entrega
+- 100% proyectos con precio cerrado
+- Clientes en Barcelona, Madrid, Castellón y más
+
+## Páginas principales
+
+- Homepage: https://doscientos.es
+- Proyectos: https://doscientos.es/projects
+- Blog: https://doscientos.es/blog
+- Sobre nosotros: https://doscientos.es/sobre-nosotros
+- Contacto: https://doscientos.es/contact
+- Desarrollo web Barcelona: https://doscientos.es/desarrollo-web-barcelona
+
+## Contacto
+
+- Email: hola@doscientos.es
+- Teléfono: +34 671 17 15 25
+- Ubicación: Barcelona, España
+- LinkedIn: https://www.linkedin.com/company/doscientos
