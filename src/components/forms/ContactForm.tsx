@@ -45,7 +45,7 @@ export default function ContactForm() {
           error = "Teléfono inválido";
         break;
       case "budget":
-        if (!value) error = "Selecciona un rango de presupuesto";
+        // optional — no validation needed
         break;
       case "message":
         if (!value.trim()) error = "El mensaje es obligatorio";
@@ -253,36 +253,25 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="budget" className="block text-sm font-medium text-foreground mb-2">
-          Presupuesto aproximado
+          Presupuesto aproximado <span className="text-muted-foreground">(opcional)</span>
         </label>
         <select
           id="budget"
           name="budget"
-          required
           disabled={status === "loading"}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          className={`w-full px-4 py-3 rounded-xl bg-background border text-foreground focus:outline-none focus:ring-2 disabled:opacity-50 ${touched.budget && fieldErrors.budget
-            ? "border-red-500 focus:ring-red-500"
-            : touched.budget && !fieldErrors.budget
-              ? "border-green-500 focus:ring-green-500"
-              : "border-muted-foreground focus:ring-primary"
-            }`}
+          className="w-full px-4 py-3 rounded-xl bg-background border border-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
         >
-          <option value="">Selecciona un rango</option>
+          <option value="">Sin definir aún</option>
           <option value="<5k">Menos de 5.000€</option>
           <option value="5k-15k">5.000€ – 15.000€</option>
           <option value="15k-40k">15.000€ – 40.000€</option>
           <option value=">40k">Más de 40.000€</option>
         </select>
-        {touched.budget && fieldErrors.budget && (
-          <p className="text-red-500 text-sm mt-1">{fieldErrors.budget}</p>
-        )}
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-          Mensaje <span className="text-muted-foreground text-sm">(mínimo 10 caracteres)</span>
+          Mensaje
         </label>
         <textarea
           id="message"
@@ -332,7 +321,7 @@ export default function ContactForm() {
           </>
         ) : (
           <>
-            Enviar mensaje
+            Pedir presupuesto
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <title>Enviar mensaje</title>
               <path
@@ -347,10 +336,9 @@ export default function ContactForm() {
       </button>
       {/* Mensaje de éxito */}
       {status === "success" && (
-        <div className="p-4 rounded-xl bg-green-50 border border-green-200">
-          <p className="text-green-800 text-sm font-medium">
-            ✓ Mensaje enviado correctamente. Te contactaremos pronto.
-          </p>
+        <div className="p-6 rounded-2xl bg-green-50 border border-green-200 text-center space-y-1">
+          <p className="text-green-800 font-semibold text-base">¡Recibido! 🎉</p>
+          <p className="text-green-700 text-sm">Te respondemos en menos de 24 horas.</p>
         </div>
       )}
 
