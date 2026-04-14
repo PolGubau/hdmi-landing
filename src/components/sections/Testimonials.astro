@@ -1,6 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import { Check, StarIcon } from "@lucide/astro";
 import SectionHeader from "../ui/SectionHeader.astro";
+
+import carlosImg from "~/assets/media/testimonials/carlos-ruiz.webp";
+import michaelImg from "~/assets/media/testimonials/michael-schmidt.webp";
+import sofiaImg from "~/assets/media/testimonials/sofia-martinez.webp";
 
 const siteUrl = "https://doscientos.es";
 
@@ -15,6 +20,7 @@ const testimonials = [
     rating: 5,
     metrics: "500+ usuarios · €50K funding · ROI 300%",
     highlight: "De 0 a 500+ usuarios en 3 meses",
+    image: sofiaImg,
   },
   {
     quote:
@@ -26,6 +32,7 @@ const testimonials = [
     rating: 5,
     metrics: "0 downtime · +40% rendimiento · €30K/año ahorrados",
     highlight: "Migración crítica sin interrupciones",
+    image: michaelImg,
   },
   {
     quote:
@@ -37,6 +44,7 @@ const testimonials = [
     rating: 5,
     metrics: "€15K/mes ahorrados · ROI en 2 meses · -90% tiempo",
     highlight: "Automatización con ROI del 600%",
+    image: carlosImg,
   },
 ];
 ---
@@ -116,15 +124,13 @@ const testimonials = [
             <div
               class={`flex items-start gap-3 pt-2 border-t ${isFeatured ? "border-background/20" : "border-muted"}`}
             >
-              <div
-                class={`size-10 aspect-square rounded-full flex items-center justify-center font-bold text-lg mt-2 ${
-                  isFeatured
-                    ? "bg-background/20 text-background"
-                    : "bg-primary/10 text-primary"
-                }`}
-              >
-                {testimonial.author.charAt(0)}
-              </div>
+              <Image
+                src={testimonial.image}
+                alt={testimonial.author}
+                width={40}
+                height={40}
+                class="size-10 rounded-full object-cover object-top mt-2 shrink-0"
+              />
               <div class="mt-2">
                 <p
                   class={`font-semibold ${isFeatured ? "text-background" : "text-foreground"}`}
