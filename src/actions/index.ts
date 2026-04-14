@@ -144,7 +144,7 @@ export const server = {
 
 				const { data: emailData, error: emailError } = await resend.emails.send(
 					{
-						from: "doscientos <hola@doscientos.es>",
+						from: "Equipo doscientos <hola@doscientos.es>",
 						to: ["hola@doscientos.es", "gubaupol@gmail.com"],
 						replyTo: email,
 						subject: `Nuevo contacto de ${name}${company ? ` (${company})` : ""}`,
@@ -355,7 +355,7 @@ export const server = {
 				// 4. Email de confirmación al lead
 				await resend.emails
 					.send({
-						from: "doscientos <hola@doscientos.es>",
+						from: "Equipo doscientos <hola@doscientos.es>",
 						to: email,
 						replyTo: "hola@doscientos.es",
 						subject: `${name}, hemos recibido tu mensaje`,
@@ -494,7 +494,7 @@ export const server = {
 
 				// 4. Enviar email de confirmación con Resend
 				const { error: emailError } = await resend.emails.send({
-					from: "Doscientos <hola@doscientos.es>",
+					from: "Equipo doscientos <hola@doscientos.es>",
 					to: email,
 					subject: "¡Bienvenido a la newsletter de Doscientos!",
 					html: `
