@@ -1,13 +1,12 @@
 export const copy = {
 	hero: {
-		// Específico + urgencia implícita. "Crítico" activa el miedo a equivocarse de proveedor.
-		title:
-			"Software a medida para empresas que han superado las herramientas estándar",
-		// Antes: demasiados conceptos. Ahora: una promesa clara + dos diferenciadores concretos.
+		// Pain-forward: el target (clínica, empresa con Excel+SaaS+procesos manuales) se reconoce al instante.
+		// "No al revés" es el differentiator — apunta directamente al SAP, Salesforce, HubSpot que los obliga a adaptarse.
+		title: "El software que se adapta a tu negocio, no al revés.",
+		// 1 frase. Nombra exactamente qué reemplazamos (Excel, SaaS genérico, procesos manuales) y a quién va dirigido.
 		subtitle:
-			"Diseñamos y desarrollamos sistemas que se adaptan exactamente a tu negocio. Centraliza operaciones, automatiza procesos y toma el control de tu empresa con tecnología hecha para ti, no al revés.",
+			"Sistemas internos para empresas que ya no caben en Excel, el SaaS estándar ni los procesos manuales.",
 		brand: "doscientos.",
-		// "Cuéntanos" es conversacional y de bajo compromiso — convierte mejor que "Solicitar".
 		cta: "Cuéntanos tu proyecto",
 	},
 
