@@ -2,10 +2,10 @@ export const copy = {
 	hero: {
 		// Específico + urgencia implícita. "Crítico" activa el miedo a equivocarse de proveedor.
 		title:
-			"El equipo técnico que contratan cuando el software no puede fallar.",
+			"Software a medida para empresas que han superado las herramientas estándar",
 		// Antes: demasiados conceptos. Ahora: una promesa clara + dos diferenciadores concretos.
 		subtitle:
-			"Desarrollamos MVPs y sistemas a medida para empresas que necesitan resultados reales. Precio fijo, entrega en 6 semanas, código 100% tuyo.",
+			"Diseñamos y desarrollamos sistemas que se adaptan exactamente a tu negocio. Centraliza operaciones, automatiza procesos y toma el control de tu empresa con tecnología hecha para ti, no al revés.",
 		brand: "doscientos.",
 		// "Cuéntanos" es conversacional y de bajo compromiso — convierte mejor que "Solicitar".
 		cta: "Cuéntanos tu proyecto",
