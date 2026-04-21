@@ -1,7 +1,6 @@
 ---
 import { StarIcon } from "@lucide/astro";
 import { copy } from "~/shared/lib/copy";
-import AvailableTag from "../ui/AvailableTag.astro";
 import Button from "../ui/Button.astro";
 import ClientsCarousel from "./ClientsCarousel.astro";
 import ProjectsCarousel from "./ProjectsCarousel.astro";
@@ -13,8 +12,6 @@ const { hero } = copy;
   id="hero"
   class="relative flex flex-col gap-10 justify-center px-6 pt-20 items-center"
 >
-  <AvailableTag />
-
   <!-- Main title con bounce impactante -->
   <h1
     data-reveal="scale"
@@ -101,7 +98,7 @@ const { hero } = copy;
       </div>
       <span class="text-muted/50 hidden sm:block">·</span>
       <span
-        ><strong class="text-foreground">21 proyectos</strong> en producción</span
+        ><strong class="text-foreground">+30 proyectos</strong> entregados</span
       >
     </div>
   </div>
