@@ -67,16 +67,17 @@ const personSchemas = branding.team.map((member) => ({
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))
   }
+  <div class="space-y-32 max-w-7xl w-full px-6 md:px-10 flex mx-auto flex-col items-center">
   <!-- Hero -->
-  <section class="px-6 max-w-7xl mx-auto pt-28 lg:pt-36">
-    <div class="max-w-3xl" data-reveal="bottom">
-       
-      <h1
-        class="font-bold text-foreground leading-tight mb-6"
-      >
-      <span class="text-3xl lg:text-4xl">Agencia de desarrollo web en Barcelona</span>
+  <header class="px-6 max-w-7xl w-full mx-auto pt-28 lg:pt-36" data-reveal="bottom">
+       <h1 class="font-bold text-foreground leading-tight mb-6">
+        <span class="text-3xl lg:text-4xl"
+          >Agencia de desarrollo web en Barcelona</span
+        >
         <br />
-        <span class="text-primary text-4xl lg:text-5xl">con experiencia real en producto</span>
+        <span class="text-primary text-4xl lg:text-5xl"
+          >con experiencia real en producto</span
+        >
       </h1>
       <p class="text-xl text-muted-foreground leading-relaxed max-w-2xl">
         Somos un equipo pequeño y deliberadamente así. En doscientos, cada
@@ -84,11 +85,10 @@ const personSchemas = branding.team.map((member) => ({
         Trabajamos con empresas que quieren resultados concretos, no promesas
         vagas.
       </p>
-    </div>
-  </section>
+   </header>
 
   <!-- Team photo -->
-  <section class="px-6 max-w-7xl mx-auto">
+  <section class="">
     <div class="grid md:grid-cols-2 gap-4" data-reveal="bottom">
       <!-- Photo 1: Pol -->
       <div class="relative group">
@@ -188,7 +188,7 @@ const personSchemas = branding.team.map((member) => ({
   </style>
 
   <!-- Mission -->
-  <section class="px-6 md:px-10 max-w-7xl mx-auto">
+  <section class="">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div data-reveal="left">
         <SectionHeader
@@ -246,7 +246,7 @@ const personSchemas = branding.team.map((member) => ({
   </section>
 
   <!-- Team -->
-  <section class="px-6 max-w-7xl mx-auto">
+  <section class="">
     <SectionHeader
       tag="El equipo"
       title="Las personas detrás de cada proyecto"
@@ -290,7 +290,7 @@ const personSchemas = branding.team.map((member) => ({
   </section>
 
   <!-- CTA -->
-  <section class="px-6 max-w-7xl mx-auto pb-20">
+  <section class=" pb-20">
     <div
       class="bg-foreground text-background rounded-3xl p-10 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8"
       data-reveal="bottom"
@@ -309,4 +309,6 @@ const personSchemas = branding.team.map((member) => ({
       </a>
     </div>
   </section>
+
+</div>
 </MainLayout>
