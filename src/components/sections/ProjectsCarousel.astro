@@ -2,7 +2,9 @@
 import { getCollection } from "astro:content";
 import ProjectCard from "~/components/ui/ProjectCard.astro";
 
-const projects = await getCollection("projects", ({ data }) => data.available);
+const projects = (
+  await getCollection("projects", ({ data }) => data.available)
+).sort((a, b) => b.data.endedAt.valueOf() - a.data.endedAt.valueOf());
 const featuredProjects = projects.slice(0, 4);
 ---
 
