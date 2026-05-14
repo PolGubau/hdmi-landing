@@ -1,32 +1,153 @@
 # doscientos
 
-> Agencia de desarrollo web y automatización en Barcelona, España.
+> Estudio de software para empresas que han superado Excel, el SaaS genérico y los procesos manuales.
 
-doscientos es un equipo de ingenieros de software con más de 5 años de experiencia en producto.
-Lanzamos MVPs en 6 semanas a precio cerrado. Sin sorpresas, sin tiempos muertos.
+doscientos es una agencia de desarrollo de software con sede en Barcelona, España. Fundada por dos ingenieros senior — Pol Gubau (frontend y diseño) y Gerard Martínez (backend e infraestructura) — con experiencia en startups y empresas tecnológicas europeas. Nos especializamos en sistemas internos, MVPs y automatización de procesos para PYMEs y empresas de servicios.
+
+Lanzamos software funcional en 6 semanas a precio fijo. Sin sorpresas, sin presupuestos variables, sin juniors.
+
+## Quiénes somos
+
+### El equipo
+
+**Pol Gubau** — Co-fundador · Frontend & Design
+Ingeniero de software especializado en interfaces de usuario y arquitectura frontend. Antes en equipos de producto de empresas tecnológicas europeas. Obsesionado con la velocidad y la experiencia de usuario.
+Perfil personal: https://polgubau.com
+
+**Gerard Martínez** — Co-fundador · Backend & DevOps
+Ingeniero de software con experiencia en backend, infraestructura y DevOps. Ha trabajado en startups tecnológicas europeas liderando proyectos de migración a la nube y optimización de sistemas críticos.
+LinkedIn: https://www.linkedin.com/in/gerard-martinez-alcocer/
+
+### Filosofía
+
+No somos una agencia tradicional. Somos un equipo pequeño, rápido y especializado. Trabajamos con un número limitado de clientes para garantizar dedicación real. Cada proyecto lo trabajamos como si fuera nuestro propio producto.
+
+Nuestra postura: el software debe adaptarse al negocio, no al revés. Rechazamos proyectos que no encajan con nuestras capacidades y derivamos a quien sea más adecuado.
 
 ## Servicios
 
-- **Desarrollo web a medida**: aplicaciones web, plataformas SaaS, dashboards y portales corporativos.
-- **Desarrollo de MVPs**: de idea validada a producto funcional con usuarios reales en 6 semanas.
-- **Automatización de procesos**: integraciones con n8n, Make, APIs y herramientas de IA para eliminar tareas repetitivas.
-- **Modernización de sistemas**: migración de software legacy a arquitecturas modernas sin downtime.
+### 1. Sistemas internos a medida (CRMs, ERPs, portales)
+Para empresas que gestionan clientes, pedidos o equipos en Excel o un CRM genérico que no encaja con su proceso. Construimos la herramienta exacta: seguimiento de ventas, gestión de facturas, control de stock, informes automáticos. Sin licencias mensuales, sin adaptar el negocio a una plantilla.
+
+### 2. MVPs en 6 semanas (SaaS, marketplaces, apps B2B)
+Plataformas de reservas, marketplaces, herramientas B2B, apps de gestión interna. Lanzamos lo justo para validar con usuarios reales — los primeros clientes prueban el producto mientras la competencia sigue en Figma.
+
+### 3. Automatización de procesos
+Conectamos tiendas, ERPs, CRMs y contabilidades. Los pedidos entran automáticamente en el ERP, las facturas se generan y envían sin intervención humana, los informes se generan solos. ROI medible en 2-3 meses.
+
+### 4. Modernización de sistemas legacy
+Migramos de Access, PHP monolítico o Excel a arquitecturas modernas. Mientras construimos el nuevo sistema, el antiguo sigue funcionando. Los clientes finales no notan nada — la empresa sí.
+
+### 5. Arquitectura escalable
+Diseño de sistemas pensados para aguantar ×10 usuarios sin reescribir nada. Stack moderno, documentado y que el equipo interno puede mantener.
 
 ## Modelo de trabajo
 
-- Precio cerrado acordado antes de empezar
-- Equipo de ingenieros senior desde el primer día
-- Sprints semanales con demos en vivo
-- Entrega del código fuente completo al cliente
-- 30 días de soporte post-lanzamiento incluidos
-- Pagos por hitos: 30% inicio / 40% mitad / 30% entrega
+### Proceso — 6 semanas
+
+**Semana 1 — Discovery**
+Llamada de 60 minutos para entender el negocio, los usuarios y lo que el producto tiene que conseguir. Salimos con un alcance cerrado, no con una lista de dudas.
+
+**Semana 2 — Propuesta y arquitectura**
+El cliente recibe una propuesta con entregables, plazos y precio fijo. Se define el stack y la arquitectura antes de escribir una sola línea de código.
+
+**Semanas 3-4 — Diseño y desarrollo**
+Cada viernes el cliente recibe una demo funcional para dar feedback. Se itera rápido y sin burocracia.
+
+**Semana 5 — Testing y ajustes**
+Pruebas con usuarios reales, corrección de bugs y ajustes de UX. El feedback entra en producción en 24-48h.
+
+**Semana 6 — Lanzamiento**
+Deploy a producción, analytics configurado y monitorización activa. Se entrega el código completo, documentación técnica y 30 días de soporte incluidos.
+
+### Condiciones comerciales
+
+- **Precio**: fijo acordado antes de empezar. Proyectos desde 5.000€ (MVP simple) hasta 40.000€+ (plataforma compleja)
+- **Pagos por hitos**: 30% al inicio / 40% a mitad / 30% al entregar. Nunca se paga por trabajo no visto
+- **Propiedad del código**: 100% del cliente. Código fuente completo, repositorios y documentación técnica
+- **Sin lock-in**: el cliente puede seguir sin doscientos. El código es suyo
+- **Comunicación**: demo semanal + canal Slack o equivalente durante el proyecto
+- **Soporte post-lanzamiento**: 30 días incluidos en todos los proyectos
+- **Cambios urgentes**: respuesta en 24-48h durante el proyecto
+
+## Para quién es doscientos
+
+### Encaja bien si…
+- Tienes un proceso manual que tu equipo repite cada semana
+- Quieres lanzar un MVP y validar antes de contratar un equipo interno
+- Tu sistema actual frena el crecimiento (legacy, Excel, integraciones rotas)
+- Necesitas resultados en semanas, no en trimestres
+- Valoras transparencia: precio fijo, código tuyo, sin lock-in
+
+### No encaja si…
+- Buscas la opción más barata del mercado
+- No tienes claro el problema que el software tiene que resolver
+- Necesitas un recurso externo para ejecutar instrucciones, no un equipo con criterio
+- Tu proyecto puede esperar más de 6 meses
+
+## Comparativa vs agencia tradicional
+
+| Criterio | doscientos | Agencia tradicional |
+|---|---|---|
+| Tiempo de entrega | 6 semanas | 4-6 meses |
+| Precio | Precio fijo acordado | Presupuesto variable |
+| Pagos | Por hitos (30/40/30) | Por adelantado |
+| Comunicación | Demo semanal + Slack | Reuniones mensuales |
+| Propiedad del código | 100% tuya | Depende del contrato |
+| Soporte post-lanzamiento | 30 días incluidos | Coste adicional |
+| Flexibilidad | Cambios en 24-48h | Change requests formales |
+| Equipo | Senior dedicado | Junior + rotación |
+
+## Proyectos y casos de éxito
+
+### Flatmatch — MVP de plataforma de alojamiento para estudiantes
+- Cliente: Exchange Student / Sofia Martínez (CEO)
+- Resultado: 500+ usuarios y €50K en funding en 3 meses
+- ROI: 300%
+- Testimonial: "No solo programan - entienden de producto. Nos ayudaron a priorizar lo que importaba y en 6 semanas teníamos 500+ usuarios y €50K en funding."
+
+### IFCO Recollections — Migración de sistema crítico de trazabilidad
+- Cliente: IFCO Systems (gestiona +300 millones de palés reutilizables globalmente) / Michael Schmidt (CTO)
+- Reto: sistema de 15 años en producción, migración sin downtime
+- Resultado: 0 minutos de downtime, +40% de rendimiento, €30K/año ahorrados
+- Testimonial: "Nadie se atrevía a tocar nuestro sistema de 15 años. doscientos lo migró sin parar el negocio ni un minuto. Cero downtime, +40% de rendimiento."
+
+### Bitácora ERP — Sistema de automatización de gestión
+- Cliente: Bitácora / Carlos Ruiz (Director técnico)
+- Resultado: proceso de 3 horas reducido a 15 minutos, €15K/mes ahorrados, ROI en 2 meses, -90% tiempo operativo
+- Testimonial: "De 3 horas a 15 minutos. El sistema se pagó solo en 2 meses. Y cuando tenemos dudas, responden en el día."
+
+### Sectores con experiencia
+Salud, fintech, proptech, logística, cerámica industrial, marketplaces de estudiantes, gestión de salones de belleza, trazabilidad industrial.
 
 ## Números clave
 
 - +30 proyectos entregados
-- 6 semanas de plazo medio de entrega
-- 100% proyectos con precio cerrado
-- Clientes en Barcelona, Madrid, Castellón y más
+- Plazo medio: 6 semanas
+- 100% proyectos a precio cerrado
+- 100% clientes con el código en propiedad
+- Clientes en Barcelona, Madrid, Castellón, Alemania y más
+- Valoración media: 5/5 estrellas
+
+## Preguntas frecuentes
+
+**¿Cuánto cuesta un MVP?**
+Desde 5.000€ para MVPs simples hasta 40.000€+ para plataformas complejas. El precio depende del alcance, no del tiempo. Siempre precio fijo acordado antes de empezar.
+
+**¿El código es nuestro al finalizar?**
+Sí, 100%. Se entrega el código fuente completo, la documentación técnica y acceso a todos los repositorios. No hay lock-in.
+
+**¿Qué pasa si no quedamos satisfechos?**
+Trabajamos con demos semanales para dar feedback en tiempo real. Si algo no encaja, se corrige antes de continuar. Además se incluyen 30 días de soporte post-lanzamiento.
+
+**¿Usáis WordPress, Wix o plantillas?**
+No. Se desarrolla a medida porque cada negocio es único. El código es 3x más rápido, 100% escalable y sin plugins innecesarios.
+
+**¿Qué necesito tener preparado?**
+Solo tener claro el problema a resolver y quiénes son los usuarios. doscientos ayuda a definir el alcance, las funcionalidades y la arquitectura. No se necesita conocimiento técnico.
+
+**¿Cuánto tiempo tarda un proyecto más complejo?**
+Un MVP típico: 6 semanas. Proyectos más complejos: 10-12 semanas, con entregas parciales cada semana.
 
 ## Páginas principales
 
@@ -37,9 +158,18 @@ Lanzamos MVPs en 6 semanas a precio cerrado. Sin sorpresas, sin tiempos muertos.
 - Contacto: https://doscientos.es/contact
 - Desarrollo web Barcelona: https://doscientos.es/desarrollo-web-barcelona
 
-## Contacto
+## Contacto y redes sociales
 
 - Email: hola@doscientos.es
 - Teléfono: +34 671 17 15 25
+- Calendly (llamada 30 min): https://calendly.com/hola-doscientos-0jch/30min
+- WhatsApp: +34 671 17 15 25
 - Ubicación: Barcelona, España
 - LinkedIn: https://www.linkedin.com/company/doscientos
+- Twitter/X: https://twitter.com/doscientos_es
+- GitHub: https://github.com/doscientos
+- Instagram: https://instagram.com/doscientos.es
+
+## Keywords SEO principales
+
+agencia desarrollo web barcelona, desarrollo mvp, automatización procesos, software a medida barcelona, crm a medida, erp a medida, modernización sistemas legacy, saas desarrollo, aplicaciones web empresa, desarrollo software pymes
