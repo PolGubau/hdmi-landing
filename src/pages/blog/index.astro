@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import NewsletterInput from "~/components/ui/NewsletterInput";
 import SectionTag from "~/components/ui/SectionTag.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 
@@ -29,7 +28,6 @@ const sortedPosts = blogPosts.sort(
           Sigue al día con ideas sobre diseño, desarrollo y nuevas tecnologías
           que generan impacto real.
         </p>
-        <NewsletterInput client:load />
       </header>
 
       <!-- Posts grid -->
