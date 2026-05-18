@@ -16,6 +16,8 @@ export function getMetadata() {
 
     name: branding.name,
 
+    legalName: branding.legalName,
+
     longName: `${branding.name} | Productos digitales y automatizaciones en España`,
 
     slogan: branding.slogan,

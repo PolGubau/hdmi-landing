@@ -2,6 +2,8 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Layout/footer.astro";
 import Navbar from "../components/Layout/navbar.astro";
+import ConsentScript from "../components/consent/ConsentScript.astro";
+import CookieBanner from "../components/consent/CookieBanner.astro";
 import GoogleAnalytics from "../components/analytics/GoogleAnalytics.astro";
 import MetaPixel from "../components/analytics/MetaPixel.astro";
 import MicrosoftClarity from "../components/analytics/MicrosoftClarity.astro";
@@ -29,6 +31,7 @@ const { title, description, image, type = "website", article } = Astro.props;
 
 <html lang="es" dir="ltr" class="w-screen overflow-x-hidden">
   <head>
+    <ConsentScript />
     <BaseHead title={title} description={description} image={image} />
     <SEOHead />
     <OpenGraph
@@ -91,10 +94,17 @@ const { title, description, image, type = "website", article } = Astro.props;
     </main>
     <Footer />
     <FloatingCTA />
-    <script
-      is:inline
-      src="https://link.msgsndr.com/js/external-tracking.js"
-      data-tracking-id="tk_bd6c82a0afde449a8ffd7dd348ef5130"></script>
+    <CookieBanner />
+    <!-- GoHighLevel CRM tracking: solo con consent de marketing -->
+    <script is:inline>
+      window.GHL_TRACKING_ID_PENDING = "tk_bd6c82a0afde449a8ffd7dd348ef5130";
+      if (window.__DOS_CONSENT?.marketing) {
+        var s = document.createElement("script");
+        s.src = "https://link.msgsndr.com/js/external-tracking.js";
+        s.dataset.trackingId = window.GHL_TRACKING_ID_PENDING;
+        document.body.appendChild(s);
+      }
+    </script>
   </body>
 </html>
 

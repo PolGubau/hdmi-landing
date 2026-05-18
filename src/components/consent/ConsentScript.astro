@@ -1,0 +1,17 @@
+---
+/**
+ * ConsentScript — debe ir PRIMERO en <head>, antes de cualquier tracker.
+ * Lee las preferencias guardadas y las expone en window.__DOS_CONSENT.
+ */
+---
+
+<script is:inline>
+  (function () {
+    try {
+      const stored = localStorage.getItem("doscientos-consent");
+      window.__DOS_CONSENT = stored ? JSON.parse(stored) : null;
+    } catch (_) {
+      window.__DOS_CONSENT = null;
+    }
+  })();
+</script>

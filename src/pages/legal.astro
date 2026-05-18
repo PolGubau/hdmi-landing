@@ -2,8 +2,8 @@
 import MainLayout from "~/layouts/MainLayout.astro";
 import { getMetadata } from "~/shared/lib/constants";
 
-const { name, links } = getMetadata();
-const lastUpdated = "20 de febrero de 2025";
+const { name, legalName, links } = getMetadata();
+const lastUpdated = "18 de mayo de 2026";
 ---
 
 <MainLayout
@@ -34,7 +34,9 @@ const lastUpdated = "20 de febrero de 2025";
 
       <h2>1. Datos identificativos del titular</h2>
       <ul>
-        <li><strong>Titular:</strong> {name}</li>
+        <li><strong>Denominación social:</strong> {legalName}</li>
+        <li><strong>Nombre comercial:</strong> {name}</li>
+        <li><strong>Domicilio social:</strong> Barcelona, España</li>
         <li>
           <strong>Correo electrónico:</strong>{" "}
           <a href={links.email}>{links.email.replace("mailto:", "")}</a>
@@ -45,7 +47,6 @@ const lastUpdated = "20 de febrero de 2025";
             >{links.website}</a
           >
         </li>
-        <li><strong>Ubicación:</strong> Barcelona, España</li>
       </ul>
 
       <h2>2. Objeto</h2>
@@ -110,7 +111,8 @@ const lastUpdated = "20 de febrero de 2025";
       <p>
         Para cualquier consulta relacionada con este aviso legal, puedes
         contactarnos en{" "}
-        <a href={links.email}>{links.email.replace("mailto:", "")}</a>.
+        <a href={links.email}>{links.email.replace("mailto:", "")}</a> o a través del formulario disponible en{" "}
+        <a href="/contact">doscientos.es/contact</a>.
       </p>
     </article>
   </main>
